@@ -48,6 +48,7 @@
 \newpage
 
 \section*{Premessa}
+Queste dispense sono la quasi esatta trascrizione in \LaTeX\,delle dispense del corso di Elementi di teoria degli insiemi, tenuto del prof. Marcello Mamino nell'anno accademico 2022-23.
 \section*{Ringraziamenti}
 
 \mbox{}
@@ -124,25 +125,307 @@ Possiamo costruire l'insieme di Cantor a partire dall'intervallo $C_0 = [0,1]$ n
 	\end{figure}
 \end{center}
 
-ovvero, preso l'intervallo $[0,1]$ possiamo dividerlo in tre parti e rimuovere la parte centrale $\displaystyle\left(\frac 13, \frac 23\right)$, chiamiamo gli intervalli rimanenti $C_1$, possiamo iterare il procedimento sui due segmenti di $C_1$ ed ottenere $C_2,C_3,\ldots$, a questo punto 
+ovvero, preso l'intervallo $[0,1]$ possiamo dividerlo in tre parti e rimuovere la parte centrale $\displaystyle\left]\frac 13, \frac 23\right[$, chiamiamo gli intervalli rimanenti $C_1$, possiamo iterare il procedimento sui due segmenti di $C_1$ ed ottenere $C_2,C_3,\ldots$, a questo punto 
 definiamo l'insieme di Cantor $C$ come:
 \[ C := \bigcap_{i \in \NN}C_i
 	\]
-Esiste una funzione continua $f : \RR \longrightarrow \RR$ detta \vocab{scala di Cantor} (o \vocab{scala del diavolo}), tale che $f^{\prime}(x) = 0$ per $x \not\in C$ e non è 
+Esiste una funzione continua (e crescente) $f : \RR \longrightarrow \RR$ detta \vocab{scala di Cantor} (o \vocab{scala del diavolo}), tale che $f^{\prime}(x) = 0$ per $x \not\in C$ e non è 
 derivabile in $x \in C$.
+
+\begin{center}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=13.5cm]{immagini/scalacantor.png}
+	\end{figure}
+\end{center}
+
+tale funzione si costruisce aggiungendo tratti costanti (prima $\displaystyle\frac 12$, poi $\displaystyle\frac 14$, $\displaystyle\frac 34$ e così via, dividendo l'intervallo $[0,1]$ sull'asse delle ordinate in parti uguali) alle parti eliminate sull'intervallo
+$[0,1]$ sull'asse delle ascisse per costruire l'insieme di Cantor.
+
+\begin{note}
+Per $\QQ$ e $C$ non vale il \hyperref[unicità]{Fatto 1.5} ma, in realtà, sono di unicità.
+\end{note}
+
+\begin{exampleb}
+L'insieme degli elementi di una successione crescente col suo limite è un esempio di insieme di unicità.
+\end{exampleb}
+
+\begin{center}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=10.5cm]{immagini/succunic.png}
+	\end{figure}
+\end{center}
+
+Dimostriamo quindi che $X$ è un insieme di unicità.
+\begin{proof}
+La funzione $f$ è lineare in $]-\infty, a_0[, ]a_0,a_1[, ]a_1,a_2[, \ldots$. Quindi nei punti $a_0,a_1,a_2,\ldots$ ammette derivata destra e sinistra. 
+Siccome questi punti non possono essere angolosi, $f_{|]-\infty, a_0[}$, $f_{|]a_0,a_1[}$, etc. hanno lo stesso coefficiente angolare, quindi, sfruttando la cardinalità, $f_{|]-\infty, a_0[}$
+è lineare. Siccome $f_{|]-\infty, a_0[}$ è lineare, usando nuovamente l'assenza di punti angolosi abbiamo la tesi.
+\end{proof}
+
+\begin{examplebb}
+L'insieme degli elementi di una successione crescente di successioni crescenti è un insieme di unicità.
+\end{examplebb}
+
+\begin{center}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=12.5cm]{immagini/succunic2.png}
+	\end{figure}
+\end{center}
+
+Dimostriamo che $X$ è di unicità.
+\begin{proof}
+In ciascuno degli intervalli $]a_{i0}, a_{(i+1)0}[$, $f$ è lineare, ragionando come nell'esempio precedente, ci siamo ridotti alla situazione
+- di nuovo - dell'esempio precedente con $a_i^{\prime} = a_{i0}$.
+\end{proof}
 
 \subsection{Digressione: insiemi numerabili}
 \begin{definition}
-	Un insieme $X$ è \vocab{numerabile} se è il supporto di una successione, $X = \{a_0,a_1,a_2,\ldots\} = \{a_i | i \in \NN\}$, con $a_i \ne a_j$ per ogni $i \ne j$.
+	Un insieme $X$ è \vocab{numerabile} se è il supporto di una successione, $X = \{a_0,a_1,a_2,\ldots\} = \{a_i | i \in \NN\}$, con $a_i \ne a_j$ per ogni $i \ne j$.\footnote{O in altre parole se esiste $f : \NN \longrightarrow X$ biunivoca.}
 \end{definition}
 
-\newpage
-\subsection{Tornando agli insiemi di unicità}
-\newpage
-\subsection{Giochi di parole}
-\newpage
-\subsection{Scopi del corso}
+\begin{example}
+	Alcuni esempi di insiemi numerabili sono:
+	\begin{itemize}
+		\item $\NN$, l'insieme dei numeri naturali, infatti, la successione $a_i = i$ realizza la bigezione.
+		\item I numeri dispari, con la bigezione data da $a_i = 2i + 1$.
+		\item I numeri primi, $a_i = p_i$, con $p_i$ $i$-esimo numero primo.
+		\item $\ZZ$ l'insieme dei numeri interi, con la bigezione data da $a_i = \displaystyle (-1)^i \left\lceil\frac{i}{2}\right\rceil$.
+	\end{itemize}
+\end{example}
 
+\begin{examplem}
+L'insieme $\NN \times \NN = \{(x,y) | x,y \in \NN\}$ è numerabile.
+\end{examplem}
+
+\begin{proof}
+La funzione $f : \NN \times \NN \longrightarrow \NN : (x,y) \longmapsto 2^x(1+2y) - 1$ è biunivoca (perché?), quindi $a_i = f^{-1}(i)$ enumera $\NN \times \NN$.
+\end{proof}
+
+\begin{proposition}
+Un sottoinsieme infinito di un insieme numerabile è, a sua volta, numerabile.
+\end{proposition}
+
+\begin{proof}
+Sia $Y \subseteq X$ con $Y$ infinito e $X = \{a_i | i \in \NN\}$. La sottosuccessione $b_j = a_{i_j}$ degli $a_*$ che appartengono a $Y$ enumera $Y$. A essere precisi 
+bisognerebbe dire esattamente chi sono gli indici $i_j$. Per ricorsione:
+\[ i_0 = \min\{i | a_i \in Y\} \qquad i_{j+1} = \min\{i > i_j | a_i \in Y\}
+	\]
+dove i minimi esistono perché $Y$ non è finito.
+\end{proof}
+
+\begin{proposition}
+Se $X$ e $Y$ sono numerabili $X \times Y = \{(a,b) | a \in X, b \in Y\}$ è anch'esso numerabile.
+\end{proposition}
+
+\begin{proof}
+Fissiamo $X = \{a_i | i \in \NN\}$, $Y = \{b_j | j \in \NN\}$. Siccome $\NN \times \NN$ è numerabile, $\NN \times \NN = \{(i_t,j_t)|t \in \NN\}$.
+Quindi $X \times Y = \{(a_{i_t}, a_{j_t}) | t \in \NN\}$.
+\end{proof}
+
+\begin{example}
+$\QQ$ è numerabile.
+\end{example}
+
+\begin{proof}
+$\QQ$ è in corrispondenza biunivoca con:
+\[F = \{(\text{num.},\text{den.}) | \text{num. $\in \ZZ$} \wedge \text{den. $\in\NN_{>0}$} \wedge \text{M.C.D.(num.,den.) = 1}\} \subseteq \ZZ \times \NN\]
+\end{proof}
+
+\begin{notexample}
+$\RR$ non è numerabile.
+\end{notexample}
+
+\begin{proof}
+Supponendo, per assurdo, che $\RR = \{a_i | i \in \NN\}$, cerchiamo un $x \in \RR$ che non compare fra gli $a_i$. Allo scopo, costruiamo la sottosuccessione $a_{i_j}$
+definita per ricorrenza da:
+\[ i_0 = 0 \qquad i_1 = \min\{i | a_i > a_0\} \qquad i_{j+1} = \min\{i | \, \text{$a_i$ è compreso tra $a_{j-1}$ e $a_j$}\}
+	\]
+graficamente:
+
+\begin{center}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=10.5cm]{immagini/RRnum.png}
+	\end{figure}
+\end{center}
+
+Si vede facilmente (esercizio!) che la successione $\{a_{i_{2k}}\}_k$ è crescente, $\{a_{i_{2k+1}}\}_k$ è decrescente 
+e $\displaystyle \lim_{k \to +\infty} a_{i_{2k}} \leq \lim_{k \to +\infty a_{i_{2k+1}}}$. Fissiamo $x$ tale che $\displaystyle \lim_{k \to +\infty} a_{i_{2k}} \leq x \leq \lim_{k \to +\infty} a_{i_{2k+1}}$.
+Chiaramente $x$ non è nessuno degli $a_{i_j}$, perché $a_{i_2k} < x < a_{i_{2k+1}}$. Supponiamo $x = a_n$, allora ci sarà $j$ tale che $i_j < n < i_{j+1}$, ma 
+questo è assurdo perché allora $x = a_n$ è compreso fra $a_{i_{j-1}}$ e $a_{i_j}$, però $n < i_{j+1}$ contro la minimalità di quest'ultimo.
+
+\begin{exercise}
+Completare la dimostrazione nel caso $n < i$.
+\end{exercise}
+
+\begin{exercise}
+Dimostrare che l'insieme di Cantor $C$ non è numerabile.
+\end{exercise}
+\end{proof}
+
+\pagebreak
+\subsection{Tornando agli insiemi di unicità}
+
+\begin{theorem}
+[Cantor-Lebesgue]
+\label{CL}
+Se $X \subseteq \RR$ è chiuso e numerabile, allora $X$ soddisfa il \hyperref[unicità]{Fatto 1.5}, ed è, quindi, di unicità.
+\end{theorem}
+
+La strategia di dimostrazione passa attraverso una definizione.
+
+\begin{definition}
+Dato $X \subseteq \RR$, il \vocab{derivato di Cantor-Bendixson} di $X$ è:
+\[ X^{\prime} = X \setminus\{\text{punti isolati di $X$}\}
+	\]
+(dove $a \in X$ è un \vocab{punto di accumulazione} se $\exists \varepsilon > 0 : ]a - \varepsilon, a + \varepsilon[ \cap X = \{a\}$).
+\end{definition}
+
+\begin{remark}
+Se $X$ è chiuso e per $X^{\prime}$ vale il \hyperref[unicità]{Fatto 1.5}, allora anche per $X$ vale il \hyperref[unicità]{Fatto 1.5}.
+\end{remark}
+
+\begin{proof}
+Occorre dimostrare che se $f$ è continua, lineare, ristretta agli intervalli aperti che non intersecano $X$, e non ha punti angolosi, allora $f$ è
+lineare ristretta agli intervalli aperti che non intersecano $X^{\prime}$. Fatto questo, usando l'ipotesi su $X^{\prime}$, $f$ è lineare - abbiamo quindi
+mostrato che per $X$ vale \hyperref[unicità]{Fatto 1.5}.\\
+Sia $]a,b[ \cap X^{\prime} = \emptyset$, dobbiamo dire che $f_{|]a,b[}$ è lineare. Ci basta dire che per ogni $\varepsilon > 0$, $f_{|[a+\varepsilon, b-\varepsilon]}$ è lineare.
+Siccome $]a,b[ \cap X^{\prime} = \emptyset$, $]a,b[ \cap X = \{\text{punti isolati di $X$}\}$. Quindi $[a+\varepsilon, b-\varepsilon] \cap X$ è finito - se così non fosse, avrebbe un punto di accumulazione 
+$\alpha$ che non può essere un punto isolato di $X$ (altrimenti si avrebbe un assurdo). Per cui $f_{|[a+\varepsilon, b-\varepsilon]}$ è lineare a tratti, e, siccome non ha punti angolosi, è lineare.
+\end{proof}
+
+\begin{corollary}
+Sia $X^{(n)} = X^{\prime\prime\ldots\footnote{$n$ volte.}}$. Se $X^{(n)} = \emptyset$ per qualche $n \in \NN$, allora per $X$ vale il \hyperref[unicità]{Fatto 1.5}.
+\end{corollary}
+
+\begin{proof}
+Induzione su $n$.
+\end{proof}
+
+Il guaio è che ci sono chiusi numerabili per cui $X^{(n)} \ne \emptyset$, qualunque sia $n$.
+
+\begin{example}
+Vogliamo costruire $X$ chiuso e numerabile tale che $X^{(n)} \ne \emptyset$ per ogni $n \in \NN$. Cominciamo col rivedere alcuni esempi già visti.
+\end{example}
+
+\begin{center}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=14.5cm]{immagini/es1.png}
+	\end{figure}
+\end{center}
+
+Tutti i punti sono isolati, $X^{\prime} = \emptyset$.
+
+\pagebreak
+
+\begin{center}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=14.5cm]{immagini/es2.png}
+	\end{figure}
+\end{center}
+
+``Successione con punto limite". Tutti i punti sono isolati salvo $l$, quindi $X^{\prime} = \{l\}$ e $X^{\prime\prime} = \emptyset$.
+
+\begin{center}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=14.5cm]{immagini/es3.png}
+	\end{figure}
+\end{center}
+
+``Successione di successioni", $X^{\prime} = \{a_{10}, a_{20}, \ldots, l\}$, $X^{\prime\prime} = \{l\}$ e $X^{\prime\prime\prime} = \emptyset$.\\
+Si vede che possiamo proseguire, in qualche modo, costruendo una successione di successioni di successioni, etc. $n$ volte, $X_n$. Avremo $X_n^{(n)} \ne \emptyset$, $X_n^{(n+1)} = \emptyset$. Ora costruiamo 
+$X_{\omega}$ fatto così:
+
+\begin{center}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=14.5cm]{immagini/esomega.png}
+	\end{figure}
+\end{center}
+
+È chiaro che, per ogni $n$, $X_\omega^{(n)} \ne \emptyset$. D'altro canto, $X_\omega$ soddisfa il \hyperref[unicità]{Fatto 1.5}, perché $f$ deve essere lineare in ciascuno degli intervalli
+$[a_n,a_{n+1}]$, perché $X_{n+1}$ soddisfa il \hyperref[unicità]{Fatto 1.5}, quindi ci si riduce al caso della successione.
+
+\begin{exercise}
+Perché $X_\omega$ è numerabile?
+\end{exercise}
+
+Ora potremmo pensare che, pazienza se $X_\omega$ non si smonta a furia di derivati, sarà un caso particolare. Però adesso, possiamo fare una successione di insiemi come $X_\omega$, chiamiamola $X_{\omega+1}$, e 
+una successione di questi $X_{\omega+2}$, etc.\\
+Al diavolo, serve un nuovo corollario!
+
+\begin{corollary}
+Se $X^{(n)}$ è di ``tipo $X_\omega$", allora per $X$ vale il \hyperref[unicità]{Fatto 1.5}.
+\end{corollary}
+
+Ok, questo corollario copre $X_\omega$, $X_{\omega + 1}$, $X_{\omega + 2}$, ma copre anche $X_{\omega \cdot 2}$?
+\pagebreak
+\begin{center}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=14.5cm]{immagini/2omega.png}
+	\end{figure}
+\end{center}
+
+No: occorre un nuovo corollario.
+
+\begin{corollary}
+Se $X^{(n)}$ è di ``tipo $X_{\omega - 2}$", allora per $X$ vale il \hyperref[unicità]{Fatto 1.5}.
+\end{corollary}
+
+E poi un altro per $X_{\omega \cdot 3}$, e un altro per $X_{\omega \cdot 4}$, etc.\\
+E ora abbiamo finito? No, perché possiamo costruire una nuova successione con $X_{\omega},X_{\omega \cdot 2},X_{\omega \cdot 3}$, etc.\\
+Se chiamiamo questa follia $X_{\omega \cdot \omega}$, ecco che si riparte a fare successioni di $X_{\omega \cdot \omega}$. Ora si sarà capito che definiremo
+una serie aritmetica di queste cose, per cui potremo fare anche $\omega^\omega$, $\omega^{\omega^{\omega}}$, etc. È questa la soluzione allora?\\
+No, ogni sforzo di trovare l'induzione a capo delle induzioni è vano. Se ho $X_{\omega}$, $X_{\omega^\omega}$, $X_{\omega^{\omega^{\omega}}}$, etc., allora,
+ecco che faccio una successione con queste cose, la battezzo in qualche modo - ad esempio, $X_{\varepsilon_0}$ - e si riparte!\\
+Per smontare ogni possibile insieme chiuso e numerabile occorre un \textbf{nuovo tipo di induzione}, l'\vocab{induzione transfinita}, che è strettamente più potente dell'induzione aritmetica.
+Questa tecnica è stata sviluppata da Cantor, forse prendendo le mosse dal problema degli insiemi di unicità, e sarà uno degli argomenti centrali del corso.
+
+\begin{exercise}[per la fine del corso]
+Dimostrare il teorema di \hyperref[CL]{Cantor-Lebesgue}.
+\end{exercise}
+
+\subsection{Giochi di parole}
+Descrivere un oggetto matematico non basta per crearlo. Se bastasse, si incorrerebbe in contraddizioni come queste.
+\paragraph*{Paradosso di Russell}\mbox{}\\
+Tipicamente le collezioni - uso questa parola perché daremo, al termine ``insieme", un senso tecnico preciso - non sono membro di se stesse: la collezione di 
+tutti i numeri primi non è un numero primo. Però ci sono anche collezioni che sono membra di se stesse: per esempio la collezione di tutte le collezioni. Consideriamo:
+\[ N = \{\text{collezioni $X$}\, | X \not\in X \}
+	\]
+la collezione delle collezioni che non sono membra di se stesse - $N$ per collezioni normali. Quindi ci chiediamo se $N \in N$ oppure no? $N \in N$ se e solo se per definizione $N \not \in N$, che è assurdo.\\
+Il paradosso di Russell ci dice che, del principio di collezione - ossia l'idea che data una proprietà ben definita $P$ si possa costruire la collezione $\{X | P(X)\}$ - non ci si può fidare.
+
+\paragraph*{Paradosso di Berry}\mbox{}\\
+L'italiano annovera un numero finito di parole, è quindi possibile formare solo un numero finito di frasi di meno di centro parole. Alcune di queste descrivono un numero naturale, altre no. Comunque, solo un numero 
+finito di numeri naturali può essere descritto con meno di cento parole. Per il principio del minimo, esiste:
+\begin{align*}
+	h = \text{``il più piccolo numero naturale che l'italiano non può} \\ 
+ \text{descrivere con meno di cento parole"}
+\end{align*}
+Il guaio chiaramente, è che lo abbiamo appena descritto con sedici parole.\\
+Quindi non ci si può fidare troppo neppure dell'italiano, o meglio, non è possibile descrivere precisamente cosa sia una descrizione precisa.\\
+In conclusione, occorre fissare un linguaggio formale in cui si esprimano le proposizioni della teoria degli insiemi, e occorre fissare un sistema di assiomi, espressi in questo linguaggio, che 
+dicano quali costruzioni sono lecite: quali insiemi esistono. Il ruolo della teoria degli insiemi è, poi, di fondare l'edificio della matematica. L'ambizione, quindi, è che il linguaggio e gli assiomi della teoria degli insiemi, 
+siano in realtà, il linguaggio e gli assiomi della matematica.
+
+\subsection{Scopi del corso}
+Questo corso persegue due obiettivi:
+\begin{enumerate}[(1)]
+	\item Studiare i \textbf{fondamenti della matematica}, nella forma più comunemente accettata nel XX secolo e fino ad ora, la teoria degli insiemi di 
+	\href{https://it.wikipedia.org/wiki/Ernst_Zermelo}{\textcolor{purple}{Zermelo}}-\href{https://it.wikipedia.org/wiki/Adolf_Abraham_Halevi_Fraenkel}{\textcolor{purple}{Fraenkel}} con l'assioma della scelta (ZFC).
+	\item Studiare tecniche e strumenti che sono stati sviluppati grazie alla teoria degli insiemi, per esempio: la teoria delle cardinalità, la teoria dei numeri ordinali, l'induzione e la ricorsione transfinita.
+\end{enumerate}
+
+In questo corso non ci occupiamo dei modelli della teoria degli insiemi. Mi spiego. Per esempio, in teoria dei gruppi si assiomatizza cosa sia un gruppo, e poi si studia come possano essere fatti i diversi gruppi. In 
+teoria degli insiemi si assiomatizza l'universo di tutti gli insiemi, però, per il teorema di incompletezza di \href{https://it.wikipedia.org/wiki/Kurt_G%C3%B6del}{\textcolor{purple}{Gödel}}, questa assiomatizzazione non 
+può essere completa. Quindi esistono tanti universi insiemistici possibili. Indagare queste possibilità - i modelli della teoria degli insiemi - è argomento di corsi più avanzati.
 
 \newpage
 \section{Il linguaggio della teoria degli insiemi}
