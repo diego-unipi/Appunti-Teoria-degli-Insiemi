@@ -429,6 +429,19 @@ può essere completa. Quindi esistono tanti universi insiemistici possibili. Ind
 
 \newpage
 \section{Il linguaggio della teoria degli insiemi}
+Per non incorrere in contraddizione, accettiamo che le sole proposizioni ad avere senso siano quelle esprimibili mediante \vocab{formule insiemistiche}. Le formule si costruiscono ricorsivamente.
+\begin{itemize}
+	\item Le lettere $a,b,c,\ldots,A,B,C,\ldots,\alpha,\beta,\gamma,\ldots$ rappresentano \vocab{variabili}. I valori delle variabili sono sempre insiemi, e non ci sono altri oggetti salvo gli insiemi.
+	\item Le \vocab{formule atomiche} sono:
+	\[ \text{variabile = variabile} \qquad \qquad \text{variabile $\in$ variabile}\footnote{\,``appartiene a".}
+		\]
+	sono formule atomiche $x=y$, $x=x$, $\alpha = C$, e anche $x \in y$, $x \in x$, $\alpha \in C$.
+	\item Le formule atomiche si combinano tra loro mediante:
+	\begin{itemize}
+		\item \vocab{connettivi logici}
+		\item \vocab{quantificatori}
+	\end{itemize}
+\end{itemize} 
 \subsection{Le regole di inferenza}
 
 
@@ -438,14 +451,14 @@ può essere completa. Quindi esistono tanti universi insiemistici possibili. Ind
 \begin{axiom}
 [Assioma dell'insieme vuoto]
 Esiste un insieme vuoto.
-\[ \exists x, \forall y : y \not\in x
+\[ \exists x \; \forall y \; y \not\in x
 		\]
 \end{axiom}
 
 \begin{axiom}
 [Assioma di estensionalità]
 Un insieme è determinato dalla collezione dei suoi elementi. Due insiemi coincidono se e solo se hanno i medesimi elementi.
-\[ \forall a, \forall b : a = b \longleftrightarrow \forall x (x \in a \longleftrightarrow x \in b)
+\[ \forall a \; \forall b \; a = b \longleftrightarrow \forall x (x \in a \longleftrightarrow x \in b)
 	\]
 \end{axiom}
 
