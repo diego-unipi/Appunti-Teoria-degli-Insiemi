@@ -867,6 +867,7 @@ Il paio $\{a,b\}$ è, quindi, una coppia non ordinata. È possibile codificare l
 \subsection{Assioma dell'unione e operazioni booleane}
 
 \begin{axiom}[Assioma dell'unione]
+	\label{ax5}
 	Dato un insieme $A$ esiste un insieme $B$ i cui elementi sono gli elementi degli elementi di $A$. Ovvero, dato un insieme $A$ esiste l'unione degli elementi di $A$.
 	\[ \forall A \; \exists B \; \forall x \; x \in B \leftrightarrow \exists y \in A \; x \in y\footnote{Cioè $x$ è un elemento di $B$ se e solo se è un elemento di un elemento di $A$.}
 		\]
@@ -921,7 +922,7 @@ Combinando l'assioma dell'unione e del paio possiamo definire $a \cup b$.
 Ora definiamo le intersezioni: riesci a vedere perché, a differenza delle unioni, non servirà un nuovo assioma?
 
 \begin{definition}
-	Sia $C$ una \textcolor{red}{classe}\footnote{Quindi, in particolare, $C$ può essere un insieme.} non vuota.
+	Sia $C$ una \textcolor{red}{classe}\footnote{Quindi, in particolare, $C$ può essere un insieme (in questo caso la definizione è lecita in generale con le classi, i cui elementi sono insiemi).} non vuota.
 	L'\textcolor{red}{insieme} $B$ è l'\vocab{intersezione} di $C$ se:
 	\[ B = \bigcap C \Mydef \forall x \; x \in B \leftrightarrow \forall y \in C \; x \in y
 		\]
@@ -934,7 +935,7 @@ Ora definiamo le intersezioni: riesci a vedere perché, a differenza delle union
 \end{proposition}
 
 \begin{note}
-	L'ipotesi $C \ne \emptyset$ è necessaria perché si avrebbe che $\cap \emptyset$ è la classe universale $V$, che non è un insieme.
+	L'ipotesi $C \ne \emptyset$ è necessaria perché si avrebbe che $\bigcap \emptyset$ è la classe universale $V$, che non è un insieme.
 \end{note}
 
 \begin{proof}
@@ -1015,12 +1016,242 @@ Ora possiamo costruire insiemi finiti elencandone gli elementi, come si fa di so
 	Dimostrare la proposizione precedente.
 \end{exercise}
 
-\newpage
 \subsection{Assioma delle parti e prodotto cartesiano}
-\newpage
+Abbiamo definito le coppie $(x,y)$, però, per esempio, ancora nulla ci assicura che dati $A$ e $B$ esista:
+\[ A \times B = \{(x,y) | x \in A \land y \in B\}
+	\]
+Le funzioni $A \longrightarrow B$ saranno poi sottoinsiemi di $A \times B$, e vorremo parlare dell'insieme ${}^{A}B$
+delle funzioni $A \longrightarrow B$. Per tutto questo ci manca un solo ingrediente: l'insieme delle parti.
+
+\begin{axiom}
+	[Assioma delle parti]
+	\label{ax6}
+	Dato un insieme $A$ esiste l'insieme $\ps(A)$ i cui elementi sono i sottoinsiemi di $A$.
+	\[ \forall A \; \exists B \; \forall x \; x \in B \leftrightarrow x \subseteq A 
+		\]
+\end{axiom}
+
+\begin{proposition}
+	[Unicità delle parti]
+	Vale che:
+	\[\forall A \; \exists ! B \; \forall x \; x \in B \leftrightarrow x \subseteq A 
+		\]
+\end{proposition}
+
+\begin{proof}
+	Segue come sempre per \hyperref[ax2]{estensionalità}, in quanto, se avessimo $B_1$, $B_2$, allora:
+	\[ \forall x (x \in B_1 \leftrightarrow x \subseteq A) \qquad \text e \qquad \forall x(x \in B_2 \leftrightarrow x \subseteq A)
+		\]
+	quindi $\forall x(x \in B_1 \leftrightarrow x \in B_2) \leftrightarrow B_1 = B_2$.
+\end{proof}
+
+\begin{notation}
+	Data l'unicità possiamo porre:
+	\[ B = \ps(A) \Mydef \forall x \; x \in B \leftrightarrow x \subseteq A
+		\]
+\end{notation}
+
+\begin{proposition}[Esistenza ed unicità del prodotto cartesiano]
+	Dati $A$ e $B$  esiste un unico insieme $A \times B$ tale che:
+	\[ \forall z \; z \in A \times B \leftrightarrow \exists x \in A \; \exists y \in B \; z = (x,y)\footnote{Ossia, informalmente, $A \times B = \{(x,y) | x \in A, y \in B\}$.}
+		\]
+\end{proposition}
+
+\begin{proof}
+	L'unicità è conseguenza immediata della definizione e dell'\hyperref[ax2]{assioma di estensionalità}. Per l'esistenza, definiamo:
+	\[ A \times B \Mydef \{z \in \ps(\ps(A \cup B)) | \exists x \in A \ \exists y \in B \ z = (x,y)\}
+		\]
+	dobbiamo dimostrare che ogni coppia $(x,y)$ con $x \in A$ e $y \in B$ appartiene a questo insieme. Basta dimostrare che tutte queste coppie
+	appartengono a $\ps(\ps(A \cup B))$:
+	\[\begin{split}
+		a \in A \land b \in B &\implies \{a\},\{a,b\} \subseteq A \cup B\footnote{Poniamo $a,b,\ldots \in z \Mydef a \in z \land b \in z \land \ldots$ e $a,b,\ldots \subseteq z \Mydef a \subseteq z \land b \subseteq z \land \ldots$.}\\
+		& \implies \{a\},\{a,b\} \in \ps(A \cup B)\\
+		& \implies (a,b) = \{\{a\},\{a,b\}\} \subseteq \ps(A \cup B)\\
+		& \implies (a,b) \in \ps(\ps(A \cup B))
+	\end{split}
+		\]
+\end{proof}
+
+\begin{note}
+	Avremmo potuto costruire $A \times B$ usando, anziché l'assioma delle parti, l'assioma del rimpiazzamento, che vedremo più avanti.
+\end{note}
+
 \subsection{Relazioni di equivalenza e di ordine, funzioni}
+Ora rivedremo alcuni concetti ben noti dai primi corsi del primo anno (o dalla scuola superiore?). Lo facciamo molto rapidamente, essenzialmente per completezza, e per fissare le notazioni.
 
+\begin{definition}
+	Una \vocab{relazione binaria} fra $A$ e $B$ è un sottoinsieme di $A \times B$.
+\end{definition}
 
+\begin{notation}
+	Data una relazione $\rel \subseteq A \times B$, poniamo:
+	\[ a \rel b \Mydef (a,b) \in \rel
+		\]
+\end{notation}
+
+\begin{example}
+	Per esempio scriviamo $a < b$ per $(a,b) \in <$.
+\end{example}
+
+\begin{definition}
+	Una relazione $\sim \,\subseteq A \times A$ è una \vocab{relazione di equivalenza} se è:
+	\begin{enumerate}[(i)]
+		\item \textbf{\underline{riflessiva}}: $\forall x \in A \; x \sim x$.
+		\item \textbf{\underline{simmetrica}}: $\forall x,y \in A\footnote{$\forall x_1,\ldots,x_n \Mydef \forall x_1 \ldots \forall x_n$, e lo stesso con $\exists$ e con i quantificatori limitati.} x \sim y \leftrightarrow y \sim x$.
+		\item \textbf{\underline{transitiva}}: $\forall x,y,z \in A \; (x \sim y \land y \sim z) \rightarrow x \sim z$.
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}
+	$\leq \, \in A \times A$ è una \vocab{relazione di ordine (largo)} se è:
+	\begin{enumerate}[(i)]
+		\item \textbf{\underline{riflessiva}}: $\forall x \in A \; x \leq x$.
+		\item \textbf{\underline{antisimmetrica}}: $\forall x,y \in A \; (x \leq y \land y \leq x) \rightarrow x = y$.
+		\item \textbf{\underline{transitiva}}: $\forall x,y,z \in A \; (x \leq y \land y \leq z) \rightarrow x \leq z$.
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}
+	$< \, \in A \times A$ è una \vocab{relazione di ordine stretto} se è:
+	\begin{enumerate}[(i)]
+		\item \textbf{\underline{irriflessiva}}: $\forall x \in A \; \neg(x < x)$.
+		\item \textbf{\underline{transitiva}}: $\forall x,y,z \in A \; (x < y \land y < z) \rightarrow x < z$.
+	\end{enumerate}
+\end{definition}
+
+\begin{exercise}
+	Dimostra che una relazione di ordine stretto $<$ su $A$ è automaticamente asimmetrica:
+	\[ \forall x,y \in A \; x < y \rightarrow \neg (y < x)
+		\]
+\end{exercise}
+
+\begin{proposition}
+	Data una relazione di ordine stretto $<$ su $A$, la relazione:
+	\[ \leq\, = \{(x,y) \in A \times A | x < y \lor x = y\}\footnote{Formalmente: $\{z \in A \times A | \exists x,y \in A \; z = (x,y) \land \ldots\}$.}
+		\]
+	è una relazione di ordine largo. Viceversa, se $\leq$ è una relazione di ordine largo, la seguente relazione è dei ordine stretto:
+	\[ <\, = \{(x,y) \in A \times A | x \leq y \land x \ne y\}\footnote{Come la nota sopra.}
+		\]
+	Inoltre, in questo modo, le relazioni di ordine stretto e di ordine largo sono poste in corrispondenza una - a - uno.
+\end{proposition}
+
+\begin{proof}
+	Definiamo la diagonale:
+	\[ \Delta_A \Mydef \{(x,y) \in A \times A | x = y\}
+		\]
+	Allora è facile verificare che, se $<$ è una relazione di ordine stretto, allora $< \cap \,\Delta_A = \emptyset$ e $< \cup \,\Delta_A$ è una relazione di ordine largo corrispondente.
+	Viceversa, se $\leq$ è una relazione di ordine largo, allora $\Delta_A \subseteq \, \leq$ e $\leq \setminus \Delta_A$ è la relazione di ordine stretto corrispondente.
+\end{proof}
+
+\begin{notation}
+	Fissata una relazione di ordine largo $\textcolor{red}{\leq}$ su $A$, ci sentiremo liberi di usare la corrispondente relazione di ordine stretto $\textcolor{red}{<}$ fintanto che la scelta del simbolo sia indizio sufficiente dell'operazione.
+	Inoltre scriveremo $x > y$ per $y < x$ e $x \geq y$ per $y \leq x$.
+\end{notation}
+
+\begin{definition}
+	Una \vocab{relazione di ordine totale} su $A$ è una relazione di ordine $\leq$ tale che:
+	\[ \forall x,y \in A \; x \leq y \; \lor x = y \; \lor y \leq x
+		\]
+\end{definition}
+
+\begin{exercise}
+	Formula la definizione precedente per ordini stretti.
+\end{exercise}
+
+\begin{definition}
+	Data una relazione $\rel \subseteq A \times B$, $A' \subseteq A$ e $B' \subseteq B$, possiamo definire la \vocab{restrizione} di $\rel$ a $A'\times B'$:
+	\[ \rel_{|A' \times B'} \Mydef \rel \cap (A' \times B')
+		\]
+\end{definition}
+
+\begin{exercise}
+	Data $\rel$ relazione di equivalenza/ordine su $A$ e $A' \subseteq A$, dimostra che $\rel_{|A' \times A'}$ è una relazione di equivalenza/ordine su $A'$.
+\end{exercise}
+
+\begin{definition}
+	Data una relazione $\rel \subseteq A \times B$, definiamo:
+	\[ \Dom(\rel) \Mydef \{x \in A | \exists y \in B \; x\rel y\} \qquad \text{\vocab{dominio} di $\rel$}
+		\]\[ \Imm(\rel) \Mydef \{y \in B | \exists x \in A \; x \rel y \} \qquad \text{\vocab{immagine} di $\rel$}
+			\]
+\end{definition}
+
+\begin{definition}
+	Chiamiamo \vocab{funzione: $A \longrightarrow B$} una relazione $f \subseteq A \times B$ tale che:
+	\[ \forall x \in A \; \exists ! \, y \in B \; (x,y) \in \rel\footnote{Intuitivamente $f$ è l'insieme delle coppie $(x,f(x))$ per $x \in A$.}
+		\]
+\end{definition}
+
+\begin{notation}
+	Data una funzione $f$, scriviamo:
+	\[ y = f(x) \Mydef (x,y) \in f
+		\]
+	Dato $S \subseteq \Dom(f)$, scriviamo:
+	\[ f[S] \Mydef \{y \in \Imm(f)| \exists x \in S \; y = f(x)\} = \underbrace{\{f(x) | x \in S\}}_{\text{informalmente}}
+		\]
+\end{notation}
+
+\begin{definition}
+	Una funzione $f: A \longrightarrow B$ è:
+	\[ \begin{split}
+		\text{\vocab{iniettiva} se:}\; & \forall y \in \Imm(f)\; \exists! \, x \in \Dom(f) \; f(x) = y\\
+		\text{\vocab{suriettiva} se:}\; & B = \Imm(f)\; \text{ossia $\forall y \in B \; \exists x \in A \; f(x) = y$.}\\
+		\text{\vocab{bigettiva} se:}\; &\text{è sia iniettiva sia surgettiva.}
+	\end{split}
+		\]
+\end{definition}
+
+\begin{definition}
+	Data $f$ iniettiva:
+	\[ f^{-1} \Mydef \{(y,x) \in B \times A | f(x) = y\}
+		\]
+\end{definition}
+
+\begin{remark}
+	Data $f$ iniettiva, $f^{-1}$ è una funzione: $\Imm(f) \longrightarrow \Dom(f)$ iniettiva.
+	In particolare se $f$ è bigettiva: $A \longrightarrow B$, allora $f^{-1}$ è bigettiva.
+\end{remark}
+
+\begin{definition}
+	Data $f: A \longrightarrow B$ e $A' \subseteq A$:
+	\[ f_{|A'} \Mydef \{(x,y) \in A' \times B | f(x) = y\}
+		\]
+	$f_{|A'}$ ``$f$ \vocab{ristretta} ad $A'$'' è una funzione: $A' \longrightarrow B$.
+\end{definition}
+
+\begin{definition}
+	Date $g : A \longrightarrow B$ e $f : B \longrightarrow C$:
+	\[ f \circ g \Mydef \{(x,z) \in A \times C | z = f(g(x))\}\footnote{O più formalmente $\exists y(y = g(x) \land z = f(y))$.}
+		\]
+	$f \circ g$, ``$f$ \vocab{composta} con $g$'', è una funzione: $A \longrightarrow C$.
+\end{definition}
+
+\begin{notation}
+	Indichiamo con $\id_A$ la \vocab{funzione identità su $A$}:
+	\[ \id_A \Mydef \{(x,y) \in A \times A | x = y\} \; (= \Delta_A)
+		\]
+\end{notation}
+
+\begin{remark}
+	Data $f : A \longrightarrow B$ bigettiva e $g : B \longrightarrow A$, sono equivalenti:
+	\[ g = f^{-1} \qquad g \circ f = \id_A \qquad f \circ g = \id_B
+		\]
+\end{remark}
+
+\begin{exercise}
+	Data $g : A \longrightarrow B$ e $f: B \longrightarrow C$, sotto quali condizioni $f \circ g$ è iniettiva, suriettiva, bigettiva?
+\end{exercise}
+
+\begin{exercise}
+	Data una relazione di equivalenza $\sim$ su $A$, dimostra che esiste un insieme $\faktor{A}{\sim}$ ed una funzione surgettiva $i_\sim$ da $A$ a $\faktor{A}{\sim}$
+	tale che:
+	\[ \forall x,y \in A \; x \sim y \leftrightarrow i_\sim(x) = i_\sim(y)
+		\]
+\end{exercise}
+
+\begin{exercise}
+	Data una relazione di equivalenza $\sim$ su $A$ e $f : A \longrightarrow B$, affinché esista $\widetilde{f}: \faktor{A}{\sim} \longrightarrow B$ tale che $f = \widetilde{f} \circ i_\sim$,
+	è necessario e sufficiente che $\forall x,y \in A \; x \sim y \rightarrow f(x) = f(y)$.
+\end{exercise}
 
 \newpage
 \section{Assioma dell'infinito e numeri naturali}
