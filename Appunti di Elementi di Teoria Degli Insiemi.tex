@@ -1,6 +1,7 @@
 \documentclass[11pt]{scrartcl}
 \usepackage[italian]{babel}
 \usepackage[sexy]{evan} %evan.sty
+\usepackage{caption}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -1255,7 +1256,107 @@ Ora rivedremo alcuni concetti ben noti dai primi corsi del primo anno (o dalla s
 
 \newpage
 \section{Assioma dell'infinito e numeri naturali}
+Il nostro prossimo obiettivo è definire i numeri naturali. I soli oggetti della teoria degli insiemi sono gl insiemi, per cui va da sé che 
+i numeri saranno determinati insiemi. Il nostro scopo non è quindi tanto definire, quanto codificare i numeri naturali per mezzo di insiemi opportuni.
+La scelta della codifica non è obbligata: per esempio potremmo decidere che:
+\[ \text{``codifica buffa di $n$''} = \underbrace{\{\{\{\ldots \emptyset\ldots\}\}\}}_{\text{$n$ parentesi}}
+	\]
+Sceglieremo, invece, quest'altra codifica:
+\[ n = \{0,1,\ldots,n-1\} = \{x \in \NN | x < n\}
+	\]\[ 0 = \emptyset \qquad 1 = \{0\} \qquad 2 = \{0,1\} \qquad 3 = \{0,1,2\} \qquad \text{etc.}
+		\]
+che presenta alcuni vantaggi: per esempio $n$ è rappresentato da un insieme di $n$ elementi, e dire $m < n$ equivale semplicemente a dire $m \in n$.\\
+L'ostacolo è ora parlare di questi oggetti in maniera precisa nel linguaggio della teoria degli insiemi. A dire il vero, potremmo già scrivere una formula $\Phi(n)$ che dice 
+``$n$ è un numero naturale'' si tratta di un \textcolor{red}{esercizio} difficile, che sarà reso più facile da idee che vedremo più avanti. Noi non scriviamo questa formula, ma, anche a farlo,
+non potremmo comunque dimostrare che esiste un insieme i cui elementi sono i numeri naturali, questo perché gli assiomi visti finora non permettono di uscire dalla classe degli insiemi finiti (degli insiemi ``ereditariamente finiti'',
+ad essere precisi: definiremo questi concetto a tempo debito).\\
+Servirà un nuovo assioma. E l'idea da sfruttare è che, siccome $n = \{0,\ldots,n-1\}$, per ottenere il successore di $n$, ossia $n+1 = \{0,\ldots,n-1,n\}$ dobbiamo aggiungere a $n$ l'elemento $n$ stesso: $n+1 = n \cup \{n\}$.
+Avendo una formula per denotare il successore, possiamo postulare l'esistenza di un insieme chiuso per successori, e questo ci darà $\NN$.
+
+\begin{definition}
+	[Successore]
+	Definiamo il \vocab{successore} di $x$:
+	\[ s(x) \Mydef x \cup \{x\}
+		\]
+\end{definition}
+
+\begin{definition}
+	[Insiemi induttivi]
+	Diciamo che $A$ è un \vocab{insieme induttivo} se contiene $\emptyset$ ed è chiuso per successori, ossia:
+	\[ \text{$A$ è induttivo} \iff \emptyset \in A \land \forall x \in A \; s(x) \in A
+		\]
+\end{definition}
+
+\begin{axiom}
+	[Assioma dell'infinito]
+	\label{ax7}
+	Esiste un insieme induttivo.
+	\[ \exists A (\emptyset \in A \land (\forall x \in A \; s(x) \in A))
+		\]
+\end{axiom}
+
+Finalmente definiamo l'insieme dei numeri naturali - che, per qualche buffa ragione, chiamiamo $\omega$ - come l'intersezione della classe, non vuota per l'assioma dell'infinito,
+di tutti gli insiemi induttivi.
+
+\begin{definition}
+	L'insieme $\omega$ è l'intersezione di tutti gli insiemi induttivi, ossia $\omega$ è l'unico insieme tale che:
+	\[ \forall x (x \in \omega \leftrightarrow(\forall A \; \text{``$A$ è induttivo''}\rightarrow x \in A)) \footnote{Cioè $x$ è in $\omega$ se e solo se è elemento
+	di qualsiasi insieme induttivo (nella classe degli insiemi induttivi), e, inoltre, essendo l'intersezione di una classe, è in particolare un insieme (perché per definizione
+	stiamo intersecando gli elementi di una classe, che sono insiemi).}
+		\]
+\end{definition}
+
+Adesso che abbiamo $\omega$, possiamo facilmente dimostrare che ogni dato numero naturale vi appartiene.
+
+\begin{definition}
+	Definiamo:
+	\[ 0 \Mydef \emptyset \qquad 1 \Mydef s(0) \qquad 2 \Mydef s(1) \qquad 3 \Mydef s(2) \qquad \text{etc.}
+		\]
+\end{definition}
+
+\begin{exercise}
+	Dimostra che $0,1,2,3 \in \omega$.
+\end{exercise}
+
+Un esercizio un po' più difficile è esibire insiemi che non appartengono a $\omega$.
+
+\begin{exercise}
+	Dimostra che $\{\{\emptyset\}\} \not \in \omega$.\footnote{\textbf{\underline{Idea}}: Esibisci un insieme induttivo che non contiene $\{\{\emptyset\}\}$.}
+\end{exercise}
+
 \subsection{Gli assiomi di Peano}
+Per convincerci, però, che $\omega$ è, a buon diritto, l'insieme dei numeri naturali, serve qualcosa di più. Classicamente, i numeri naturali si definiscono per mezzo degli
+\vocab{assiomi di \href{https://it.wikipedia.org/wiki/Giuseppe_Peano}{\textcolor{purple}{Peano}}}. Questi assiomi, che caratterizzano a meno di isomorfismi l'insieme $\NN$ dotato della funzione di successore, \textbf{per noi diventano dei teoremi} che
+dimostreremo a proposito dell'insieme $\omega$. In questo senso, quindi, $\omega$ codifica legittimamente i numeri naturali.
+
+\begin{definition}
+	[Assiomi di Peano al secondo ordine (qualunque cosa questo significhi...)]
+	Dato un insieme $\NN$, un elemento $0 \in \NN$, e una funzione:
+	\[ \text{succ} : \NN \longrightarrow \NN
+		\]
+	diciamo che $(\NN,0,\text{succ})$ soddisfa gli assiomi di Peano se:
+	\begin{enumerate}[(a)]
+		\item Il successore è iniettivo:
+		\[ \forall n,m \in \NN \; \text{succ}(m) = \text{succ}(n) \rightarrow m = n
+			\]
+		\item Lo zero non è un successore:
+		\[ \not\exists n \in \NN \; \text{succ}(n) = 0
+			\]
+		\item \vocab{Principio di induzione}: data una qualunque formula insiemistica (proprietà) $\Phi(n)$ vale:
+		\[ (\phi(0) \land \forall n \in \NN \; \Phi(n) \rightarrow \Phi(\text{succ}(n))) \rightarrow \forall n \in \NN \; \Phi(n)
+			\]
+	\end{enumerate}
+\end{definition}
+
+\begin{center}
+	\begin{figure*}[h]
+		\centering
+		\includegraphics[width=10.5cm]{immagini/peano.png}
+		\captionsetup{labelformat=empty}
+		\caption{Apparivano così in ``\emph{Arithmetices principia}'', nel 1889, gli assiomi di Peano.}
+	\end{figure*}
+\end{center}
+
 \newpage
 \subsection{L'ordine di omega}
 \newpage
