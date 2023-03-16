@@ -2,6 +2,7 @@
 \usepackage[italian]{babel}
 \usepackage[sexy]{evan} %evan.sty
 \usepackage{caption}
+\usepackage{stmaryrd}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -1357,10 +1358,197 @@ dimostreremo a proposito dell'insieme $\omega$. In questo senso, quindi, $\omega
 	\end{figure*}
 \end{center}
 
-\newpage
+\begin{theorem}
+	La funzione $\text{succ}: \omega \longrightarrow \omega$, $\text{succ}(n) = s(n)$, è ben definita e $(\omega,\emptyset,\text{succ})$
+	soddisfa gli assiomi di Peano.
+\end{theorem}
+
+\begin{proof}
+	Per controllare che $\text{succ}$ sia ben definita, occorre assicurarsi che se $n \in \omega$, allora $s(n) \in \omega$. Fissiamo $n \in \omega$
+	e consideriamo un qualunque insieme induttivo $A$. Siccome $A$ è induttivo, $\omega \subseteq A$, quindi $n \in A$, e, di conseguenza $s(n) \in A$. Per 
+	l'arbitrarietà di $A$, allora, $s(n)$ appartiene a ogni insieme induttivo. Quindi $s(n) \in \omega$.\\
+	Dimostriamo ora che $\omega$ rispetta gli assiomi di Peano. Iniziamo con dimostrare (b) e (c), poi passeremo ad (a):
+	\begin{enumerate}
+		\item[(b)] Supponiamo, per assurdo, $s(n) = \emptyset$. Abbiamo allora:
+		\[ n \in n \cup \{n\} = s(n) = \emptyset
+			\]
+		contro la definizione di $\emptyset$.
+		\item[(c)] Dimostriamo che l'insieme $A = \{n \in \omega | \Phi(n)\}$ è induttivo, da cui $\omega = A$\footnote{Stiamo costruendo $A$ come sottoinsieme di $\omega$.}, quindi $\forall n \in \omega \; \Phi(n)$.
+		\begin{enumerate}[1.]
+			\item Per ipotesi abbiamo che $\Phi(\emptyset)$, quindi $\emptyset \in A$.
+			\item $n \in A \underbrace{\implies}_{\text{per ipotesi}} \Phi(n) \implies \Phi(s(n)) \underbrace{\implies}_{\text{perché $n \in \omega \rightarrow s(n) \in \omega$}} s(n) \in A$
+		\end{enumerate}
+		\item[(a)] La dimostrazione passa attraverso due lemmi.
+					\begin{lemma}
+					[Lemma 1]
+					$\forall n \in \omega \; \bigcup n \subseteq n$.
+					\end{lemma}
+					\begin{proof}
+						Per induzione (c) con $\Phi(n) \Mydef \bigcup n \subseteq n$.
+						\[ \Phi(\emptyset): \qquad \bigcup \emptyset = \emptyset \subseteq \emptyset
+							\]\[ \Phi(n) \rightarrow \Phi(s(n)): \qquad \bigcup(s(n)) = \bigcup(n \cup \{n\}) = \left(\bigcup n\right) \cup n = n \subseteq s(n)
+								\]
+						Dove la penultima uguaglianza vale in quanto:
+						\[ \begin{split}
+							x \in \bigcup(n \cup \{n\}) & \iff \exists y \; x \in y \land y \in n \cup\{n\}\\
+														& \iff \exists y \; x \in y \land (y \in n \lor y = n)\\
+														& \iff \exists y \; ( x \in y \land y \in n) \lor (x \in y \land y = n)\\
+														& \iff \exists y \; ( x \in y \land y \in n) \lor \exists y(x \in y \land y = n)\\
+														& \iff x \in \bigcup n \lor x \in N\\
+														& \iff x \in \left(\bigcup n\right) \cup n
+						\end{split}
+							\]
+						Mentre l'ultima in quanto, per ipotesi induttiva, $\bigcup n \subseteq n$, quindi $\left(\bigcup n\right) \cup n \subseteq n \cup n = n$.
+					\end{proof}
+					\begin{lemma}
+						[Lemma 2]
+						$\forall n \in \omega \; \bigcup s(n) = n$.
+					\end{lemma}
+					\begin{proof}
+						Come nel passo induttivo della dimostrazione precedente:
+						\[ \bigcup\left(s(n)\right) = \bigcup (n \cup \{n\}) = \left(\bigcup n\right) \cup n = n
+							\]
+						dove l'ultima uguaglianza abbiamo $\bigcup n \subseteq n$, non per ipotesi induttiva, ma per il Lemma 1.
+					\end{proof}
+					Finalmente abbiamo che, per il Lemma 2:
+					\[ s(m) = s(n) \implies m = \bigcup s(m) = \bigcup s(n) = n
+						\]
+	\end{enumerate}
+\end{proof}
+
 \subsection{L'ordine di omega}
-\newpage
+Conviene, adesso, sviluppare un po' di tecnologia per manipolare i numeri interi. Dopo, dimostreremo altresì che gli assiomi di Peano hanno un unico modello $(\NN, 0, \text{succ})$
+a meno di isomorfismi.
+
+\begin{notation}
+	Dati $m,n \in \omega$, scriviamo:
+	\[ m < n \Mydef m \in n
+		\]
+\end{notation}
+
+\begin{proposition}
+	La relazione $<$ è un ordine totale su $\omega$. 
+\end{proposition}
+
+Per dimostrare questa proposizione, sono comodi alcuni lemmi.
+
+\begin{remark}
+	Si osserva che:
+	\begin{enumerate}[1.]
+		\item $m \in n \rightarrow m \in s(n)$, infatti $n \subseteq n \cup \{n\} = s(n)$.
+		\item $m \in s(n) \rightarrow (m \in n \lor m = n)$, infatti:
+		 \[ \begin{split}
+			m \in n \cup \{n\} = s(n) & \iff m \in n \cup \{n\} = s(n)\\
+									& \iff m \in n \lor m \in \{n\}\\
+									&\iff m \in n \lor m = n
+		 \end{split}
+			\]
+	\end{enumerate}
+\end{remark}
+
+\begin{lemma}
+	$\forall a,b \in \omega \; a \in b \rightarrow (s(a) \in b \lor s(a) = b)$.
+\end{lemma}
+
+\begin{proof}
+	Induzione su $b$.
+	\begin{itemize}
+		\item Caso $b = 0$: $a \in \emptyset \rightarrow \ldots$ vera a vuoto, perché $a \in \emptyset$ è falsa.
+		\item Caso $b = s(n)$: l'ipotesi induttiva è $a \in n \rightarrow (s(a) \in n \lor s(a) = n)$. Dobbiamo dimostrare:
+		\[ a \in s(n) \rightarrow (s(a) \in s(n) \lor s(a) = s(n))
+			\]
+		abbiamo che $a \in s(n) \implies a \in n \cup \{n\} \implies a \in n \lor a = n$. Quindi abbiamo due casi:
+		\[ \begin{split}
+			& a \in n \implies s(a) \in n \lor s(a) = n \implies s(a) \in s(n) \\
+			& a = n \implies s(a) = s(n)
+		\end{split}
+			\]
+	\end{itemize}
+\end{proof}
+
+Possiamo roa dimostrare la proposizione.
+
+\begin{proof}
+	Verifichiamo le tre proprietà richieste da un ordinamento totale:\\
+	\textbf{\underline{transitività}}: $a \in b \land b \in c \rightarrow a \in c$. Induzione su $c$:
+	\begin{itemize}
+		\item \underline{caso $c = 0$}: la premessa $b \in c$ è falsa, quindi l'implicazione è vera a vuoto.
+		\item \underline{caso $c = s(n)$}: assumiamo per ipotesi induttiva $a \in b \land b \in n \rightarrow a \in n$. Sapendo $a \in b \land b \in s(n)$
+			vogliamo dedurre $a \in s(n)$. Abbiamo due casi:
+			\[ \begin{split}
+				& b = n \implies a \in b = n \implies a \in s(n)\\
+				& b \in n \implies a \in b \in n \implies a \in n \implies a \in s(n)
+			\end{split}
+				\]
+	\end{itemize}
+	\textbf{\underline{irriflessività}}: $\neg \,a \in a$. Per induzione:
+	\begin{itemize}
+		\item \underline{caso $a = 0$}: $\neg \, \emptyset \in \emptyset$ per definizione di $\emptyset$.
+		\item \underline{caso $a = s(n)$}: assumiamo l'ipotesi induttiva $\neg \, n \in n$. Per assurdo supponiamo $s(n) \in s(n)$ ed abbiamo due casi:
+		\[ \begin{split}
+			& s(n) = n \implies n \in n \; \lightning\\
+			& s(n) \in n \implies n \in s(n) \in n \implies n \in n \; \lightning
+		\end{split}
+			\]
+	\end{itemize}
+	\textbf{\underline{totalità}}: $a \in b \lor a = b \lor b \in a$. Per induzione su $a$:
+	\begin{itemize}
+		\item \underline{caso $a = 0$}: $\emptyset \in b \lor \emptyset = b \lor b \in \emptyset \footnote{Ovviamente quest'ultimo caso è impossibile.}$. Procediamo per induzione su $b$:
+		\begin{itemize}
+			\item \underline{caso $b = 0$}: $0 \in \emptyset \lor \emptyset = \emptyset$, dove naturalmente la prima affermazione è falsa, mentre la seconda è vera.
+			\item \underline{caso $b = s(m)$}: ipotesi induttiva $\emptyset \in m \lor \emptyset = m$. Abbiamo due casi:
+			\[ \begin{split}
+				& \emptyset \in m \implies \emptyset \in s(m) \lor \emptyset \in s(m) \implies \emptyset \in b\\
+				& \emptyset = m \implies \emptyset \in \{\emptyset\} = s(m) \implies \emptyset \in b
+			\end{split}
+				\]
+		\end{itemize}
+	\item \underline{caso $a = s(n)$}: L'ipotesi induttiva è $n \in b \lor n = b \lor b \in n$. Abbiamo tre casi:
+		\[ \begin{split}
+			& n \in b \implies s(n) \in b \lor s(n) = b \\
+			& n = b \implies b \in s(n) \implies b \in a\\
+			& b \in n \implies b \in s(n) \implies b \in a 
+		\end{split}
+			\]
+	\end{itemize}
+\end{proof}
+
+\begin{corollary}
+	Un numero naturale è l'insieme dei numeri naturali minori di lui.
+	\[ \forall m \in \omega \; m = \{n \in \omega | n < m\}
+		\]
+\end{corollary}
+
+\begin{proof}
+	Vogliamo dire che $m = \{ n \in \omega | n \in m\}$, ossia che $m \subseteq \omega$. Per induzione: $\emptyset \subseteq \omega$ è vera;
+	assumiamo $m \subseteq \omega$, allora $s(m) = m \cup \{m\}$ (con $\{m\} \subseteq \omega$ in quanto $m \in \omega$), quindi $s(m) \subseteq \omega$. %errore di Mamino
+\end{proof}
+
+\begin{corollary}
+	$\forall m,n \in \omega \; m \leq n \leftrightarrow m \subseteq n$.
+\end{corollary}
+
+\begin{proof}
+	Siccome $\omega$ è totalmente ordinato, si danno due casi:
+	\[ m \leq n \implies \forall x \in \omega \; x < m \rightarrow x < n \implies \forall x \in \omega \; x \in m \rightarrow x \in n \implies m \subseteq n
+		\]\[ n < m \implies n \in m \quad \text{tuttavia} \quad n \not\in n \implies m \not\subseteq n
+			\]
+\end{proof}
+
 \subsection{Induzione forte e principio del minimo}
+\begin{theorem}
+	[Principio di induzione - forma forte]
+	Data una formula insiemistica $\Phi(x)$, vale:
+	\[ (\forall n \in \omega (\forall x < n \; \Phi (x)) \rightarrow \Phi(n)) \rightarrow \forall n \in \omega \; \Phi(n)
+		\]
+	Ovvero, se assumendo $\Phi(x)$ per tutti gli $x < n$, abbiamo $\Phi(n)$, allora $\Phi(n)$ è vera per tutti i numeri $n$.
+\end{theorem}
+
+\begin{remark}
+	Chiaramente questa forma è ``forte'' perché permette di assumere un'ipotesi induttiva più forte dell'induzione di Peano. In quella, infatti, si deve dedurre $\Phi(n)$ a 
+	partire da $\Phi$ del numero precedente. Qui, invece, possiamo far conto di sapere $\Phi$, non solo per il precedente, ma per tutti i numeri minori di $n$.
+\end{remark}
+
 \newpage
 \subsection{Ricorsione numerabile}
 
