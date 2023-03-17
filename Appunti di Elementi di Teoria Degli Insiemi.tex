@@ -1831,13 +1831,63 @@ versatile del teorema.
 		\]
 \end{theorem}
 
+\begin{example}
+	[Esempi di applicazione]
+	Per costruire la successione di Fibonacci, definiamo $h(g)$ in questo modo. Sia $n = \Dom(g)$. Se $n = \emptyset$ o $n = 1$, allora $h(g) = 1$.
+	Altrimenti esistono $n-1, n-2 \in \omega$ tali che $s(n-1) = s(s(n-2)) = n$. Definiamo quindi $h(g) = g(n-1) + g(n-2)$.
+\end{example}
 
+\begin{proof}
+	L'idea è di definire, mediante la prima forma del \hyperref[ric1]{teorema di ricorsione}, la successione della troncata di $f$. Ossia la funzione $f' : n \longmapsto f_{|n}$. Un modo alternativo, sarebbe 
+	ripetere la dimostrazione della prima forma.\\
+	Costruiamo per ricorsione - prima forma - la funzione $f' : \omega \rightarrow A^*$ tale che:
+	\[ f(\emptyset) = \emptyset \qquad f'(s(n)) = f'(n) \cup \{(n,h(f'(n)))\}
+		\]
+	Ora poniamo $f(n) = f'(s(n))(n)$. Verifichiamo per induzione che $\forall n \in \omega \; f_{|n} = f'(n)$.
+	\begin{itemize}
+		\item \underline{caso $n = 0$}: immediato.
+		\item \underline{caso $n = s(m)$}: abbiamo:
+		\[ \begin{split}
+			f_{|s(m)} & = f_{|m} \cup \{(m,f(m))\}\\
+					& = f'(m) \cup \{(m,f'(s(m))(m))\}\\
+					& = f'(m) \cup \{(m,h(f'(m)))\} = f'(s(m))
+		\end{split}
+			\]
+	\end{itemize}
+	Infine, quindi, $f(n) = f'(s(n))(n) = h(f'(n)) = h(f_{|n})$.
+\end{proof}
 
+Abbiamo roa terminato di dimostrare le proprietà di base dei numeri naturali. Da qui, prende le mosse il corso di aritmetica. Nella prossima sezione, inizieremo
+lo studio di un concetto squisitamente insiemistico: la cardinalità.
 
-
+\begin{exercise}
+	Dimostra commutatività, associatività, etc. di $+$ e $\cdot$.
+\end{exercise}
 
 \newpage
 \section{Cardinalità}
+Il concetto di cardinalità è, forse, il modo più semplice di contare gli elementi di un insieme: diciamo che due insiemi hanno un ugual numero di elementi se esiste
+una corrispondenza biunivoca fra di essi.
+
+\begin{definition}
+	Dati due insiemi $A$ e $B$:
+	\[ |A| = |B| \Mydef \exists f \in {}^A B \; \text{``$f$ è bigettiva $A \longrightarrow B$''}
+		\]
+	diciamo anche che ``$A$ ha la stessa \vocab{cardinalità} di $B$'' o che ``$A$ e $B$ sono \vocab{equipotenti}''. Poniamo inoltre:
+	\[ |A| \leq |B| \Mydef \exists B' \subseteq B \; |A| = |B'| 
+		\]
+	ossia: $\exists f \in {}^A B$ ``$f$ è iniettiva''.
+\end{definition}
+
+\begin{note}
+	Osserviamo che:
+	\begin{itemize}
+		\item La scrittura $|A| = |B|$ suggerisce che esistono insiemi - o oggetti di qualche genere - denotati $|A|$ e $|B|$ di cui si predica l'uguaglianza.
+		Effettivamente costruiamo questi oggetti, ma, per ora, la scrittura $|A| = |B|$ è inscindibile, come \ding{168}$[A,B)$.
+		\item Potrebbe sorgere il sospetto che se $|A|\textcolor{red}{<}|B|$ quando $A \subsetneq B$, ma non è così, come mostra l'esempio di $A = \{x \in \omega | x > 0\}$ e $B = \omega$.
+	\end{itemize}
+\end{note}
+
 \subsection{Teorema di Cantor-Berstein}
 \newpage
 \subsection{Teorema di Cantor}
