@@ -478,7 +478,7 @@ ed in cui le frecce rappresentano la relazione di appartenenza.
 \end{center}
 
 Possiamo solo fare affermazioni a proposito di vertici e frecce di questo grafo. Per esempio:
-\[ \text{``$a$ è un elemento di un certo $b$''} \equiv \text{``c'è un percorso di due frecce fra $a$ e $b$''} 
+\[ \text{``$a$ è un elemento di un elemento di un certo $b$''} \equiv \text{``c'è un percorso di due frecce fra $a$ e $b$''} 
 	\]
 che corrisponde mediante formule insiemistiche a $ \exists x \, a \in x \land x \in b$. E ancora:
 \[\text{``$a$ è un sottoinsieme di $b$''} \equiv \text{``ogni elemento di $a$ è elemento di $b$''} \equiv \]\[
@@ -497,8 +497,8 @@ più volte questo linguaggio mediante abbreviazioni, che semplicemente rimpiazza
 la potenza espressiva del linguaggio. Vediamo le prime abbreviazioni:
 \[ x \ne y \Mydef \neg x = y \footnote{Cioè ``non è vero che $x$ è uguale a $y$''.} \qquad x \not\in y \Mydef \neg x \in y \qquad \not\exists x \,\Phi \Mydef \neg \exists x \, \Phi
 	\]\[ \Phi \rightarrow \psi \Mydef \psi \lor \neg \Phi \qquad \Phi \leftrightarrow \psi \Mydef (\Phi \rightarrow \psi) \land (\psi \rightarrow \Phi)
-		\]\[ \exists x \in y \; \Phi \Mydef \exists x (x \in A \land \Phi) \qquad \forall x \in A \; \Phi \Mydef \forall x (x \in A \rightarrow \Phi)
-			\]\[ \exists !\, x\, \Phi(x) \Mydef \exists x (\Phi(x) \land \forall y(\Phi(y) \rightarrow y = a))
+		\]\[ \exists x \in A \; \Phi \Mydef \exists x (x \in A \land \Phi) \qquad \forall x \in A \; \Phi \Mydef \forall x (x \in A \rightarrow \Phi)
+			\]\[ \exists !\, x\, \Phi(x) \Mydef \exists x (\Phi(x) \land \forall y(\Phi(y) \rightarrow y = x))
 				\]\[ \exists !\, x \in A \,\Phi(x) \Mydef \exists! \, x(x \in A \land \Phi(x))
 					\]\[ A \subseteq B \Mydef \forall x (x \in A \rightarrow x \in B) \qquad A \subsetneq B \Mydef( A \subseteq B) \land (A \ne B)
 						\]\[ C = A \cup B \Mydef \forall x \, x \in C \leftrightarrow (x \in A \lor x \in B)
@@ -627,7 +627,7 @@ Consideriamo due insiemi vuoti $x_1$ e $x_2$, ossia supponiamo $\forall y \, y \
 \[ \forall y (y \in x_1 \leftrightarrow y \in x_2)
 	\]
 [sono coimplicate logicamente] perché $y \in x_1$ e $y \in x_2$ sono entrambe necessariamente false. Quindi, per \hyperref[ax2]{estensionalità}, la proposizione sopra è equivalente a $x_1 = x_2$.\\
-\emph{Dimostrazione formale.} Questo livello di pedanteria non è necessario, ma, per una volta, proviamo a dimostrare in ogni dettaglio la formula $\exists ! \, \forall y \, y \not\in x$. Per definizione di $\exists !$, ciò equivale a:
+\emph{Dimostrazione formale.} Questo livello di pedanteria non è necessario, ma, per una volta, proviamo a dimostrare in ogni dettaglio la formula $\exists ! x \, \forall y \, y \not\in x$. Per definizione di $\exists !$, ciò equivale a:
 \[ \exists x_1 ((\forall y \, y \not \in x_1) \land \forall x_2 ((\forall y \, y \not \in x_2) \rightarrow x_2 = x_1))
 	\]
 Per l'\hyperref[ax1]{assioma del vuoto}, $\exists x_1 \, \forall y \, y \not \in x_1$: fissiamo questo $x_1$. Resta da dimostrare che:
