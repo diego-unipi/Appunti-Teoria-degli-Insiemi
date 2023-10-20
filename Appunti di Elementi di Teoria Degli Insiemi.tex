@@ -1,8 +1,6 @@
 \documentclass[11pt]{scrartcl}
 \usepackage[italian]{babel}
-\usepackage[sexy]{evan} %evan.sty
-\usepackage{caption}
-\usepackage{stmaryrd}
+\usepackage[sexy]{evan}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -64,8 +62,6 @@ Francesco Sorce.
 
 Quest'opera è stata rilasciata con licenza Creative Commons Attribuzione - Condividi allo stesso modo 4.0 Internazionale. Per leggere
 una copia della licenza visita il sito web \href{http://creativecommons.org/licenses/by-sa/4.0/deed.it}{\textcolor{blue}{https://creativecommons.org/licenses/by-nc/4.0/deed.it}}.\\
-
-\newpage
 
 \newpage
 \section{Prologo nel XIX secolo}
@@ -462,12 +458,12 @@ Per non incorrere in contraddizione, accettiamo che le sole proposizioni ad aver
 			&\exists x \, \Phi \equiv \text{``c'è un insieme $x$ che fa si che $\Phi$ sia vera''}
 		\end{flalign*}
 		\begin{exercise}
-			Chiaramente varranno $\forall x \, x = x,$ $ \forall x \, \exists y \, x = y,$ $ \neg \exists x \, \forall y \, x = y$.
+			Chiaramente varranno $\forall x \, x = x,$ $ \forall x \, \exists y \, x = y,$ $ \neg (\exists x \, \forall y \, x = y)$.
 		\end{exercise}
 	\end{itemize}
 \end{itemize}
 
-\textbf{\underline{L'intuizione}} è che l'universo insiemistico sia un gigantesco grafo diretto (aciclico) i cui vertici sono gli insiemi,
+\textbf{\underline{L'intuizione}} è che l'universo insiemistico sia un gigantesco \href{https://it.wikipedia.org/wiki/Digrafo_aciclico}{\textcolor{purple}{grafo diretto aciclico}} i cui vertici sono gli insiemi,
 ed in cui le frecce rappresentano la relazione di appartenenza.
 
 \begin{center}
@@ -480,24 +476,24 @@ ed in cui le frecce rappresentano la relazione di appartenenza.
 Possiamo solo fare affermazioni a proposito di vertici e frecce di questo grafo. Per esempio:
 \[ \text{``$a$ è un elemento di un certo $b$''} \equiv \text{``c'è un percorso di due frecce fra $a$ e $b$''} 
 	\]
-che corrisponde mediante formule insiemistiche a $ \exists x \, a \in x \land x \in b$. E ancora:
+che corrisponde mediante formule insiemistiche a $ \exists x (a \in x \land x \in b)$. E ancora:
 \[\text{``$a$ è un sottoinsieme di $b$''} \equiv \text{``ogni elemento di $a$ è elemento di $b$''} \equiv \]\[
 		\equiv\text{``non c'è un insieme che è elemento di $a$ e non di $b$''}\equiv\]\[
 	 \equiv \text{``non c'è un vertice con una freccia verso $a$ e non una verso $b$''}
 	\]
-che corrisponde mediante formule insiemistiche a $\neg\exists x \, x \in a \land \neg x \in b$ (tutto ciò che raggiunge $a$ deve raggiungere anche $b$).\\
+che corrisponde mediante formule insiemistiche a $\neg\exists x (x \in a \land \neg x \in b)$ (tutto ciò che raggiunge $a$ deve raggiungere anche $b$).\\
 \textbf{\underline{Parentesi}} Ad essere precisi, avremmo dovuto definire le formule includendo un mucchio di parentesi, allo scopo di eliminare ogni possibilità
 di formare una combinazione di simboli ambigua. Per esempio $\textcolor{red}{\Phi_1 \land \Phi_2 \lor \Phi_3}$ è ambigua, perché si potrebbe leggere $(\Phi_1 \land \Phi_2) \lor \Phi_3$
 o $\Phi_1 \land (\Phi_2 \lor \Phi_3)$. In una notazione completamente parentesizzata, per esempio, la formula per ``$a$ è un sottoinsieme di $b$'' sarebbe:
 \[ \neg(\exists x((x \in a)\land(\neg(x \in b))))
 	\]
-Non useremo, in generale, questa notazione, ma useremo le parentesi selettivamente per evitare ambiguità.\\
+Non useremo, in generale, questa notazione, ma useremo le parentesi selettivamente per evitare ambiguità. \footnote{Mi riservo in queste dispense di modificare un pochino questa regola, qualora alcune formule risultassero più leggibili con le parentesi.}\\
 \textbf{\underline{Abbreviazioni}} Le formule appena descritte costituiscono il linguaggio della teoria degli insiemi \textbf{puro}. Durante il corso estenderemo
 più volte questo linguaggio mediante abbreviazioni, che semplicemente rimpiazzano formule più lunghe con scritture convenzionali più compatte, e quindi non alterano 
 la potenza espressiva del linguaggio. Vediamo le prime abbreviazioni:
 \[ x \ne y \Mydef \neg x = y \footnote{Cioè ``non è vero che $x$ è uguale a $y$''.} \qquad x \not\in y \Mydef \neg x \in y \qquad \not\exists x \,\Phi \Mydef \neg \exists x \, \Phi
 	\]\[ \Phi \rightarrow \psi \Mydef \psi \lor \neg \Phi \qquad \Phi \leftrightarrow \psi \Mydef (\Phi \rightarrow \psi) \land (\psi \rightarrow \Phi)
-		\]\[ \exists x \in y \; \Phi \Mydef \exists x (x \in A \land \Phi) \qquad \forall x \in A \; \Phi \Mydef \forall x (x \in A \rightarrow \Phi)
+		\]\[ \exists x \in y \; \Phi \Mydef \exists x (x \in y \land \Phi) \qquad \forall x \in A \; \Phi \Mydef \forall x (x \in A \rightarrow \Phi)
 			\]\[ \exists !\, x\, \Phi(x) \Mydef \exists x (\Phi(x) \land \forall y(\Phi(y) \rightarrow y = a))
 				\]\[ \exists !\, x \in A \,\Phi(x) \Mydef \exists! \, x(x \in A \land \Phi(x))
 					\]\[ A \subseteq B \Mydef \forall x (x \in A \rightarrow x \in B) \qquad A \subsetneq B \Mydef( A \subseteq B) \land (A \ne B)
@@ -545,7 +541,7 @@ Per verificare questo fatto basta considerare tutte le possibili combinazioni di
 Come si osserva le due colonne corrispondenti ai valori di verità delle nostre formule iniziali hanno gli stessi valori di verità in ogni caso.\\
 Conviene tenere a mente alcune delle equivalenze elementari:
 \[ \neg\neg \Phi \equiv \Phi \qquad \Phi \land (\psi \lor \Theta) \equiv (\Phi \land \psi) \lor (\Phi \land \Theta) \qquad \Phi \lor (\psi \land \Theta) \equiv (\Phi \lor \psi) \land (\Phi \lor \Theta)
-	\]\[ \neg(\Phi \land \psi) \equiv \neg \Phi \lor \neg \psi \qquad \neg(\Phi \lor \psi) = \neg \Phi \land \neg \psi
+	\]\[ \neg(\Phi \land \psi) \equiv \neg \Phi \lor \neg \psi \qquad \neg(\Phi \lor \psi) = \neg \Phi \land \neg \psi \, \footnote{\href{https://it.wikipedia.org/wiki/Leggi_di_De_Morgan}{\textcolor{purple}{Leggi di De Morgan}}.}
 		\]\[ \Phi \rightarrow \neg \psi \equiv \psi \rightarrow \neg \Phi \qquad \Phi \rightarrow \psi \equiv \neg \psi \rightarrow \neg \Phi
 			\]
 
@@ -618,7 +614,7 @@ l'assioma di estensionalità semplicemente nella forma:
 
 \begin{proposition}[Unicità dell'insieme vuoto]
 C'è un unico insieme vuoto.
-\[ \exists ! \; x \; \forall y \; y \not \in x
+\[ \exists ! \, x \; \forall y \; y \not \in x
 	\]
 \end{proposition}
 
@@ -626,8 +622,10 @@ C'è un unico insieme vuoto.
 Consideriamo due insiemi vuoti $x_1$ e $x_2$, ossia supponiamo $\forall y \, y \not\in x_1$, e $\forall y \, y \not \in x_2$. Allora:
 \[ \forall y (y \in x_1 \leftrightarrow y \in x_2)
 	\]
-[sono coimplicate logicamente] perché $y \in x_1$ e $y \in x_2$ sono entrambe necessariamente false. Quindi, per \hyperref[ax2]{estensionalità}, la proposizione sopra è equivalente a $x_1 = x_2$.\\
-\emph{Dimostrazione formale.} Questo livello di pedanteria non è necessario, ma, per una volta, proviamo a dimostrare in ogni dettaglio la formula $\exists ! \, \forall y \, y \not\in x$. Per definizione di $\exists !$, ciò equivale a:
+[sono coimplicate logicamente] perché $y \in x_1$ e $y \in x_2$ sono entrambe necessariamente false (quindi la proposizione così com'è scritta è sempre vera). Per \hyperref[ax2]{estensionalità}, la proposizione sopra (sempre vera) è equivalente a $x_1 = x_2$ (che quindi a sua volta sarà sempre vera), e quindi abbiamo la tesi.
+\end{proof}
+
+\emph{Dimostrazione formale.} Questo livello di pedanteria non è necessario, ma, per una volta, proviamo a dimostrare in ogni dettaglio la formula $\exists ! x (\forall y (y \not \in x))$. Per definizione di $\exists !$, ciò equivale a:
 \[ \exists x_1 ((\forall y \, y \not \in x_1) \land \forall x_2 ((\forall y \, y \not \in x_2) \rightarrow x_2 = x_1))
 	\]
 Per l'\hyperref[ax1]{assioma del vuoto}, $\exists x_1 \, \forall y \, y \not \in x_1$: fissiamo questo $x_1$. Resta da dimostrare che:
@@ -647,13 +645,13 @@ l'arbitrarietà di $y$:
 Dall'\hyperref[ax2]{assioma di estensionalità}:
 \[ \forall y (y \in x_1 \leftrightarrow y \in x_2) \rightarrow x_1 = x_2
 	\]
-Abbiamo quindi $x_1 = x_2$, da cui segue la verità dell'implicazione iniziale.
-\end{proof}
+Abbiamo quindi $x_1 = x_2$, da cui segue la verità dell'implicazione iniziale. $\hfill\square$
+
 
 Chiaramente, ho voluto scrivere questa dimostrazione delirante per convincervi che NON È UNA BUONA IDEA.
 
 \begin{notation}
-L'unicità dell'insieme vuoto ci giustifica ad introdurre una nuova abbreviazione:
+L'unicità dell'insieme vuoto ci giustifica ad introdurre delle nuove abbreviazioni:
 \[ x = \emptyset \Mydef \forall y \, y \not\in x \qquad \emptyset \in x \Mydef \exists z (z = \emptyset \land z \in x)
 	\]
 \end{notation}
@@ -681,20 +679,20 @@ Fissati $A$ e $\psi(x)$, l'insieme $\{x \in A | \psi(x)\}$ è univocamente defin
 Come per l'unicità dell'insieme vuoto, supponiamo di avere $B_1$ e $B_2$ tali che:
 \[ \forall x \, x \in B_1 \leftrightarrow (x \in A \land \psi(x)) \qquad \forall x \, x \in B_2 \leftrightarrow (x \in A \land \psi(x))
 	\]
-Allora, $\forall x \, x \in B_1 \leftrightarrow (x \in A \land \psi(x)) \leftrightarrow x \in B_2$, quindi, \hyperref[ax2]{estensionalità}, $B_1 = B_2$.
+Allora, $\forall x \, x \in B_1 \leftrightarrow (x \in A \land \psi(x)) \leftrightarrow x \in B_2$, quindi ciò coimplica, per \hyperref[ax2]{estensionalità}, che $B_1 = B_2$.
 \end{proof}
 
-\begin{exercise}
-Verifica che se $\psi \leftrightarrow \Phi$ e $\Phi \leftrightarrow \Theta$, allora $\psi \leftrightarrow \Theta$.
+\begin{exercise}[Transitività della coimplicazione]
+Verificare che se $\psi \leftrightarrow \Phi$ e $\Phi \leftrightarrow \Theta$, allora $\psi \leftrightarrow \Theta$.
 \end{exercise}
 
 \begin{notation}
-Vista l'unicità, scriviamo:
+Vista l'unicità, possiamo introdurre una nuova abbreviazione:
 \[ B = \{x \in A | \psi(x)\} \Mydef \forall x \, x \in B \leftrightarrow (x \in A \land \psi(x))
 	\]
 \end{notation}
 
-Osserviamo che l'assioma di separazione è una forma indebolita del principio di collezione. Rimpiazzando questo con quello, il Paradosso di Russell diventa una proposizione.
+Osserviamo che l'assioma di separazione è una forma indebolita del principio di collezione\footnote{Quel principio che definisce gli insiemi come tutte le cose che soddisfano una certa formula.}. Rimpiazzando il principio con questo assioma, il Paradosso di Russell diventa una proposizione.
 
 \begin{proposition}[Insieme di tutti gli inisemi]
 Non esiste l'insieme di tutti gli insiemi.
@@ -703,43 +701,44 @@ Non esiste l'insieme di tutti gli insiemi.
 \end{proposition}
 
 \begin{proof}
-Supponiamo, per assurdo, che esista questo $V$. Allora, per \hyperref[ax3]{separazione} con la formula $\psi (x) \equiv x \not \in x$, esiste:
+Supponiamo, per assurdo, che esista questo $V$. Allora, per \hyperref[ax3]{separazione} con la formula $\psi (x) \equiv x \not \in x$, esiste l'insieme:
 \[ N = \{x \in V | x \not\in x\}
 	\]
-che ha, per definizione, la proprietà:
+che, per definizione (via separazione), ha la proprietà:
 \[ \forall x \, x \in N \leftrightarrow (x \in V \land x \not \in x)
 	\]
 Per ipotesi assurda, $x \in V$ è sempre vera (stiamo considerando l'insieme di tutti gli insiemi), quindi quanto scritto si riduce a:
 \[ \forall x \, x \in N \leftrightarrow x \not\in x
 	\]
-prendendo ora, $x = N$, abbiamo $N \in N \leftrightarrow N \not\in N$, assurdo.
+prendendo ora come insieme $N$: $x = N$, abbiamo $N \in N \leftrightarrow N \not\in N$, assurdo.
 \end{proof}
 
 \subsection{Classi e classi proprie}
 Sebbene, abbiamo detto che gli unici oggetti della teoria degli insiemi sono gli insiemi, usualmente ci si riferisce alla collezione di tutti gli insiemi 
 che soddisfano una certa formula come ad una specie di insieme: una \vocab{classe}. Più precisamente, data una formula $\psi(x)$, se diciamo: ``sia $C$ la classe degli insiemi $x$ tali che $\psi(x)$''
-intendiamo dire che useremo la scrittura $x \in C$ come una semplice abbreviazione per la formula $\psi(x)$. \\
-Non avrebbe senso scrivere \textcolor{red}{$C \in$ qualcosa}, perché il simbolo $\in$ in $x \in C$ non ha senso, se non nel tutt'uno $\in C$. In altri termini, se scriviamo $x \in C$ in luogo di $\psi(x)$ è solo come ausilio dell'intuizione:
+intendiamo dire che useremo la scrittura $x \in C$ come una semplice abbreviazione per la formula $\psi(x)$.\footnote{Ovvero per tutti gli oggetti (solo gli insiemi in questo caso) che soddisfano una tale formula $\psi(x)$.} \\
+Non avrebbe senso scrivere \textcolor{red}{$C \in$ qualcosa}, perché il simbolo $\in$ in $x \in C$ non ha senso (ha senso solo tra oggetti di tipo insieme), se non nel tutt'uno $\in C$. In altri termini, se scriviamo $x \in C$ in luogo di $\psi(x)$ è solo come ausilio dell'intuizione (per comodità insomma, senza intendere qualcosa di formale all'interno della teoria degli insiemi):
 avremmo potuto decidere di scrivere $x$\ding{168}, o nient'altro che $\psi(x)$.
 
-\begin{definition}
+\begin{definition}[Classe universale]
 La classe $V$ si dice \vocab{classe universale} ed è la classe di tutti gli insiemi.
-\[ x \in V \Mydef x = x
+\[ x \in V \Mydef x = x \footnote{Cioè la classe degli insiemi che soddisfano il predicato $\psi(x): x = x$ (ovvero tutti gli insiemi per quanto assunto all'inizio della teoria), $V = \{x | \psi(x)\} = \{x | x = x\}$ (dove naturalmente non sto usando separazione ma il principio di collezione perché stiamo definendo una classe).}
 	\]
 \end{definition}
 
 Insomma, scrivere $x \in V$ non dice molto: è una formula sempre vera.
-\pagebreak
-\begin{notation}
+
+\begin{notation}[Uguaglianza tra classi]
 Date due classi $C$ e $D$, che, ricordiamo, non significa altro che ``date due formule$\ldots$'', definiamo l'abbreviazione:
-$$ C = D \Mydef \forall x ((x \in C) \leftrightarrow (x \in D)) $$
+\[ C = D \Mydef \forall x ((x \in C) \leftrightarrow (x \in D)) \footnote{Non è altro che un abbreviazione per dire che le formule che definiscono le classi $C$ e $D$ sono soddisfatte dagli stessi insiemi $x$.}
+	\]
 \end{notation}
 
-Ora, dato un qualunque insieme $A$, possiamo definire la classe $\hat{A}$ degli $x$ tali che $x \in A$. Se $\hat{A} = \hat{B}$, per definizione:
+Ora, dato un qualunque insieme $A$, possiamo definire la classe $\hat{A}$ degli $x$ tali che $x \in A$ (cioè la classe degli $x$ che soddisfano $\psi(x) : x \in A$). Se $\hat{A} = \hat{B}$, per l'abbreviazione data non stiamo dicendo altro che:
 \[ \forall x ((x \in A) \leftrightarrow (x \in B))
 	\]
-quindi $A = B$ per estensionalità. Ha quindi senso, con un leggero abuso di notazione, omettere il cappelletto $\hat{}$ e identificare la classe $\hat{A}$ semplicemente con $A$. In questo senso,
-abbiamo classi che sono insiemi - formalmente $C$ è un insieme se $C = \hat{A}$ per qualche insieme $A$ - e classi che non sono insiemi. Chiamiamo \vocab{classe propria} una classe che non è un insieme.
+che equivale $A = B$ per \hyperref[ax2]{estensionalità}. Ha quindi senso, con un leggero abuso di notazione, omettere il cappelletto $\hat{}$ e ``identificare'' la classe $\hat{A}$ semplicemente con $A$. In questo senso,
+abbiamo classi che sono insiemi - formalmente $C$ è un insieme se $C = \hat{A}$ per qualche insieme $A$ - e classi che non sono insiemi. Chiamiamo \vocab{classe propria} una classe che non è un insieme.\footnote{Essere un insieme per una classe significa quindi moralmente identificarvisi nel senso riportato sopra, se ciò non fosse possibile parliamo di classi proprie.}
 
 \begin{example}
 $V$ è una classe propria.
@@ -748,8 +747,8 @@ $V$ è una classe propria.
 \textbf{\underline{L'intuizione}}, che sarà più chiara via via che procediamo nel corso, è che le classi proprie sono troppo grandi per essere insiemi.
 
 \subsection{Assioma del paio e coppia di Kuratowski}
-I primi assiomi ci dicono, a grandi linee, che, entro i limiti di quanto si può fare rinunciando al principio di collezione - che esiste $\{x | \, \text{una qualunque proprietà}\}$ -, gli insiemi sono delle specie di collezioni.
-Sono determinati dai loro elementi, e li si può dividere in collezioni più piccole in maniera arbitraria. Ci troviamo, però, adesso, nella necessità di procurarci qualche insieme con cui lavorare. I prossimi assiomi serviranno per giustificare le costruzioni con cui,
+I primi tre assiomi ci dicono, a grandi linee, che, entro i limiti di quanto si può fare rinunciando al principio di collezione - che esiste $\{x | \, \text{una qualunque proprietà}\}$ -, gli insiemi sono delle specie di collezioni.
+Sono determinati dai loro elementi, e li si può dividere in collezioni più piccole in maniera arbitraria. \\ Ci troviamo, però, adesso, nella necessità di procurarci qualche insieme con cui lavorare. I prossimi assiomi serviranno per giustificare le costruzioni con cui,
 usualmente, si definiscono nuovi insiemi. Per esempio, abbiamo bisogno di costruire certi insiemi di base, tipo l'insieme dei numeri interi o insiemi finiti i cui elementi sono elencati esplicitamente, fare prodotti di insiemi esistenti, 
 considerare le funzioni fra insiemi esistenti, etc.
 
@@ -779,7 +778,7 @@ Fissati $a$ e $b$, l'insieme $\{a,b\}$ è univocamente determinato.
 	da ciò segue che:
 	\[ \forall x (x \in P_1 \leftrightarrow x \in P_2)
 		\]
-	dunque per \hyperref[ax2]{estensionalità} $P_1 = P_2$\footnote{Volendo essere pignoli andrebbe specificato $\forall P_1 \, \forall P_2$.}.
+	dunque per \hyperref[ax2]{estensionalità} l'espressione sopra equivale a $P_1 = P_2$.
 \end{soln}
 
 \begin{proposition}[Esistenza dei singoletti]
@@ -792,11 +791,11 @@ Fissati $a$ e $b$, l'insieme $\{a,b\}$ è univocamente determinato.
 	Ponendo $b = a$ nella proposizione precedente, si ha che:
 	\[ \forall a \; \exists ! S \; \forall x \; x \in S \leftrightarrow (x = a \lor x= a)
 		\]
-	ora $x = a \lor x = a$ equivale a $x = a$.
+	ora $x = a \lor x = a$ equivale a $x = a$\footnote{Stiamo dicendo che in generale $\{a,a\} = \{a\}$ poiché $a \lor a = a$ (in base alle regole dei connettivi logici).}.
 \end{proof}
 
-\begin{notation}
-	Possiamo ora porre:
+\begin{notation}[Paio (o coppia) e singoletto]
+	Possiamo ora introdurre delle abbreviazioni per il paio (o coppia) ed i singoletti:
 	\[ P = \{a,b\} \Mydef \forall x \, x \in P \leftrightarrow (x = a \lor x = b)
 		\]\[ S = \{a\} \Mydef \forall x \, x \in S \leftrightarrow x = a
 			\]
@@ -807,47 +806,64 @@ Fissati $a$ e $b$, l'insieme $\{a,b\}$ è univocamente determinato.
 \end{remark}
 
 \begin{proof}
-	Usiamo il fatto che $\lor$ è commutativo:
+	Segue dal fatto che $\lor$ è commutativo:
 	\[ x \in \{a,b\} \leftrightarrow (x = a \lor x = b) \leftrightarrow (x = b \lor x = a) \leftrightarrow x \in \{b,a\}
 		\]
 	quindi per \hyperref[ax2]{estensionalità} $\{a,b\} = \{b,a\}$.
 \end{proof}
 
-Il paio $\{a,b\}$ è, quindi, una coppia non ordinata. È possibile codificare le coppie ordinate con questo trucco.
+Il paio $\{a,b\}$ è, quindi, una coppia non ordinata. È possibile codificare le coppie ordinate con il seguente trucco.
 
 \begin{definition}
 	[Coppia di \href{https://it.wikipedia.org/wiki/Kazimierz_Kuratowski}{\textcolor{purple}{Kuratowski}}]
-	Si dice \vocab{coppia di Kuratowski}:
+	Definiamo la \vocab{coppia di Kuratowski}:
 	\[(a,b) \Mydef \{a,\{a,b\}\}
 		\]
 \end{definition}
 
-\begin{proposition}
-	La coppia di Kuratowski $(a,b)$ rappresenta la coppia ordinata di $a$ e $b$, ossia:
+\begin{proposition}[Proprietà di coppia ordinata]
+	La coppia di Kuratowski $(a,b)$ rappresenta la coppia ordinata di $a$ e $b$, ossia vale che:
 	\[ (a,b) = (a^{\prime},b^{\prime}) \leftrightarrow (a = a^{\prime} \land b = b^{\prime})
 		\]
 \end{proposition}
 
 \begin{proof}
-	Dato $c = (a,b)$, vogliamo determinare univocamente $a$ e $b$. Intanto, $a$ è determinato da:
-	\[ x = a \leftrightarrow \forall y \in c \,(x \in c)
+	Detto $c = (a,b)$, vogliamo determinare univocamente $a$ e $b$. Osserviamo che $a$ è determinata da:
+	\[ x = a \leftrightarrow \forall y \in c (x \in y) \, \footnote{Sostanzialmente stiamo dicendo che preso un elemento $x$, $x = a$ se e solo se, preso un elemento di $(a,b) = \{\{a\},\{a,b\}\}$, $x$ appartiene sempre a tale elemento (dovendo appartenere sia ad $\{a\}$ che ad $\{a,b\}$ sarà per forza $a$).}
 		\]
-	la freccia $\rightarrow$ è immediata [per come è definita $(a,b)$]\footnote{Se $x$ è $a$, allora,
-	poiché qualsiasi elemento che appartenga alla coppia o è $\{a\}$ o contiene $a$, $x$ deve appartenere a quest'ultimo.},
-	mentre $\leftarrow$ segue da $\{a\} \in c$, per cui $\forall y \in c \, (x \in y) \implies x \in \{a\} \implies x = a$.
-	Veniamo ora a $b$. Studiamo prima il caso in cui $\exists ! x \, x \in c$:
-	\[ \exists x \, x \in c \iff \{a\} = \{a,b\}
+	la freccia $\rightarrow$ segue da come è definita la coppia $(a,b)$, mentre $\leftarrow$ segue dal fatto che, sempre per definizione di coppia di Kuratowski, $\{a\} \in c = (a,b)$, per cui:
+	\[ \forall y \in c (x \in y) \overset{\text{ipotesi}}{\implies} x \in \{a\} \overset{\text{singoletto}}{\implies} x = a
 		\]
-	in quanto $\{a\} \in c$ e $\{a,b\} \in c$, quindi $\{a\} = \{a,b\} \iff b = a$, per \hyperref[ax2]{estensionalità}. In questo caso, $b$ è quindi determinato.
-	Altrimenti, $x = \{a,b\} \leftrightarrow (x \in c \land x \ne \{a\})$, $\{a,b\}$ è quindi univocamente determinato da $c$, e $x = b \leftrightarrow (x \in \{a,b\} \land x \ne a)$.
+	Determiniamo ora $b$, studiamo prima il caso in cui $\exists ! x (x \in c)$\footnote{Cioè sto dicendo la coppia è in realtà un insieme fatto da un solo insieme.}:
+	\[ \begin{split}
+		\exists ! x (x \in c) &\iff \{a\} = \{a,b\} \\
+							&\iff b = a
+	\end{split}
+		\]
+	ovvero se e solo se i due insiemi che formano $c = (a,b)$ sono il singoletto $\{a\}$ (per \hyperref[ax2]{estensionalità}). In questo caso $b$ è determinato, se non fosse così allora $\{a,b\}$ (che corrisponde a $b$ nella coppia ordinata) sarebbe univocamente determinato da:
+	\[ x = \{a,b\} \leftrightarrow (x \in c \land x \ne \{a\})
+		\]
+	in tal modo abbiamo che:
+	\[ x = b \leftrightarrow (x \in \{a,b\} \land x \ne a)
+		\]
+	Possiamo quindi ricavare la tesi come segue:
+	\[ \begin{split}
+		(a = a' \land b = b') & \leftrightarrow (\forall y \in c (a' \in y)) \land (b' \in \{a,b\} \land b' \ne a) \\
+							  & \leftrightarrow \{a\} = \{a'\} \land \{a,b\} = \{a,b'\} \\
+							  & \leftrightarrow (a,b) = (a',b')
+	\end{split}
+		\]
+	(dove nel secondo passaggio abbiamo usato \hyperref[ax2]{estensionalità} per giustificare le uguaglianze).
 \end{proof}
 
-\begin{definition}
-	Possiamo definire quindi:
-	\[ (a,b,c) \Mydef ((a,b),c)
-		\]\[ (a,b,c,d) \Mydef (((a,b),c),d)
-			\]\[ (a_1,a_2,\ldots,a_n) \Mydef ((a_1,a_2,\ldots,a_{n-1}),a_n)
-				\]
+\begin{definition}[$n$-upla ordinata]
+	Possiamo estendere la definizione di coppia ordinata con il seguente trucco:
+	\[ \begin{split}
+	   (a,b,c) &\Mydef ((a,b),c) \\
+	   (a,b,c,d) &\Mydef (((a,b),c),d) \\
+	   (a_1,a_2,\ldots,a_n) &\Mydef ((a_1,a_2,\ldots,a_{n-1}),a_n)
+	\end{split}
+	\]
 \end{definition}
 
 \begin{note}
@@ -855,7 +871,7 @@ Il paio $\{a,b\}$ è, quindi, una coppia non ordinata. È possibile codificare l
 	una formula insiemistica che dica ``Esiste un $n$ ed una $n$-upla $(a_1,\ldots,a_n)$ tale che…''. Però, per ogni $n$ dato, chessò 92, possiamo scrivere esplicitamente una formula che dice $x = (a_1,a_2,a_3,\ldots,a_{92})$.
 \end{note}
 
-\begin{proposition}
+\begin{proposition}[Proprietà di $n$-upla ordinata]
 	Si ha che:
 	\[ (a,b,c) = (a',b',c') \leftrightarrow a = a' \land b = b' \land c = c'
 		\]\[ (a_1,\ldots,a_n) = (a_1',\ldots,a_n') \leftrightarrow a_1 = a_1' \land \ldots \land a_n = a_n'
@@ -878,7 +894,7 @@ Il paio $\{a,b\}$ è, quindi, una coppia non ordinata. È possibile codificare l
 \begin{proposition}
 	[Unicità dell'unione]
 	Vale l'unicità dell'unione:
-	\[ \forall A \; \exists ! B \; \forall x \; x \in B \leftrightarrow \exists y \in A \; x \in y
+	\[ \forall A \; \exists \textcolor{red}{!} B \; \forall x \; x \in B \leftrightarrow \exists y \in A \; x \in y
 		\]
 \end{proposition}
 
@@ -890,72 +906,81 @@ Il paio $\{a,b\}$ è, quindi, una coppia non ordinata. È possibile codificare l
 	quindi $\forall x (x \in B_1 \leftrightarrow x \in B_2)$, e per \hyperref[ax2]{estensionalità} $B_1 = B_2$.
 \end{proof}
 
-\begin{notation}
+\begin{notation}[Unione di un insieme]
 	Possiamo introdurre l'abbreviazione:
-	\[ B = \bigcup A\footnote{``Unione di $A$''.} \Mydef \forall x \,( x \in B \leftrightarrow \exists y \, x \in y)
+	\[ B = \bigcup A\footnote{\,``Unione di $A$''.} \Mydef \forall x \,( x \in B \leftrightarrow \exists y (x \in y))
 		\]
 \end{notation}
 
 \begin{exercise}
-	Dimostra che dall'assioma dell'unione segue che:
+	Dimostra che l'assioma dell'unione segue che:
 	\[ \forall A \; \exists B \; (\forall y \in A \; \forall x \in y \; x \in B)\footnote{Cioè per ogni insieme esiste l'insieme di tutti gli elementi degli elementi di $A$.}
 		\]
 \end{exercise}
 
 Combinando l'assioma dell'unione e del paio possiamo definire $a \cup b$.
 
-\begin{definition}
+\begin{definition}[Unione di insiemi]
 	Poniamo:
 	\[ a \cup b \Mydef \bigcup\{a,b\}
 		\]
 \end{definition}
 
-\begin{proposition}
-	Vale che:
+\begin{proposition}[Caratterizzazione unione di insiemi]
+	Dati $a,b$ e $a \cup b$ vale che:
 	\[ x \in a \cup b \leftrightarrow (x \in a \lor x \in b)
 		\]
 \end{proposition}
 
 \begin{proof}
-	Dire che $x$ è un elemento di $a \cup b$ significa dire che $x$ è un elemento di un elemento di $\{a,b\}$, ossia
-	che $x$ è un elemento di uno fra $a$ e $b$ [il viceversa è ovvio per la definizione che abbiamo dato di unione].
+	Dire che $x$ è un elemento di $a \cup b$ equivale a dire che $x$ è un elemento di un elemento di $\{a,b\}$, ossia
+	che $x$ è un elemento di uno tra $a$ e $b$ ($x \in a \lor x \in b$).
 \end{proof}
 
-Ora definiamo le intersezioni: riesci a vedere perché, a differenza delle unioni, non servirà un nuovo assioma?
+Ora definiamo le intersezioni: \emph{riesci a vedere perché, a differenza delle unioni, non servirà un nuovo assioma?}
 
-\begin{definition}
-	Sia $C$ una \textcolor{red}{classe}\footnote{Quindi, in particolare, $C$ può essere un insieme (in questo caso la definizione è lecita in generale con le classi, i cui elementi sono insiemi).} non vuota.
+\begin{definition}[Intersezione di un insieme]
+	Sia $C$ una \textcolor{red}{classe}\footnote{Quindi, in particolare, $C$ può essere un insieme (in questo caso la definizione è comunque lecita in generale con le classi, i cui elementi sono  appunto insiemi).} non vuota.
 	L'\textcolor{red}{insieme} $B$ è l'\vocab{intersezione} di $C$ se:
-	\[ B = \bigcap C \Mydef \forall x \; x \in B \leftrightarrow \forall y \in C \; x \in y
+	\[ B = \bigcap C \Mydef \forall x (x \in B \leftrightarrow \forall y \in C (x \in y))
 		\]
+	cioè $x$ sta in $b$ se è elemento di ogni elemento di $C$.
 \end{definition}
 
-\begin{proposition}
+\begin{proposition}[Esistenza e unicità dell'intersezione]
 	Data una classe non vuota $C$, l'intersezione $\bigcap C$ esiste ed è unica. In particolare, nel caso dell'intersezione di un insieme vale:
-	\[ \forall A (A \ne \emptyset \rightarrow \exists ! B \; \forall x(x \in B \leftrightarrow \forall y \in A \; x \in y))
+	\[ \forall A (A \ne \emptyset \rightarrow \exists ! B \; \forall x(x \in B \leftrightarrow \forall y \in A (x \in y)))
 		\]
 \end{proposition}
 
 \begin{note}
-	L'ipotesi $C \ne \emptyset$ è necessaria perché si avrebbe che $\bigcap \emptyset$ è la classe universale $V$, che non è un insieme.
+	L'ipotesi $C \ne \emptyset$ è necessaria perché altrimenti si avrebbe che $\bigcap \emptyset$ è la classe universale $V$ ($x \in \bigcap \emptyset \leftrightarrow \forall y \in \emptyset(x \in y)$ (dove il RHS è sempre falso per costruzione, quindi gli $x$ che soddisfano l'enunciato sono tutti)), che non è un insieme.
 \end{note}
 
 \begin{proof}
-	L'unicità segue per \hyperref[ax2]{estensionalità} al solito modo. Veniamo all'esistenza. Dal momento che $C$ non è vuota, possiamo prendere $z \in C$. 
-	Ora consideriamo:
-	\[ B = \{x \in z | \forall y \in C \, x \in y\}
+	L'unicità segue per \hyperref[ax2]{estensionalità} al solito modo. Veniamo all'esistenza. Dal momento che $C$ non è vuota [per ipotesi], possiamo prendere $z \in C$. 
+	Ora consideriamo (un sottoinsieme di $B$ ottenuto per \hyperref[ax3]{separazione} nel modo seguente):
+	\[ B = \{x \in z | \forall y \in C (x \in y)\}
 		\]
-	chiaramente $x \in B \rightarrow \forall y \in C \, x \in y$. D'altro canto, $\forall y \in C \, x \in y$ implica, in particolare, $x \in z$, quindi $x \in B$. Abbiamo 
-	così verificato che $x \in B \leftrightarrow \forall y \in C \, x \in y$, ossia $B = \bigcap C$.
+	ovvero il sottoinsieme di $z$ di tutti gli elementi che appartengono a tutti gli elementi di $C$.
+	Chiaramente (per definizione) $x \in B \rightarrow \forall y \in C (x \in y)$, d'altro canto, $\forall y \in C (x \in y)$ implica, in particolare (un tale $x$ appartiene a tutti gli elementi della classe e quindi anche a $z$), $x \in z$, quindi in automatico $x \in B$.\\
+	Abbiamo così verificato che $x \in B \leftrightarrow \forall y \in C (x \in y)$, ossia $B = \bigcap C$ (moralmente abbiamo costruito l'intersezione di un insieme per separazione su un elemento della classe $C$ (o insieme se lo è), come il sottoinsieme di tutti gli elementi che stanno in tutti gli elementi della classe). L'ultimo ragionamento può essere pensato anche nel seguente modo:
+	\[ \begin{split}
+		\forall x \, x \in B & \leftrightarrow (x \in z \land (\forall y \in C(x \in C)))\\
+							 & \overset{\text{def.}}{\leftrightarrow} (x \in z) \land x \in \bigcap C \\
+							 & \leftrightarrow x \in \bigcap C
+	\end{split}
+		\]
+	dove l'ultima equivalenza è giustificata dal fatto che se $x$ sta in tutti gli elementi degli elementi di $C$ allora $x$ sta in particolare anche in $z$ e quindi il primo termine dell'$\land$ può essere rimosso.
 \end{proof}
 
-\begin{notation}
+\begin{notation}[Intersezione e differenza di insiemi]
 	Poniamo:
 	\[ a \cap b \Mydef \bigcap\{a,b\} \qquad \text e \qquad a\setminus b \Mydef \{x \in a | x \not\in b\}
 		\]
 \end{notation}
 
-\begin{proposition}
+\begin{proposition}[Caratterizzazione intersezione e differenza di insiemi]
 	Vale che:
 	\[ x \in a \cap b \leftrightarrow (x \in a \land x \in b)
 		\]\[ x \in a \setminus b \leftrightarrow (x \in a \land x \not\in b)
@@ -966,51 +991,53 @@ Ora definiamo le intersezioni: riesci a vedere perché, a differenza delle union
 	Dimostrare la proposizione precedente (la seconda è semplicemente la definizione).
 \end{exercise}
 
-\begin{proposition}
+\begin{proposition}[Proprietà di unione, intersezione e differenza di insiemi]
 	Alcune proprietà delle operazioni $\cup$, $\cap$, $\setminus$:
-	\[ \text{\textcolor{red}{commutatività:}} \qquad a \cup b = b \cup a \qquad \text e \qquad a \cap b = b \cap a
-		\] \begin{align*}	\text{\textcolor{red}{associatività:}} \qquad  
-			&a \cup (b \cup c) = (a \cup b) \cup c \Mydef a \cup b \cup c\\
-			&a \cap (b \cap c) = (a \cap b) \cap c \Mydef a \cap b \cap c
-		\end{align*}
-	\begin{align*}	\text{\textcolor{red}{distributività:}} \qquad  
-		&a \cup (b \cap c) = (a \cup b) \cap (a \cup c)\\
-		&a \cap (b \cup c) = (a \cap b) \cup (a \cap c)
-	\end{align*}
-	\begin{align*}	\text{\textcolor{red}{leggi di \href{https://it.wikipedia.org/wiki/Augustus_De_Morgan}{\textcolor{purple}{De Morgan}}:}} \qquad  
-		&a \setminus (b \cup c) = (a \setminus b) \cap (a \setminus c)\\
-		&a \setminus (b \cap c) = (a \setminus b) \cup (a \setminus c)
-	\end{align*}
+	\[ \begin{split}
+		\text{\textcolor{red}{commutatività:}} \qquad & a \cup b = b \cup a \qquad \text e \qquad a \cap b = b \cap a \\
+		\text{\textcolor{red}{associatività:}} \qquad & a \cup (b \cup c) = (a \cup b) \cup c \Mydef a \cup b \cup c \\
+	                                        	      & a \cap (b \cap c) = (a \cap b) \cap c \Mydef a \cap b \cap c \\
+		\text{\textcolor{red}{distributività:}} \qquad & a \cup (b \cap c) = (a \cup b) \cap (a \cup c) \\
+													   & a \cap (b \cup c) = (a \cap b) \cup (a \cap c) \\
+	    \text{\textcolor{red}{leggi di \href{https://it.wikipedia.org/wiki/Augustus_De_Morgan}{\textcolor{red}{De Morgan}}:}} \qquad & a \setminus (b \cup c) = (a \setminus b) \cap (a \setminus c) \\
+																													& a \setminus (b \cap c) = (a \setminus b) \cup (a \setminus c)
+	   \end{split}
+	\]
 \end{proposition}
 
 \begin{proof}
 	Tutte queste proprietà su deducono immediatamente dalle corrispondenti proprietà dei connettivi logici, le quali, a loro volta, si vedono con le tabelle di verità. Per esempio, dimostriamo 
-	la prima delle leggi di De Morgan:
+	la prima delle leggi di De Morgan (facendo uso della corrispondente legge per i connettivi logici):
 	\[ \begin{split}
-		x \in a \setminus (b \cup c) & \iff x \in a \land x \not\in (b \cup c)\\
-		& \iff x \in a \land \neg(x \in b \lor x \in c)\\
-		& \iff x \in a \land x \not\in b \land x \not\in c\\
-		& \iff x \in a \land x \not\in b \land x \in a \land x \not\in c\\
-		& \iff x \in a \setminus b \land x \in a \setminus c\\
-		& \iff x \in (a \setminus b) \cap (a \setminus c)
+		x \in a \setminus (b \cup c) \iff & x \in a \land x \not\in (b \cup c)\\
+		\iff & x \in a \land \neg(x \in b \lor x \in c)\\
+		\overset{\text{De Morgan}}{\iff} & x \in a \land x \not\in b \land x \not\in c\\
+		\iff & x \in a \land x \not\in b \land \underbrace{x \in a}_{\text {non cambia nulla}} \land x \not\in c\\
+		\iff & x \in (a \setminus b) \land x \in (a \setminus c)\\
+		\iff & x \in (a \setminus b) \cap (a \setminus c)
 	\end{split}
 		\]
 \end{proof}
 
-Ora possiamo costruire insiemi finiti elencandone gli elementi, come si fa di solito, con la notazione $\{\ldots\}$.
+Ora possiamo costruire insiemi finiti elencandone gli elementi, come si fa di solito, con la notazione $\{\ldots\}$\footnote{Paradossalmente prima di aggiungere l'assioma dell'unione
+alla teoria potevamo costruire $n$-uple ordinate di lunghezza arbitraria, ma non un insieme con più di due elementi.}.
 
-\begin{notation}
-	Poniamo:
-	\[ \{a,b,c\} \Mydef \{a\} \cup \{b\} \cup \{c\}
-		\]\[ \{a,b,c,d\} \Mydef \{a\} \cup \{b\} \cup \{c\} \cup \{d\}
-			\]\[ \{a_1,\ldots,a_n\} \Mydef \{a_1\} \cup \ldots \cup \{a_n\}
-				\]
+\begin{notation}[Insiemi di $n$ elementi]
+	Possiamo ora introdurre un'abbreviazione per indicare insiemi con più di due elementi (costruiti usando l'\hyperref[ax5]{assioma dell'unione}):
+	\[ \begin{split}
+	   \{a,b,c\} &\Mydef \{a\} \cup \{b\} \cup \{c\} \\
+	   \{a,b,c,d\} &\Mydef \{a\} \cup \{b\} \cup \{c\} \cup \{d\} \\
+	   \{a_1,\ldots,a_n\} &\Mydef \{a_1\} \cup \ldots \cup \{a_n\}
+	\end{split}
+	\]
 \end{notation}
 
-\begin{proposition}
+\begin{proposition}[Caratterizzazione di insieme con $n$ elementi]
 	Vale che:
-	\[ x \in \{a,b,c\} \leftrightarrow (x = a \lor x = b \lor x = c)
-		\]\[ x \in \{a_1,\ldots,a_n\} \leftrightarrow (x = a_1 \lor \ldots \lor x = a_n) 
+	\[  \begin{split}
+		x \in \{a,b,c\} & \leftrightarrow (x = a \lor x = b \lor x = c) \\
+	    x \in \{a_1,\ldots,a_n\} & \leftrightarrow (x = a_1 \lor \ldots \lor x = a_n) 
+		\end{split}
 			\]
 \end{proposition}
 
@@ -1022,8 +1049,8 @@ Ora possiamo costruire insiemi finiti elencandone gli elementi, come si fa di so
 Abbiamo definito le coppie $(x,y)$, però, per esempio, ancora nulla ci assicura che dati $A$ e $B$ esista:
 \[ A \times B = \{(x,y) | x \in A \land y \in B\}
 	\]
-Le funzioni $A \longrightarrow B$ saranno poi sottoinsiemi di $A \times B$, e vorremo parlare dell'insieme ${}^{A}B$
-delle funzioni $A \longrightarrow B$. Per tutto questo ci manca un solo ingrediente: l'insieme delle parti.
+Le funzioni $A \rightarrow B$ saranno poi sottoinsiemi di $A \times B$, e vorremo parlare dell'insieme ${}^{A}B$
+delle funzioni $A \rightarrow B$. Per tutto questo ci manca un solo ingrediente: l'insieme delle parti.
 
 \begin{axiom}
 	[Assioma delle parti]
@@ -1044,10 +1071,10 @@ delle funzioni $A \longrightarrow B$. Per tutto questo ci manca un solo ingredie
 	Segue come sempre per \hyperref[ax2]{estensionalità}, in quanto, se avessimo $B_1$, $B_2$, allora:
 	\[ \forall x (x \in B_1 \leftrightarrow x \subseteq A) \qquad \text e \qquad \forall x(x \in B_2 \leftrightarrow x \subseteq A)
 		\]
-	quindi $\forall x(x \in B_1 \leftrightarrow x \in B_2) \leftrightarrow B_1 = B_2$.
+	quindi $\forall x((x \in B_1) \leftrightarrow (x \subseteq A) \leftrightarrow (x \in B_2)) \leftrightarrow \forall x (x \in B_1 \leftrightarrow x \in B_2) \leftrightarrow B_1 = B_2$.
 \end{proof}
 
-\begin{notation}
+\begin{notation}[Insieme delle parti (o insieme potenza)]
 	Data l'unicità possiamo porre:
 	\[ B = \ps(A) \Mydef \forall x \; x \in B \leftrightarrow x \subseteq A
 		\]
@@ -1055,23 +1082,24 @@ delle funzioni $A \longrightarrow B$. Per tutto questo ci manca un solo ingredie
 
 \begin{proposition}[Esistenza ed unicità del prodotto cartesiano]
 	Dati $A$ e $B$  esiste un unico insieme $A \times B$ tale che:
-	\[ \forall z \; z \in A \times B \leftrightarrow \exists x \in A \; \exists y \in B \; z = (x,y)\footnote{Ossia, informalmente, $A \times B = \{(x,y) | x \in A, y \in B\}$.}
+	\[ \forall z (z \in A \times B) \leftrightarrow \exists x \in A \, \exists y \in B \, z = (x,y)\footnote{Ossia, informalmente, $ z \in A \times B$ se e solo se si può scrivere come coppia ordinata di un elemento di $A$ ed uno di $B$.}
 		\]
 \end{proposition}
 
 \begin{proof}
-	L'unicità è conseguenza immediata della definizione e dell'\hyperref[ax2]{assioma di estensionalità}. Per l'esistenza, definiamo:
+	L'unicità è conseguenza immediata della definizione e dell'\hyperref[ax2]{assioma di estensionalità} (stessa dimostrazione di sempre). Per l'esistenza, definiamo per \hyperref[ax3]{separazione}:
 	\[ A \times B \Mydef \{z \in \ps(\ps(A \cup B)) | \exists x \in A \ \exists y \in B \ z = (x,y)\}
 		\]
-	dobbiamo dimostrare che ogni coppia $(x,y)$ con $x \in A$ e $y \in B$ appartiene a questo insieme. Basta dimostrare che tutte queste coppie
-	appartengono a $\ps(\ps(A \cup B))$:
+	così come scritto, siamo sicuri che è un insieme che contiene coppie ordinate di elementi di $A$ e $B$, tuttavia dobbiamo dimostrare anche che ogni coppia $(x,y)$ con $x \in A$ e $y \in B$ appartiene a questo insieme. Per fare ciò bisogna dimostrare che tutte queste coppie
+	appartengono a $\ps(\ps(A \cup B))$:\footnote{Poniamo $a,b,\ldots \in z \Mydef a \in z \land b \in z \land \ldots$ e $a,b,\ldots \subseteq z \Mydef a \subseteq z \land b \subseteq z \land \ldots$}\,\footnote{Tutte le implicazioni si basano sul fatto che se un oggetto è sottoinsieme di un qualche insieme allora è un elemento del corrispondente insieme delle parti per definizione.}
 	\[\begin{split}
-		a \in A \land b \in B &\implies \{a\},\{a,b\} \subseteq A \cup B\footnote{Poniamo $a,b,\ldots \in z \Mydef a \in z \land b \in z \land \ldots$ e $a,b,\ldots \subseteq z \Mydef a \subseteq z \land b \subseteq z \land \ldots$.}\\
-		& \implies \{a\},\{a,b\} \in \ps(A \cup B)\\
-		& \implies (a,b) = \{\{a\},\{a,b\}\} \subseteq \ps(A \cup B)\\
+		a \in A \land b \in B &\implies \{a\},\{a,b\} \subseteq A \cup B \\
+		& \implies \{a\},\{a,b\} \in \ps(A \cup B) \\
+		& \overset{\text{\hyperref[ax4]{paio}}}{\implies} (a,b) = \{\{a\},\{a,b\}\} \subseteq \ps(A \cup B)\\
 		& \implies (a,b) \in \ps(\ps(A \cup B))
 	\end{split}
 		\]
+	pertanto tutte le coppie ordinate di elementi di $A$ e $B$ appartengono a $\ps(\ps(A \cup B))$ e per separazione possiamo costruire il prodotto cartesiano $A \times B$ come l'insieme di \underline{tutte} le coppie ordinate.
 \end{proof}
 
 \begin{note}
@@ -1079,21 +1107,23 @@ delle funzioni $A \longrightarrow B$. Per tutto questo ci manca un solo ingredie
 \end{note}
 
 \subsection{Relazioni di equivalenza e di ordine, funzioni}
-Ora rivedremo alcuni concetti ben noti dai primi corsi del primo anno (o dalla scuola superiore?). Lo facciamo molto rapidamente, essenzialmente per completezza, e per fissare le notazioni.
+Ora rivedremo alcuni concetti ben noti dai primi corsi del primo anno (\emph{o dalla scuola superiore?}). Lo facciamo molto rapidamente, essenzialmente per completezza, e per fissare le notazioni.
 
-\begin{definition}
-	Una \vocab{relazione binaria} fra $A$ e $B$ è un sottoinsieme di $A \times B$.
+\begin{definition}[Relazione binaria]
+	Si dice \vocab{relazione binaria} fra $A$ e $B$ un sottoinsieme di $A \times B$.
 \end{definition}
 
-\begin{notation}
-	Data una relazione $\rel \subseteq A \times B$, poniamo:
+\begin{notation}[Relazione binaria]
+	Data una relazione $\rel \subseteq A \times B$, definiamo l'abbreviazione:
 	\[ a \rel b \Mydef (a,b) \in \rel
 		\]
 \end{notation}
 
 \begin{example}
-	Per esempio scriviamo $a < b$ per $(a,b) \in <$.
+	Per esempio scriviamo $a < b$ per indicare che $(a,b) \in\, <$.
 \end{example}
+
+Considerando il caso di $A \times A$ possiamo definire le seguenti relazioni.
 
 \begin{definition}
 	Una relazione $\sim \,\subseteq A \times A$ è una \vocab{relazione di equivalenza} se è:
@@ -1127,7 +1157,11 @@ Ora rivedremo alcuni concetti ben noti dai primi corsi del primo anno (o dalla s
 		\]
 \end{exercise}
 
-\begin{proposition}
+\begin{soln}
+Se valesse che $\forall x,y \in A \; x < y \rightarrow y < x$, allora sarebbero contemporaneamente vere $x < y$ e $y < x$, da cui, per transitività si avrebbe $x < x$ che è falso.
+\end{soln}
+
+\begin{proposition}[Corrispondenza tra ordini stretti e larghi]
 	Data una relazione di ordine stretto $<$ su $A$, la relazione:
 	\[ \leq\, = \{(x,y) \in A \times A | x < y \lor x = y\}\footnote{Formalmente: $\{z \in A \times A | \exists x,y \in A \; z = (x,y) \land \ldots\}$.}
 		\]
@@ -1138,21 +1172,21 @@ Ora rivedremo alcuni concetti ben noti dai primi corsi del primo anno (o dalla s
 \end{proposition}
 
 \begin{proof}
-	Definiamo la diagonale:
+	Definiamo la \vocab{diagonale di una relazione} di $A \times A$ come:
 	\[ \Delta_A \Mydef \{(x,y) \in A \times A | x = y\}
 		\]
 	Allora è facile verificare che, se $<$ è una relazione di ordine stretto, allora $< \cap \,\Delta_A = \emptyset$ e $< \cup \,\Delta_A$ è una relazione di ordine largo corrispondente.
 	Viceversa, se $\leq$ è una relazione di ordine largo, allora $\Delta_A \subseteq \, \leq$ e $\leq \setminus \Delta_A$ è la relazione di ordine stretto corrispondente.
 \end{proof}
 
-\begin{notation}
+\begin{notation}[Relazioni d'ordine strette e larghe]
 	Fissata una relazione di ordine largo $\textcolor{red}{\leq}$ su $A$, ci sentiremo liberi di usare la corrispondente relazione di ordine stretto $\textcolor{red}{<}$ fintanto che la scelta del simbolo sia indizio sufficiente dell'operazione.
 	Inoltre scriveremo $x > y$ per $y < x$ e $x \geq y$ per $y \leq x$.
 \end{notation}
 
-\begin{definition}
+\begin{definition}[Relazione di ordine totale]
 	Una \vocab{relazione di ordine totale} su $A$ è una relazione di ordine $\leq$ tale che:
-	\[ \forall x,y \in A \; x \leq y \; \lor x = y \; \lor y \leq x
+	\[ \forall x,y \in A \, (x \leq y) \lor (x = y) \lor (y \leq x)
 		\]
 \end{definition}
 
@@ -1160,40 +1194,56 @@ Ora rivedremo alcuni concetti ben noti dai primi corsi del primo anno (o dalla s
 	Formula la definizione precedente per ordini stretti.
 \end{exercise}
 
-\begin{definition}
-	Data una relazione $\rel \subseteq A \times B$, $A' \subseteq A$ e $B' \subseteq B$, possiamo definire la \vocab{restrizione} di $\rel$ a $A'\times B'$:
+\begin{soln}
+Diciamo che $<$ è un ordinamento totale (stretto) su $A$ se:
+\[ \forall x \in A \, \forall y \in A (x \ne y \land ((x < y) \lor (x > y))) \lor (x = y)
+	\]
+\end{soln}
+
+\begin{definition}[Restrizione di una relazione]
+	Data una relazione $\rel \subseteq A \times B$, e dati $A' \subseteq A$, $B' \subseteq B$, possiamo definire la \vocab{restrizione} di $\rel$ a $A'\times B'$:
 	\[ \rel_{|A' \times B'} \Mydef \rel \cap (A' \times B')
 		\]
+	(``restrizione di $\mathcal R$ a $A' \times B'$\,'').
 \end{definition}
 
 \begin{exercise}
 	Data $\rel$ relazione di equivalenza/ordine su $A$ e $A' \subseteq A$, dimostra che $\rel_{|A' \times A'}$ è una relazione di equivalenza/ordine su $A'$.
 \end{exercise}
 
-\begin{definition}
+\begin{soln}
+Vediamolo per le relazioni di equivalenza. È facile osservare che $\forall a' \in A'$, vale che $(a',a') \in \mathcal{R}_{|A' \times A'}$ (sta in $A' \times A'$ per definizione di prodotto cartesiano e sta in $\mathcal{R}$ essendo una relazione di equivalenza per ipotesi (vale il per ogni)),
+analogamente valgono simmetria e riflessività. 
+\end{soln}
+
+\begin{definition}[Dominio e immagine di una relazione]
 	Data una relazione $\rel \subseteq A \times B$, definiamo:
-	\[ \Dom(\rel) \Mydef \{x \in A | \exists y \in B \; x\rel y\} \qquad \text{\vocab{dominio} di $\rel$}
-		\]\[ \Imm(\rel) \Mydef \{y \in B | \exists x \in A \; x \rel y \} \qquad \text{\vocab{immagine} di $\rel$}
+	\[  \begin{split}
+		\Dom(\rel) &\Mydef \{x \in A | \exists y \in B \; x\rel y\} \qquad \text{\vocab{dominio} di $\rel$} \\
+	    \Imm(\rel) &\Mydef \{y \in B | \exists x \in A \; x \rel y \} \qquad \text{\vocab{immagine} di $\rel$}
+	\end{split}
 			\]
+	(notare che $\Dom(\rel)$ e $\Imm(\rel)$ non coincidono necessariamente con $A$ e $B$).
 \end{definition}
 
-\begin{definition}
-	Chiamiamo \vocab{funzione: $A \longrightarrow B$} una relazione $f \subseteq A \times B$ tale che:
-	\[ \forall x \in A \; \exists ! \, y \in B \; (x,y) \in \rel\footnote{Intuitivamente $f$ è l'insieme delle coppie $(x,f(x))$ per $x \in A$.}
+\begin{definition}[Funzione]
+	Chiamiamo \vocab{funzione} $f:A \rightarrow B$ una relazione $f \subseteq A \times B$ tale che:
+	\[ \forall x \in A \; \exists ! \, y \in B \; (x,y) \in f
 		\]
+		(Intuitivamente $f$ è l'insieme delle coppie $(x,f(x))$ per $x \in A$).
 \end{definition}
 
-\begin{notation}
-	Data una funzione $f$, scriviamo:
+\begin{notation}[Immagine e immagine di un sottoinsieme]
+	Data una funzione $f$ possiamo indicare la coppia $(x,y) \in f$ con la seguente abbreviazione:
 	\[ y = f(x) \Mydef (x,y) \in f
 		\]
-	Dato $S \subseteq \Dom(f)$, scriviamo:
-	\[ f[S] \Mydef \{y \in \Imm(f)| \exists x \in S \; y = f(x)\} = \underbrace{\{f(x) | x \in S\}}_{\text{informalmente}}
+	Dato $S \subseteq \Dom(f)$, indichiamo l'immagine di un sottoinsieme (ovvero l'insieme delle immagini del sottoinsieme) come:
+	\[ f[S] \Mydef \{y \in \Imm(f)| \exists x \in S \; \underbrace{y = f(x)}_{= (x,y) \in f}\} = \underbrace{\{f(x) | x \in S\}}_{\text{informalmente}}
 		\]
 \end{notation}
 
-\begin{definition}
-	Una funzione $f: A \longrightarrow B$ è:
+\begin{definition}[Iniettività, suriettività e bigettività]
+	Una funzione $f: A \rightarrow B$ è:
 	\[ \begin{split}
 		\text{\vocab{iniettiva} se:}\; & \forall y \in \Imm(f)\; \exists! \, x \in \Dom(f) \; f(x) = y\\
 		\text{\vocab{suriettiva} se:}\; & B = \Imm(f)\; \text{ossia $\forall y \in B \; \exists x \in A \; f(x) = y$.}\\
@@ -1202,45 +1252,46 @@ Ora rivedremo alcuni concetti ben noti dai primi corsi del primo anno (o dalla s
 		\]
 \end{definition}
 
-\begin{definition}
+\begin{definition}[Funzione inversa]
 	Data $f$ iniettiva:
-	\[ f^{-1} \Mydef \{(y,x) \in B \times A | f(x) = y\}
+	\[ f^{-1} \Mydef \{(y,x) \in B \times A | f(x) = y\} \subseteq B \times A
 		\]
 \end{definition}
 
 \begin{remark}
-	Data $f$ iniettiva, $f^{-1}$ è una funzione: $\Imm(f) \longrightarrow \Dom(f)$ iniettiva.
-	In particolare se $f$ è bigettiva: $A \longrightarrow B$, allora $f^{-1}$ è bigettiva.
+	Se $f$ iniettiva, $f^{-1} : \Imm(f) \rightarrow \Dom(f)$ è una funzione\footnote{Altrimenti è la semplice controimmagine di un sottoinsieme dell'immagine (che non è una funzione).} a
+	sua volta iniettiva (basta pensare alla definizione di $f^{-1}$ iniettiva e usare che per l'iniettività di $f$ c'è un'unica $x \in \Dom(f)$ tale che $y = f(x)$).
+	In particolare se $f : A \rightarrow B$ è bigettiva, allora $f^{-1}$ è bigettiva.
 \end{remark}
 
-\begin{definition}
-	Data $f: A \longrightarrow B$ e $A' \subseteq A$:
+\begin{definition}[Restrizione di una funzione]
+	Data $f: A \rightarrow B$ e $A' \subseteq A$ definiamo:
 	\[ f_{|A'} \Mydef \{(x,y) \in A' \times B | f(x) = y\}
 		\]
-	$f_{|A'}$ ``$f$ \vocab{ristretta} ad $A'$'' è una funzione: $A' \longrightarrow B$.
+	 ``$f$ \vocab{ristretta} ad $A'$\,'' è una funzione: $A' \rightarrow B$.
 \end{definition}
 
-\begin{definition}
-	Date $g : A \longrightarrow B$ e $f : B \longrightarrow C$:
+\begin{definition}[Composizione di funzioni]
+	Date $g : A \rightarrow B$ e $f : B \rightarrow C$:
 	\[ f \circ g \Mydef \{(x,z) \in A \times C | z = f(g(x))\}\footnote{O più formalmente $\exists y(y = g(x) \land z = f(y))$.}
 		\]
-	$f \circ g$, ``$f$ \vocab{composta} con $g$'', è una funzione: $A \longrightarrow C$.
+	``$f$ \vocab{composta} con $g$'' è una funzione: $A \rightarrow C$.
 \end{definition}
 
-\begin{notation}
-	Indichiamo con $\id_A$ la \vocab{funzione identità su $A$}:
-	\[ \id_A \Mydef \{(x,y) \in A \times A | x = y\} \; (= \Delta_A)
+\begin{notation}[Funzione identità]
+	Indichiamo con $\id_A$ la \vocab{funzione identità} su $A$:
+	\[ \id_A \Mydef \{(x,y) \in A \times A | x = y\} = \Delta_A
 		\]
 \end{notation}
 
-\begin{remark}
-	Data $f : A \longrightarrow B$ bigettiva e $g : B \longrightarrow A$, sono equivalenti:
-	\[ g = f^{-1} \qquad g \circ f = \id_A \qquad f \circ g = \id_B
+\begin{remark}[Caratterizzazione funzione inversa]
+	Data $f : A \rightarrow B$ bigettiva e $g : B \rightarrow A$ è equivalente scrivere:
+	\[ g = f^{-1} \qquad g \circ f = \id_A \land f \circ g = \id_B
 		\]
 \end{remark}
 
 \begin{exercise}
-	Data $g : A \longrightarrow B$ e $f: B \longrightarrow C$, sotto quali condizioni $f \circ g$ è iniettiva, suriettiva, bigettiva?
+	Data $g : A \rightarrow B$ e $f: B \rightarrow C$, sotto quali condizioni $f \circ g$ è iniettiva, suriettiva, bigettiva?
 \end{exercise}
 
 \begin{exercise}
@@ -1251,7 +1302,7 @@ Ora rivedremo alcuni concetti ben noti dai primi corsi del primo anno (o dalla s
 \end{exercise}
 
 \begin{exercise}
-	Data una relazione di equivalenza $\sim$ su $A$ e $f : A \longrightarrow B$, affinché esista $\widetilde{f}: \faktor{A}{\sim} \longrightarrow B$ tale che $f = \widetilde{f} \circ i_\sim$,
+	Data una relazione di equivalenza $\sim$ su $A$ e $f : A \rightarrow B$, affinché esista $\widetilde{f}: \faktor{A}{\sim} \rightarrow B$ tale che $f = \widetilde{f} \circ i_\sim$,
 	è necessario e sufficiente che $\forall x,y \in A \; x \sim y \rightarrow f(x) = f(y)$.
 \end{exercise}
 
@@ -1888,151 +1939,109 @@ una corrispondenza biunivoca fra di essi.
 	\end{itemize}
 \end{note}
 
-\subsection{Teorema di Cantor-Berstein}
-\newpage
-\subsection{Teorema di Cantor}
-\newpage
-\subsection{Operazioni fra cardinalità}
+\begin{remark}
+	La relazione $|\cdot| = |\cdot|$ soddisfa le proprietà formali di una relazione di equivalenza (ma NON lo è):
+	\begin{itemize}
+		\item \textbf{riflessività}: $|A| = |A|$.
+		\item \textbf{simmetria}: $|A| = |B| \rightarrow |B| = |A|$.
+		\item \textbf{transitività}: $|A| = |B| \land |B| = |C| \rightarrow |A| = |C|$.
+	\end{itemize}
+\end{remark}
 
+\begin{exercise}
+	Dimostrare l'osservazione.
+\end{exercise}
 
+\begin{remark}
+	La relazione $|\cdot| \leq |\cdot|$ è:
+	\begin{itemize}
+		\item \textbf{riflessività}: $|A| \leq |A|$.
+		\item \textbf{transitività}: $|A| \leq |B| \land |B| \leq |C| \rightarrow |A| \leq |C|$.
+	\end{itemize}
+\end{remark}
 
+\begin{exercise}
+	Dimostrare l'osservazione.
+\end{exercise}
 
+Per stabilire che le cardinalità sono, formalmente, ordinate dalla relazione $|\cdot| \leq |\cdot|$, ci manca l'antisimmetria, che è appunto enunciata dal teorema seguente.
 
-\newpage
-\section{Cardinalità finite}
-\subsection{Principio dei cassetti}
-\newpage
-\subsection{Operazioni fra le cardinalità finite}
+\begin{theorem}
+	[Cantor-Bernstein]
+	\label{CB}
+	Se c'è una funzione iniettiva $A \rightarrow B$ e una funzione iniettiva $B \rightarrow A$, allora esiste una bigezione fra $A$ e $B$.
+	\[ \forall A,B (|A| \leq |B| \land |B| \leq |A|) \rightarrow |A| = |B|
+		\]
+\end{theorem}
 
-
-
-
-\newpage
-\section{La cardinalità numerabile}
-\subsection{Insiemi numerabili in pratica}
-\newpage
-\subsection{Prodotto di numerabili è numerabile}
-\newpage
-\subsection{Numeri interi e razionali}
-\newpage
-\subsection{Ordini densi numerabili}
-\newpage
-\subsection{Il grafo random}
-
-
-
-
-\newpage
-\section{I numeri reali e la cardinalità del continuo}
-\subsection{Caratterizzazione dei reali come ordine}
-\newpage
-\subsection{La cardinalità del continuo è 2 alla alef-zero}
-\newpage
-\subsection{Operazioni che coinvolgono la cardinalità del continuo}
-\newpage
-\subsection{Sottrarre un numerabile dal continuo}
-
-
-
-
-\newpage
-\section{Stato del corso}
-
-
-
-
-\newpage
-\section{I buoni ordinamenti}
-\subsection{Operazioni fra buoni ordinamenti}
-\newpage
-\subsection{Gli ordinali di Von Neumann}
-\newpage
-\subsection{Assioma del rimpiazzamento}
-\newpage
-\subsection{Induzione e ricorsione transfinita}
-\newpage
-\subsection{Operazioni fra gli ordinali}
-
-
-
-
-\newpage
-\section{Aritmetica ordinale e forma normale di Cantor}
-\subsection{Sottrazione e divisione euclidea}
-\newpage
-\subsection{La forma normale di Cantor}
-\newpage
-\subsection{Punti fissi e epsilon-numbers}
-\newpage
-\subsection{Operazioni in forma normale di Cantor}
-\newpage
-
-
-
-
-
-\newpage
-\section{Gli alef}
-\subsection{Teorema di Hartogs}
-\newpage
-\subsection{Somme e prodotti di alef}
-
-
-
-\newpage
-\section{L'assioma della scelta}
-\subsection{Buon ordinamento implica AC}
-\newpage
-\subsection{AC implica buon ordinamento (idea)}
-\newpage
-\subsection{Zorn implica buon ordinamento}
-\newpage
-\subsection{AC implica Zorn}
-\newpage
-\subsection{Conseguenze immediate di AC}
-\newpage
-\subsection{Esempi di applicazione di AC}
-\newpage
-\subsection{Basi di spazi vettoriali}
-\newpage
-\subsection{Invariante di Dehn}
-\newpage
-\subsection{Insieme di Vitali}
-\newpage
-\subsection{Teorema di Cantor-Bendixson}
-\newpage
-\subsection{Teorema di Tarski sulla scelta}
-
-
-
-
-
-
-
-
-
-\newpage
-\section{Aritmetica cardinale}
-\subsection{Somme e prodotti infiniti}
-\newpage
-\subsection{Teorema di König}
-\newpage
-\subsection{Cofinalità}
-\newpage
-\subsection{Formula di Hausdorff}
-
-
-
-
-
-
-\newpage
-\section{Gerarchia di Von Neumann}
-\subsection{Formule relativizzate ad una classe}
-\newpage
-\subsection{Assioma di buona fondazione}
-\newpage
-\subsection{Principio di epsilon-induzione}
+\begin{proof}
+	Siano $f: A \longrightarrow B$ e $g: B \longrightarrow A$ iniettive. Il nostro obiettivo è costruire una nuova funzione $h : A \longrightarrow B$ bigettiva.\\
+	L'idea è che ogni elemento, poniamo, di $A$, è una tappa di un percorso:
+	\[ a \xrightarrow{f} f(a) \xrightarrow{g} g(f(a)) \xrightarrow{f} f(g(f(a))) \xrightarrow{g} \dots
+		\]
+	Siccome $f$ e $g$ sono iniettive, questo percorso ha altresì un'unica estensione all'indietro\footnote{Perché la controimmagine di ogni elemento ha sempre un solo elemento, essendo $f$ e $g$ per ipotesi iniettive.}:
+	\[ f^{-1}(g^{-1}(a)) \xrightarrow{f} g^{-1}(a) \xrightarrow{g} a \xrightarrow{f} f(a) \xrightarrow{g} g(f(a)) \xrightarrow{f} f(g(f(a))) \xrightarrow{g} \dots
+		\]
+	a patto che $a \in \Imm(g)$, $g^{-1} \in \Imm(f)$, etc. Quando, e se, non possiamo più applicare la funzione inversa, il percorso si interrompe. Ci sono quindi percorsi di tre tipi:
+	\begin{center}
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=12.5cm]{immagini/cantor-ber.png}
+		\end{figure}
+	\end{center}
+	Per gli elementi che si trovano su un percorso circolare, o su un percorso illimitato avanti e indietro, $f$ fornisce una bigezione, come la fornirebbe anche $g^{-1}$ - la scelta è arbitraria a patto di 
+	usare la medesima funzione per l'intero percorso -.
+	\begin{center}
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=12.5cm]{immagini/cantor-ber2a.png}
+		\end{figure}
+	\end{center}
+	\begin{center}
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=12.5cm]{immagini/cantor-ber2b.png}
+		\end{figure}
+	\end{center}
+	Per i percorsi, invece, illimitati solo a destra, occorre vedere in quale insieme sta l'elemento iniziale del percorso: se questo è in $A$, la bigezione è data da $f$,
+	altrimenti da $g^{-1}$.
+	\begin{center}
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=12.5cm]{immagini/cantor-ber3.png}
+		\end{figure}
+	\end{center}
+	Per comodità poniamo $h(x) = f(x)$ in ogni caso, eccetto quando $x$ è lungo un percorso che porta da $B$, nel cui caso poniamo $h(x) = g^{-1}(x)$.\\
+	Formalmente, definiamo per \hyperref[ric1]{ricorsione} le seguenti successioni di sottoinsiemi di $B$ e $A$ rispettivamente - ossia, tecnicamente, la funzione $\omega \longrightarrow \ps(B) \times \ps(A) : i \longmapsto (B_i,A_i)$, con:
+	\[ B_0 = B \setminus\Imm(f) \qquad A_i = g[B_i] \qquad B_{s(i)} = f[A_i]
+		\]
+	Definiamo quindi:
+	\[ B_* = \bigcup_{i \in \omega}B_i \Mydef \bigcup\{B_i | i \in \omega\} \qquad A_* = \bigcup_{i \in \omega} A_i
+		\]
+	Questi sono i punti che appartengono a cammini che partono da $B$, definiamo quindi $h : A \longrightarrow B$ e $k : B \longrightarrow A$ come segue:
+	\[ h(x) = \begin{cases}
+		g^{-1}(x) &\text{se $x \in A_*$}\\
+		f(x) &\text{altrimenti}
+	\end{cases}
+	\qquad
+	k(y) = \begin{cases}
+		g(y) &\text{se $y \in B_*$}\\
+		f^{-1}(y) &\text{altrimenti}
+	\end{cases}
+		\]
+	Ci basta dimostrare che $h$ e $k$ sono ben definita, $k \circ h = id_A$ e $h \circ k = id_B$.
+	\begin{enumerate}[(1)]
+		\item \underline{$h$ e $k$ sono ben definite}: Occorre verificare che stiamo applicando $g^{-1}$ e $f^{-1}$ a elementi della immagine di $g$ e $f$ rispettivamente.
+		Nella definizione di $h$, se $x \in A_*$, allora $x \in A_i$, per qualche $i \in \omega$, quindi $x \in g[B_i] \subseteq \Imm(g)$. Nella definizione di $k$, se $y \not \in B_*$, in particolare,
+		$y \not \in B_0$, per cui $y \in \Imm(f)$.
+		\item \underline{$k \circ h = id_A$}: Se $x \in A_*$, allora $x \in A_i$, per qualche $i \in \omega$, quindi $x = g(y)$, con $y \in B_i$, per cui $k(h(y)) = k(g^{-1}(x)) = k(y) = g(y) = x$. Per il caso
+		$x \not \in A_*$, osserviamo, intanto, che $x \not \in A_* \rightarrow f(x) \not \in B_*$. Infatti, se $f(x) \in B_i$, con $i \in \omega$, allora $i \ne 0$, perché $B_0 = B \setminus \Imm(f)$, quindi possiamo scrivere $i = s(j)$, 
+		e $f(x) \in B_{s(j)} = f[A_j]$. Per l'iniettività di $f$, abbiamo allora $x \in A_j \;\lightning$.\\
+		Di conseguenza, se $x \not \in A_*$, $k(h(x)) = k(f(x)) = f^{-1}f(x) = x$.
+		\item \underline{$h \circ k = id_B$}: Se $y \in B_*$, allora $y \in B_i$, per qualche $i \in \omega$, quindi $g(y) \in A$. Di conseguenza $h(k(y)) = h(g(y)) = g^{-1}(g(y)) = y$. Altrimenti $y \not \in B_*$ e, se $f^{-1}(y)\in A_*$, avremmo una contraddizione,
+		perché $f^{-1}(y) \in A_i \rightarrow y = f(f^{-1}(y)) \in A_{s(i)}$. Quindi $h(k(y)) = h(f^{-1}(y)) = f(f^{-1}(y)) = y$.
+	\end{enumerate}
+\end{proof}
 
 
 \end{document}
