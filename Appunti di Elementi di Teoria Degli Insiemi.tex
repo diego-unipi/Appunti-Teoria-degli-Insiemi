@@ -2,6 +2,7 @@
 \usepackage[italian]{babel}
 \usepackage[sexy]{evan}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % BOOST SOFTWARE LICENSE - VERSION 1.0 - 17 AUGUST 2003
@@ -51,7 +52,7 @@
 Queste dispense sono la quasi esatta trascrizione in \LaTeX\,delle dispense del corso di Elementi di teoria degli insiemi, tenuto dal prof. Marcello Mamino nell'anno accademico 2022-23.
 
 \section*{Ringraziamenti}
-Francesco Sorce.
+Francesco Sorce, Rubens Martino.
 
 \mbox{}
 \vfill
@@ -1198,13 +1199,20 @@ Se valesse che $\forall x,y \in A \; x < y \rightarrow y < x$, allora sarebbero 
 Diciamo che $<$ è un ordinamento totale (stretto) su $A$ se:
 \[ \forall x \in A \, \forall y \in A (x \ne y \land ((x < y) \lor (x > y))) \lor (x = y)
 	\]
+o anche semplicemente:
+\[ \forall x \in A \, \forall y \in A (x = y) \lor (x < y) \lor (x > y)
+	\]
+E per quanto detto possiamo anche pensare che:
+\[ \text{$\leq$ ordine totale} \iff \text{$< \cup \Delta_A$ ordine totale}
+	\]
+(infatti nella prima definizione non è strettamente necessario che compaia l'uguaglianza, la si può ottenere quanto entrambe le disuguaglianze sono vere per antisimmetria, mentre per ordini stretti è necessario aggiungere la diagonale nella definizione di totalità).
 \end{soln}
 
 \begin{definition}[Restrizione di una relazione]
 	Data una relazione $\rel \subseteq A \times B$, e dati $A' \subseteq A$, $B' \subseteq B$, possiamo definire la \vocab{restrizione} di $\rel$ a $A'\times B'$:
 	\[ \rel_{|A' \times B'} \Mydef \rel \cap (A' \times B')
 		\]
-	(``restrizione di $\mathcal R$ a $A' \times B'$\,'').
+	``restrizione di $\mathcal R$ a $A' \times B'$\,''.
 \end{definition}
 
 \begin{exercise}
@@ -1294,6 +1302,10 @@ analogamente valgono simmetria e riflessività.
 	Data $g : A \rightarrow B$ e $f: B \rightarrow C$, sotto quali condizioni $f \circ g$ è iniettiva, suriettiva, bigettiva?
 \end{exercise}
 
+\begin{soln}
+
+\end{soln}
+
 \begin{exercise}
 	Data una relazione di equivalenza $\sim$ su $A$, dimostra che esiste un insieme $\faktor{A}{\sim}$ ed una funzione surgettiva $i_\sim$ da $A$ a $\faktor{A}{\sim}$
 	tale che:
@@ -1301,10 +1313,18 @@ analogamente valgono simmetria e riflessività.
 		\]
 \end{exercise}
 
+\begin{soln}
+
+\end{soln}
+
 \begin{exercise}
 	Data una relazione di equivalenza $\sim$ su $A$ e $f : A \rightarrow B$, affinché esista $\widetilde{f}: \faktor{A}{\sim} \rightarrow B$ tale che $f = \widetilde{f} \circ i_\sim$,
 	è necessario e sufficiente che $\forall x,y \in A \; x \sim y \rightarrow f(x) = f(y)$.
 \end{exercise}
+
+\begin{soln}
+
+\end{soln}
 
 \newpage
 \section{Assioma dell'infinito e numeri naturali}
@@ -1334,7 +1354,7 @@ Avendo una formula per denotare il successore, possiamo postulare l'esistenza di
 
 \begin{definition}
 	[Insiemi induttivi]
-	Diciamo che $A$ è un \vocab{insieme induttivo} se contiene $\emptyset$ ed è chiuso per successori, ossia:
+	Diciamo che $A$ è un \vocab{insieme induttivo} se contiene $\emptyset$ ed è chiuso per successori \footnote{Ciò non esclude che ci possano essere altri elementi oltre a $\emptyset$ che non siano successori (questa cosa è sempre falsa in $\omega$).}, ossia:
 	\[ \text{$A$ è induttivo} \iff \emptyset \in A \land \forall x \in A \; s(x) \in A
 		\]
 \end{definition}
@@ -1348,19 +1368,20 @@ Avendo una formula per denotare il successore, possiamo postulare l'esistenza di
 \end{axiom}
 
 Finalmente definiamo l'insieme dei numeri naturali - che, per qualche buffa ragione, chiamiamo $\omega$ - come l'intersezione della classe, non vuota per l'assioma dell'infinito,
-di tutti gli insiemi induttivi.
+di tutti gli insiemi induttivi.\footnote{Aver introdotto l'assioma dell'infinito
+ci assicura che tale intersezione è non vuota, e ciò basta affinché $\omega$ sia un insieme (in caso contrario avremmo avuto l'intersezione del vuoto, che, come visto, non è un insieme).}
 
-\begin{definition}
+\begin{definition}[Numeri naturali]
 	L'insieme $\omega$ è l'intersezione di tutti gli insiemi induttivi, ossia $\omega$ è l'unico insieme tale che:
 	\[ \forall x (x \in \omega \leftrightarrow(\forall A \; \text{``$A$ è induttivo''}\rightarrow x \in A)) \footnote{Cioè $x$ è in $\omega$ se e solo se è elemento
-	di qualsiasi insieme induttivo (nella classe degli insiemi induttivi), e, inoltre, essendo l'intersezione di una classe, è in particolare un insieme (perché per definizione
+	di qualsiasi insieme induttivo (nella \underline{classe} degli insiemi induttivi), e, inoltre, essendo l'intersezione di una classe, è in particolare un insieme (perché per definizione
 	stiamo intersecando gli elementi di una classe, che sono insiemi).}
 		\]
 \end{definition}
 
 Adesso che abbiamo $\omega$, possiamo facilmente dimostrare che ogni dato numero naturale vi appartiene.
 
-\begin{definition}
+\begin{definition}[Codifica dei numeri naturali]
 	Definiamo:
 	\[ 0 \Mydef \emptyset \qquad 1 \Mydef s(0) \qquad 2 \Mydef s(1) \qquad 3 \Mydef s(2) \qquad \text{etc.}
 		\]
@@ -1370,100 +1391,127 @@ Adesso che abbiamo $\omega$, possiamo facilmente dimostrare che ogni dato numero
 	Dimostra che $0,1,2,3 \in \omega$.
 \end{exercise}
 
+\begin{soln}
+	Avendo definito $\omega$ come:
+	\[ \omega = \bigcap_{\text{$A$ induttivo}} A
+		\]
+	sappiamo che $\emptyset \in A$, per ogni insieme induttivo (per definizione), dunque $0 \in \omega$. Inoltre vale che l'intersezione di insiemi induttivi è chiusa per successore (e quindi per quanto appena mostrato è a sua volta un insieme induttivo), infatti:
+	\[ \forall x \in \bigcap_{\text{$A$ induttivo}} A \leftrightarrow \forall A \, \text{$A$ induttivo}\, (x \in A)
+		\]
+	ed essendo tutti gli $A$ chiusi per successore (in quanto induttivi) segue che:
+	\[ s(x) \in \bigcap_{\text{$A$ induttivo}} A \implies s(x) \in \omega
+		\]
+	Pertanto, avendo osservato che $0 \in \omega$, si avrà anche che $1 = s(0) \in \omega$, $2 = s(1) \in \omega$, $3 = s(2) \in \omega$ e così via.
+\end{soln}
+
 Un esercizio un po' più difficile è esibire insiemi che non appartengono a $\omega$.
 
 \begin{exercise}
 	Dimostra che $\{\{\emptyset\}\} \not \in \omega$.\footnote{\textbf{\underline{Idea}}: Esibisci un insieme induttivo che non contiene $\{\{\emptyset\}\}$.}
 \end{exercise}
 
+\begin{soln}
+	Osserviamo che $\{\{\emptyset\}\}$ non è un successore, se fosse che $s(x) = x \cup \{x\} = \{\{\emptyset\}\}$, dato che $x$ è elemento di $s(x)$ e che $\{\{\emptyset\}\}$ ha un solo elemento, per \hyperref[ax2]{estensionalità} deve essere che che $x = \{x\} = \{\emptyset\}$ (ossia tutti gli elementi di $s(x)$ devono essere 
+	uguali all'unico elemento di $\{\{\emptyset\}\}$). Pertanto avremmo che $x = \{\emptyset\}$, ma $s(x) = s(\{\emptyset\}) = \{\emptyset\} \cup \{\{\emptyset\}\} =\footnote{Volendo essere pignoli possiamo usare la definizione dell'unione come il prendere gli elementi degli elementi: $\{\emptyset\} \cup \{\{\emptyset\}\} = \bigcup \{\{\emptyset\},\{\{\emptyset\}\}\}$,
+	e l'unione di tale insieme è formata appunto da tutti gli elementi degli elementi (quindi naturalmente il vuoto $\emptyset$ e anche $\{\emptyset\}$).} \{\emptyset,\{\emptyset\}\}$, ma $\{\emptyset\} \ne \emptyset$, perché $\{\emptyset\}$ è non vuoto e $\emptyset$ è proprio il vuoto.\\
+	Avendo dimostrato che $\{\{\emptyset\}\}$ non è né un successore né (ovviamente) il vuoto, ci basta mostrare mostrare che non appartiene ad un insieme induttivo $A$ che non ha altri elementi (oltre a $\emptyset$) che non sono successori. Dando per buono che $\omega$ non contenga elementi che non sono successori, si ottiene che
+	$\{\{\emptyset\}\} \not \in \omega$.\footnote{Non abbiamo usato l'hint di Mamino e abbiamo usato un fatto non dimostrato.}
+\end{soln}
+
 \subsection{Gli assiomi di Peano}
 Per convincerci, però, che $\omega$ è, a buon diritto, l'insieme dei numeri naturali, serve qualcosa di più. Classicamente, i numeri naturali si definiscono per mezzo degli
 \vocab{assiomi di \href{https://it.wikipedia.org/wiki/Giuseppe_Peano}{\textcolor{purple}{Peano}}}. Questi assiomi, che caratterizzano a meno di isomorfismi l'insieme $\NN$ dotato della funzione di successore, \textbf{per noi diventano dei teoremi} che
-dimostreremo a proposito dell'insieme $\omega$. In questo senso, quindi, $\omega$ codifica legittimamente i numeri naturali.
+dimostreremo a proposito dell'insieme $\omega$\footnote{Cioè gli assiomi di Peano diventano enunciati dimostrabili all'interno della ZFC.}. In questo senso\footnote{Classicamente gli assiomi definivano $\NN$ a meno di isomorfismo, mostrando che $\omega$ li soddisfa siamo sicuri di avere l'oggetto (insieme) $\NN$ definito da tali assiomi nella ZFC, e tale oggetto è appunto $\omega$.}, quindi, $\omega$ codifica legittimamente i numeri naturali.
 
 \begin{definition}
-	[Assiomi di Peano al secondo ordine (qualunque cosa questo significhi...)]
+	[Assiomi di Peano al secondo ordine\protect\footnote{qualunque cosa questo significhi...}]
 	Dato un insieme $\NN$, un elemento $0 \in \NN$, e una funzione:
 	\[ \text{succ} : \NN \longrightarrow \NN
 		\]
-	diciamo che $(\NN,0,\text{succ})$ soddisfa gli assiomi di Peano se:
+	diciamo che $(\NN,0,\text{succ})$\footnote{La 3-upla ordinata formata dai tre insiemi $\NN$,$0$,succ: (($\NN$,0),succ)$= \{(\NN,0),\{(\NN,0),\text{succ}\}\} = \{\{\NN,\{\NN,0\}\},\{\{\NN,\{\NN,0\}\},\text{succ}\}\}$.} soddisfa gli assiomi di Peano se:
 	\begin{enumerate}[(a)]
 		\item \label{a}Il successore è iniettivo:
-		\[ \forall n,m \in \NN \; \text{succ}(m) = \text{succ}(n) \rightarrow m = n
+		\[ \forall n,m \in \NN \; \text{succ}(m) = \text{succ}(n) \rightarrow m = n \, \footnote{L'altra freccia è banale e sarà data sempre per scontata.}
 			\]
 		\item \label{b}Lo zero non è un successore:
 		\[ \not\exists n \in \NN \; \text{succ}(n) = 0
 			\]
 		\item \vocab{Principio di induzione}: data una qualunque formula insiemistica (proprietà) $\Phi(n)$ vale:
-		\[ (\phi(0) \land \forall n \in \NN \; \Phi(n) \rightarrow \Phi(\text{succ}(n))) \rightarrow \forall n \in \NN \; \Phi(n)
+		\[ (\Phi(0) \land \forall n \in \NN \; \Phi(n) \rightarrow \Phi(\text{succ}(n))) \rightarrow \forall n \in \NN \; \Phi(n)
 			\]
 	\end{enumerate}
 \end{definition}
 
-\begin{center}
-	\begin{figure*}[h]
+
+\begin{figure*}[h]
 		\centering
 		\includegraphics[width=10.5cm]{immagini/peano.png}
 		\captionsetup{labelformat=empty}
 		\caption{Apparivano così in ``\emph{Arithmetices principia}'', nel 1889, gli assiomi di Peano.}
-	\end{figure*}
-\end{center}
+\end{figure*}
 
-\begin{theorem}
-	La funzione $\text{succ}: \omega \longrightarrow \omega$, $\text{succ}(n) = s(n)$, è ben definita e $(\omega,\emptyset,\text{succ})$
+
+\begin{theorem}[$\omega$ soddisfa gli assiomi di Peano]
+	La funzione $\text{succ}: \omega \rightarrow \omega : n \mapsto s(n)$, è ben definita e $(\omega,\emptyset,\text{succ})$
 	soddisfa gli assiomi di Peano.
 \end{theorem}
 
 \begin{proof}
-	Per controllare che $\text{succ}$ sia ben definita, occorre assicurarsi che se $n \in \omega$, allora $s(n) \in \omega$. Fissiamo $n \in \omega$
-	e consideriamo un qualunque insieme induttivo $A$. Siccome $A$ è induttivo, $\omega \subseteq A$, quindi $n \in A$, e, di conseguenza $s(n) \in A$. Per 
-	l'arbitrarietà di $A$, allora, $s(n)$ appartiene a ogni insieme induttivo. Quindi $s(n) \in \omega$.\\
+	Per controllare che $\text{succ}$ sia ben definita, occorre assicurarsi che se $n \in \omega$, allora $\text{succ}(n) = s(n) \in \omega$. Fissiamo $n \in \omega$
+	e consideriamo un qualunque insieme induttivo $A$. Siccome $A$ è induttivo $\omega \subseteq A$, quindi $n \in A$, e, di conseguenza $s(n) \in A$. Per 
+	l'arbitrarietà di $A$, allora, $s(n)$ appartiene a ogni insieme induttivo (quindi all'intersezione, ovvero $\omega$).\\
 	Dimostriamo ora che $\omega$ rispetta gli assiomi di Peano. Iniziamo con dimostrare (b) e (c), poi passeremo ad (a):
 	\begin{enumerate}
-		\item[(b)] Supponiamo, per assurdo, $s(n) = \emptyset$. Abbiamo allora:
-		\[ n \in n \cup \{n\} = s(n) = \emptyset
+		\item[(b)] Supponiamo, per assurdo, $s(n) = \emptyset$. Abbiamo allora che:
+		\[ n \in s(n) =  n \cup \{n\} = s(n) = \emptyset
 			\]
 		contro la definizione di $\emptyset$.
-		\item[(c)] Dimostriamo che l'insieme $A = \{n \in \omega | \Phi(n)\}$ è induttivo, da cui $\omega = A$\footnote{Stiamo costruendo $A$ come sottoinsieme di $\omega$.}, quindi $\forall n \in \omega \; \Phi(n)$.
-		\begin{enumerate}[1.]
+		\item[(c)] Dimostriamo che l'insieme $A = \{n \in \omega | \Phi(n)\} \subseteq \omega$ è induttivo, da cui $\omega = A$\footnote{Stiamo costruendo $A$ come sottoinsieme di $\omega$ (che
+		a sua volta sarà contenuto in $A$, non appena avremo dimostrato che quest'ultimo è induttivo, per definizione).}, quindi varrà che $\forall n \in \omega \; \Phi(n)$.
+		\begin{enumerate}[(1)]
 			\item Per ipotesi abbiamo che $\Phi(\emptyset)$, quindi $\emptyset \in A$.
-			\item $n \in A \underbrace{\implies}_{\text{per ipotesi}} \Phi(n) \implies \Phi(s(n)) \underbrace{\implies}_{\text{perché $n \in \omega \rightarrow s(n) \in \omega$}} s(n) \in A$
+			\item $n \in A \overset{\text{def. $A$}}{\implies} \Phi(n) \overset{\text{ipotesi}}{\implies} \Phi(\text{succ}(n)) = \Phi(s(n)) \overset{\text{$n \in \omega \rightarrow s(n) \in \omega$}}{\implies} s(n) \in A$
 		\end{enumerate}
 		\item[(a)] La dimostrazione passa attraverso due lemmi.
 					\begin{lemma}
 					[Lemma 1]
-					$\forall n \in \omega \; \bigcup n \subseteq n$.
+					L'unione di un elemento di $\omega$ è contenuta nell'elemento: $\forall n \in \omega \; \bigcup n \subseteq n$.
 					\end{lemma}
 					\begin{proof}
-						Per induzione (c) con $\Phi(n) \Mydef \bigcup n \subseteq n$.
-						\[ \Phi(\emptyset): \qquad \bigcup \emptyset = \emptyset \subseteq \emptyset
-							\]\[ \Phi(n) \rightarrow \Phi(s(n)): \qquad \bigcup(s(n)) = \bigcup(n \cup \{n\}) = \left(\bigcup n\right) \cup n = n \subseteq s(n)
-								\]
-						Dove la penultima uguaglianza vale in quanto:
+						Avendo dimostrato in (c) che in $\omega$ vale l'induzione possiamo usarla con $\Phi(n) \Mydef \bigcup n \subseteq n$. 
+						\[
+							\begin{split}
+							\boxed{\Phi(\emptyset)} & \qquad \bigcup \emptyset = \emptyset \subseteq \emptyset \\
+							\boxed{\Phi(n) \rightarrow \Phi(s(n))} & \qquad \bigcup s(n) = \bigcup(n \cup \{n\}) \overset{\star}{=} \underbrace{\left(\bigcup n\right)}_{\subseteq n} \cup n \overset{\text{Hp. indutt.}}{\subseteq} n \cup n = n \subseteq s(n)
+							\end{split}
+						\]
+						(si noti che il passo base è coerente con le definizioni delle abbreviazioni date), e $\star$ vale in quanto:
 						\[ \begin{split}
-							x \in \bigcup(n \cup \{n\}) & \iff \exists y \; x \in y \land y \in n \cup\{n\}\\
-														& \iff \exists y \; x \in y \land (y \in n \lor y = n)\\
-														& \iff \exists y \; ( x \in y \land y \in n) \lor (x \in y \land y = n)\\
-														& \iff \exists y \; ( x \in y \land y \in n) \lor \exists y(x \in y \land y = n)\\
-														& \iff x \in \bigcup n \lor x \in N\\
-														& \iff x \in \left(\bigcup n\right) \cup n
+							x \in \bigcup(n \cup \{n\}) \overset{\text{def.}}{\iff} &\quad \exists y ( x \in y) \land (y \in (n \cup\{n\})) \\
+														\overset{\text{caratt. $\cup$}}{\iff} &\quad \exists y( x \in y) \land (y \in n \lor y = n)\\
+														\overset{\text{distrib. $\land$}}{\iff} &\quad \exists y \; ( x \in y \land y \in n) \lor (x \in y \land y = n)\\
+														\iff &\quad \exists y ( x \in y \land y \in n) \lor \exists y(x \in y \land y = n)\\
+														\overset{\text{def.}}{\iff} &\quad x \in \bigcup n \lor x \in n\\
+														\overset{\text{caratt. $\cup$}}{\iff} &\quad x \in \left(\bigcup n\right) \cup n
 						\end{split}
 							\]
-						Mentre l'ultima in quanto, per ipotesi induttiva, $\bigcup n \subseteq n$, quindi $\left(\bigcup n\right) \cup n \subseteq n \cup n = n$.
+						(dove alla secondo membro della seconda equivalenza abbiamo che $y \in \{n\}$ e per \hyperref[ax2]{estensionalità} equivale a $y = n$.).
 					\end{proof}
 					\begin{lemma}
 						[Lemma 2]
-						$\forall n \in \omega \; \bigcup s(n) = n$.
+						L'unione dei successori di un elemento in $\omega$ è proprio l'elemento: $\forall n \in \omega \; \bigcup s(n) = n$.
 					\end{lemma}
 					\begin{proof}
-						Come nel passo induttivo della dimostrazione precedente:
-						\[ \bigcup\left(s(n)\right) = \bigcup (n \cup \{n\}) = \left(\bigcup n\right) \cup n = n
+						Ricopiando quanto fatto nel passo induttivo della dimostrazione precedente abbiamo:
+						\[ \bigcup s(n) = \bigcup (n \cup \{n\}) = \left(\bigcup n\right) \cup n \overset{\star}{\subseteq} n
 							\]
-						dove l'ultima uguaglianza abbiamo $\bigcup n \subseteq n$, non per ipotesi induttiva, ma per il Lemma 1.
+						dove in $\star$ abbiamo usato che $\bigcup n \subseteq n$, non per ipotesi induttiva (visto che non stiamo facendo alcuna induzione), ma stiamo usando direttamente il risultato del Lemma 1.
+						Naturalmente vale anche che $n \subseteq \bigcup s(n)$ (ogni elemento di $n$ è elemento dell'elemento $n$ in $s(n)$), dunque vale la tesi.
 					\end{proof}
 					Finalmente abbiamo che, per il Lemma 2:
-					\[ s(m) = s(n) \implies m = \bigcup s(m) = \bigcup s(n) = n
+					\[ s(m) = s(n) \implies \bigcup s(m) = \bigcup s(n) \overset{\text{Lemma 2}}{\iff} m = n
 						\]
+					dove la prima freccia è data dal fatto che stiamo considerando l'unione di insiemi uguali, dunque succ$: \omega \rightarrow \omega$ è iniettiva.
 	\end{enumerate}
 \end{proof}
 
@@ -1471,119 +1519,144 @@ dimostreremo a proposito dell'insieme $\omega$. In questo senso, quindi, $\omega
 Conviene, adesso, sviluppare un po' di tecnologia per manipolare i numeri interi. Dopo, dimostreremo altresì che gli assiomi di Peano hanno un unico modello $(\NN, 0, \text{succ})$
 a meno di isomorfismi.
 
-\begin{notation}
+\begin{notation}[Relazione di ordine su $\omega$]
 	Dati $m,n \in \omega$, scriviamo:
-	\[ m < n \Mydef m \in n
+	\[ m < n \Mydef m \in n \footnote{Per essere precisi non stiamo usando $\in$ come una relazione (visto che abbiamo assunto all'inizio che fosse un simbolo del linguaggio della teoria degli insiemi), ma stiamo definendo $< \Mydef \{(m,n) \in \omega \times \omega | m \in n\}$.}
 		\]
 \end{notation}
 
-\begin{proposition}
+\begin{proposition}[Ordinamento totale di $\omega$]
 	La relazione $<$ è un ordine totale su $\omega$. 
 \end{proposition}
 
 Per dimostrare questa proposizione, sono comodi alcuni lemmi.
 
-\begin{remark}
-	Si osserva che:
-	\begin{enumerate}[1.]
-		\item $m \in n \rightarrow m \in s(n)$, infatti $n \subseteq n \cup \{n\} = s(n)$.
-		\item $m \in s(n) \rightarrow (m \in n \lor m = n)$, infatti:
+\pagebreak
+
+\begin{remark}[Successore del secondo termine in un'appartenenza]
+	Si osserva che valgono le seguenti cose:
+	\begin{enumerate}[(1)]
+		\item $m \in n \rightarrow m \in s(n)$, infatti $n \subseteq n \cup \{n\} = s(n)$ (banalmente se $m$ è contenuto in $n$ allora è contenuto anche nel suo successore).
+		\item $m \in s(n) \rightarrow (m \in n \lor m = n)$, ciò se $m$ è nel successore di $n$, allora è $n$ stesso o un suo elemento, infatti:
 		 \[ \begin{split}
-			m \in n \cup \{n\} = s(n) & \iff m \in n \cup \{n\} = s(n)\\
-									& \iff m \in n \lor m \in \{n\}\\
-									&\iff m \in n \lor m = n
+			m \in s(n) = n \cup \{n\} & \iff m \in (n \cup \{n\}) \\
+									& \iff (m \in n) \lor (m \in \{n\}) \\
+									&\iff (m \in n) \lor (m = n)
 		 \end{split}
 			\]
+		(nella seconda equivalenza si è usata la caratterizzazione data dell'appartenenza ad un unione di insiemi, e nella terza il fatto che se $m$ appartiene ad un singoletto, allora per \hyperref[ax2]{estensionalità} è proprio l'unico elemento del singoletto).
 	\end{enumerate}
 \end{remark}
 
-\begin{lemma}
-	$\forall a,b \in \omega \; a \in b \rightarrow (s(a) \in b \lor s(a) = b)$.
+\begin{lemma}[Successore del primo termine in un'appartenenza]
+	$\forall a,b \in \omega \; a \in b \rightarrow (s(a) \in b \lor s(a) = b)$.\footnote{Moralmente: se un numero è strettamente più piccolo di un altro, o il suo successore è a sua volta più piccolo del secondo numero, o coincide con quest'ultimo.}
 \end{lemma}
 
 \begin{proof}
-	Induzione su $b$.
+	Procediamo per induzione su $b$.
 	\begin{itemize}
-		\item Caso $b = 0$: $a \in \emptyset \rightarrow \ldots$ vera a vuoto, perché $a \in \emptyset$ è falsa.
-		\item Caso $b = s(n)$: l'ipotesi induttiva è $a \in n \rightarrow (s(a) \in n \lor s(a) = n)$. Dobbiamo dimostrare:
+		\item[$\boxed{\text{caso $b = 0$}}$] $a \in \emptyset \rightarrow \ldots$ vera a vuoto, perché $a \in \emptyset$ è falsa (dunque l'implicazione è sempre vera, indipendentemente dal valore di verità dell'antecedente).
+		\item[$\boxed{\text{caso $b = s(n)$}}$] L'ipotesi induttiva è $a \in n \rightarrow (s(a) \in n \lor s(a) = n)$. Dobbiamo dimostrare:
 		\[ a \in s(n) \rightarrow (s(a) \in s(n) \lor s(a) = s(n))
 			\]
-		abbiamo che $a \in s(n) \implies a \in n \cup \{n\} \implies a \in n \lor a = n$. Quindi abbiamo due casi:
+		abbiamo che $a \in s(n) \iff a \in n \cup \{n\} \iff a \in n \lor a = n$. Quindi abbiamo due casi:
 		\[ \begin{split}
-			& a \in n \implies s(a) \in n \lor s(a) = n \implies s(a) \in s(n) \\
-			& a = n \implies s(a) = s(n)
+			& a \in n \overset{\text{Hp. indutt.}}{\implies} (s(a) \in n) \lor (s(a) = n) \overset{\text{def. $s(n)$}}{\iff} s(a) \in s(n) \\
+			& a = n \iff s(a) = s(n)
 		\end{split}
 			\]
+		(la seconda equivalenza è giustificata dal fatto che abbiamo dimostrato che la funzione successore in $\omega$ è iniettiva).
 	\end{itemize}
 \end{proof}
 
-Possiamo roa dimostrare la proposizione.
+Possiamo ora dimostrare la proposizione iniziale.
 
 \begin{proof}
-	Verifichiamo le tre proprietà richieste da un ordinamento totale:\\
-	\textbf{\underline{transitività}}: $a \in b \land b \in c \rightarrow a \in c$. Induzione su $c$:
+	Per verificare che $<$ è una relazione di ordine stretto totale, dobbiamo verificare che è irriflessiva, transitiva e totale (cioè presi qualsiasi due elementi di $\omega$ la loro coppia ordinata appartiene a $<$).
 	\begin{itemize}
-		\item \underline{caso $c = 0$}: la premessa $b \in c$ è falsa, quindi l'implicazione è vera a vuoto.
-		\item \underline{caso $c = s(n)$}: assumiamo per ipotesi induttiva $a \in b \land b \in n \rightarrow a \in n$. Sapendo $a \in b \land b \in s(n)$
-			vogliamo dedurre $a \in s(n)$. Abbiamo due casi:
-			\[ \begin{split}
-				& b = n \implies a \in b = n \implies a \in s(n)\\
-				& b \in n \implies a \in b \in n \implies a \in n \implies a \in s(n)
-			\end{split}
-				\]
-	\end{itemize}
-	\textbf{\underline{irriflessività}}: $\neg \,a \in a$. Per induzione:
-	\begin{itemize}
-		\item \underline{caso $a = 0$}: $\neg \, \emptyset \in \emptyset$ per definizione di $\emptyset$.
-		\item \underline{caso $a = s(n)$}: assumiamo l'ipotesi induttiva $\neg \, n \in n$. Per assurdo supponiamo $s(n) \in s(n)$ ed abbiamo due casi:
-		\[ \begin{split}
-			& s(n) = n \implies n \in n \; \lightning\\
-			& s(n) \in n \implies n \in s(n) \in n \implies n \in n \; \lightning
-		\end{split}
-			\]
-	\end{itemize}
-	\textbf{\underline{totalità}}: $a \in b \lor a = b \lor b \in a$. Per induzione su $a$:
-	\begin{itemize}
-		\item \underline{caso $a = 0$}: $\emptyset \in b \lor \emptyset = b \lor b \in \emptyset \footnote{Ovviamente quest'ultimo caso è impossibile.}$. Procediamo per induzione su $b$:
+		\item[$\boxed{\text{transitività}}$] Vogliamo verificare che $(a \in b \land b \in c) \rightarrow a \in c$. Procediamo per induzione su $c$:
 		\begin{itemize}
-			\item \underline{caso $b = 0$}: $0 \in \emptyset \lor \emptyset = \emptyset$, dove naturalmente la prima affermazione è falsa, mentre la seconda è vera.
-			\item \underline{caso $b = s(m)$}: ipotesi induttiva $\emptyset \in m \lor \emptyset = m$. Abbiamo due casi:
+			\item[$\boxed{\text{caso $c = 0$}}$] la premessa $b \in c$ è falsa, quindi l'implicazione è vera a vuoto (l'antecedente è sempre falso, quindi l'implicazione sempre vera).
+			\item[$\boxed{\text{caso $c = s(n)$}}$] assumiamo per ipotesi induttiva $(a \in b \land b \in n) \rightarrow a \in n$, e vogliamo dimostrare:
+				\[ (a \in b \land b \in s(n)) \rightarrow a \in s(n)
+					\]
+				Osserviamo che $a \in b \implies a \in s(b)$, e che $b \in s(n) \overset{\text{Lemma}}{\implies} s(b) \in s(n) \lor s(b) = s(n)$, abbiamo quindi due casi in base a $s(b)$:
+				\[ \begin{split}
+					& s(b) = s(n) \implies a \in s(b) = s(n) \implies a \in s(n)\\
+					& s(b) \in s(n) \implies a \in s(b) \in s(n) \implies a \in s(n)
+				\end{split}
+					\]
+				questo usando il lemma precedente, potevamo anche scegliere di usare l'osservazione per dire che $b \in s(n) \implies b = n \lor b \in n$ e ottenere ancora i casi:
+				\[  \begin{split}
+					& b = n \implies a \in b = n \overset{\text{Oss.}}{\implies} a \in s(n) \\
+					& b \in n \implies a \in b \in n \implies a \in n \overset{\text{Oss.}}{\implies} a \in s(n)
+					\end{split}
+					\]
+		\end{itemize}
+		\item[$\boxed{\text{irriflessività}}$] Vogliamo verificare $\neg \,a \in a$, e lo facciamo per induzione su $a$:
+		\begin{itemize}
+			\item[$\boxed{\text{caso $a = 0$}}$] $\neg \, \emptyset \in \emptyset$, vero per definizione di $\emptyset$.
+			\item[$\boxed{\text{caso $a = s(n)$}}$] L'ipotesi induttiva è $\neg \, n \in n$, e vogliamo verificare che $\neg s(n) \in s(n)$. Procediamo per assurdo, supponiamo che $s(n) \in s(n)$, e per l'osservazione abbiamo due casi:
 			\[ \begin{split}
-				& \emptyset \in m \implies \emptyset \in s(m) \lor \emptyset \in s(m) \implies \emptyset \in b\\
-				& \emptyset = m \implies \emptyset \in \{\emptyset\} = s(m) \implies \emptyset \in b
+				& s(n) = n \implies n \in n \; \lightning\\
+				& s(n) \in n \implies n \in s(n) \in n \implies n \in n \; \lightning
 			\end{split}
 				\]
+			($n \in n$ è falso perché per ipotesi induttiva $\neg(n \in n)$ è vero).
 		\end{itemize}
-	\item \underline{caso $a = s(n)$}: L'ipotesi induttiva è $n \in b \lor n = b \lor b \in n$. Abbiamo tre casi:
-		\[ \begin{split}
-			& n \in b \implies s(n) \in b \lor s(n) = b \\
-			& n = b \implies b \in s(n) \implies b \in a\\
-			& b \in n \implies b \in s(n) \implies b \in a 
-		\end{split}
-			\]
+		\item[$\boxed{\text{totalità}}$] Vogliamo dimostrare che $\forall a,b \in \omega (a \in b) \lor (a = b) \lor (b \in a)$. Iniziamo per induzione su $a$:
+		\begin{itemize}
+			\item[$\boxed{\text{caso $a = 0$}}$] La tesi diventa $\forall b \in \omega (\emptyset \in b) \lor (\emptyset = b) \lor (b \in \emptyset) \footnote{Ovviamente quest'ultimo caso è sempre faslo e quindi può essere escluso.}$. Procediamo quindi per induzione su $b$:
+			\begin{itemize}
+				\item \textbf{\underline{caso $b = 0$}} La tesi diventa $(\emptyset \in \emptyset) \lor (\emptyset = \emptyset)$, dove naturalmente la prima affermazione è sempre falsa, mentre la seconda è sempre vera, dunque la tesi è vera.
+				\item \textbf{\underline{caso $b = s(m)$}} La tesi è $(\emptyset \in s(m)) \lor (\emptyset = s(m))$, con ipotesi induttiva $(\emptyset \in m) \lor (\emptyset = m)$. Abbiamo quindi due casi in base all'ipotesi induttiva:
+				\[ \begin{split}
+					& \emptyset \in m \implies \emptyset \in s(m) \\
+					& \emptyset = m \implies \emptyset \in \{\emptyset\} = s(m)
+				\end{split}
+					\]
+				in entrambi casi è vera la tesi perché è sempre vero il primo termine.
+			\end{itemize}
+			\item[$\boxed{\text{caso $a = s(n)$}}$] La tesi è $\forall b \in \omega (s(n) \in b) \lor (s(n) = b) \lor (b \in s(n))$, mentre l'ipotesi induttiva è $(n \in b) \lor (n = b) \lor (b \in n)$. Dall'ipotesi induttiva abbiamo quindi tre casi:
+				\[ \begin{split}
+					& n \in b \overset{\text{Lemma}}{\implies} s(n) \in b \lor s(n) = b \\
+					& n = b \overset{\text{Iniett. del succ.}}{\implies} s(n) = s(b) \implies b \in s(b) = s(n) \implies b \in s(n)\\
+					& b \in n \overset{\text{Oss.}}{\implies} b \in s(n) \implies b \in a 
+				\end{split}
+					\]
+				in tutti e tre i casi almeno una delle tre proposizioni della tesi è vera, dunque la tesi è sempre vera.
+		\end{itemize}
 	\end{itemize}
 \end{proof}
 
-\begin{corollary}
+\begin{remark}[$\leq$ ordina totalmente $\omega$]
+	Avendo dimostrato che $<$ è un ordine totale su $\omega$, abbiamo dimostrato in automatico che anche $\leq = < \cup \Delta$ lo è, infatti, per la corrispondenza tra i due (come si è visto precedentemente in una proposizione), anche le definizioni di ordine totale sono corrispondenti (in particolare per 
+	$\leq$ ci basta che valga una tra $\leq$ e $\geq$, se valgono entrambe c'è l'=, mentre per $<$ chiedevamo nella definizione che valesse $<$, $>$ o $=$, quindi se nella dimostrazione precedente avessimo usato $\leq$ al posto di $<$ avremmo ottenuto lo stesso risultato perché le richieste nella definizione di ordine totale sono le stesse).
+\end{remark}
+
+\begin{corollary}[Rappresentazione dei numeri naturali]
 	Un numero naturale è l'insieme dei numeri naturali minori di lui.
 	\[ \forall m \in \omega \; m = \{n \in \omega | n < m\}
 		\]
 \end{corollary}
 
 \begin{proof}
-	Vogliamo dire che $m = \{ n \in \omega | n \in m\}$, ossia che $m \subseteq \omega$. Per induzione: $\emptyset \subseteq \omega$ è vera;
-	assumiamo $m \subseteq \omega$, allora $s(m) = m \cup \{m\}$ (con $\{m\} \subseteq \omega$ in quanto $m \in \omega$), quindi $s(m) \subseteq \omega$. %errore di Mamino
+	Vogliamo dire che $m = \{ n \in \omega | n \in m\}$, ossia per definizione di sottoinsieme che $m \subseteq \omega$. Per induzione: $\emptyset \subseteq \omega$ è vera (perché $\omega$ è induttivo).
+	Assumiamo che $m \subseteq \omega$, allora $s(m) = \underbrace{m}_{\subseteq \omega} \cup \{m\}$ e $\{m\} \subseteq \omega$ perché $m \in \omega$ per ipotesi iniziale, quindi si conclude che $s(m) \subseteq \omega$.
 \end{proof}
 
-\begin{corollary}
-	$\forall m,n \in \omega \; m \leq n \leftrightarrow m \subseteq n$.
+\begin{corollary}[Più piccolo = contenuto]
+	$\forall m,n \in \omega (m \leq n \leftrightarrow m \subseteq n$).
 \end{corollary}
 
 \begin{proof}
-	Siccome $\omega$ è totalmente ordinato, si danno due casi:
-	\[ m \leq n \implies \forall x \in \omega \; x < m \rightarrow x < n \implies \forall x \in \omega \; x \in m \rightarrow x \in n \implies m \subseteq n
-		\]\[ n < m \implies n \in m \quad \text{tuttavia} \quad n \not\in n \implies m \not\subseteq n
+	Siccome $\omega$ è totalmente ordinato, si danno due casi (nel primo dimostro $\rightarrow$, nel secondo dimostro che la negazione della premessa implica la negazione della conseguenza, che è equivalente a $\leftarrow$):
+	\[  \begin{split}
+		& m \leq n \implies \forall x \in \omega (x < m \rightarrow x < n) \implies \forall x \in \omega (x \in m \rightarrow x \in n) \implies m \subseteq n \\
+	    & n < m \implies n \in m \; \text{tuttavia} \; n \not\in n \; \text{quindi non può essere che $m \subseteq n$ ovvero} \; m \not\subseteq n
+		\end{split}
 			\]
+	($n \not \in n$ perché abbiamo dimostrato che $<$ è di ordine stretto su $\omega$, quindi irriflessiva).
 \end{proof}
 
 \subsection{Induzione forte e principio del minimo}
