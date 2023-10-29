@@ -2,7 +2,6 @@
 \usepackage[italian]{babel}
 \usepackage[sexy]{evan}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % BOOST SOFTWARE LICENSE - VERSION 1.0 - 17 AUGUST 2003
@@ -1674,21 +1673,25 @@ Possiamo ora dimostrare la proposizione iniziale.
 \end{remark}
 
 \begin{proof}
-	Assumiamo vero l'antecedente [e dimostriamo il conseguente]:
+	Assumiamo vero l'antecedente per ipotesi ovvero assumiamo vera l'implicazione:
 	\[ \forall n \in \omega \, (\forall x < n \; \Phi(x)) \rightarrow \Phi(n)
 		\]
-	Inizialmente, dimostriamo per induzione $\forall m \in \omega \; \psi(m)$ dove:
+	Dalle tavole di verità quest'espressione può essere vera sia se antecedente e conseguente sono veri sia se l'antecedente è falso. Mostriamo di essere nel primo caso,
+	ovvero dimostriamo per induzione (debole) che [la premessa è vera], ovvero $\forall m \in \omega \; \psi(m)$ dove:
 	\[ \psi(m) \Mydef \forall x < m \; \Phi(x)
 		\]
 	\begin{itemize}
-		\item \underline{caso $m = 0$}: $\forall x < \emptyset \; \Phi(x)$ è vera a vuoto.
-		\item \underline{caso $m = s(n)$}: per ipotesi induttiva abbiamo $\forall x < n \; \Phi(x).$ Se $x < m = s(n)$, sappiamo già che $x < n \lor x = n$. Si danno due casi:
+		\item[$\boxed{\text{caso $m = 0$}}$] $\forall x < \emptyset \; \Phi(x)$ è vera a vuoto.
+		\item[$\boxed{\text{caso $m = s(n)$}}$] Per ipotesi induttiva abbiamo $\forall x < n \; \Phi(x).$ Vogliamo che $x < s(n) \;\Phi(x)$, dall'osservazione sappiamo che ciò equivale a $x < n \lor x = n$.
+		Si danno quindi due casi:
 		\begin{itemize}
 			\item Nel caso $x < n$ abbiamo $\Phi(x)$ per ipotesi induttiva.
-			\item Nel caso $x = n$, l'ipotesi induttiva, combinata con l'antecedente ci dà $\Phi(n)$, ossia $\Phi(x)$. Per l'arbitrarietà di $x<m$ abbiamo dimostrato $\forall x < m \; \Phi(x)$.
+			\item Nel caso $x = n$, l'ipotesi induttiva, combinata con l'antecedente ci dà $\Phi(n)$, ossia $\Phi(x)$ (perché abbiamo che $\forall x < n \;\Phi(x) \rightarrow \Phi(n)$, ma tutta l'espressione è vera per ipotesi e per ipotesi induttiva l'antecedente è vero, quindi anche $\Phi(n)$ lo è).
+			(Per l'arbitrarietà di $x<m$ abbiamo dimostrato $\forall x < m \; \Phi(x)$)\footnote{Stiamo solo giustificando formalmente il per ogni.}.
 		\end{itemize}
 	\end{itemize}
-	Ora sappiamo che $\forall m \in \omega \; \forall x < m \; \Phi(x)$. Dato un $n \in \omega$ qualunque, considerando $m = n + 1$ e $x = n$ otteniamo $\Phi(n)$ (grazie a quanto abbiamo dimostrato).
+	Ora abbiamo dimostrato che $\forall m \in \omega \; \forall x < m \; \Phi(x)$, quindi siamo nel secondo caso, e otteniamo che nella premessa $\Phi(n)$ è vera. Ora dato un $n \in \omega$ qualunque, ci basta prendere nell'antecedente $m = n + 1$ e $x = n$ e otteniamo in automatico $\Phi(n)$ (e siamo sicuri sia vera 
+	visto che abbiamo per ipotesi un'implicazione con antecedente vero).
 \end{proof}
 
 \begin{theorem}
@@ -1697,26 +1700,33 @@ Possiamo ora dimostrare la proposizione iniziale.
 \end{theorem}
 
 \begin{remark}
-	[Idea della dimostrazione] Si dimostra per induzione forte che, se $n \in A$, allora $A$ ha un minimo. Poi, siccome $A$ non è vuoto, deve esserci qualche $n \in A$, quindi $A$ ha minimo. L'induzione 
-	funziona così. Se $n \in A$, si danno due casi. O esiste $x < n$ con $x \in A$, e allora $A$ ha minimo per ipotesi induttiva, oppure $\forall x < n \; x \not\in A$, ma allora $n$ è il minimo di $A$.
+	[Idea $\lbrack$e parte$\rbrack$ della dimostrazione] Si dimostra per induzione forte che, se $n \in A$, allora $A$ ha un minimo. Poi, siccome $A$ non è vuoto, deve esserci qualche $n \in A$, quindi $A$ ha minimo. L'induzione 
+	funziona così. Se $n \in A$, si danno due casi. O esiste $x < n$ con $x \in A$, e allora $A$ ha minimo per ipotesi induttiva (che è quello che stiamo per dimostrare), oppure $\forall x < n \; x \not\in A$, ma allora $n$ è il minimo di $A$ (e abbiamo concluso).
 \end{remark}
 
 \begin{proof}
-	Considerando la contronominale, dobbiamo dimostrare che se $A$ non ha un minimo elemento, allora $A$ è vuoto.
-	Assumiamo quindi $\forall n \in A \; \exists x \in A \; x < n$ (ovvero che $A$ non ha minimo), dobbiamo dimostrare che $\forall n \in \omega \; n \not \in A$ (quindi $A$ vuoto). Procediamo per induzione in forma forte.
-	Ci serve dire che $(\forall x < n \; x \not in A) \rightarrow n \not \in A$. QUesto, però, è immediato, perché equivale a:
-	\[ \begin{split}
-		& (\neg \exists x < n \; x \in A) \rightarrow n \not\in A\\
-		\iff &(\neg \exists x < n \land x \in A) \rightarrow n \not\in A\\
-		\iff &(\neg \exists x \in A \; x < n) \rightarrow n \not\in A\\
-		\iff & n \in A \rightarrow \exists x \in A \; x < n
-	\end{split}
+	Dimostriamo la contronominale della tesi (nel caso in cui $x \in A$), ovvero dobbiamo dimostrare che se $A$ non ha un minimo elemento, allora $A$ è vuoto. \\
+	Assumiamo quindi per ipotesi induttiva che esista un elemento strettamente più piccolo di tutti gli altri, ovvero $\forall n \in A \; \exists x \in A \; x < n$ (stiamo usando il $<$ perché il caso in cui $x = n$ è già contemplato nell'osservazione dicendo che che $x \not \in A$).
+	Osserviamo che la contronominale della nostra tesi\footnote{Cioè di questo caso della dimostrazione come visto nell'osservazione.} è:
+	\[ (\neg \exists x < n \; x \in A) \rightarrow n \not \in A
 		\]
-	che è appunto l'assunto.
+	ed equivale a:
+	\[	\begin{split}
+		& (\neg \exists x (x < n) \land (x \in A)) \rightarrow n \not \in A \\
+		\overset{\text{$\land$ commut.}}{\iff} & (\neg \exists \; x \in A \; x < n) \rightarrow n \not \in A \\
+		\overset{\text{contronom.}}{\iff} & n \in A \rightarrow (\exists x \in A \; x < n)
+		\end{split}
+		\]
+	ma la cosa appena scritta è equivalente all'ipotesi induttiva, pertanto la contronominale della tesi è vera, e quindi anche la tesi. Abbiamo quindi dimostrato anche il secondo caso dell'induzione forte e ciò conclude la dimostrazione del principio del minimo (perché stiamo supponendo ci sia sempre un elemento, come visto nell'osservazione iniziale).
 \end{proof}
 
-\begin{definition}
-	Un insieme totalmente ordinato $(S, <)$ si dice \vocab{bene ordinato} se ogni sottoinsieme non vuoto ha un minimo.\footnote{Cioè se vale il principio del minimo.}
+
+\begin{remark}
+	Per completare l'equivalenza tra induzione, induzione forte e principio del minimo, andrebbe dimostrato anche che principio del minimo$\implies$induzione.
+\end{remark}
+
+\begin{definition}[Insieme ben ordinato]
+	Un insieme totalmente ordinato $(S, <)$ si dice \vocab{bene ordinato} se ogni sottoinsieme non vuoto ha un minimo.\footnote{Cioè se vale il principio del minimo c(come vale in $\omega$).}
 	\[ \forall A \subseteq S \; A \ne \emptyset \rightarrow \exists m \in A \; \forall x \in A \; m \leq x
 		\]
 \end{definition}
@@ -1724,15 +1734,19 @@ Possiamo ora dimostrare la proposizione iniziale.
 La nozione di buon ordine è stata introdotta da Cantor agli albori della teoria degli insiemi, e giocherà un ruolo centrale in questo corso.
 
 \begin{example}
-	$(\omega, <)$ è un insieme bene ordinato.
+	$(\omega, <)$ è un insieme bene ordinato\footnote{Si usa la notazione di coppia ordinata per indicare sia l'insieme sia la relazione che c'è sopra.} per quanto visto nel teorema precedente.
 \end{example}
 
 \begin{exercise}
 	Dimostra che $X = s(s(s(\omega)))$ è bene ordinato dalla relazione $a < b \Mydef a \in b$.
 \end{exercise}
 
+\begin{soln}
+
+\end{soln}
+
 \subsection{Ricorsione numerabile}
-La ricorsione è il procedimento per cui si costruisce una funzione $f : \omega \longrightarrow \text{qualcosa}$, definendo $f(s(n))$ a partire da $f(n)$, o,
+La ricorsione è il procedimento per cui si costruisce una funzione $f : \omega \rightarrow \text{qualcosa}$, definendo $f(s(n))$ a partire da $f(n)$, o,
 più in generale da $f(\emptyset),\ldots,f(n)$. Questo è un procedimento fondamentale: potremmo dire che è IL modo di pensare gli infidi puntini ($\ldots$). Vediamo qualche esempio.
 
 \begin{example}
@@ -1748,7 +1762,8 @@ più in generale da $f(\emptyset),\ldots,f(n)$. Questo è un procedimento fondam
 		a \cdot \textcolor{red}{s(b)} = a \cdot b + a
 	\end{cases}
 		\]
-	anziché $a + b = \underbrace{s(s(\ldots a \ldots))}_{\text{$b$ successori}}$ e $a \cdot b = \underbrace{a + a + \ldots + a}_{\text{$b$ volte}}$.
+	anziché $a + b = \underbrace{s(s(\ldots a \ldots))}_{\text{$b$ successori}}$ (abbiamo il caso base con 0, e poi si procede ricorsivamente dal caso base fino a $b$) e $a \cdot b = \underbrace{a + a + \ldots + a}_{\text{$b$ volte}}$ (ricorsivamente ad un certo 
+	punto si partirà da $a$ e si inizierà a sommare).
 \end{example}
 
 \begin{example}
@@ -1777,43 +1792,46 @@ più in generale da $f(\emptyset),\ldots,f(n)$. Questo è un procedimento fondam
 		\sum_{i = 0}^{\textcolor{red}{s(a)}} f(i) = \left(\sum_{i=0}^{a} f(i) \right) + f(s(a))
 	\end{cases}
 		\]
-	anziché $\displaystyle\sum_{i = 0}^a f(i) = f(0) + f(1) + \ldots + f(a)$.
+	anziché $\displaystyle\sum_{i = 0}^a f(i) = f(0) + f(1) + \ldots + f(a)$ (cioè con la sommatoria definita ricorsivamente stiamo eliminando il fastidioso discorso (non formale) dei puntini \dots).
 \end{example}
 
-Altre successioni - \textbf{ossia funzioni con dominio $\omega$} - sono definite nella maniera più naturale proprio per ricorsione.
+Altre \vocab{successioni} - \textbf{ossia funzioni con dominio $\omega$} - sono definite nella maniera più naturale proprio per ricorsione.
 
-\begin{example}
+\begin{example}[Esempio di applicazione della ricorsione]
 	In quanti modi posso coprire una sequenza di $n$ caselle $\underbrace{\square\square\square\ldots\square\square}_{n}$ con tessere di una o due caselle,
 	$\square$ e $\square\square$, che non si sovrappongano e non lascino caselle scoperte?
 \end{example}
 
 \begin{soln}
 	Detto $F_n$ il numero di ricoprimenti di una sequenza lunga $n$, vediamo che la tessera più a sinistra può essere $\square$ o $\square \square$. Nel primo caso, ci sono 
-	$F_{n-1}$ modi di completare il ricoprimento, nel secondo caso $F_{n-2}$. Quindi:
-	\[ F_n = F_{n-1} + F_{n-2}\footnote{Cioè il numero totale di modi di ricoprire la sequenza di $n$ caselle deriva dalla somma dei due casi, che rappresentano i modi di ricoprire le altre caselle fissata quella/e iniziale/i.}
+	$F_{n-1}$ modi di completare il ricoprimento, nel secondo caso $F_{n-2}$. Abbiamo quindi trovato una relazione ricorsiva del numero di ricoprimenti in funzione di $n$:
+	\[ F_n = F_{n-1} + F_{n-2}\footnote{Cioè il numero totale di modi di ricoprire la sequenza di $n$ caselle deriva dalla somma dei due casi, che rappresentano i modi di ricoprire le altre caselle fissata quella/e iniziale/i, ciò fissati i casi base ci definisce bene (via ricorsione numerabile) una successione che conta il numero 
+	di ricoprimenti in funzione di $n$.}
 		\]
-	La sequenza risulta completamente determinata, per ricorsione, osservando che $F_0 = F_1 = 1$: sono i numeri di Fibonacci.
+	La sequenza risulta completamente determinata, per ricorsione, osservando che $F_0 = F_1 = 1$: sono i \vocab{numeri di Fibonacci}.
 \end{soln}
 
-In un certo senso, induzione e ricorsione sono due facce della stessa medaglia: dove l'induzione dimostra $\Phi(s(n))$ assumendo di sapere 
+\textbf{In un certo senso, induzione e ricorsione sono due facce della stessa medaglia}: dove l'induzione dimostra $\Phi(s(n))$ assumendo di sapere 
 $\Phi(n)$, la ricorsione calcola $f(s(n))$ assumendo di sapere $f(n)$. Lo stesso parallelismo, vedremo, si presenterà per l'induzione e la ricorsione transfinita.
 Tornando al numerabile: come abbiamo enunciato due forme dell'induzione, enunceremo due forme della ricorsione.\\
 La semplice osservazione che segue dice che due funzioni sono uguali precisamente quando assumono gli stessi valori.
 
 \begin{remark}
 	[Estensionalità per funzioni]
-	Date $f,g : A \longrightarrow B$, allora:
+	Date $f,g : A \rightarrow B$, allora:
 	\[ f = g \leftrightarrow \forall x \in A \; f(x) = g(x)
 		\]
+	(dove l'uguaglianza di funzioni non è altro che uguaglianza di sottoinsiemi in $A \times B$).
 \end{remark}
 
 \begin{proof}
 	Si osserva che:
-	\[ (x,y) \in f \iff y = f(x) \iff y = g(x) \iff (x,y) \in g
+	\[ (x,y) \in f \overset{\text{def. $f$}}{\iff} y = f(x) \overset{\text{Hp.}}{\iff} y = g(x) \overset{\text{def. $f$}}{\iff} (x,y) \in g
 		\]
+	e si conclude per \hyperref[ax2]{estensionalità} che quanto scritto sopra equivale a dire che gli insiemi $f$ e $g$ sono uguali.
 \end{proof}
 
-\begin{notation}
+\begin{notation}[Insieme delle funzioni da $A$ a $B$]
 	Indichiamo con ${}^{A}B$ l'insieme delle funzioni da $A$ a $B$, che esiste per \hyperref[ax3]{separazione} in $\ps(A \times B)$.
 \end{notation}
 
@@ -1823,7 +1841,7 @@ La semplice osservazione che segue dice che due funzioni sono uguali precisament
 	Dato un insieme $A$, un elemento $k \in A$ e una funzione:
 	\[ h : \omega \times A \longrightarrow A
 		\]
-	esiste un'unica funzione $f : \omega \longrightarrow A$ tale che:
+	esiste un'unica funzione $f : \omega \rightarrow A$ tale che:
 	\[ \forall n \in \omega \quad f(s(n)) = h(n,f(n))
 		\]
 \end{theorem}
