@@ -1,7 +1,7 @@
 \documentclass[11pt]{scrartcl}
 \usepackage[italian]{babel}
 \usepackage[sexy]{evan}
-
+\usepackage{float}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % BOOST SOFTWARE LICENSE - VERSION 1.0 - 17 AUGUST 2003
@@ -1826,7 +1826,7 @@ La semplice osservazione che segue dice che due funzioni sono uguali precisament
 
 \begin{proof}
 	Si osserva che:
-	\[ (x,y) \in f \overset{\text{def. $f$}}{\iff} y = f(x) \overset{\text{Hp.}}{\iff} y = g(x) \overset{\text{def. $f$}}{\iff} (x,y) \in g
+	\[ (x,y) \in f \overset{\text{def. $f$}}{\iff} y = f(x) \overset{\text{Hp.}}{\iff} y = g(x) \overset{\text{def. $g$}}{\iff} (x,y) \in g
 		\]
 	e si conclude per \hyperref[ax2]{estensionalità} che quanto scritto sopra equivale a dire che gli insiemi $f$ e $g$ sono uguali.
 \end{proof}
@@ -1838,7 +1838,7 @@ La semplice osservazione che segue dice che due funzioni sono uguali precisament
 \begin{theorem}
 	[Ricorsione numerabile - prima forma]
 	\label{ric1}
-	Dato un insieme $A$, un elemento $k \in A$ e una funzione:
+	Dato un insieme $A$, un elemento $k \in A$\footnote{$k$ sarà il caso base della ricorsione.} e una funzione:
 	\[ h : \omega \times A \longrightarrow A
 		\]
 	esiste un'unica funzione $f : \omega \rightarrow A$ tale che:
@@ -1846,8 +1846,8 @@ La semplice osservazione che segue dice che due funzioni sono uguali precisament
 		\]
 \end{theorem}
 
-\begin{example}
-	Per definire $a^b$ considero $k = 1$, $h(n,x) = a \cdot x$. Per definire il fattoriale $k = 1$, $h(n,x) = s(n) \cdot x$.
+\begin{example}[Potenza e fattoriale con la ricorsione numerabile]
+	Per definire $a^b$ considero $k = 1$, $h(n,x) = a \cdot x$, e $h(0,x) = k = 1$. Per definire il fattoriale $k = 1$, $h(n,x) = s(n) \cdot x$ e $h(0,x) = k = 1$.
 \end{example}
 
 \begin{exercise}
@@ -1856,28 +1856,29 @@ La semplice osservazione che segue dice che due funzioni sono uguali precisament
 
 \begin{proof}
 	Il piano consiste nel trovare una formula $\Phi(x,y)$ che dice ``$y = f(x)$'' - questa è la vera difficoltà 
-	della dimostrazione - più semplicemente otteniamo $f$ per separazione nell'insieme $\omega \times A$ usando la formula $\Phi$.
-	Per dire ``$y = f(x)$'' dire ``i primi $x$ passaggi della ricorsione, partendo da $k$, conducono a $y$''.\\
+	della dimostrazione - poi semplicemente otteniamo $f$ per separazione nell'insieme $\omega \times A$ ($f$ è una funzione da $\omega$ ad $A$) usando la formula $\Phi$.\\
+	Per dire ``$y = f(x)$'' diremo equivalentemente ``i primi $x$ passaggi della ricorsione, partendo da $k$, conducono a $y$''.
 	Dato $x \in \omega$ diciamo che $g$ è una \vocab{$x$-approssimazione} se la vale la formula seguente:
-	\[ g \in {}^{s(x)}A \land g(\emptyset) = k \land \forall n \in x \; g(s(n)) = h(n,g(n))
+	\[ (g \in {}^{s(x)}A ) \land (g(\emptyset) = k) \land \forall n \in x (g(s(n)) = h(n,g(n)))
 		\]
-	che dice che $g : \{0,\ldots,x\} \longrightarrow A$ soddisfa la definizione ricorsiva di $f$, ristretta, naturalmente, al dominio $\{0,\ldots,x\}$.
+	ovvero la funzione $g : \{0,\ldots,x\} \rightarrow A$ soddisfa la definizione ricorsiva di $f$, ristretta, naturalmente, al dominio $\{0,\ldots,x\}$ (cioè $s(x)$).
 	Il vantaggio di tagliuzzare $f$ in $x$-approssimazioni è che così otteniamo un parametro, $x$, su cui impostare un'induzione.
-	\begin{lemma}
+	
+	\begin{lemma}[Esistenza e unicità delle $x$-approssimazioni in $\omega$]
 		$\forall x \in \omega \; \exists ! \, g$ ``$g$ è una $x$-approssimazione''.
 	\end{lemma}
 
 	\begin{proof}
 		Induzione su $x$.
 		\begin{itemize}
-			\item \underline{caso $x = \emptyset$}: Basta osservare che l'unica $\emptyset$-approssimazione è $\{(\emptyset,k)\}$. Infatti il dominio
-			è $\{\emptyset\}$ per definizione, e abbiamo la condizione $g(\emptyset) = k$.\\
-			\item \underline{caso $x = s(a)$}: Per ipotesi induttiva esiste un'unica \textbf{$a$-approssimazione $g$}. Poniamo:
+			\item[$\boxed{\text{caso $x = \emptyset$}}$] Basta osservare che l'unica $\emptyset$-approssimazione è la funzione $\{(\emptyset,k)\}$. Infatti il dominio
+			è $\{\emptyset\}$ per definizione, e per soddisfare la definizione deve valere necessariamente $g(\emptyset) = k$, quindi l'unica $\emptyset$-approssimazione possibile è la funzione $g = \{(\emptyset,k)\}$.\\
+			\item[$\boxed{\text{caso $x = s(a)$}}$] Per ipotesi induttiva abbiamo che esiste un'unica \textbf{$a$-approssimazione $g$}. Poniamo:
 			\[ g' = g \cup \{(s(a), h(a,g(a)))\}
 				\]
-			ossia $g'(t) = g(t)$ per $t \leq a$, e $g'(s(a)) = h(a,g(a))$. È immediato verificare che $g'$ è una $s(a)$-approssimazione. Per verificare l'unicità, osserviamo che,
-			data $s(a)$-approssimazione $g'$ e $g''$, la loro restrizione a $s(a)$ è una $a$-approssimazione, quindi, per ipotesi induttiva $g'_{|s(a)} = g = g''_{|s(a)}$.
-			D'altro canto il dominio di una $s(a)$-approssimazione è $s(s(a)) = s(a) \cup \{s(a)\}$, abbiamo detto che $g'$ e $g''$ coincidono su $s(a)$, e:
+			ossia $g'(t) = g(t)$ per $t \leq a$, e $g'(s(a)) = h(a,g(a))$. È immediato verificare che $g'$ è una $s(a)$-approssimazione (l'abbiamo costruita apposta per verificare la definizione).\\
+			Per verificare l'unicità, osserviamo che, date le $s(a)$-approssimazione $g'$ e $g''$, la loro restrizione a $s(a)$ è una $a$-approssimazione (per definizione), quindi, per ipotesi induttiva $g'_{|s(a)} = g = g''_{|s(a)}$.
+			D'altro canto il dominio di una $s(a)$-approssimazione è $s(s(a)) = s(a) \cup \{s(a)\}$, e abbiamo detto che $g'$ e $g''$ coincidono su $s(a)$, quindi coincidono:
 			\[ g'(s(a)) = h(a,g'(a)) = h(a,g''(a)) = g''(s(a))
 				\]
 		\end{itemize}	
@@ -1885,20 +1886,23 @@ La semplice osservazione che segue dice che due funzioni sono uguali precisament
 	Stabilito il lemma, introdurremo la formula $\Phi$:
 	\[ \Phi(x,y) \Mydef \exists g \in {}^{s(x)}A \quad \text{``$g$ è una $x$-approssimazione''} \land g(x) = y
 		\]
-	Per l'unicità della $x$-approssimazione $\forall x \in \omega \; \exists ! \, y \; \Phi(x,y)$, possiamo quindi definire, per ogni $x \in \omega$ e $y \in A$:
-	\[ f(x) = y \Mydef \Phi(x,y)\footnote{Formalmente $f = \{(x,y) \in \omega \times A | \Phi(x,y)\}$.}
+	Per l'unicità della $x$-approssimazione $\forall x \in \omega \; \exists ! \, y \; \Phi(x,y)$, possiamo quindi definire, per ogni $x \in \omega$ e $y \in A$ la funzione via \hyperref[ax3]{separazione}:
+	\[ f(x) = y \Mydef \Phi(x,y)\footnote{Formalmente $f = \{(x,y) \in \omega \times A | \Phi(x,y)\} = \{(x,y) \in \omega \times A | \exists! g \in {}^{s(x)}A \; \text{``$g$ è una $x$-approssimazione''} \land g(x) = y\}$, in altre parole,
+	dato $x \in \omega$ affido alla sua (unica) $x$-approssimazione il compito di trovare un'immagine, e quindi definisco $f$ attraverso $g$ (che dipende dalla $x$ in input).}
 		\]
 	Occorre verificare che $f$ soddisfa le condizioni della ricorsione.
 	\begin{itemize}
-		\item \underline{$f(\emptyset) = k$}: immediata.
-		\item \underline{$f(s(n)) = \ldots$}: Per costruzione $f(s(n)) = g(s(n))$ per una $s(n)$-approssimazione $g$. D'altro canto $g(s(n)) = h(n,g(n))$.
-		Ora $g_{|s(n)}$ è una $n$-approssimazione, quindi $g(n) = g_{|s(n)} (n) = f(n)$. Mettendo tutto insieme:
-		\[ f(s(n)) = g(s(n)) = h(n,g(n)) = h(n, f(n))
-			\]
-		L'unicità di $f$ segue facilmente per induzione, Date $f'$ e $f''$ che soddisfano la ricorsione abbiamo:
-		\[ f'(\emptyset) = k = f''(\emptyset) \qquad f'(s(n)) = h(n,f'(n)) =\footnote{Per ipotesi induttiva.} h(n,f''(n)) = f''(s(n))
+		\item[$\boxed{f(\emptyset) = k}$] Immediata, infatti $f(\emptyset) = g(\emptyset)$, ma abbiamo visto nel lemma che l'unica $\emptyset$-approssimazione possibile in $\omega$ è $\{(0,k)\}$ (cioè soddisfa semplicemente il caso base), quindi $f(\emptyset) = g(\emptyset) = k$.
+		\item[$\boxed{f(s(n)) = h(n,f(n))}$] Per costruzione $f(s(n)) = g(s(n))$ per una (l'unica) $s(n)$-approssimazione $g$. D'altro canto $g(s(n)) = h(n,g(n))$ (per definizione di $s(n)$-approssimazione).
+		Ora $g_{|s(n)}$ è una $n$-approssimazione, quindi $g_{|s(n)} (n) = g(n) \overset{\text{def.}}{=} f(n)$. Mettendo tutto insieme:
+		\[ f(s(n)) \overset{\text{def.}}{=} g(s(n)) \overset{\text{def. $g$}}{=} h(n,g(n)) \overset{\text{def. + oss.}}{=} h(n, f(n))
 			\]
 	\end{itemize}
+	Ciò dimostra che una $f$ ottenuta per separazione come abbiamo visto esiste e soddisfa la tesi del teorema di ricorsione numerabile.
+	L'unicità di $f$ segue facilmente per induzione, Date $f'$ e $f''$ che soddisfano la ricorsione abbiamo:
+	\[ f'(\emptyset) = k = f''(\emptyset) \qquad f'(s(n)) = h(n,f'(n)) \overset{\text{Hp. indutt.}}{=}\footnote{E usando l'estensionalità per funzioni su $h$.} h(n,f''(n)) = f''(s(n))
+		\]
+	e per estensionalità di funzioni si conclude che $f' = f''$.
 \end{proof}
 
 Procedendo come negli esempi all'inizio di questa sezione, il \hyperref[ric1]{teorema di ricorsione numerabile} ci consente di costruire le operazioni aritmetiche, le potenze, etc.
@@ -1924,14 +1928,18 @@ L'applicazione che segue chiude il conto che abbiamo lasciato aperto con gli ass
 a buon diritto, l'insieme dei numeri naturali.
 
 \begin{theorem}[Unicità dei numeri naturali]
-	Supponiamo che $(\NN, 0, \text{succ})$ soddisfi gli assiomi di Peano, allora $(\NN, 0, \text{succ})$ \textbf{e} $(\omega,\emptyset,s)$ sono strutture isomorfe - \textbf{ossia, formalmente, esiste} $f : \omega \longrightarrow \NN$ 
-	\textbf{bigettiva tale che} $f(\emptyset) = 0$ e $\forall n \in \omega \; f(s(n)) = \text{succ}(f(n))$.\footnote{Cioè è una bigezione tra insiemi, che rispetta lo 0 e la funzione successore che abbiamo definito.}
+	Supponiamo che $(\NN, 0, \text{succ})$ soddisfi gli assiomi di Peano, allora $(\NN, 0, \text{succ})$ \textbf{e} $(\omega,\emptyset,s)$ sono strutture isomorfe - \textbf{ossia, formalmente, esiste}:
+	$ f : \omega \rightarrow \NN$ \textbf{bigettiva} tale che:
+	\begin{enumerate}[(i)]
+		\item $f(\emptyset) = 0$.
+		\item $\forall n \in \omega \; f(s(n)) = \text{succ}(f(n))$.\footnote{Cioè è una bigezione tra insiemi, che rispetta lo 0 e la funzione successore che abbiamo definito.}
+	\end{enumerate}
 \end{theorem}
 
 Fa comodo isolare la seguente osservazione.
 
-\begin{remark}
-	$\forall x \in \omega \; x \ne 0 \rightarrow \exists y \in \omega \; x = s(y)$.\footnote{Moralmente, ogni numero diverso da 0 è il successore di qualcos'altro.}
+\begin{remark}[Ogni numero in $\omega\setminus\emptyset$ è successore]
+	$\forall x \in \omega \; x \ne 0 \rightarrow \exists y \in \omega \; x = s(y)$, ovvero ogni numero diverso da 0 è il successore di qualcos'altro.
 \end{remark}
 
 \begin{proof}
@@ -1941,54 +1949,63 @@ Fa comodo isolare la seguente osservazione.
 Dimostriamo ora il teorema.
 
 \begin{proof}
-	Per il \hyperref[ric1]{teorema di ricorsione} c'è un'unica $f$ che soddisfa le condizioni $f(\emptyset) = 0$ e $\forall n \in \omega \; f(s(n)) = \text{succ}(f(n))$.
-	Resta da constatare che $f$ è bigettiva.\\
-	\textbf{Surgettività} Per ipotesi $(\NN, 0, \text{succ})$ soddisfa il principio di induzione. Dimostriamo quindi per induzione in $(\NN, 0, \text{succ})$ che $\forall y \in \NN \; \exists x \in \omega \; f(x) = y$.
+	Per il \hyperref[ric1]{teorema di ricorsione} (stiamo prendendo $A = \NN$, e $k = 0$ e $h = \text{succ}$) c'è un'unica $f$ che soddisfa le condizioni $f(\emptyset) = 0$ e $\forall n \in \omega \; f(s(n)) = \text{succ}(f(n))$.
+	Resta da constatare che $f$ è bigettiva.
 	\begin{itemize}
-		\item \underline{caso $y = 0$}: basta osservare che $f(\emptyset) = 0$ per costruzione.
-		\item \underline{caso $y = \text{succ}(n)$}: per ipotesi induttiva c'è $x \in \omega$ tale che $f(x) = n$, quindi $f(s(x)) = \text{succ}(n)$.
-	\end{itemize}
-	\textbf{Iniettività} Consideriamo, per assurdo, il minimo $x \in \omega$ tale che, per qualche $y \in \omega$ con $y \ne x$, $f(x) = f(y)$.
-	Osserviamo che, per la minimalità di $x$, $x<y$, quindi, in particolare $y \ne \emptyset$, e possiamo scrivere $y = s(y')$.\\
-	\begin{itemize}
-		\item Se $x = \emptyset$, allora $\text{succ}(f(y')) = f(s(y')) = f(y) = f(x) = 0$, contraddicendo il \hyperref[b]{(b)} per $(\NN, 0, \text{succ})$.
-		\item Se $x \ne \emptyset$ allora possiamo scrivere $x = s(x')$, da cui:
-		\[ \text{succ}(f(x')) = f(s(x')) = f(x) = f(y) = f(s(y')) = \text{succ}(f(y'))
-			\]
-		e, per l'assioma \hyperref[a]{(a)} in $(\NN, 0, \text{succ})$, $f(x') = f(y')$. Allora, per la minimalità di $x$, siccome $x' < x$, dobbiamo avere $x' = y'$.
-		Ma da questo seguirebbe $x = s(x') = s(y') = y \; \lightning$.
+		\item[\boxed{\text{Surgettività}}] Per ipotesi $(\NN, 0, \text{succ})$ soddisfa il principio di induzione (poiché soddisfa gli assiomi di Peano). Dimostriamo quindi per induzione in $(\NN, 0, \text{succ})$ che $\forall y \in \NN \; \exists x \in \omega \; f(x) = y$.
+		\begin{itemize}
+			\item[$\boxed{\text{caso $y = 0$}}$] Basta osservare che $f(\emptyset) = 0$ per costruzione.
+			\item[$\boxed{\text{caso $y = \text{succ}(n)$}}$] Per ipotesi induttiva esiste $x \in \omega$ tale che $f(x) = n$, da cui si ottiene, per definizione di $f$ che $f(s(x)) = \text{succ}(n)$.
+		\end{itemize}
+		\item[\boxed{\text{Iniettività}}] Consideriamo, per assurdo, il minimo $x \in \omega$ tale che, per qualche $y \in \omega$ con $y \ne x$, $f(x) = f(y)$.
+		Osserviamo che, per la minimalità di $x$, $x<y$, quindi, in particolare $y \ne \emptyset$, e per l'osservazione possiamo scrivere $y = s(y')$. Procediamo quindi per induzione su $x$
+		nel trovare un assurdo per ogni $x \in \omega$.
+		\begin{itemize}
+			\item[$\boxed{\text{caso $x = \emptyset$}}$] In questo caso si deve avere che:
+			\[
+				\text{succ}(f(y')) \overset{\text{def. $f$}}{=} f(s(y'))
+								   \overset{y = s(y')}{=} f(y)
+								   \overset{\text{Hp.}}{=} f(x) = 0
+				\]
+			che equivale a dire che 0 è successore di qualche numero contraddicendo l'osservazione (che vale anche per $(\NN, 0, \text{succ})$, in quanto soddisfa gli assiomi di Peano per ipotesi).
+			\item[$\boxed{\text{caso $x \ne \emptyset$}}$] Per l'osservazione possiamo scrivere $x = s(x')$, da cui:
+			\[ \text{succ}(f(x')) = f(s(x')) = f(x) = f(y) = f(s(y')) = \text{succ}(f(y'))
+				\]
+			e, per l'assioma \hyperref[a]{(a)} (iniettività del successore) in $(\NN, 0, \text{succ})$, segue che $f(x') = f(y')$. Allora, per la minimalità di $x$, siccome $x' < x$, dobbiamo avere $x' = y'$ (avevamo posto per ipotesi $x$ come minimo per cui c'è un elemento distinto $y$ che
+			ha la stessa immagine, quindi qualsiasi cosa abbia la stessa immagine e sia più piccola di $x$ deve essere unica).
+			Ma da questo seguirebbe $x = s(x') = s(y') = y$, contro l'ipotesi $\lightning$
+		\end{itemize}
 	\end{itemize}
 \end{proof}
 
 Se, infine, volgiamo la nostra attenzione all'esempio dei numeri di Fibonacci, vediamo che non è possibile definire questa sequenza applicando il \hyperref[ric1]{teorema di ricorsione}
-in maniera diretta, perché $F_n$ non dispense solo dal termine precedente della sequenza, $F_{n-1}$, ma anche da $F_{n-2}$.\\
-Ce la si potrebbe cavare con un trucco, per esempio definendo la funzione $n \longmapsto (F_n,F_{n+1})$ da $\omega$ a $\omega \times \omega$. È comodo, però, disporre di una versione più 
-versatile del teorema.
+in maniera diretta, perché $F_n$ non dispense solo dal termine precedente della sequenza, $F_{n-1}$, ma anche da $F_{n-2}$. Ce la si potrebbe cavare con un trucco, per esempio definendo la funzione
+$n \mapsto (F_n,F_{n+1})$ da $\omega$ a $\omega \times \omega$. È comodo, però, disporre di una versione più versatile del teorema di ricorsione numerabile.
 
 \begin{theorem}
 	[Ricorsione numerabile - seconda forma]
-	Dato un insieme $A$, denotiamo con $A^*$ l'insieme delle funzioni $g \subseteq \omega \times A$ con $\Dom(g) \in \omega$. Sia $h : A^* \rightarrow A$, allora esiste un'unica funzione
+	Dato un insieme $A$, denotiamo con $A^*$ l'insieme delle funzioni $g \subseteq \omega \times A$ con $\Dom(g) \in \omega$\footnote{Cioè è un numero di $\omega$.}. Sia $h : A^* \rightarrow A$, allora esiste un'unica funzione
 	$f: \omega \rightarrow A$ tale che:
-	\[ \forall n \in \omega \; f(n) = h(f_{|n}) \footnote{In altre parole, $f(n)$, può dipendere in maniera arbitraria dai valori assunti da $f$ sui numeri minori di $n$.}
+	\[ \forall n \in \omega \; f(n) = h(f_{|n}) \footnote{In altre parole, $f(n)$, può dipendere in maniera arbitraria dai valori assunti da $f$ sui numeri minori di $n$. Cioè $h$ è una funzione che manda funzioni che hanno come 
+	dominio un $n \in \omega$ in $A$, in particolare $h(f_{|n})$ è una funzione di funzioni con dominio in $\omega$.}
 		\]
 \end{theorem}
 
 \begin{example}
-	[Esempi di applicazione]
+	[Esempio di applicazione]
 	Per costruire la successione di Fibonacci, definiamo $h(g)$ in questo modo. Sia $n = \Dom(g)$. Se $n = \emptyset$ o $n = 1$, allora $h(g) = 1$.
-	Altrimenti esistono $n-1, n-2 \in \omega$ tali che $s(n-1) = s(s(n-2)) = n$. Definiamo quindi $h(g) = g(n-1) + g(n-2)$.
+	Altrimenti esistono $n-1, n-2 \in \omega$ tali che $s(n-1) = s(s(n-2)) = n$. Definiamo quindi $h(g) = g(n-1) + g(n-2)$\footnote{Abbiamo quindi ottenuto $h$ come funzione di funzioni con dominio in $\omega$ e in particolare più piccolo di $n$, dunque per il teorema tale $h$ definisce univocamente $f(n)$, a partire da $f_{|n} \in A^*$.}.
 \end{example}
 
 \begin{proof}
-	L'idea è di definire, mediante la prima forma del \hyperref[ric1]{teorema di ricorsione}, la successione della troncata di $f$. Ossia la funzione $f' : n \longmapsto f_{|n}$. Un modo alternativo, sarebbe 
-	ripetere la dimostrazione della prima forma.\\
-	Costruiamo per ricorsione - prima forma - la funzione $f' : \omega \rightarrow A^*$ tale che:
-	\[ f(\emptyset) = \emptyset \qquad f'(s(n)) = f'(n) \cup \{(n,h(f'(n)))\}
+	L'idea è di definire, mediante la prima forma del \hyperref[ric1]{teorema di ricorsione}, la successione della troncata di $f$. Ossia la funzione $f' : n \mapsto f_{|n}$ (che manda $f$ nella sua restrizione al dominio $\{0,\ldots,n-1\}$) - un modo alternativo, sarebbe 
+	ripetere la dimostrazione della prima forma -. Procediamo nel primo modo e costruiamo per ricorsione - prima forma - la funzione $f' : \omega \rightarrow A^*$ tale che:
+	\[ f'(\emptyset) = \emptyset \qquad f'(s(n)) = f'(n) \cup \{(n,h(f'(n)))\}\,\footnote{Esiste ed è unica per il primo teorema di ricorsione}
 		\]
-	Ora poniamo $f(n) = f'(s(n))(n)$. Verifichiamo per induzione che $\forall n \in \omega \; f_{|n} = f'(n)$.
+	Ora poniamo $f(n) := f'(s(n))(n)$ ($f' \in A^*$, quindi è una funzione com dominio in $\omega$, quindi $f : \omega \rightarrow A$ è ben definita) e verifichiamo per induzione che effettivamente $f'$ sia la successione della troncata di $f$, cioè $\forall n \in \omega \; f_{|n} = f'(n)$.
 	\begin{itemize}
-		\item \underline{caso $n = 0$}: immediato.
-		\item \underline{caso $n = s(m)$}: abbiamo:
+		\item[$\boxed{\text{caso $n = 0$}}$] Si vede subito che $f_{|0} = f'(\emptyset)(n) = \emptyset$ (per come l'abbiamo costruita).
+		\item[$\boxed{\text{caso $n = s(m)$}}$] In questo caso abbiamo:
 		\[ \begin{split}
 			f_{|s(m)} & = f_{|m} \cup \{(m,f(m))\}\\
 					& = f'(m) \cup \{(m,f'(s(m))(m))\}\\
@@ -1996,10 +2013,10 @@ versatile del teorema.
 		\end{split}
 			\]
 	\end{itemize}
-	Infine, quindi, $f(n) = f'(s(n))(n) = h(f'(n)) = h(f_{|n})$.
+	dove la prima uguaglianza segue per definizione di funzione (successione in questo caso specifico), la seconda per com'è definita $f$ in funzione di $f'$ e l'ultima per la definizione ricorsiva di $f'$. Infine, quindi, $f(n) \overset{\text{def.}}{=} f'(s(n))(n) = h(f'(n)) = h(f_{|n})$ (dove l'ultima uguaglianza segue per quanto abbiamo dimostrato).
 \end{proof}
 
-Abbiamo roa terminato di dimostrare le proprietà di base dei numeri naturali. Da qui, prende le mosse il corso di aritmetica. Nella prossima sezione, inizieremo
+Abbiamo ora terminato di dimostrare le proprietà di base dei numeri naturali. Da qui, prende le mosse il corso di aritmetica. Nella prossima sezione, inizieremo
 lo studio di un concetto squisitamente insiemistico: la cardinalità.
 
 \begin{exercise}
@@ -2011,27 +2028,27 @@ lo studio di un concetto squisitamente insiemistico: la cardinalità.
 Il concetto di cardinalità è, forse, il modo più semplice di contare gli elementi di un insieme: diciamo che due insiemi hanno un ugual numero di elementi se esiste
 una corrispondenza biunivoca fra di essi.
 
-\begin{definition}
+\begin{definition}[Equipotenza/Cardinalità]
 	Dati due insiemi $A$ e $B$:
-	\[ |A| = |B| \Mydef \exists f \in {}^A B \; \text{``$f$ è bigettiva $A \longrightarrow B$''}
+	\[ |A| = |B| \Mydef \exists f \in {}^A B \; \text{``$f$ è bigettiva $A \rightarrow B$''}
 		\]
 	diciamo anche che ``$A$ ha la stessa \vocab{cardinalità} di $B$'' o che ``$A$ e $B$ sono \vocab{equipotenti}''. Poniamo inoltre:
 	\[ |A| \leq |B| \Mydef \exists B' \subseteq B \; |A| = |B'| 
 		\]
-	ossia: $\exists f \in {}^A B$ ``$f$ è iniettiva''.
+	ossia $\exists f \in {}^A B$ ``$f$ è iniettiva'' (la definizione ci dice proprio che esiste un sottoinsieme di $B$ che è in bigezione con $A$, e per definizione di iniettività, si ha proprio che $A \hookrightarrow B$)\footnote{Tale relazione sarà anche una relazione di ordine tra cardinalità quando queste ultime saranno singoli oggetti della teoria.}.
 \end{definition}
 
-\begin{note}
+\begin{note}[Sulla notazione per le cardinalità]
 	Osserviamo che:
 	\begin{itemize}
 		\item La scrittura $|A| = |B|$ suggerisce che esistono insiemi - o oggetti di qualche genere - denotati $|A|$ e $|B|$ di cui si predica l'uguaglianza.
-		Effettivamente costruiamo questi oggetti, ma, per ora, la scrittura $|A| = |B|$ è inscindibile, come \ding{168}$[A,B)$.
-		\item Potrebbe sorgere il sospetto che se $|A|\textcolor{red}{<}|B|$ quando $A \subsetneq B$, ma non è così, come mostra l'esempio di $A = \{x \in \omega | x > 0\}$ e $B = \omega$.
+		Effettivamente costruiamo questi oggetti, ma, per ora, la scrittura $|A| = |B|$ è inscindibile, come \ding{168}$[A,B)$ (nel senso che per ora è solo un'abbreviazione per dire bigezione, pertanto non possiamo separare quei simboli o farci qualcosa).
+		\item Potrebbe sorgere il sospetto che se $|A|\textcolor{red}{<}|B|$ quando $A \subsetneq B$, ma non è così, come mostra l'esempio di $A = \{x \in \omega | x > 0\}$ e $B = \omega$, infatti $A \subsetneq B$, ma $|A| = |B|$.
 	\end{itemize}
 \end{note}
 
-\begin{remark}
-	La relazione $|\cdot| = |\cdot|$ soddisfa le proprietà formali di una relazione di equivalenza (ma NON lo è):
+\begin{remark}[Proprietà formali di una relazione di equivalenza]
+	La relazione $|\cdot| = |\cdot|$ soddisfa le proprietà formali di una relazione di equivalenza (ma per ora NON lo è\footnote{Potrebbe tuttavia essere pensata come una relazione di equivalenza su $V$ (la classe di tutti gli insiemi).}):
 	\begin{itemize}
 		\item \textbf{riflessività}: $|A| = |A|$.
 		\item \textbf{simmetria}: $|A| = |B| \rightarrow |B| = |A|$.
@@ -2043,8 +2060,15 @@ una corrispondenza biunivoca fra di essi.
 	Dimostrare l'osservazione.
 \end{exercise}
 
-\begin{remark}
-	La relazione $|\cdot| \leq |\cdot|$ è:
+\begin{soln}
+Per la riflessività basta osservare che $\id_A$ è una bigezione da $A$ in $A$. Per la simmetria, abbiamo visto che se $f : A \rightarrow B$ è iniettiva, allora ammette
+inversa $g : \Imm(f) \rightarrow A$ a sua volta iniettiva (e surgettiva poiché ha necessariamente come immagine tutto $A$), inoltre, essendo $f$ bigettiva si ha che $\Imm(f) = B$, quindi $g : B \rightarrow A$, e 
+per quanto detto è bigettiva, dunque nel linguaggio della cardinalità $|B| = |A|$.\\
+Infine, $|A| = |B| \iff \exists f : A \rightarrow B$ bigettiva, $|B| = |C| \iff \exists g : B \rightarrow C$ bigettiva, ora è sufficiente osservare che $g \circ f : A \rightarrow C$ è bigettiva in quanto composizione di funzioni bigettive\footnote{È una semplice verifica.}, per avere $|A| = |C|$.
+\end{soln}
+
+\begin{remark}[Proprietà formali $\lbrack$parziali$\rbrack$ di una relazione di ordine $\lbrack$largo$\rbrack$]
+	La relazione $|\cdot| \leq |\cdot|$ soddisfa\footnote{Tali proprietà, unite al teorema di Cantor-Bernstein, che stiamo per vedere, ci danno una relazione di ordine totale su $V$.}:
 	\begin{itemize}
 		\item \textbf{riflessività}: $|A| \leq |A|$.
 		\item \textbf{transitività}: $|A| \leq |B| \land |B| \leq |C| \rightarrow |A| \leq |C|$.
@@ -2055,7 +2079,14 @@ una corrispondenza biunivoca fra di essi.
 	Dimostrare l'osservazione.
 \end{exercise}
 
+\begin{soln}
+Per la riflessività basta osservare che $\id_A$ è in particolare una mappa iniettiva (oppure che $A$ è un sottoinsieme [improprio] di se stesso e quindi l'identità è la bigezione richiesta dalla definizione).
+Per la transitività $|A| \leq |B| \iff \exists A \hookrightarrow B$, $|B| \leq |C| \iff \exists g : B \hookrightarrow C$, e osservando che la composizione di funzioni iniettive è iniettiva, si ha che $g \circ f : A \rightarrow C$ è iniettiva $\iff |A| \leq |C|$.
+\end{soln}
+
 Per stabilire che le cardinalità sono, formalmente, ordinate dalla relazione $|\cdot| \leq |\cdot|$, ci manca l'antisimmetria, che è appunto enunciata dal teorema seguente.
+
+\subsection{Teorema di Cantor-Bernstein}
 
 \begin{theorem}
 	[Cantor-Bernstein]
@@ -2066,50 +2097,58 @@ Per stabilire che le cardinalità sono, formalmente, ordinate dalla relazione $|
 \end{theorem}
 
 \begin{proof}
-	Siano $f: A \longrightarrow B$ e $g: B \longrightarrow A$ iniettive. Il nostro obiettivo è costruire una nuova funzione $h : A \longrightarrow B$ bigettiva.\\
+	Per ipotesi abbiamo quindi $f: A \rightarrow B$ e $g: B \rightarrow A$ iniettive. Il nostro obiettivo è costruire una nuova funzione $h : A \rightarrow B$ bigettiva.\\
 	L'idea è che ogni elemento, poniamo, di $A$, è una tappa di un percorso:
-	\[ a \xrightarrow{f} f(a) \xrightarrow{g} g(f(a)) \xrightarrow{f} f(g(f(a))) \xrightarrow{g} \dots
+	\[ a \overset{f}{\longrightarrow} f(a) \overset{g}{\longrightarrow} g(f(a)) \overset{f}{\longrightarrow} f(g(f(a))) \overset{g}{\longrightarrow} \dots
 		\]
-	Siccome $f$ e $g$ sono iniettive, questo percorso ha altresì un'unica estensione all'indietro\footnote{Perché la controimmagine di ogni elemento ha sempre un solo elemento, essendo $f$ e $g$ per ipotesi iniettive.}:
-	\[ f^{-1}(g^{-1}(a)) \xrightarrow{f} g^{-1}(a) \xrightarrow{g} a \xrightarrow{f} f(a) \xrightarrow{g} g(f(a)) \xrightarrow{f} f(g(f(a))) \xrightarrow{g} \dots
+	Siccome $f$ e $g$ sono iniettive, questo percorso ha altresì un'unica estensione all'indietro (abbiamo visto che se le funzioni sono iniettive, allora ammettono un'inversa iniettiva dalle rispettive immagini (che è anche surgettiva), dunque possiamo sempre tornare indietro in modo unico, estendendo quindi 
+	il nostro percorso anche nell'altra direzione):
+	\[ \textcolor{red}{f^{-1}(g^{-1}(a))} \overset{f}{\longrightarrow} \textcolor{red}{g^{-1}(a)} \overset{g}{\longrightarrow} a \overset{f}{\longrightarrow} f(a) \overset{g}{\longrightarrow} g(f(a)) \overset{f}{\longrightarrow} f(g(f(a))) \overset{g}{\longrightarrow} \ldots
 		\]
-	a patto che $a \in \Imm(g)$, $g^{-1} \in \Imm(f)$, etc. Quando, e se, non possiamo più applicare la funzione inversa, il percorso si interrompe. Ci sono quindi percorsi di tre tipi:
-	\begin{center}
-		\begin{figure}[h]
+	a patto che $a \in \Imm(g)$ (perché l'inversa $g^{-1}$ va da $\Imm(g)$ a $B$), $g^{-1}(a) \in \Imm(f)$, etc. Quando, e se, non possiamo più applicare la funzione inversa, il percorso (all'indietro) si interrompe. Con questa catena di composizioni ci sono quindi tre tipi di percorsi possibili:
+ 	\begin{center}
+		\begin{figure}[H]
 			\centering
-			\includegraphics[width=12.5cm]{immagini/cantor-ber.png}
+			\includegraphics[width=12.5cm]{immagini/cantor-ber1a.png}
 		\end{figure}
 	\end{center}
-	Per gli elementi che si trovano su un percorso circolare, o su un percorso illimitato avanti e indietro, $f$ fornisce una bigezione, come la fornirebbe anche $g^{-1}$ - la scelta è arbitraria a patto di 
-	usare la medesima funzione per l'intero percorso -.
 	\begin{center}
-		\begin{figure}[h]
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=12.5cm]{immagini/cantor-ber1b.png}
+		\end{figure}
+	\end{center}
+	
+	Per gli elementi che si trovano su un percorso circolare, o su un percorso illimitato avanti e indietro, $f$ fornisce una bigezione, come la fornirebbe anche $g^{-1}$ - la scelta è arbitraria a patto di 
+	usare la medesima funzione per l'intero percorso - nel modo seguente\footnote{Informalmente, se siamo in uno dei due casi, allora $f$ è per forza una mappa bigettiva, perché è iniettiva e ``prende'' tutti gli elementi in arrivo, idem $g^{-1}$.}:
+	\begin{center}
+		\begin{figure}[H]
 			\centering
 			\includegraphics[width=12.5cm]{immagini/cantor-ber2a.png}
 		\end{figure}
 	\end{center}
 	\begin{center}
-		\begin{figure}[h]
+		\begin{figure}[H]
 			\centering
-			\includegraphics[width=12.5cm]{immagini/cantor-ber2b.png}
+			\includegraphics[width=11.5cm]{immagini/cantor-ber2b.png}
 		\end{figure}
 	\end{center}
 	Per i percorsi, invece, illimitati solo a destra, occorre vedere in quale insieme sta l'elemento iniziale del percorso: se questo è in $A$, la bigezione è data da $f$,
-	altrimenti da $g^{-1}$.
+	altrimenti se sta in $B$ la bigezione è data da $g^{-1}$.
 	\begin{center}
-		\begin{figure}[h]
+		\begin{figure}[h!]
 			\centering
 			\includegraphics[width=12.5cm]{immagini/cantor-ber3.png}
 		\end{figure}
 	\end{center}
-	Per comodità poniamo $h(x) = f(x)$ in ogni caso, eccetto quando $x$ è lungo un percorso che porta da $B$, nel cui caso poniamo $h(x) = g^{-1}(x)$.\\
-	Formalmente, definiamo per \hyperref[ric1]{ricorsione} le seguenti successioni di sottoinsiemi di $B$ e $A$ rispettivamente - ossia, tecnicamente, la funzione $\omega \longrightarrow \ps(B) \times \ps(A) : i \longmapsto (B_i,A_i)$, con:
+	Per comodità poniamo quindi [la bigezione $h$], $h(x) = f(x)$ in ogni caso, eccetto quando $x$ è lungo un percorso che parte da $B$, nel cui caso poniamo $h(x) = g^{-1}(x)$.\\
+	Formalmente, definiamo per \hyperref[ric1]{ricorsione} (prima forma) le seguenti successioni di sottoinsiemi di $B$ e $A$ rispettivamente - ossia, tecnicamente, la funzione $\omega \rightarrow \ps(B) \times \ps(A) : i \mapsto (B_i,A_i)$, con:
 	\[ B_0 = B \setminus\Imm(f) \qquad A_i = g[B_i] \qquad B_{s(i)} = f[A_i]
 		\]
-	Definiamo quindi:
+	(ovvero la successione dei $B_i$ è definita con la prima forma della ricorsione, mentre quella degli $A_i$ dipende semplicemente da quest'ultima, ma non direttamente per ricorsione). Definiamo quindi:
 	\[ B_* = \bigcup_{i \in \omega}B_i \Mydef \bigcup\{B_i | i \in \omega\} \qquad A_* = \bigcup_{i \in \omega} A_i
 		\]
-	Questi sono i punti che appartengono a cammini che partono da $B$, definiamo quindi $h : A \longrightarrow B$ e $k : B \longrightarrow A$ come segue:
+	Questi sono i punti che appartengono a cammini che partono da $B$, definiamo quindi $h : A \rightarrow B$ e $k : B \rightarrow A$ come segue:
 	\[ h(x) = \begin{cases}
 		g^{-1}(x) &\text{se $x \in A_*$}\\
 		f(x) &\text{altrimenti}
@@ -2120,19 +2159,349 @@ Per stabilire che le cardinalità sono, formalmente, ordinate dalla relazione $|
 		f^{-1}(y) &\text{altrimenti}
 	\end{cases}
 		\]
-	Ci basta dimostrare che $h$ e $k$ sono ben definita, $k \circ h = id_A$ e $h \circ k = id_B$.
-	\begin{enumerate}[(1)]
-		\item \underline{$h$ e $k$ sono ben definite}: Occorre verificare che stiamo applicando $g^{-1}$ e $f^{-1}$ a elementi della immagine di $g$ e $f$ rispettivamente.
+	queste mappe coprono tutti i casi  possibili, infatti, i percorsi ciclici e illimitati da entrambe le parti sono coperti da $k = f^{-1}$ ed $h = g^{-1}$, mentre nel caso di percorsi che partono da $B$ e sono limitati a sinistra, ovvero con primo elemento in $B^*$ abbiamo che $k(y) = g(y)$, invece nel caso simmetrico, 
+	in cui si parte da $A$ con percorso limitato a sinistra si ha $h(x) = f(x)$, in tal modo prendiamo tutti gli elementi di tutti i cicli possibili che si formano nei due insiemi usando i percorsi descritti sopra.\\
+	Ci basta quindi dimostrare che $h$ e $k$ sono ben definite, $k \circ h = \id_A$ e $h \circ k = \id_B$, in tal modo avremo la nostra bigezione (e la sua inversa).
+	\begin{itemize}
+		\item[$\boxed{\text{$h$ e $k$ ben definite}}$] Occorre verificare che stiamo applicando $g^{-1}$ e $f^{-1}$ a elementi della immagine di $g$ e $f$ rispettivamente.
 		Nella definizione di $h$, se $x \in A_*$, allora $x \in A_i$, per qualche $i \in \omega$, quindi $x \in g[B_i] \subseteq \Imm(g)$. Nella definizione di $k$, se $y \not \in B_*$, in particolare,
 		$y \not \in B_0$, per cui $y \in \Imm(f)$.
-		\item \underline{$k \circ h = id_A$}: Se $x \in A_*$, allora $x \in A_i$, per qualche $i \in \omega$, quindi $x = g(y)$, con $y \in B_i$, per cui $k(h(y)) = k(g^{-1}(x)) = k(y) = g(y) = x$. Per il caso
-		$x \not \in A_*$, osserviamo, intanto, che $x \not \in A_* \rightarrow f(x) \not \in B_*$. Infatti, se $f(x) \in B_i$, con $i \in \omega$, allora $i \ne 0$, perché $B_0 = B \setminus \Imm(f)$, quindi possiamo scrivere $i = s(j)$, 
-		e $f(x) \in B_{s(j)} = f[A_j]$. Per l'iniettività di $f$, abbiamo allora $x \in A_j \;\lightning$.\\
-		Di conseguenza, se $x \not \in A_*$, $k(h(x)) = k(f(x)) = f^{-1}f(x) = x$.
-		\item \underline{$h \circ k = id_B$}: Se $y \in B_*$, allora $y \in B_i$, per qualche $i \in \omega$, quindi $g(y) \in A$. Di conseguenza $h(k(y)) = h(g(y)) = g^{-1}(g(y)) = y$. Altrimenti $y \not \in B_*$ e, se $f^{-1}(y)\in A_*$, avremmo una contraddizione,
+		\item[$\boxed{k \circ h = \id_A}$] Se $x \in A_*$, allora $x \in A_i$, per qualche $i \in \omega$, quindi $x = g(y)$, con $y \in B_i$, per cui $k(h(y)) = k(g^{-1}(x)) = k(y) = g(y) = x$ (abbiamo usato che $y = g^{-1}(x) \in B_*$ per quanto supposto sopra).\\
+		Per il caso $x \not \in A_*$, osserviamo, intanto, che $x \not \in A_* \implies f(x) \not \in B_*$. Infatti, se $f(x) \in B_i$, con $i \in \omega$, allora $i \ne 0$, perché $B_0 = B \setminus \Imm(f)$, quindi possiamo scrivere $i = s(j)$, 
+		e $f(x) \in B_{s(j)} = f[A_j]$. Per l'iniettività di $f$, abbiamo allora $x \in A_j \;\lightning$\\
+		Di conseguenza, se $x \not \in A_*$, $k(h(x)) = k(f(x)) \overset{f(x) \not \in B_*}{=} f^{-1}(f(x)) = x$.
+		\item[$\boxed{h \circ k = \id_B}$] Se $y \in B_*$, allora $y \in B_i$, per qualche $i \in \omega$, quindi $g(y) \in A_i$. Di conseguenza $h(k(y)) = h(g(y)) = g^{-1}(g(y)) = y$. Altrimenti $y \not \in B_*$ e, se $f^{-1}(y)\in A_*$, avremmo una contraddizione,
 		perché $f^{-1}(y) \in A_i \rightarrow y = f(f^{-1}(y)) \in A_{s(i)}$. Quindi $h(k(y)) = h(f^{-1}(y)) = f(f^{-1}(y)) = y$.
-	\end{enumerate}
+	\end{itemize}
 \end{proof}
 
+Visto che $|\cdot|\leq|\cdot|$ ha le proprietà formali di una relazione d'ordine fra le classi di equivalenza della relazione $|\cdot| = |\cdot|$, possiamo definire il corrispondente ordine stretto.
+
+\begin{definition}[Ordinamento stretto fra cardinalità]
+	Dati due insiemi $A$ e $B$ definiamo:
+	\[ |A| < |B| \Mydef |A| \leq |B| \land |A| \ne |B| \, \footnote{Dove ricordiamo che $|A| \ne |B| \Mydef \neg(|A| = |B|)$.}
+		\]
+\end{definition}
+
+\subsection{Teorema di Cantor}
+
+\begin{theorem}[Cantor]
+	\label{cantor}
+	Dato un qualunque insieme $A$ vale:
+	\[ |A| < |\ps(A)|
+		\]
+\end{theorem}
+
+La dimostrazione di questo enunciato è, ancora una volta, il medesimo argomento del paradosso di Russell.
+
+\begin{proof}
+	La disuguaglianza $|A| \leq |\ps(A)|$ è facile: basta considerare la funzione iniettiva:
+	\[ A \longrightarrow \ps(A) : x \longmapsto \{x\}
+		\]
+	(che è iniettiva per \hyperref[ax2]{estensionalità}). Consideriamo, ora, una qualunque funzione $f : A \rightarrow \ps(A)$ iniettiva.
+	Dobbiamo dimostrare che $\Imm(f) \subsetneq \ps(A)$ (cioè che non è surgettiva). Consideriamo:
+	\[ B = \{x \in A | x \not \in f(x)\} \, \footnote{$f(x) \in \ps(A)$, ovvero è un sottoinsieme di $A$, quindi stiamo considerando il sottoinsieme degli elementi di $A$ che non stanno nelle loro immagini (dei sottoinsiemi di $A$).}
+		\]
+	Ora $B \subseteq A$, supponendo per assurdo che $f$ sia bigettiva, ovvero che $B = f(a)$ per qualche $a \in A$, avremmo:
+	\[ a \in f(a) \subseteq A \iff a \in B \iff a \not \in f(a) \; \lightning
+		\]
+\end{proof}
+
+\subsection{Operazioni fra cardinalità}
+
+\begin{definition}[Somma, prodotto e potenze di cardinalità]
+	Dati $A$ e $B$ possiamo definire somma, prodotto e potenze di cardinalità come segue:
+	\[ \begin{split}
+		|A| + |B| &\Mydef |A \sqcup B| \Mydef |(A \times \{0\}) \cup (B \times \{1\})| \\
+		|A|\cdot |B| &\Mydef |A \times B| \\
+		|A|^{|B|} &\Mydef |{}^{B}A|
+	\end{split}
+		\]
+	(nella definizione di unione disgiunta abbiamo fatto il prodotto per cose diverse, in modo che gli elementi comuni ai due insiemi sono comunque diversi per la seconda componente, e quindi siano contati due volte.)
+\end{definition}
+
+Osserviamo che le operazioni fra cardinalità così date sono ben definite.
+
+\begin{proposition}[Buona definizione delle operazioni]
+	Le operazioni di somma, prodotto e potenza fra cardinalità sono ben definite, ossia dati $A,B,A',B'$, con $|A| = |A'|$ e $|B| = |B'|$, vale:
+	\[ |A| + |B| = |A'| + |B'| \qquad |A|\cdot|B| = |A'|\cdot|B'| \qquad |A|^{|B|} = |A'|^{|B'|}
+		\]
+\end{proposition}
+
+\begin{proof}
+	Date $f : A \rightarrow A'$ e $g : B \rightarrow B'$ bigettive, è immediato verificare che le seguenti sono bigezioni:
+	\[  \begin{split}
+		A \sqcup B \longrightarrow A' \sqcup B' :\,& (a,0) \longmapsto (f(a),0) \\
+											 \,& (b,1) \longmapsto (g(b),1) \\
+	 	A \times B \longrightarrow A' \times B' :\,& (a,b) \longmapsto (f(a),g(b)) \\
+		{}^{B}A \longrightarrow {}^{B'}A' :\,& h \longmapsto f \circ h \circ g^{-1} \, \footnote{Deriva dal diagramma commutativo che si può disegnare.}
+		\end{split}
+		\]
+	ed equivalgono alle uguaglianze di cardinalità nella tesi.
+\end{proof}
+
+\begin{notation}[Cardinalità finite]
+Riferendoci alle cardinalità finite $|\emptyset|,|1|,|2|,\ldots$ se non c'è rischio di confusione, scriveremo semplicemente $0,1,2,\ldots$
+\end{notation}
+
+\begin{remark}[Teorema di Cantor rivisitato]
+	$|\ps(A)| = 2^{|A|}$, per cui il \hyperref[cantor]{teorema di Cantor}, può essere enunciato dicendo che, dato un qualunque $A$, vale $|A| < 2^{|A|}$.
+\end{remark}
+
+Verifichiamo che effettivamente ci sia una bigezione tra l'insieme delle parti di $A$ e quello delle funzioni da $A$ in 2.
+
+\begin{proof}
+	La funzione che ad ogni $B \in \ps(A)$ associa la sua \vocab{funzione indicatrice} $\chi_B : A \rightarrow 2$ è definita da:
+	\[ \chi_B(x) = \begin{cases}
+		1 &\text{se $x \in B$}\\
+		0 &\text{altrimenti}
+	\end{cases}
+		\]
+	ed è una bigezione $\ps(A) \rightarrow {}^{A}2$ (ovvero $|\ps(A)| = |{}^{A}\{0,1\}| = |{}^{A}2|$ per la nostra codifica dei naturali, e per la definizione data prima la seconda cardinalità corrisponde proprio all'operazione $|2|^{|A|}$).
+\end{proof}
+
+\begin{proposition}[Proprietà delle operazioni fra cardinalità]
+	Le operazioni fra cardinalità godono delle proprietà seguenti: denotando, per brevità, con $\alpha,\beta,\gamma$ i simboli: $|A|,|B|,|C|$:
+	\begin{align*}
+		&\alpha + 0 = \alpha 	 & \quad & \alpha + \beta = \beta + \alpha 		 	& \quad & \alpha + (\beta + \gamma) = (\alpha + \beta) + \gamma \\
+		&\alpha \cdot 0 = 0 	 & \quad & \alpha \cdot \beta = \beta \cdot \alpha 	& \quad & \alpha \cdot (\beta \cdot \gamma) = (\alpha \cdot \beta) \cdot \gamma \\
+		&\alpha \cdot 1 = \alpha & \quad & \alpha \cdot (\beta + \gamma) = \alpha \cdot \beta + \alpha \cdot \gamma \\
+		&\alpha^0 = 1 			 & \quad & (\alpha^\beta)^\gamma = \alpha^{\gamma \cdot \beta} & \quad & (\alpha \cdot \beta)^\gamma = \alpha^\gamma \cdot \beta^\gamma \\
+		&1^\alpha = 1			 & \quad & \alpha^{\beta + \gamma} = \alpha^\beta \cdot \alpha^\gamma
+	\end{align*}
+\end{proposition}
+
+\begin{proof}
+	In ciascun caso, si tratta semplicemente di esibire una bigezione esplicita fra il membro di sinistra e il membro di destra. Come esempio, vediamo uno dei casi più complicati, il resto 
+	è lasciato come \textcolor{red}{esercizio}. \\
+	Dimostriamo che $(|A|^{|D|})^{|C|} = |A|^{|C|\cdot|B|}$. Dobbiamo esibire una bigezione fra l'insieme ${}^C({}^BA)$ delle funzioni che ad ogni elemento di $C$ associano una funzione $B \rightarrow A$, e l'insieme ${}^{C \times B}A$, delle funzioni 
+	che ad ogni coppia di elementi in $C \times B$ associano un elemento di $A$. Associamo a $f \in {}^C({}^BA)$ la funzione $\widetilde{f} \in {}^{C \times B}A$ definita da:
+	\[ \widetilde{f}(c,b) = (\underbrace{f(c)}_{\in {}^{B}A})(\underbrace{b}_{\in B}) \, \footnote{Cioè la mappa $\sim$ prende una funzione da $C$ a ${}^{B}A$ e la manda in un'altra che prende coppie di elementi in $C \times B$, e valuta il primo elemento in $f$ 
+	per ottenere una mappa da $B$ a $A$, che poi valuta in $b \in B$.}
+		\]
+	Dimostriamo che l'inversa di questa applicazione associa a $g \in {}^{C \times B}A$ la funzione $\overline{g} \in {}^{C}({}^B A)$ definita da:
+	\[	\overline{g}(c) : B \longrightarrow A : b \longmapsto g(c,b) \, \footnote{Ovvero la mappa $-$ associa una mappa di ${}^{C\times B}A$ con la mappa $\overline{g} \in {}^{C}({}^B A)$, che valutata in $c \in C$, dà una funzione da $B$ in $A$, che ad ogni $b \in B$ associa $g(c,b)$.}
+		\]
+	La verifica è facilissima, presa $g \in {}^{C \times B}A$ si ha:
+	\[ \forall (c,b) \in C \times B \quad \widetilde{\overline{g}}(c,d) = (\overline{g}(c))(b) = g(c,b) \implies \widetilde{\overline{g}} = g
+		\]
+	(quindi $\sim \circ -$ è l'identità). Presa $f \in {}^{C}({}^B A)$, e fissato un qualunque $c \in C$, si ha:
+	\[ \forall b \in B \,(\overline{\widetilde{f}}(c)(b)) = \widetilde{f}(c,b) = (f(c))(b) \implies \overline{\widetilde{f}}(c) = f(c)
+		\]
+	da cui, per l'arbitrarietà di $c$, $\overline{\widetilde{f}} = f$ (e quindi $- \circ \sim$ è l'identità).
+\end{proof}
+
+
+\newpage
+\section{Cardinalità finite}
+Ora inizia una breve carrellata fra le cardinalità più facile da definire. Parliamo qui di cardinalità finite, poi introdurremo la cardinalità numerabile e la cardinalità del continuo.
+
+\begin{definition}[Insieme finito/infinito]
+	Diciamo che $A$ è \vocab{finito} se $\exists n \in \omega \, |A| = |n|$. Se $A$ non è finito, diciamo che $A$ è \vocab{infinito}.
+\end{definition}
+
+Storicamente, è riflessiva una definizione alternativa di finitezza, data originariamente da Dedekind.
+
+\begin{definition}[Dedekind-finitezza]
+	Diciamo che $A$ è \vocab{Dedekind-finito} se non può essere messo in corrispondenza biunivoca con un suo sottoinsieme proprio. Ossia $A$ è Dedekind-finito se:
+	\[ \forall B \subsetneq A \, |B| < |A|
+		\]
+\end{definition}
+
+\subsection{Principio dei cassetti}
+Con gli assiomi introdotti fino ad ora, possiamo solo dimostrare che finito $\rightarrow$ Dedekind-finito, mentre l'implicazione inversa è conseguenza dell'assioma della scelta.
+
+\begin{proposition}[Principio dei cassetti - ossia - finito $\rightarrow$ Dedekind-finito]
+	\label{cassetti}
+	Dato $A$ finito e $B$ un sottoinsieme proprio di $A$, $B \subsetneq A$, vale $|B| < |A|$. 
+\end{proposition}
+
+\begin{proof}
+	Naturalmente $|B| \leq |A|$ vale perché l'identità $\id_B$ è una funzione iniettiva $B \rightarrow A$. Occorre quindi dimostrare che $|B| \ne |A|$.\\
+	Supponiamo per assurdo che $|B| = |A|$. Osserviamo che, senza perdita di generalità, possiamo assume $A = n \in \omega$\footnote{Quello che faremo è proprio portare $B \subsetneq A$ in $f[B] \subsetneq f[A] = n$ e qui trovare l'assurdo, che è come assumere sempre che 
+	$A = n$, perché possiamo sempre spostare il problema in $\omega$ con una bigezione.}. Per ipotesi, infatti esiste $f : A \rightarrow n$ bigettiva, per un opportuno $n \in \omega$.
+	Quindi $f[B] \subsetneq n$ (volendo perché la restrizione di $f$ a $B$ è ancora iniettiva ma non surgettiva\footnote{È conseguenza del fatto che $B$ sia un sottoinsieme proprio e che $f$ è bigettiva.}, quindi non può
+	avere in arrivo tutto $n$). D'altro canto, per l'iniettività di $f$, $|f[B]| = |B| \overset{\text{Hp. assurda}}{=} |A| = n$.
+	Ci basta quindi dimostrare per induzione su $n$, che:
+	\[ \forall n \in \omega \; \forall B \subseteq n (|B|=|n|\longrightarrow B = n)
+		\]
+	(cioè che ogni sottoinsieme di un numero naturale con la stessa cardinalità è il numero stesso) in questo modo avremmo $f[B] = f[A] = n$ (prima avevamo un sottoinsieme di $A$ non di $n$), che è assurdo in quanto abbiamo detto che $f[B] \subsetneq n$.
+	\begin{itemize}
+		\item[$\boxed{\text{caso $n = \emptyset$}}$] Necessariamente $B = \emptyset$, quindi $B = n$ come richiesto dalla tesi.
+		\item[$\boxed{\text{caso $n = s(m)$}}$] L'ipotesi induttiva è $\forall C \subseteq m \; |C| = |m| \rightarrow C = m$, vogliamo dimostrare che $\forall B \subseteq s(m) \; |B| = |s(m)| \rightarrow B = s(m)$.\\
+		Sia $f : s(m) \rightarrow B$ bigettiva (come ipotesi antecedente). Si danno due casi. Se $f(m) = m$, allora sia $C := \Imm(f_{|m})$, e, per l'iniettività di $f$, si ha $|C| = |m|$, quindi, per l'ipotesi induttiva (essendo $C \subseteq m$), vale $C = m$. Ma in questo modo $B = \Imm(f) = C \cup \{\underbrace{f(m)}_{= m}\} = m \cup \{m\} = s(m) = n$.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width = 1.95cm]{immagini/cassetti1.png}
+		\end{figure}
+		Se $f(m) \ne m$, allora vediamo che esiste $a < m$ tale che $f(a) = m$. Se così non fosse, infatti, $f_{|m}$ sarebbe una bigettiva fra $m$ e $m \setminus \{f(m)\}$, contro l'ipotesi induttiva. Ora, però, possiamo costruire una nuova bigezione $f' : s(m) \rightarrow B$ che ricade nel caso precedente:
+		\[ f'(x) = \begin{cases}
+			m &\text{se $x = m$} \\
+			f(m) &\text{se $x = a$} \\
+			f(x) &\text{altrimenti} \\
+		\end{cases}
+			\]
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width = 1.95cm]{immagini/cassetti2.png}
+			\end{figure}
+		in altre parole stiamo ``aggiustando'' la bigezione $f$ in modo che venga di nuovo una bigezione $f'$, tale che $f'(m) = m$ e si ricade nel caso precedente (e lo possiamo sempre fare, come osservato).
+	\end{itemize}
+\end{proof}
+
+\begin{corollary}[$A$ finito $\implies$ ha un'unica cardinalità]
+	Se $A$ è un insieme finito, allora esiste ed è unico un elemento di $\omega$ con cui è in bigezione:
+	\[ \exists \textcolor{red}{!} n \in \omega \; |A| = |n|
+		\]
+\end{corollary}
+
+\begin{proof}
+	Se $|m| = |A| = |n|$, possiamo assumere, senza perdita di generalità $m \leq n$, ossia $m \subseteq n$, quindi, usando il \hyperref[cassetti]{principio dei cassetti} $m = n$, abbiamo quindi l'unicità.
+\end{proof}
+
+Se adesso volessimo dimostrare il viceversa: [che formulato in versione contronominale è] che un insieme infinito non è Dedekind-finito, quale sarebbe l'ostacolo? Abbiamo già osservato che $\omega$ non è finito, perché la funziona successore 
+stabilisce una corrispondenza biunivoca fra $\omega$ e $\omega \setminus\{0\} \subsetneq \omega$ (quindi non è Dedekind-finito, e per la contronominale del \hyperref[cassetti]{principio dei cassetti} non è finito). Ne segue la seguente osservazione.
+
+\begin{remark}
+	Se esiste $f : \omega \rightarrow A$ iniettiva, allora $A$ non è Dedekind-finito.
+\end{remark}
+
+\begin{proof}
+	Basta considerare la funzione iniettiva:
+	\[ g : A \longrightarrow A : a \longmapsto \begin{cases}
+		f \circ s \circ f^{-1}(a) &\text{se $a \in f[\omega]$} \\
+		\id_A(a) &\text{altrimenti}
+	\end{cases}
+		\]
+	È immediato vedere che $\Imm(g) = A \setminus \{f(0)\} \subsetneq A$ (l'unico escluso è lo 0, perché non può esserci un elemento che ha come controimmagine un elemento di $\omega$ il cui successore sia 0, perché per quanto visto non esiste), dunque $A$ è in bigezione con un suo sottoinsieme proprio.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width = 4.5cm]{immagini/cassetti3.png}
+	\end{figure}
+\end{proof}
+
+Quindi ci basterebbe dimostrare che $\omega$ si immerge in ogni insieme infinito (e dal lemma appena visto avremmo che l'insieme non è Dedekind-finito, completando l'altra freccia del principio dei cassetti).
+Un tentativo di dimostrazione potrebbe andare come segue.
+
+\begin{proof}
+	Sia $A$ infinito, costruiamo per ricorsione, seconda forma, una $f : \omega \rightarrow A$ iniettiva. Supponiamo di conoscere $f_{|n}$, il nostro scopo è definire il prossimo valore: $f(n)$.
+	Siccome $A$ è infinito, $f_{|n}$, che è iniettiva per costruzione, non può essere surgettiva, quindi esiste $a \in A$ con $a \not \in \Imm(f_{|n})$. Pongo $f(n) = a$.
+\end{proof}
+
+Dov'è l'errore? Nell'ultima riga! Noi sappiamo che, data $f_{|n}$, esistono degli $a \in A$ con $a \not\in\Imm(f_{|n})$, questo è corretto. È anche corretto che ci basterebbe porre $f(n) =$``uno qualunque di questi $a$''.
+Il guaio è che, \underline{per applicare il teorema di ricorsione}, ci serve una funzione che fissa (nel senso che la $h$ del teorema di ricorsione essendo un insieme deve avere tutti gli elementi già fissati, cosa che non può avvenire in questo caso) uno degli $a$. A patto di averne una, ne andrebbe bene una qualunque.\\
+Purtroppo però, a partire dalla mera ipotesi che $A$ è infinito, non abbiamo modo di procurarci nessuna funzione del genere. Potremmo cavarcela se avessimo qualche struttura su $A$, sulla quale far leva - per esempio per dire ``prendo il minimo 
+fra gli $a \not\in \Imm(f_{|n})$'', o ``prendo il più giallo'' - ma di $A$ non sappiamo nulla, e non abbiamo modo di indurre una struttura di questo genere.\\
+Accettato che non possiamo dimostrare che $\omega$ si immerge in qualsiasi insieme infinito, possiamo però lambire questa soglia: dimostriamo che, in un insieme infinito, si immergono tutti i numeri naturali.
+
+\begin{proposition}[Tutti i naturali si immergono in un insieme infinito]
+	Sia $A$ infinito, allora $\forall n\in \omega \; |n| < |A|$.
+\end{proposition}
+
+\begin{proof}
+	Basta dimostrare il $\leq$, infatti $|n| < |n+1| \leq |A|$. Dimostriamo per induzione su $n$ che c'è una funzione iniettiva da $n$ ad $A$.
+	\begin{itemize}
+		\item[$\boxed{\text{caso $n = 0$}}$] La funzione vuota, $f = \emptyset$.
+		\item[$\boxed{\text{caso $n = m+1$}}$] Per ipotesi induttiva esiste $f : m \rightarrow A$ iniettiva. Siccome $A$ è infinito (e $m$ è finito), esiste $a \in A \setminus \Imm(f)$ (e non ci serve fissarlo poiché non stiamo usando il teorema di ricorsione).
+		La funzione $f' = f \cup \{(n,a)\}$, che si ottiene estendendo $f$ col 
+		mandare $n$ in $a$, è iniettiva $n \hookrightarrow A$.
+	\end{itemize}
+\end{proof}
+
+\begin{corollary}[Ovvietà]
+	Un sottoinsieme di un insieme finito è finito.
+\end{corollary}
+
+\begin{proof}
+	Sia $A$ finito e $B \subseteq A$. Se, per assurdo $B$ fosse infinito, avremmo $|A| < |B| \leq |A| \, \lightning$ (poiché $|A| = |n|$ per definizione di finito e per la proposizione precedente tutti gli $n$ si immergono in un insieme infinito si ha $A \rightarrow n \hookrightarrow B$, dove la prima funzione è bigettiva e la seconda iniettiva, e per le proprietà di composizione delle 
+	funzioni iniettive, la composizione di queste ultime due ci dà $A \hookrightarrow B$)
+\end{proof}
+
+\begin{exercise}
+	Dimostrare che:
+	\begin{itemize}
+		\item se $|A| < |n|$ con $n \in \omega$, allora $|A| = |m|$ per qualche $m < n$.
+		\item se $A$ è finito e $f : A \rightarrow B$, allora $f[A]$ è finito.
+	\end{itemize}	
+\end{exercise}
+
+\subsection{Operazioni fra le cardinalità finite}
+
+\begin{proposition}
+	Dati $m,n \in \omega$ vale che:
+	\[ |m| + |n| = |m+n| \qquad |m|\cdot|n| = |m \cdot n| \qquad |m|^{|n|} = |m^n|
+		\]
+	ovvero, per gli elementi di $\omega$ le operazioni tra cardinalità corrispondo alla cardinalità delle operazioni tra gli elementi, già definite per ricorsione su $\omega$.
+\end{proposition}
+
+\begin{proof}
+	
+\end{proof}
+
+\begin{note}
+	Questa proposizione ci fornisce una dimostra delle proprietà aritmetiche elementari delle operazioni su $\omega$ [sfruttando le proprietà delle operazione fra cardinalità], alternativa a quella per induzione (che è stata lasciata per esercizio).
+	Basta, infatti, applicare le corrispondenti proprietà delle operazioni sulle cardinalità.
+\end{note}
+
+\begin{exercise}
+	Dimostra che se $m,n \in \omega$ e $m \leq n$, esista un unico $n-m \in \omega$ tale che $m + (n-m) = n$. In due modi diversi.
+\end{exercise}
+
+\newpage
+\section{La cardinalità del numerabile}
+
+\begin{definition}[Numerabilità]
+	Diciamo che $A$ è \vocab{al più numerabile} se $|A| \leq |\omega|$ ed è \vocab{numerabile} se $|A| = |\omega|$.
+	Il simbolo $\aleph_0$ - aleph con zero - è semplicemente un'abbreviazione per $|\omega|$ (per cui $|A| \leq \aleph_0$ si può leggere ``$A$ è al più numerabile'' e $|A| = \aleph_0$ si 
+	può leggere ``$A$ è numerabile'').
+\end{definition}
+
+\begin{remark}
+	In altri termini, dire che $A$ è al più numerabile significa dire che c'è una funzione iniettiva $A \hookrightarrow \omega$. Dire che è numerabile significa dire che c'è una bigezione con $\omega$.
+\end{remark}
+
+\begin{proposition}
+	Se $A$ è al più numerabile, allora o $A$ è finito o $A$ è numerabile.
+\end{proposition}
+
+\underline{Ossia}: $|A| < \aleph_0$ se e solo se $A$ è finito [non è altro che una formulazione equivalente della proposizione sopra].
+
+Potremmo dimostrare la proposizione direttamente, ma ci conviene, invece, passare attraverso alcune considerazioni che saranno utili in seguito.\\
+In generale, per costruire una bigezione fra due insiemi $A$ e $B$ - ossia per dimostrare $|A| = |B|$ - occorre appoggiarsi a qualche struttura definita sugli insiemi $A$
+e $B$. Per esempio, una funzione successore. In questo corso, giocheranno un ruolo importante, in questa direzione, le relazioni d'ordine, e, in particolare - l'idea è di Cantor - i 
+\vocab{buoni ordini}. Ricordiamo la definizione.
+
+\begin{definition}[Buon ordinamento]
+	Un insieme totalmente ordinato $(S,<)$ si dice \vocab{bene ordinato} se ogni suo sottoinsieme non vuoto ha un minimo.
+	\[ \forall A \subseteq S \; A \ne \emptyset \longrightarrow \exists m \in A \; \forall a \in A \; m \leq x
+		\]
+\end{definition}
+
+Il trucco è che un isomorfismo di ordini è, in particolare, una bigezione, e spesso, per costruire bigezioni, costruiamo isomorfismi di ordini.
+
+\begin{definition}[Isomorfismo]
+	Due insiemi (parzialmente\footnote{Dove parziale indica l'assenza della proprietà di totalità nella definizione di relazione d'ordine (stretta o larga che sia).}) ordinati
+	$(A,<_A)$ e $(B,<_B)$ sono \vocab{isomorfi}, in simboli $(A,<_A) \sim (B,<_B)$ se esiste una bigezione $f : A \rightarrow B$ tale che:
+	\[ \forall x,y \in A \; x <_A y \longleftrightarrow f(x) <_B f(y)
+		\]
+\end{definition}
+
+\begin{remark}[Funzioni strettamente crescenti]
+	Due insiemi TOTALMENTE ordinati $(A,<_A)$ e $(B,<_B)$ sono isomorfismi se e solo se esiste una funzione $f : A \rightarrow B$ surgettiva e \vocab{strettamente crescente} - cioè tale che:
+	\[ \forall x,y \in A \; x <_A y \longleftrightarrow f(x) <_B f(y)
+		\]
+\end{remark}
+
+\begin{exercise}
+	Dimostrare la proposizione enunciata sopra.
+\end{exercise}
+
+\begin{remark}[Ongi insieme finito è isomorfo alla sua cardinalità]
+	Sia $(A,<_A)$ totalmente ordinato con $|A| = n \in \omega$. Allora $(A,<_A) \sim (n,<)$, dove $<$ denota l'ordinamento indotto da $\omega$.
+\end{remark}
+
+\begin{proof}
+	
+\end{proof}
 
 \end{document}
