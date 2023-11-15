@@ -1297,15 +1297,37 @@ analogamente valgono simmetria e riflessività.
 		\]
 \end{remark}
 
-\begin{exercise}
-	Data $g : A \rightarrow B$ e $f: B \rightarrow C$, sotto quali condizioni $f \circ g$ è iniettiva, suriettiva, bigettiva?
+\begin{exercise}[Composizione di funzioni iniettive/surgettive/bigettive]
+	Data $f : A \rightarrow B$ e $g: B \rightarrow C$, sotto quali condizioni $g \circ f$ è iniettiva, suriettiva, bigettiva?
 \end{exercise}
 
 \begin{soln}
-
+	Indaghiamo il problema partendo prima dalle singole funzioni con delle proprietà e componendole. Se $f$ e $g$ sono iniettive, allora $g \circ f$ è iniettiva, infatti:
+	\[ g(f(x)) = g(f(y)) \overset{\text{$g$ iniett.}}{\iff} f(x) = f(y) \overset{\text{$f$ iniett.}}{\iff} x = y \qquad \forall x,y \in A
+		\]
+		che è equivalente alla definizione di $g \circ f : A \rightarrow C$ iniettiva. Se $f$ e $g$ sono surgettive, allora $g \circ f$ è surgettiva:
+	\begin{align*}
+		\text{$g$ surgettiva} &\iff \forall z \in C \; \exists y \in B \; g(y) = z \\
+		\text{$f$ surgettiva} &\iff \forall y \in B \; \exists x \in A \; f(x) = y
+	\end{align*}
+	che messe assieme ci danno che $g(f(x)) = z$, cioè per ogni $z \in C$ esiste $x \in A$ tale che $(g \circ f)(x) = z$, che è equivalente alla definizione di $g \circ f$ surgettiva.
+	Naturalmente, mettendo assieme i risultati precedenti, otteniamo che $f$ e $g$ bigettive implica $g \circ f$ bigettiva. Viceversa, osserviamo che se $g \circ f$ è iniettiva, allora $f$ è iniettiva,
+	infatti, se per assurdo $f(x) = f(y)$, con $x \ne y$, allora, applicando $g$, si ha $g(f(x)) = g(f(y))$ (perché immagini di cose uguali), ma per iniettività di $g \circ f$, ciò equivale a $x = y$,
+	che è assurdo, pertanto $x = y$\footnote{Abbiamo dimostrato per assurdo che $f(x) = f(y) \implies x = y$ (sotto l'ipotesi che $g \circ f$ iniettiva), il viceversa è banale e con questo si ha l'equivalenza con la definizione di $f$ iniettiva}.
+	Se $g \circ f$ è surgettiva, allora $g$ è surgettiva, infatti, per ipotesi, $\forall z \in C \; \exists x \in A \; g(f(x)) = z$, e, dato che $f(x) \in B$, abbiamo trovato che per ogni $z \in C$ esiste $y = f(x) \in B$ tale che $g(y) = z$, ovvero $g$ surgettiva.\\
+	Infine, verrebbe da chiedersi, se date $f$ iniettiva e $g$ surgettiva, $g \circ f$ sia necessariamente bigettiva (così da avere magari un'equivalenza tra la bigettività della composizione e le proprietà delle funzioni in partenza), sfortunatamente ciò è falso: presa
+	$f : \{0,1\} \hookrightarrow \{0,1,2,3\}$ e $g : \{0,1,2,3\} \twoheadrightarrow \{0,1,2\}$, con:
+	\begin{align*}
+		& g(0) = 0 \qquad f(0) = 0 \\
+		& g(1) = 0 \qquad f(1) = 1 \\
+		& g(2) = 2 \\
+		& g(3) = 3
+	\end{align*}
+	abbiamo $f$ iniettiva, $g$ surgettiva, ma $g \circ f$ non è né iniettiva ($g(f(0)) = g(f(1))$) né surgettiva ($\Imm(g \circ f) = \{0\}$).
 \end{soln}
 
-\begin{exercise}
+\begin{exercise}[Insieme quoziente e proiezione]
+	\label{3.73}
 	Data una relazione di equivalenza $\sim$ su $A$, dimostra che esiste un insieme $\faktor{A}{\sim}$ ed una funzione surgettiva $i_\sim$ da $A$ a $\faktor{A}{\sim}$
 	tale che:
 	\[ \forall x,y \in A \; x \sim y \leftrightarrow i_\sim(x) = i_\sim(y)
@@ -1313,16 +1335,36 @@ analogamente valgono simmetria e riflessività.
 \end{exercise}
 
 \begin{soln}
-
+	Possiamo definire l'insieme $\faktor A \sim$ per separazione nelle parti di $A$ come segue:
+	\[ \faktor{A}{\sim} \Mydef \{B \in \ps(A) | \forall x,y \in B \; x \sim y\}
+		\]
+	Osserviamo che per ogni $B, C \in \faktor A \sim$, vale che $B \cap C \ne \emptyset \iff B = C$, infatti, se esiste $x \in B \cap C$, allora $x \sim y$, $\forall y \in B$, e $x \sim z$, $\forall z \in C$.
+	Da cui $w \in B \iff w \sim x \iff w \in C$ e quindi per l'arbitrarietà di $x$, vale $B = C$.\footnote{Essendo che ogni elemento, per quanto detto è in una classe di equivalenza di $\faktor{A}{\sim}$, si ha anche che $\bigcup \faktor{A}{\sim} = A$, dunque le classi di equivalenza sono disgiunte
+	e la loro unione dà proprio l'insieme, pertanto si dirà che formano una \vocab{partizione} dell'insieme $A$.}\\
+	Da quanto appena osservato segue quindi che ogni $x \in A$ appartiene ad una e una sola \vocab{classe di equivalenza} (gli elementi di $\faktor A\sim$), in quanto è sempre almeno in relazione con se stesso per riflessività, possiamo quindi definire $i_\sim$ come 
+	la funzione da $A$ a $\faktor A \sim$ che manda $x$ nella sua classe di equivalenza. Naturalmente $i_\sim(x) = i_\sim(y)$ equivale al dire che le due classi di equivalenza sono la stessa, dunque per definizione
+	si ottiene proprio che $x \sim y$. Inoltre $i_\sim$ è surgettiva in quanto in ogni classe di equivalenza di $\faktor A \sim$ c'è almeno un elemento (per la riflessività delle relazioni di equivalenza), la cui immagine via $i_\sim$ dà appunto la classe.
 \end{soln}
 
-\begin{exercise}
-	Data una relazione di equivalenza $\sim$ su $A$ e $f : A \rightarrow B$, affinché esista $\widetilde{f}: \faktor{A}{\sim} \rightarrow B$ tale che $f = \widetilde{f} \circ i_\sim$,
+\begin{exercise}[Primo teorema di ``omomorfismo'', per insiemi]
+	Data una relazione di equivalenza $\sim$ su $A$ e $f : A \rightarrow B$, affinché esista la funzione $\widetilde{f}: \faktor{A}{\sim} \rightarrow B$ tale che $f = \widetilde{f} \circ i_\sim$,
 	è necessario e sufficiente che $\forall x,y \in A \; x \sim y \rightarrow f(x) = f(y)$.
 \end{exercise}
 
 \begin{soln}
-
+	Osserviamo che\footnote{Per essere formalissimi, staremmo usando che $f = \widetilde{f} \circ i_\sim \iff f(x) = (\widetilde{f} \circ i_\sim)(x)$, $\forall x \in A$, ovvero
+	l'estensionalità per funzioni vista in un'osservazione precedente.} $f(x) = (\widetilde{f} \circ i_\sim)(x)$, $\forall x \in A$ se e solo se $f(x) = \widetilde{f}(i_\sim(x))$, ora ciò equivale al fatto che 
+	l'immagine dell'elemento $x \in A$ al LHS è uguale a quella della classe di equivalenza (che è un sottoinsieme di $A$) $i_\sim(x)$ tramite $\widetilde{f}$ al RHS. Per rispettare la relazione richiesta (che sarebbe poi la commutatività di un diagramma)
+	possiamo definire $\widetilde{f}(C)$, $C \in \faktor{A}{\sim}$, come $f(z)$ per un qualunque $z \in C$.\\ Ora ci basta osservare che questa è una buona definizione, e lo è in quanto tutti gli elementi in $C$ sono in relazione $\sim$ tra loro e per ipotesi tale relazione 
+	è che la loro immagine via $f$ sia la stessa, pertanto $f(x) = f(y)$, $\forall x,y \in C$. Infine, poiché $\forall x \in A \; x \in i_\sim(x)$, si ha proprio che $\widetilde{f}(i_\sim(x)) = f(x)$. Abbiamo quindi dimostrato che l'uguaglianza iniziale è vera 
+	se $\sim$ è definita come nelle ipotesi, osserviamo che se tale uguaglianza funziona, allora due elementi sono in relazione via $\sim$ se e solo se hanno la stessa immagine. Infatti, si avrebbe che:
+	\[ \begin{split}
+		f(x) = f(y) &\iff \widetilde{f}(i_\sim(x)) = \widetilde{f}(i_\sim(y)) \\
+					&\iff i_\sim(x) = i_\sim(y) \\
+					&\iff x \sim y
+	\end{split}
+		\]
+	dove la prima equivalenza è l'assunto, la seconda è la definizione di $\widetilde{f}$ (che è una bigezione tra $\faktor A\sim$ e $\Imm(f)$, per questo abbiamo usato l'iniettività), mentre l'ultima equivalenza è la definizione di classi di equivalenza.
 \end{soln}
 
 \newpage
@@ -1533,6 +1575,7 @@ Per dimostrare questa proposizione, sono comodi alcuni lemmi.
 \pagebreak
 
 \begin{remark}[Successore del secondo termine in un'appartenenza]
+	\label{succ2}
 	Si osserva che valgono le seguenti cose:
 	\begin{enumerate}[(1)]
 		\item $m \in n \rightarrow m \in s(n)$, infatti $n \subseteq n \cup \{n\} = s(n)$ (banalmente se $m$ è contenuto in $n$ allora è contenuto anche nel suo successore).
@@ -2427,7 +2470,7 @@ Accettato che non possiamo dimostrare che $\omega$ si immerge in qualsiasi insie
 
 \subsection{Operazioni fra le cardinalità finite}
 
-\begin{proposition}
+\begin{proposition}[Le operazioni tra cardinalità finite possono essere definite in funzione delle operazioni su $\omega$]
 	Dati $m,n \in \omega$ vale che:
 	\[ |m| + |n| = |m+n| \qquad |m|\cdot|n| = |m \cdot n| \qquad |m|^{|n|} = |m^n|
 		\]
@@ -2435,12 +2478,54 @@ Accettato che non possiamo dimostrare che $\omega$ si immerge in qualsiasi insie
 \end{proposition}
 
 \begin{proof}
-	
+	Dimostriamo, intanto che $|m| + |1| = |s(m)|$. A sinistra abbiamo, infatti la cardinalità di $(m \times \{0\}) \cup \{(0,1)\}$\footnote{Typo del prof. Mamino sui suoi appunti in quanto $1 = \{0\}$.} e a destra abbiamo la cardinalità di $m \cup \{m\}$.
+	Quest'ultimo insieme si mappa bigettivamente nel primo, mandando $x \in m$ in $(x,0)$ e $m$ in $(0,1)$. 
+	Ora, le uguaglianze asserite seguono, per induzione su $n$, dalle proprietà delle operazioni sulle cardinalità e dalla definizione ricorsiva delle operazioni su $\omega$.\\
+	\textcolor{purple}{$|m|+|n| = |m+n|$}
+	\begin{itemize}
+		\item[$\boxed{\text{caso $n = 0$}}$] $|m| + |0| =  |(m \times \{0\}) \cup \emptyset| = |m| = |m + 0|$.
+		\item[$\boxed{\text{caso $n = s(a)$}}$] Per ipotesi induttiva abbiamo $|m| + |a| = |m + a|$, da cui possiamo verificare la tesi come segue:
+		\[ \begin{split}
+			|m| + |s(a)| \overset{\text{oss. iniziale}}{=}\quad& |m| + (|a| + |1|) \\
+						 \overset{\text{propr. operaz. card.}}{=}& (|m| + |a|) + |1| \\
+						 \overset{\text{Hp. indutt}}{=}\quad& |m+a| + |1| \\
+						 \overset{\text{oss. iniziale}}{=}\quad& |s(m+a)| \\
+						 \overset{\text{def. di $+$}}{=}\quad\;& |m + s(a)|
+ 		\end{split} 
+			\]
+	\end{itemize}
+	\textcolor{purple}{$|m|\cdot|n| = |m \cdot n|$}
+	\begin{itemize}
+		\item[$\boxed{\text{caso $n = 0$}}$] $|m| \cdot |0| =  |m \times \emptyset| = |0| \overset{\text{def. di $\cdot$}}{=} |m \cdot 0|$.
+		\item[$\boxed{\text{caso $n = s(a)$}}$] Per ipotesi induttiva abbiamo $|m|\cdot|a| = |m \cdot a|$, da cui possiamo verificare la tesi come segue:
+		\[ \begin{split}
+			|m| \cdot |s(a)| \overset{\text{oss. iniziale}}{=}\quad& |m| \cdot (|a| + |1|) \\
+						 \overset{\text{propr. operaz. card.}}{=}& |m| \cdot |a| + \underbrace{|m| \cdot |1|}_{|m \times \{0\}| = |m|} \\
+						 \overset{\text{Hp. indutt}}{=}\quad& |m \cdot a| + |m| \\
+						 \overset{\text{propr. $+$ card.}}{=}\quad& |m \cdot a + m| \\
+						 \overset{\text{def. di $\cdot$}}{=}\quad\;& |m \cdot s(a)|
+ 		\end{split} 
+			\]
+	\end{itemize}
+	\textcolor{purple}{$|m|^{|n|} = |m^n|$}
+	\begin{itemize}
+		\item[$\boxed{\text{caso $n = 0$}}$] $|m|^{|0|} =  |{}^{0}m| = |1| = |m^0|$ (l'unica funzione possibile dal vuoto a $m$ è $f = \emptyset$\footnote{E quindi ${}^0m = \{f : \emptyset \rightarrow m\} = \{\emptyset\} = 1$, o in alternativa si può pensare che
+		$f \subseteq \emptyset \times m = \emptyset \implies f \in \ps(\emptyset) = \{\emptyset\}$ e quindi $f = \emptyset \implies {}^0m = \{f\} = \{\emptyset\} = 1$.}).
+		\item[$\boxed{\text{caso $n = s(a)$}}$] Per ipotesi induttiva abbiamo $|m|^|a| = |m^a|$, da cui possiamo verificare la tesi come segue:
+		\[ \begin{split}
+			|m|^{|s(a)|} \overset{\text{oss. iniziale}}{=}\quad& |m|^{|a| + |1|} \\
+						 \overset{\text{propr. operaz. card.}}{=}& |m|^{|a|} \cdot \underbrace{|m|^{|1|}}_{=|m|} \\
+						 \overset{\text{Hp. indutt}}{=}\quad& |m^a| \cdot |m| \\
+						 \overset{\text{propr. del $\cdot$ card.}}{=}\quad& |m^a \cdot m| \\
+						 \overset{\text{def. potenza}}{=}\quad\;& |m^{s(a)}|
+ 		\end{split} 
+			\]
+	\end{itemize}
 \end{proof}
 
 \begin{note}
 	Questa proposizione ci fornisce una dimostra delle proprietà aritmetiche elementari delle operazioni su $\omega$ [sfruttando le proprietà delle operazione fra cardinalità], alternativa a quella per induzione (che è stata lasciata per esercizio).
-	Basta, infatti, applicare le corrispondenti proprietà delle operazioni sulle cardinalità.
+	Basta, infatti, applicare le corrispondenti proprietà delle operazioni sulle cardinalità\footnote{E ciò non comporta problemi di circolarità poiché nella dimostrazione della proposizione precedente abbiamo usato solo la definizione delle tre operazione e nessuna delle  loro proprietà.}.
 \end{note}
 
 \begin{exercise}
@@ -2480,28 +2565,375 @@ e $B$. Per esempio, una funzione successore. In questo corso, giocheranno un ruo
 Il trucco è che un isomorfismo di ordini è, in particolare, una bigezione, e spesso, per costruire bigezioni, costruiamo isomorfismi di ordini.
 
 \begin{definition}[Isomorfismo]
-	Due insiemi (parzialmente\footnote{Dove parziale indica l'assenza della proprietà di totalità nella definizione di relazione d'ordine (stretta o larga che sia).}) ordinati
+	Due insiemi (parzialmente\footnote{Dove parziale indica l'assenza della proprietà di totalità nella definizione di relazione d'ordine.}) ordinati
 	$(A,<_A)$ e $(B,<_B)$ sono \vocab{isomorfi}, in simboli $(A,<_A) \sim (B,<_B)$ se esiste una bigezione $f : A \rightarrow B$ tale che:
 	\[ \forall x,y \in A \; x <_A y \longleftrightarrow f(x) <_B f(y)
 		\]
+	(cioè se esiste una bigezione che rispetta le relazioni d'ordine).
 \end{definition}
 
 \begin{remark}[Funzioni strettamente crescenti]
-	Due insiemi TOTALMENTE ordinati $(A,<_A)$ e $(B,<_B)$ sono isomorfismi se e solo se esiste una funzione $f : A \rightarrow B$ surgettiva e \vocab{strettamente crescente} - cioè tale che:
+	Due insiemi TOTALMENTE ordinati $(A,<_A)$ e $(B,<_B)$ sono isomorfismi se e solo se esiste una funzione $f : A \rightarrow B$ \underline{surgettiva} e \vocab{strettamente crescente} - cioè tale che:
 	\[ \forall x,y \in A \; x <_A y \longleftrightarrow f(x) <_B f(y)
 		\]
+	(non è altro che la definizione in cui supponiamo gli insiemi totalmente ordinati e diamo un nome alla funzione che realizza l'isomorfismo in questo caso).
 \end{remark}
 
 \begin{exercise}
 	Dimostrare la proposizione enunciata sopra.
 \end{exercise}
 
-\begin{remark}[Ongi insieme finito è isomorfo alla sua cardinalità]
-	Sia $(A,<_A)$ totalmente ordinato con $|A| = n \in \omega$. Allora $(A,<_A) \sim (n,<)$, dove $<$ denota l'ordinamento indotto da $\omega$.
+\begin{remark}[Ogni insieme finito è isomorfo alla sua cardinalità]
+	Sia $(A,<_A)$ totalmente ordinato con $|A| = n \in \omega$. Allora $(A,<_A) \sim (n,<)$, dove $<$ denota l'ordinamento indotto da $\omega$ (cioè l'ordine che abbiamo definito su $\omega$ ristretto a $n$).
 \end{remark}
+
+\begin{proof}
+	Procediamo per induzione su $n$.
+	\begin{itemize}
+		\item[$\boxed{\text{caso $n = 0$}}$] $A = \emptyset$, quindi $(A,<_A) \sim (\emptyset,\emptyset)$.
+		\item[$\boxed{\text{caso $n = s(m)$}}$] Se $m = 0$, allora $A = \{a\}$ e $(A,<_A) \sim (1,<)$, cioè la tesi è banalmente vera. Assumiamo quindi $m>0$. Dimostriamo intanto che $(A,<_A)$ ha un massimo elemento.
+		Fissiamo una bigezione $f : s(m) \rightarrow A$. Allora $|f[m]| = m$, quindi $f[m]$ con l'ordinamento indotto da $<_A$ è isomorfo a $(m,<)$ per ipotesi induttiva e, in particolare, ha massimo $M$. Ora per la totalità di $<_A$,
+		o $M < f(m)$ oppure $f(m)<M$. Si verifica immediata che, nel primo caso, $f(m)$ è il massimo di $A$, e nel secondo $M$ è il massimo di $A$.\\
+		Stabilito che $A$ ha un massimo $N$, osserviamo che, detto $A' := A \setminus\{N\}$, siccome $|A'| = m$, usando nuovamente l'ipotesi induttiva abbiamo un isomorfismo $f : A' \rightarrow m$ fra $A'$, con l'ordinamento indotto da $<_A$ e $(m,<)$.
+		Si verifica facilmente che:
+		\[ f' : A \longrightarrow s(m) : x \longmapsto \begin{cases}
+			f(x) &\text{se $x \in A'$} \\
+			m &\text{se $x = N$}
+		\end{cases}
+			\]
+		è l'isomorfismo cercato.
+	\end{itemize}
+\end{proof}
+
+Possiamo caratterizzare $\omega$ in termini delle proprietà del suo ordinamento naturale. Quelle che servono sono le seguenti.
+
+\begin{proposition}[Proprietà di $(\omega,<)$]
+	Dato $(\omega,<)$ ordine totale allora valgono le seguenti:
+	\begin{enumerate}[(1)]
+		\item $(\omega,<)$ è un buon ordine.
+		\item $(\omega,<)$ è \vocab{illimitato} - ossia $\forall x \in \omega \; \exists y \in \omega \; x < y$.
+		\item Ogni $A \subseteq \omega$ superiormente limitato e non vuoto ha un massimo, ossia:
+		\[ \forall A \subseteq \omega (A \ne \emptyset \land (\exists L \in \omega \; \forall x \in A \; x \leq L)) \longrightarrow (\exists M \in A \; \forall x \in A \; x \leq M)
+			\]
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	Abbiamo che (1) è il principio del minimo che abbiamo già dimostrato su $\omega$, per (2) basta prendere $y = s(x)$ (e $x \in s(x) \implies x < y$). Per (3) se $A$ è superiormente limitato da $L \in \omega$, allora $A \subseteq s(L)$, quindi $A$ è finito.
+	Siccome $A$ è finito, l'ordinamento totale su $A$ definito da:
+	\[ x \prec y \Mydef y < x
+		\]
+	è buono, quindi, in particolare, c'è il minimo di $A$ secondo l'ordinamento $\prec$. Questo è il massimo di $A$ (secondo l'ordinamento $<$).
+\end{proof}
+
+\begin{proposition}[Caratterizzazione di $\omega$ come ordine]
+	Sia $(A,\prec)$, con $A \ne \emptyset$, un ordinamento:
+	\begin{enumerate}
+		\item buono
+		\item illimitato
+		\item tale che ogni sottoinsieme superiormente limitato e non vuoto di $A$ ha un massimo secondo $\prec$.
+	\end{enumerate}
+	Allora $(A,\prec) \sim (\omega,<)$.
+\end{proposition}
+
+Dimostriamo prima un facile lemma.
+
+\begin{lemma}[Stretta crescenza col successore $\implies$ stretta crescenza]
+	Sia $(A,\prec)$ un ordine, e sia $f : \omega \rightarrow A$ tale che:
+	\[ \forall n \in \omega \; f(n) \prec f(s(n)) \, \footnote{Typo di Mamino nelle dispense.}
+		\]
+	allora $f$ è strettamente crescente, cioè $\forall m,n \in \omega \; m < n \rightarrow f(m) \prec f(n)$, e in particolare è iniettiva.
+\end{lemma}
+
+\begin{proof}
+	Considero, per assurdo, $m < n$ tali che $f(m) \not \prec f(n)$, con $n$ minimo [tale per cui accade ciò]. Siccome $0 \leq m < n$, esiste $n'$ tale che $n = s(n')$.
+	Ora, da un'\hyperref[succ2]{osservazione precedente}, essendo $m < s(n')$, si ha $m = n' \lor m < n'$. Nel primo caso, dall'ipotesi segue:
+	\[ f(m) \prec f(s(m)) = f(s(n')) = f(n)
+		\]
+	contraddicendo $f(m) \not\prec f(n)$. Nel secondo caso, per la minimalità di $n$, deve accadere per forza $f(m) \prec f(n')$, ma $f(n') \prec f(s(n')) = f(n)$ per ipotesi, quindi abbiamo di nuovo una contraddizione,
+	pertanto deve essere necessariamente $f(m) \prec f(n)$.
+\end{proof}
+
+Possiamo ora dimostrare la proposizione.
+
+\begin{proof}
+	Costruiamo per ricorsione un isomorfismo $f$ da $(\omega, <)$ a $(A,\prec)$:
+	\[ f(0) = \min_\prec A \qquad f(s(n)) = \min_\prec\{a \in A | f(n) \prec a\} \, \footnote{Cioè la funzione manda il successore nel più piccolo termine in $(A,\prec)$ che sta ``sopra'' a $f(n)$ (in pratica la stiamo costruendo apposta affinché sia strettamente crescente).}
+		\]
+	dove $\min_\prec$ denota il minimo secondo la relazione d'ordine (buona) $\prec$. Occorre dimostrare intanto che $f$ è ben definita. $f(0)$ è ben definita, perché $A \ne \emptyset$, dunque (essendo ben ordinato per ipotesi ha un minimo\footnote{Per essere precisi essendo $A \in \ps(A)$ tecnicamente il principio del buon ordinamento si applica anche ad $A$ stesso (oltre che ai suoi sottoinsiemi propri), che quindi ha minimo.}).
+	Per dire che $f(s(n))$ è ben definita, occorre dire che la funzione $h : A \rightarrow A$, $h(x) = \min_\prec\{a \in A|f(n) \prec a\}$ è ben definita (sarebbe la funzione che definisce la ricorsione - prima forma -), 
+	ossia che $\{a \in A | x \prec a\}$ è non vuoto (e quindi di nuovo esiste il minimo perché stiamo supponendo $A$ ben ordinato). Ma questo avviene, qualsiasi sia $x\in A$, perché altrimenti $A$ sarebbe limitato [superiormente] da $x$ (e non illimitato superiormente come abbiamo supposto nelle ipotesi).\\
+	Per come è costruita, e per il lemma, $f$ è [strettamente] crescente (cioè l'abbiamo costruita in modo che sia una funzione da $\omega$ in $A$ crescente rispetto al successore, per cui vale il lemma sopra, dunque è sempre crescente), quindi iniettiva.
+	Di conseguenza, ci basta dimostrare la surgettività.\\
+	Prendiamo $y \in A$ e cerchiamo $x \in \omega$ tale che $y = f(x)$. Se, per ogni $x \in \omega$, avessi $f(x) \prec y$, allora $f[\omega]$ sarebbe superiormente limitato da $y$, e tuttavia non avrebbe massimo perché ogni $f(x)$ è $\prec$ di $f(s(x))$, il che è assurdo.
+	Quindi c'è il minimo $x \in \omega$ tale che $y \preceq f(x)$. Dimostriamo che $f(x) \preceq y$, da cui l'uguaglianza (e quindi la surgettività).
+	\begin{itemize}
+		\item[$\boxed{\text{$x = 0$}}$] in tal caso $f(x)$ è il minimo di $A$, quindi $f(x) \preceq y \in A$.
+		\item[$\boxed{x = s(x')}$] in questo caso $f(x') \prec y$ per la minimalità di $x$ (avendo preso $x$ come il minimo in $\omega$ tale che $f(x) \preceq y$, tutto ciò che sta sotto non può rispettare l'ultima condizione), ma allora, $y \in \{a \in A | f(x') \prec a\}$, quindi $f(x) = f(s(x')) = \min_\prec\{a \in A | f(x) \prec a\} \preceq y$ (dove l'ultima disuguaglianza deriva dal fatto che $y$
+		appartiene all'insieme di cui stiamo facendo il minimo, mentre la seconda uguaglianza è la definizione di $f$).
+	\end{itemize}
+\end{proof}
+
+Tornando alla proposizione iniziale.
+
+\begin{proposition}[Caratterizzazione insiemi al più numerabili]
+	Se $A$ è al più numerabile, allora o $A$ è finito o $A$ è numerabile.
+\end{proposition}
+
+\begin{proof}
+	Per ipotesi esiste $f : A \rightarrow \omega$ iniettiva, per cui abbiamo $|A| = |f[A]|$, e siccome $f[A] \subseteq \omega$,
+	ci basta dimostrare che dato $B \subseteq \omega$, o $B$ è finito o è numerabile.\\
+	Sia $B \subseteq \omega$ infinito, dimostriamo che $B$, con l'ordinamento indotto dall'ordine naturale di $\omega$ soddisfa le ipotesi della proposizione precedente. 1 e 3 \footnote{Typo di Mamino.} valgono
+	in quanto ogni sottoinsieme di $B$ è in particolare, sottoinsieme di $\omega$ (dunque abbiamo buon ordinamento ed esistenza del massimo). Per ottenere 2 dobbiamo dire che $B$
+	non ha un massimo elemento (cioè è illimitato). Se, infatti, ci fosse un $M \in B$ tale che $\forall b \in B \; b \leq M$, allora avremmo che $B \subseteq s(M)$, $B$ sarebbe dunque finito, contro l'ipotesi.
+	Pertanto $(B,<_{|B}) \sim (\omega,<) \implies |B| = \aleph_0$, dunque se un sottoinsieme di $\omega$ è infinito, allora è necessariamente numerabile.\\
+	Il caso di un sottoinsieme non infinito coincide col caso di un elemento di $\omega$ (che sappiamo essere un sottoinsieme per le proprietà di $\omega$), che è dunque banalmente in bigezione con se stesso (via identità) e quindi finito per definizione.
+\end{proof}
+
+\begin{exercise}
+	\label{ex7.13}
+	Dimostra che se $|A| \leq \aleph_0$ e $f : A \twoheadrightarrow B$ è surgettiva, allora $|B| \leq \aleph_0$.
+\end{exercise}
+
+\begin{soln}
+	Mostriamo che sotto queste ipotesi esiste $h : B \hookrightarrow \omega$ (iniettiva), sia $g : A \hookrightarrow \omega$ e poniamo:
+	\[ h(b) = \min(g[\underbrace{\{a \in A | f(a) = b\}}_{= ``f^{-1}(b)''}]) \, \footnote{Si noti che, essendo $f$ non necessariamente iniettiva, $f^{-1}$ denota la controimmagine, non la funzione inversa, da cui la scelta delle parentesi quadre quando si applica $g$, per evidenziare che stiamo facendo l'immagine di un'insieme.}
+		\]
+	l'insieme tra graffe è non vuoto per surgettività di $f$, dunque il minimo è ben definito.
+	Inoltre, se $h(b) = h(b')$, allora i minimi [che chiamiamo] $g(a)$ e $g(a')$ sono uguali, ma $a$ e $a'$ sono elementi nelle controimmagini rispettivamente di $b$ e $b'$, cioè tali che $f(a) = b$ e $f(a') = b'$.
+	Sappiamo quindi per ipotesi che $g(a) = g(a')$ e per l'iniettività di $g$ segue $a = a'$, da cui $f(a) = f(a')$ (ovviamente sono lo stesso elemento), da cui $b = f(a) = f(a') = b'$.
+\end{soln}
+
+\subsection{Insiemi numerabili in pratica}
+Sapere che, se $|A| \leq \aleph_0$, allora o $A$ è finito o è numerabile, ci fornisce lo strumento essendo per dimostrare la numerabilità di molti insiemi concreti. Spesso, infatti,
+è facile dimostrare che un insieme infinito è tale. Rimane poi da gestire un discorso di disuguaglianze per dire che esso è al più numerabile.\\
+Cominciamo quindi con qualche considerazione generale a proposito delle disuguaglianze fra cardinalità.
+
+\begin{remark}[Compatibilità tra operazioni e ``ordinamentro'' fra cardinalità]
+	Dati gli insiemi $A,B,C$ con $|B| \leq |C|$ allora vale:
+	\begin{align*}
+		|A| + |B| \leq |A| + |C| \qquad & |A|^{|B|} \leq |A|^{|C|} \\
+		|A| \cdot |B| \leq |A| \cdot |C| \qquad & |B|^{|A|} \leq |C|^{|A|}
+	\end{align*}
+\end{remark}
+
+Vale a dire che le operazioni sulle cardinalità sono monotone, nel senso delle disuguaglianze larghe. \underline{Attenzione però} che, in generale, NON sono strettamente monotone!
+
+\begin{proof}
+	Detta $f : B \rightarrow C$ la funzione iniettiva che testimonia che $|B| \leq |C|$ e detto $B' = f[B]$ abbiamo che $|B| = |B'|$ (come al solito per definizione di disuguaglianza
+	tra cardinalità), quindi basta dimostrare le disuguaglianze asserite con $B'$ al posto di $B$. Ora, giocando sul fatto che $B' \subseteq C$ (abbiamo fatto apposta lo scambio tra $B$ e $B'$ per poter usare i contenimenti),
+	si vede che queste disuguaglianze rappresentano, in realtà, relazioni di contenimento fra RHS e LHS. Per esempio:
+	\[ \begin{split}
+		B' \subseteq C &\overset{\text{ovvio}}{\implies} (A \times \{0\}) \cup (B' \times \{1\}) \subseteq (A \times \{0\}) \cup (C \times \{1\}) \; \textcolor{red}{= A \sqcup B' \subseteq A \sqcup C}\\
+					   &\overset{\id_A \times \id_{B'}}{\implies} |(A \times \{0\}) \cup (B' \times \{1\})| \leq |(A \times \{0\}) \cup (C \times \{1\})| \\
+					   &\overset{\text{def.}}{\iff}|A| + |B'| \leq |A| + |C|
+	\end{split}
+		\]
+	Le altre si ottengono allo stesso modo.
+\end{proof}
+
+\begin{remark}[Disuguaglianza di inclusione-esclusione]
+	$|A \cup B| \leq |A| + |B|$.
+\end{remark}
+
+\begin{proof}
+	Basta osservare che la seguente funzione è iniettiva:
+	\[ f : A \cup B \longrightarrow (A \times \{0\}) \cup (B \times \{1\}) : x \longmapsto \begin{cases}
+		(x,0) &\text{se $x \in A$} \\
+		(x,1) &\text{altrimenti}
+	\end{cases}
+		\]
+\end{proof}
+
+Veniamo roa a calcolare le operazioni aritmetiche. Già sappiamo, per il \hyperref[cantor]{teorema di cantor}, 
+che $2^{\aleph_0} > \aleph_0$, per cui mettere un $\aleph_0$ a esponente di qualunque cosa non sia uno 0 o un 1 conduce fuori dal numerabile.
+Tutto il resto invece no.
+
+\begin{proposition}[Operazioni aritmetiche con $\aleph_0$]
+	$\aleph_0 + \aleph_0 = \aleph_0 \cdot \aleph_0 = \aleph_0^{n} = \aleph_0$, con $n \in \omega\setminus\{0\}$.
+\end{proposition}
+
+\begin{proof}
+	Supponiamo di sapere già che $\aleph_0 \cdot \aleph_0 = \aleph_0$, allora possiamo formare la catena di disuguaglianze:
+	\[ \aleph_0 \overset{\text{op. card.}}{=} \aleph_0 + 0 \overset{\text{oss. sopra}}{=} \aleph_0 + \aleph_0 \overset{\text{op. card.}}{=} \aleph_0 \cdot 2 \overset{\text{oss. sopra}}{=} \aleph_0 \cdot \aleph_0 \overset{\text{ipotesi}}{=} \aleph_0
+		\]
+	Da cui per il \hyperref[CB]{Cantor-Bernstein}:
+	\[ \aleph_0 + \aleph_0 = \aleph_0 \cdot \aleph_0 = \aleph_0
+		\]
+	Ora è facile vedere per induzione che $n \in \omega \setminus\{0\} \rightarrow \aleph_0^n = \aleph_0 $, infatti $\aleph_0^1 = \aleph_0$ e $\aleph_0^{n+1} = \aleph_0^n \cdot \aleph_0 \overset{\text{Hp. indutt.}}{=} \aleph_0 \cdot \aleph_ 0 = \aleph_0$.
+\end{proof}
+
+Per concludere la dimostrazione precedente, resta da dimostrare il lemma seguente.
+
+\subsection{Prodotto di numerabili è numerabile}
+
+\begin{lemma}[$\aleph_0 \cdot \aleph_0 = \aleph_0$]
+	$\aleph_0 \cdot \aleph_0 = \aleph_0$, ossia esiste una bigezione fra $\omega \times \omega$ e $\omega$.
+\end{lemma}
+
+\begin{wrapfigure}[15]{r}{2.82cm}
+	\includegraphics[width=2.82cm]{immagini/aleph2.png}
+\end{wrapfigure}
+Ci sono diverse vie per illustrare questo risultato. Per esempio, possiamo rappresentare le coppie $(x,y) \in \omega \times \omega$ sotto la specie di una griglia a maglie quadrate.
+Poi disegnare un percorso che pare visitare tutte le maglie della griglia, con sufficiente apparenza di regolarità, possibilmente, da convincere il lettore che vi debba essere un metodo.
+Infine numeriamo le maglie secondo l'ordine in cui sono visitate dal percorso. Avremo così numerato tutte le coppie di numeri naturali del disegno.\\
+Altrimenti, è possiamo esibire delle bigezioni esplicite, per esempio:
+\[ f(x,y) = 2^x \cdot (2y + 1) - 1 \qquad g(x,y) = \frac{(x+y)^2 + 3x + y}{2}
+	\]
+È possibile scrivere i due numeri della coppia in base 10 a cifre alternate, tipo: $(\textcolor{blue}{64},\textcolor{red}{4096}) \mapsto \textcolor{red}{4}\textcolor{cyan}{0}\textcolor{red}{0}\textcolor{red}{9}\textcolor{cyan}{0}\textcolor{blue}{6}\textcolor{red}{6}\textcolor{red}{4}\textcolor{blue}{4}$.\\
+
+\emph{Dimostrazione.} Consideriamo l'ordinamento su $\omega \times \omega$ definito come segue:
+	\begin{wrapfigure}[8]{l}{2.5cm}
+		\includegraphics[width=2.5cm]{immagini/ordine_omega.png}
+	\end{wrapfigure}
+	\[ \begin{split}
+		(a,b) \prec (a',b') &\Mydef \max(a,b) < \max(a',b') \\
+							&\lor (\max(a,b) = \max(a',b') \land a < a') \\
+							&\lor (\max(a,b) = \max(a',b') \land a = a' \land b < b')
+	\end{split}
+		\]
+	(dove per max sulla coppia si intende il max tra $a$ e $b$) ossia per confrontare $(a,b)$ con $(a',b')$, si confrontano prima $\max(a,b)$ e $\max(a',b')$; a parità si confrontano $a$ ed $a'$ (cioè se hanno una delle due componenti con lo stesso modulo massimo, si passa a confrontare il valore delle prime componenti);
+	se anche queste coincidono, allora si confrontano $b$ e $b'$.\footnote{Come si vede nella figura a lato, nel primo caso, avendo $b$ modulo massimo, ci sono anche punti più a destra, che in quest'ordinamento sono più piccoli (perché hanno un valore più piccolo come massima componente).}\\
+	L'idea è che, in questo modo, le coppie $\prec$ di una certa $(a,b)$ fissata sono tutte contenute nel quadrato $\{0,\ldots,\max(a,b)\} \times \{0,\ldots,\max(a,b)\}$, quindi sono in numero finito, e questo 
+	implica che $(\omega \times \omega, \prec)$ è isomorfo $(\omega,<)$.\\
+	Formalmente, iniziamo col verificare che $\prec$ sia effettivamente un ordine stretto. La proprietà irriflessiva è immediata (perché in tutti gli OR nella definizione stiamo usando l'ordinamento stretto di $\omega$, dunque
+	$\neg (a,b) \prec (a,b)$). Per verificare la proprietà transitiva, prendiamo $(a,b) \prec (a',b) \prec (a'',b'')$ (vorremo vedere che questo implica $(a,b) \prec (a'',b'')$). Dalle disuguaglianze precedenti segue $\max(a,b) \leq \max(a',b') \leq \max(a'',b'')$. Se una di queste disuguaglianze è stretta allora $(a,b) \prec (a'',b'')$ (e avremmo concluso),
+	altrimenti $\max(a,b) = \max(a',b') = \max(a'',b'')$, segue dalla definizione che $a \leq a' \leq a''$.
+	Nuovamente, se una disuguaglianza è stretta abbiamo concluso, altrimenti $a = a' = a''$, quindi, affinché la scrittura iniziale sia ancora vera deve essere necessariamente che $b < b' < b''$, da cui $b < b''$, e quindi anche in questo caso vale $(a,b) \prec (a'',b'')$.\\
+	Per dire che l'ordine è totale osserviamo che se $(a,b)$ e $(a',b')$ non sono né $\prec$ ne $\succ$ allora dobbiamo avere $\max(a,b) = \max(a',b')$, $a = a'$, $b = b'$, ovvero $(a,b) = (a',b')$, dunque l'ordine stretto è anche totale.
+	Ora vogliamo dire che $(\omega \times \omega, \prec) \sim (\omega, <)$ (in questo modo, avendo un'isomorfismo di ordini, avremmo in particolare una bigezione tra $\omega$ e $\omega \times \omega$, dunque il prodotto di cardinalità numerabili è numerabile).\\
+	Partiamo dall'osservazione che se $(a,b) \in \omega \times \omega$ allora:
+	\[ (\omega \times \omega)_{(a,b)} \Mydef \{(x,y) \in \omega \times \omega | (x,y) \prec (a,b)\}
+		\]
+	detto il ``\vocab{segmento iniziale} determinato da $(a,b)$ su $(\omega \times \omega,<)$'', è finito\footnote{È quello che abbiamo detto sopra sulla definizione di $\prec$, pensando alle due figure.}. Infatti $(\omega \times \omega)_{(a,b)} \subseteq s(\max(a,b)) \times s(\max(a,b))$.
+	Ci serve dire \textcolor{red}{1.} $(\omega \times \omega, \prec)$ è bene ordinato \textcolor{red}{2.} $(\omega \times \omega, \prec)$ è illimitato \textcolor{red}{3.} ogni sottoinsieme non vuoto e superiormente limitato di $\omega \times \omega$ ha un massimo.
+	\begin{enumerate}[1.]
+		\item Dato $A \subseteq \omega \times \omega$ con $A \ne \emptyset$, considero $a \in A$. Se $(\omega \times \omega)_a \cap A = \emptyset$ (stiamo considerando il segmento iniziale rispetto a un generico elemento $a\in\omega \times \omega$), allora $a$ è il minimo di $A$ (sta in $a$ e
+		non c'è nulla più piccolo nell'insieme perché l'intersezione col segmento iniziale di $a$ (= cose strettamente più piccole in $(\omega \times \omega,\prec)$) è vuota). Altrimenti $A' = (\omega \times \omega)_{(a,a)} \cap A$ è non vuoto e finito,
+		quindi ha minimo $m$ (perché $\prec$ è un ordine totale). Questo deve essere anche il minimo di $A$, perché se $x \in A \setminus A'$, allora $m \prec a \preceq x$ (dove la seconda disuguaglianza segue per quanto detto nel caso dell'intersezione vuota, mentre la prima perché sia $a$ che $m$ stanno nell'intersezione in cui abbiamo preso il minimo).
+		\item Dato $(a,b) \in \omega \times \omega$, $(a,b) \prec (s(a),s(b))$, dunque $\omega \times \omega$ è illimitato.
+		\item Dato $A \subseteq \omega \times \omega$ non vuoto e superiormente limitato da $(a,b) \in \omega \times \omega$, abbiamo che $A \subseteq (\omega \times \omega)_{(a+1,b+1)}$ è finito (per quanto osservato sopra), quindi ammette massimo perché $\prec$ è totale (abbiamo un numero finito di elementi da confrontare).
+	\end{enumerate}
+$\hfill\square$
+
+\subsection{Numeri interi e razionali}
+Usando la proposizione appena dimostrata, potremmo dimostrare, per esempio, che $\ZZ$ e $\QQ$ sono numerabili, se non fosse che non abbiamo ancora definito questi oggetti. Allo scopo, ricordiamo che - \hyperref[3.73]{esercizio 3.73} - una relazione di equivalenza
+induce un insieme di classi di equivalenza.
+
+\begin{definition}[$\ZZ$]
+	Definiamo $\ZZ$ come l'insieme delle classi di equivalenza su $\omega \times \omega$ indotte dalla relazione:
+	\[ (a,b) \sim_\ZZ (a',b') \Mydef a + b' = b + a' \, \footnote{Morale: ``$(a,b) = a - b$''.}
+		\]
+\end{definition}
+
+\begin{exercise}
+	Dimostrare che $\sim_\ZZ$ è una relazione di equivalenza.
+\end{exercise}
+
+\begin{example}[Operazioni su $\ZZ$]
+	Definiamo $+,-,\cdot$ su $\ZZ$ mediante:
+	\begin{align*}
+		[(a,b)]_\ZZ + [(a',b')]_\ZZ &\Mydef [(a+a',b+b')]_\ZZ \\
+		-[(a,b)]_\ZZ &\Mydef [(b,a)]_\ZZ \\
+		[(a,b)]_\ZZ \cdot [(a',b')]_\ZZ &\Mydef [(a\cdot a' + b \cdot b', a \cdot b' + a' \cdot b)]_{\ZZ}
+	\end{align*}
+	dimostra che $\ZZ$, con queste operazioni, è un anello commutativo con identità: $1 \Mydef [(1,0)]_\ZZ$. 
+\end{example}
+
+\begin{definition}[$\QQ$]
+	Definiamo $\QQ$ come l'insieme delle classi di equivalenza su $\ZZ \times (\omega\setminus\{0\})$ indotte dalla relazione:
+	\[ (n,d) \sim_\QQ (n',d') \Mydef n \cdot d' = n' \cdot d \, \footnote{Morale: ``$(n,d) = \frac nd$''.}
+		\]
+\end{definition}
+
+\begin{exercise}
+	Dimostrare che $\sim_\QQ$ è una relazione di equivalenza.
+\end{exercise}
+
+\begin{exercise}[Operazioni su $\QQ$]
+	Definisci $+,-,\cdot$ e $\square^{-1}$ su $\QQ$ nella maniera ragionevole e dimostra che $\QQ$ è un campo.
+\end{exercise}
+
+\begin{exercise}[Ordinamento su $\QQ$]
+	Definisci la relazione $<$ su $\QQ \times \QQ$ dicendo che $q \in \QQ$ è positivo se $q = [(n,d)]_\QQ$, con $n,d \in \omega\setminus\{0\}$, e dicendo che $a < b$ se e solo se $b - a$ è positivo.
+	Dimostra che questo è un ordine totale e \vocab{denso}, cioè:
+	\[ \forall a,b \in \QQ \; a < b \rightarrow \exists c \in \QQ \; a< c <b \, \footnote{Typo di Mamino.}
+		\]
+\end{exercise}
+
+\begin{note}
+	Gli esercizi precedenti sono tediosi, ma non sono difficili. Nel resto del corso daremo per scontate le proprietà aritmetiche elementari di $\ZZ$ e $\QQ$.
+	D'ora innanzi scriveremo:
+	\[ a - b \Mydef [(a,b)]_{\ZZ} \qquad \frac{n}{d} \Mydef [(n,d)]_\QQ
+		\]
+\end{note}
+
+Per dimostrare la numerabilità di $\ZZ$ e $\QQ$, è comodo richiamare ancora un \hyperref[ex7.13]{esercizio}, però, questa volta, lo risolviamo\footnote{La soluzione riportata è quella di Mamino.}.
+
+\begin{corollary}[Definizione di al più numerabile al contrario]
+	Un insieme $A \ne \emptyset$ è al più numerabile se e solo se esiste $f : \omega \rightarrow A$ surgettiva.
+\end{corollary}
+
+\begin{proof}
+	La freccia $\Longleftarrow$ deriva dall'esercizio citato prima con $A = \omega$ e $B = A$\footnote{Quelli al LHS sono quelli nell'enunciato dell'esercizio, quelli al RHS sono quelli presi dalle ipotesi del corollario.}. Per
+	l'inverso, supponiamo $A$ al più numerabile e mostriamo che c'è sempre una mappa surgettiva tra $\omega$ ed $A$. Sappiamo che se un insieme è al più numerabile, o è finito o è numerabile, se $|A| = \aleph_0$ allora c'è $f$
+	bigettiva (e quindi in particolare surgettiva), se $|A| < \aleph_0$ allora c'è [per definizione] $g : n \rightarrow A$ bigettiva per qualche $n \in \omega\setminus\{0\}$, da questa definiamo:
+	\[ f(x) = \begin{cases}
+		g(x) &\text{se $x < n$} \\
+		g(0) &\text{altrimenti}
+	\end{cases}
+		\]
+	come mappa surgettiva da $\omega$ in $A$ (cioè estendiamo la funzione che già c'è con $n$ a tutti i naturali maggiori o uguali ponendola come g(0)).
+\end{proof}
+
+\begin{notation}[Successione]
+	Con \vocab{successione} (numerabile) intendiamo semplicemente una funzione con dominio $\omega$, per cui:
+	\[ \alpha = \{\alpha_i\}_{i \in \omega} \Mydef \alpha : \omega \longrightarrow : i \longmapsto \alpha_i
+		\]
+	una \vocab{enumerazione} di $A$ è una successione $a = \{a_i\}_{i \in \omega}$ tale che $A = \Imm(a)$, ossia, informalmente, $A = \{a_i | i \in \omega\}$.
+\end{notation}
+
+Il corollario dice che $A \ne \emptyset$ è al più numerabile se e solo se ha un'enumerazione.
+
+\begin{example}
+	$\ZZ$ è numerabile.
+\end{example}
 
 \begin{proof}
 	
 \end{proof}
+
+\begin{example}
+	$\QQ$ è numerabile.
+\end{example}
+
+\begin{proof}
+	
+\end{proof}
+
+Adesso, ci piacerebbe poter dire che, se abbiamo un insieme $A$ al più numerabile, e tutti i suoi elementi sono, a loro volta, insiemi al più numerabili, allora
+$\bigcup A$ è al più numerabile. D'altro canto è ragionevole: se esiste una enumerazione $\{a_i\}_{i \in \omega}$ di $A$, e, per ogni $i \in \omega$, esista una enumerazione $\alpha_i = \{a_{i,j}\}_{j \in \omega}$
+di $a_i$, allora possiamo mandare surgettivamente $\omega \times \omega$ in $A$: $(i,j) \mapsto \alpha_{i,j}$, e, siccome $\omega \times \omega$ è al più numerabile, lo è anche $A$.
+L'ereditariamente è credere di poter fissare una $\alpha_i$ per ogni $i \in \omega$.\\
+Usando l'assioma della scelta potremo farlo, ma, per ora, non abbiamo modo, in generale, di procurarci la funzione $i \mapsto \alpha_i$. Possiamo però 
+assumere di averla, così si corregge il ragionamento impreciso di prima.
+
+
+\begin{proposition}
+	Sia $A = \{a_i | i \in \omega\}$ e sia $\{\alpha_i\}_{i \in \omega}$ una successione di funzioni tali che, per ogni $i \in \omega$, $\alpha_i : \omega \rightarrow a_i$ è 
+	una enumerazione di $a_i$. Allora $|\bigcup A| \leq \aleph_0$.
+\end{proposition}
+
+\begin{proof}
+	Basta osservare che:
+	\[ f : \omega \times \omega \longrightarrow \bigcup A : (i,j) \longmapsto \alpha_i(j)
+		\]
+	è surgettiva.
+\end{proof}
+
+\begin{notation}
+
+\end{notation}
+
 
 \end{document}
