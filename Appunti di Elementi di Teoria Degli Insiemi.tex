@@ -48,10 +48,10 @@
 \newpage
 
 \section*{Premessa}
-Queste dispense sono la quasi esatta trascrizione in \LaTeX\,delle dispense del corso di Elementi di teoria degli insiemi, tenuto dal prof. Marcello Mamino nell'anno accademico 2022-23.
+Queste dispense sono la quasi esatta trascrizione in \LaTeX\,delle dispense del corso di Elementi di teoria degli insiemi, tenuto dal prof. Marcello Mamino nell'anno accademico 2022-23 presso l'Università di Pisa.
 
 \section*{Ringraziamenti}
-Francesco Sorce, Rubens Martino.
+Francesco Sorce, Rubens Martino, Lorenzo Picinelli.
 
 \mbox{}
 \vfill
@@ -2471,6 +2471,7 @@ Accettato che non possiamo dimostrare che $\omega$ si immerge in qualsiasi insie
 \subsection{Operazioni fra le cardinalità finite}
 
 \begin{proposition}[Le operazioni tra cardinalità finite possono essere definite in funzione delle operazioni su $\omega$]
+	\label{op_card_fin}
 	Dati $m,n \in \omega$ vale che:
 	\[ |m| + |n| = |m+n| \qquad |m|\cdot|n| = |m \cdot n| \qquad |m|^{|n|} = |m^n|
 		\]
@@ -2631,9 +2632,9 @@ Possiamo caratterizzare $\omega$ in termini delle proprietà del suo ordinamento
 	\begin{enumerate}
 		\item buono
 		\item illimitato
-		\item tale che ogni sottoinsieme superiormente limitato e non vuoto di $A$ ha un massimo secondo $\prec$.
+		\item tale che ogni sottoinsieme superiormente limitato e non vuoto di $A$ ha un massimo secondo $\prec$
 	\end{enumerate}
-	Allora $(A,\prec) \sim (\omega,<)$.
+	allora $(A,\prec) \sim (\omega,<)$.
 \end{proposition}
 
 Dimostriamo prima un facile lemma.
@@ -2755,7 +2756,7 @@ Tutto il resto invece no.
 
 \begin{proof}
 	Supponiamo di sapere già che $\aleph_0 \cdot \aleph_0 = \aleph_0$, allora possiamo formare la catena di disuguaglianze:
-	\[ \aleph_0 \overset{\text{op. card.}}{=} \aleph_0 + 0 \overset{\text{oss. sopra}}{=} \aleph_0 + \aleph_0 \overset{\text{op. card.}}{=} \aleph_0 \cdot 2 \overset{\text{oss. sopra}}{=} \aleph_0 \cdot \aleph_0 \overset{\text{ipotesi}}{=} \aleph_0
+	\[ \aleph_0 \overset{\text{op. card.}}{=} \aleph_0 + 0 \overset{\text{oss. sopra}}{\leq} \aleph_0 + \aleph_0 \overset{\text{op. card.}}{=} \aleph_0 \cdot 2 \overset{\text{oss. sopra}}{\leq} \aleph_0 \cdot \aleph_0 \overset{\text{ipotesi}}{=} \aleph_0
 		\]
 	Da cui per il \hyperref[CB]{Cantor-Bernstein}:
 	\[ \aleph_0 + \aleph_0 = \aleph_0 \cdot \aleph_0 = \aleph_0
@@ -2871,7 +2872,9 @@ induce un insieme di classi di equivalenza.
 Per dimostrare la numerabilità di $\ZZ$ e $\QQ$, è comodo richiamare ancora un \hyperref[ex7.13]{esercizio}, però, questa volta, lo risolviamo\footnote{La soluzione riportata è quella di Mamino.}.
 
 \begin{corollary}[Definizione di al più numerabile al contrario]
-	Un insieme $A \ne \emptyset$ è al più numerabile se e solo se esiste $f : \omega \rightarrow A$ surgettiva.
+	\label{disugcardnum}
+	Un insieme $A \ne \emptyset$ è al più numerabile se e solo se esiste $f : \omega \rightarrow A$ surgettiva.\footnote{Formalmente da questo momento in poi, avere una
+	funzione surgettiva da un insieme al più numerabile (e nulla di più per ora) ad un altro, ci permette di dire che la cardinalità del primo è $\geq$ cardinalità del secondo (cosa che fin'ora non potevamo dire).}
 \end{corollary}
 
 \begin{proof}
@@ -2888,52 +2891,603 @@ Per dimostrare la numerabilità di $\ZZ$ e $\QQ$, è comodo richiamare ancora un
 
 \begin{notation}[Successione]
 	Con \vocab{successione} (numerabile) intendiamo semplicemente una funzione con dominio $\omega$, per cui:
-	\[ \alpha = \{\alpha_i\}_{i \in \omega} \Mydef \alpha : \omega \longrightarrow : i \longmapsto \alpha_i
+	\[ \alpha = \{\alpha_i\}_{i \in \omega} \Mydef \alpha : \omega \longrightarrow \ldots: i \longmapsto \alpha_i \, \footnote{Stiamo abbreviando la successione elencando direttamente i suoi elementi indicizzati.}
 		\]
-	una \vocab{enumerazione} di $A$ è una successione $a = \{a_i\}_{i \in \omega}$ tale che $A = \Imm(a)$, ossia, informalmente, $A = \{a_i | i \in \omega\}$.
+	una \vocab{enumerazione}\footnote{Moralmente: una successione surgettiva.} di $A$ è una successione $\alpha = \{a_i\}_{i \in \omega}$ tale che $A = \Imm(\alpha)$ (come nella notazione sopra $\alpha$ è la successione che associa ai naturali gli elementi dell'insieme,
+	ed è \underline{surgettiva}, affinché $\Imm(\alpha) = A$), ossia, informalmente, $A = \{a_i | i \in \omega\}$.
 \end{notation}
 
-Il corollario dice che $A \ne \emptyset$ è al più numerabile se e solo se ha un'enumerazione.
+Il corollario sopra, quindi, non ci dice altro che $A \ne \emptyset$ è al più numerabile se e solo se ha almeno un'enumerazione.
 
-\begin{example}
+\begin{example}[L'insieme dei numeri interi è numerabile]
 	$\ZZ$ è numerabile.
 \end{example}
 
 \begin{proof}
-	
+	La funzione $\omega \times \omega : (a,b) \mapsto a - b$ è surgettiva per definizione (è la proiezione al quoziente di $\omega \times \omega$ modulo $\sim_\ZZ$, che sappiamo essere sempre surgettiva, in questo caso stiamo indicando le classi $[(a,b)]_\ZZ$ con $a - b$, ma sono sempre classi di equivalenza), e $\omega \times \omega$ è numerabile\footnote{$|\omega \times \omega| = \aleph_0 \cdot \aleph_0 = \aleph_0$.} dunque $|\ZZ|\leq \aleph_0$.\\
+	D'altro canto, la funzione $\omega \rightarrow \ZZ : n \mapsto [(n,0)]_\ZZ$ è iniettiva, infatti $[(n,0)]_\ZZ = [(m,0)]_\ZZ \iff (n,0) \sim (m,0) \iff n = m$ (per definizione di $\sim_\ZZ$), dunque $\aleph_0 \leq |\ZZ|$, pertanto [per \hyperref[CB]{Cantor-Bernstein}] $|\ZZ| = \aleph_0$.
 \end{proof}
 
-\begin{example}
+\begin{example}[L'insieme dei numeri razionali è numerabile]
 	$\QQ$ è numerabile.
 \end{example}
 
 \begin{proof}
-	
+	Come nell'esempio precedente, la proiezione al quoziente $\ZZ \times (\omega \setminus\{0\}) \rightarrow \QQ : (n,d) \mapsto \frac{n}{d}$ (dove la frazione è un'abbreviazione per la classe di equivalenza $[(n,d)]_\QQ$), è surgettiva per costruzione, inoltre $|\ZZ \times (\omega \setminus\{0\})| = |\ZZ| \cdot |\omega \setminus\{0\}| = \aleph_0 \cdot \aleph_0 = \aleph_0$, dunque vale il 
+	\hyperref[disugcardnum]{corollario} sulla disuguaglianza tra cardinalità, pertanto $\aleph_0 \geq |\QQ|$.\\
+	Viceversa, la funzione $\omega \rightarrow \QQ : n \longmapsto \frac{n}{1}$ è iniettiva, infatti $\frac n1 = \frac m1 \iff n \cdot 1 = m \cdot 1 \iff m = n$, dunque per definizione si ha $\aleph_0 \leq |\QQ|$. Da cui per \hyperref[CB]{Cantor-Bernstein} $|\QQ| = \aleph_0$.
 \end{proof}
 
 Adesso, ci piacerebbe poter dire che, se abbiamo un insieme $A$ al più numerabile, e tutti i suoi elementi sono, a loro volta, insiemi al più numerabili, allora
-$\bigcup A$ è al più numerabile. D'altro canto è ragionevole: se esiste una enumerazione $\{a_i\}_{i \in \omega}$ di $A$, e, per ogni $i \in \omega$, esista una enumerazione $\alpha_i = \{a_{i,j}\}_{j \in \omega}$
-di $a_i$, allora possiamo mandare surgettivamente $\omega \times \omega$ in $A$: $(i,j) \mapsto \alpha_{i,j}$, e, siccome $\omega \times \omega$ è al più numerabile, lo è anche $A$.
-L'ereditariamente è credere di poter fissare una $\alpha_i$ per ogni $i \in \omega$.\\
-Usando l'assioma della scelta potremo farlo, ma, per ora, non abbiamo modo, in generale, di procurarci la funzione $i \mapsto \alpha_i$. Possiamo però 
+$\bigcup A$ è al più numerabile. D'altro canto è ragionevole: se esiste una enumerazione $\{a_i\}_{i \in \omega}$ di $A$ (= $A$ è al più numerabile), e, per ogni $i \in \omega$, esista una enumerazione $\alpha_i = \{a_{i,j}\}_{j \in \omega}$ (= per ogni elemento $a_i \in A$ esiste 
+una enumerazione, dunque ogni elemento (= insieme) è a sua volta al più numerabile)
+di $a_i$, allora possiamo mandare surgettivamente $\omega \times \omega$ in $\bigcup A$: $(i,j) \mapsto \alpha_{i,j}$, e, siccome $\omega \times \omega$ è al più numerabile, lo è anche $A$ (per il solito \hyperref[disugcardnum]{corollario}).
+L'errore è credere di poter fissare una $\alpha_i$ per ogni $i \in \omega$. Usando l'assioma della scelta potremo farlo, ma, per ora, non abbiamo modo, in generale, di procurarci la funzione $i \mapsto \alpha_i$. Possiamo però 
 assumere di averla, così si corregge il ragionamento impreciso di prima.
 
-
-\begin{proposition}
-	Sia $A = \{a_i | i \in \omega\}$ e sia $\{\alpha_i\}_{i \in \omega}$ una successione di funzioni tali che, per ogni $i \in \omega$, $\alpha_i : \omega \rightarrow a_i$ è 
+\begin{proposition}[$|A| \leq \aleph_0 \implies |\bigcup A| \leq \aleph_0$]
+	Sia $A = \{a_i \in A| i \in \omega\}$ e sia $\{\alpha_i\}_{i \in \omega}$ una successione di funzioni\footnote{Come prima stiamo supponendo di averle già, altrimenti ci vuole scelta.} tali che, per ogni $i \in \omega$, $\alpha_i : \omega \rightarrow a_i$ è 
 	una enumerazione di $a_i$. Allora $|\bigcup A| \leq \aleph_0$.
 \end{proposition}
 
 \begin{proof}
-	Basta osservare che:
+	Basta osservare che la funzione:
 	\[ f : \omega \times \omega \longrightarrow \bigcup A : (i,j) \longmapsto \alpha_i(j)
 		\]
-	è surgettiva.
+	è surgettiva e vale quindi il solito \hyperref[disugcardnum]{corollario}.
 \end{proof}
 
 \begin{notation}
-
+	Data una funzione $f : I \rightarrow S$ definiamo:
+	\[ \bigcup_{i \in I} f(i) \Mydef \bigcup f[I]
+		\]
+	Così, per esempio, se $A = \{a_i \in A | i \in \omega\}$:
+	\[ \bigcup_{i \in \omega} a_i = \bigcup A = \{x | \exists i \in \omega \; x \in a_i\}
+		\]
+	(cioè gli elementi degli elementi pescati attraverso l'enumerazione data).
 \end{notation}
 
+\begin{definition}
+	[Parti finite]
+	Definiamo:
+	\[ \psf(A) \Mydef = \{X \in \ps(A) | |X| < \aleph_0\}
+		\]
+\end{definition}
+
+\begin{proposition}[Insieme al più numerabile $\implies$ parti finite al più numerabile]
+	$|A| \leq \aleph_0 \rightarrow |\psf(A)| \leq \aleph_0$.
+\end{proposition}
+
+\begin{proof}
+	Per induzione, il caso $A = \emptyset$ è immediato. Assumiamo $A \ne \emptyset$, sia:
+	\[ \ps^{\leq n} = \{X \in \ps(A) | |X| \leq n\}
+		\]
+	siccome $\psf(A) = \bigcup_{n \in \omega} \ps^{\leq n}(A)$, basta esibire una successione di enumerazione $\alpha_n$ di $\ps^{\leq n}(A)$
+	(cioè una mappa surgettiva da $\omega$ a $\ps^{\leq n}(A)$, in modo da poter usare il \hyperref[disugcardnum]{corollario} ed ottenere che $\ps^{\leq n}(A)$ è al più numerabile,
+	da cui, per la proposizione precedente l'unione è al più numerabile).\\
+	Fissiamo $f : \omega \rightarrow \omega \times A : x \mapsto (f_1(x),f_2(x))$ surgettiva, che esiste perché $A$ è al più numerabile [quindi anche $\omega \times A$ lo è] (per il \hyperref[disugcardnum]{corollario} l'avere una funzione surgettiva da $\omega$
+	ad un altro insieme è un fatto equivalente al fatto che il secondo insieme sia al più numerabile). Costruiamo la successione $\{\alpha_n\}_{n \in \omega}$ per ricorsione.
+	\begin{itemize}
+		\item[$\boxed{\text{Per $n = 0$}}$] abbiamo $\ps^{=0}(A) = \{\emptyset\}$, dunque $\alpha_0$ è la costante [funzione vuota] $\emptyset$.
+		\item[$\boxed{\text{Per $n = s(m)$}}$] poniamo:
+		\[ \alpha_{s(m)} = \begin{cases}
+			\emptyset &\text{se $x = 0$} \\
+			\alpha_m(f_1(x-1)) \cup \{f_2(x - 1)\} &\text{se $x > 0$}
+		\end{cases}
+			\]
+		Dimostriamo per induzione che, per ogni $n \in \omega$, $\alpha_n : \omega \rightarrow \ps^{\leq n} (A)$ è surgettiva.
+		\begin{itemize}
+			\item[$\boxed{\text{caso $n = 0$}}$] Immediato.
+			\item[$\boxed{\text{caso $n = s(m)$}}$] Per ipotesi induttiva $\alpha_m : \omega \rightarrow \ps^{\leq m}(A)$ è surgettiva. Dato $Y \in \ps^{\leq s(m)}(A)$ si danno due casi.
+			O $Y = \emptyset$, allora $Y = \alpha_{s(m)}(0)$. Oppure esiste $y \in Y$. In questo caso $|Y\setminus\{y\}| \leq m$, quindi $Y \setminus\{y\} = \alpha_m(t)$ per qualche $t \in \omega$.
+			Per la surgettività di $f$, $(t,y) = f(x)$ per qualche $x \in \omega$. Quindi:
+			\[ \begin{split}
+				\alpha_{s(m)}(x+1) &= \alpha_m(f_1(x)) \cup \{f_2(x)\} \\
+								   &= (Y \setminus\{y\}) \cup \{y\} = Y
+			\end{split}
+				\]
+		\end{itemize}
+	\end{itemize}
+\end{proof}
+
+\underline{\textbf{Applicazione}} Dimostriamo che l'insieme dei numeri reali algebrici $\A_R$\footnote{Sarebbe $\overline{\QQ} \cap RR$.} è numerabile. Per questa applicazione, assumiamo le proprietà elementari di $\RR$.
+L'insieme $\A_R$ è definito come l'insieme degli $x \in \RR$ che sono zeri di qualche polinomio a coefficienti razionali:
+\[ \A_R \Mydef \{x \in \RR | \exists p(x) \in \QQ[x]\setminus\{0\} \; p(x) = 0\}
+	\]
+I numeri reali che non sono algebrici si dicono \vocab{trascendenti} (= $\RR\setminus(\overline{\QQ} \cap \RR)$), siccome - formalmente, vedremo questo risultato in seguito - $\RR$ non è numerabile, deduciamo dalla numerabilità di
+$\A_R$ che ci sono numeri reali trascendenti.\\
+Dimostriamo, intanto, che l'insieme $\QQ[x]$, dei polinomi a coefficienti razionali nella indeterminata $x$, è numerabile.\\
+Possiamo identificare un polinomio:
+\[ p(x) = a_0 + a_1x + a_2x^2 + \ldots + a_d x^d
+	\]
+con l'insieme dei suoi monomi:
+\[ p(x) = \{a_0,a_1x,a_2x^2,\ldots,a_dx^d\}
+	\]
+e ciascun monomio con la coppia (grado, coefficiente):
+\[ p(x) = \{(0,a_0),(1,a_1),\ldots,(d,a_d)\}
+	\]
+Formalmente, come accade per i numeri, le coppie ordinate, le funzioni, etc., anche i polinomi non sono oggetti atomici della teoria degli insiemi: occorre, in qualche modo, fissare una codifica.
+Quella appena descritta è una codifica ragionevole. Rappresentando i polinomi in questo modo:
+\[ \QQ[x] \subseteq \psf(\omega \times \QQ) \, \footnote{Cioè un sottoinsieme finito (i polinomi hanno grado finito) di un insieme fatto da oggetti del tipo (grado,elemento).}
+	\]
+per cui, essendo che $|\omega \times \QQ| = \aleph_0 \implies |\psf(\omega \times \QQ)| = \aleph_0$, e che $\QQ[x]$ si immerge in quest'ultimo insieme (ad esempio con $\id_{\QQ[x]}$), si ha $|\QQ[x]| \leq \aleph_0$.
+Inoltre è elementare che $\QQ \hookrightarrow \QQ[x]$ (ad esempio mandato tutti i razionali nel polinomio (scritto o meno nella forma codificata con le coppie ordinate non importa) costante, con $a_0 = q$), in tal modo si ha anche l'altra disuguaglianza di 
+cardinalità e quindi $|\QQ[x]| = \aleph_0$.\\
+Venendo ad $\A_R$ abbiamo una facile surgezione:
+\begin{multline*}
+	f : (\QQ[x]\setminus\{0\}) \times \omega \longrightarrow \A_R :\\
+	 (p,i) \longmapsto \text{``la $i$-esima radice di $p$ se questa esiste, altrimenti 0''}
+\end{multline*}
+Vediamo, però, in maggior dettaglio come si può rappresentare $f$ mediante una formula insiemistica.
+\[
+	\text{``$\alpha$ è la $i$-esima radice di $p$''} \equiv \\
+	p(\alpha) = 0 \land |\{x \in \RR | x \leq \alpha \land p(x) = 0\}| = |i|
+\]
+\begin{multline*}
+	y = f(p,i) \equiv \text{``$y$ è la $i$-esima radice di $p$''} \\
+	\land(y = 0 \land \neg \exists \alpha \in \RR \; \text{``$\alpha$ è la $i$-esima radice di $p$''})
+\end{multline*}
+Per separazione esiste, quindi, $f$, e, di conseguenza $|\A_R| \leq \aleph_0$. La disuguaglianza opposta è immediata perché $\QQ \subseteq \A_R$ (è facile scrivere un polinomio in $\QQ[x]$ che abbia come radice un qualsiasi $q \in \QQ$ fissato).
+
+\begin{exercise}
+	Dato un insieme $X$, una funzione $f : X^2 \rightarrow X$, e un sottoinsieme $A \subseteq X$ al più numerabile, dimostra che esiste un $\ol A \subseteq X$ al più numerabile tale che 
+	$f[\ol A \times \ol A] \subseteq \ol A$. Concludi che un gruppo finitamente generato è al più numerabile.
+\end{exercise}
+
+\subsection{Ordini densi numerabili}
+Il prossimo risultato che vedremo è, come al solito, dovuto a Cantor, e caratterizza l'ordine di $\QQ$ a meno di isomorfismi.
+
+\begin{definition}[Densità]
+	Sia $(A,<)$ totalmente ordinato, e $B \subseteq A$. $B$ è \vocab{denso in} $(A,<)$ se:
+	\[ \forall x,y \in A \; x < y \rightarrow \exists z \in B \; x < z < y
+		\]
+	(cioè tra due elementi di $A$ c'è sempre un elemento di $B$). $(A, <)$ è \vocab{denso}, cioè è denso in se stesso, se:
+	\[ \forall x,y \in A \; x < y \rightarrow \exists z \in A \; x < z < y
+		\]
+		(cioè tra due elementi di $A$ c'è sempre qualche elemento di $A$).
+\end{definition}
+
+\begin{example}[$(\QQ,<)$ è denso in se stesso]
+	Abbiamo già osservato, in un esercizio, che $\QQ$ è denso, infatti:
+	\[ x < y \rightarrow x < \frac{x+y}{2} < y
+		\]
+\end{example}
+
+\begin{notexample}[$(\omega,<)$ non è denso in se stesso]
+	L'insieme $\omega$ con il suo ordinamento naturale non è denso, perché $\not\exists z \in \omega \; 0 < z < 1$.
+\end{notexample}
+
+\begin{theorem}[Teorema di isomorfismo di Cantor]
+	\label{isoCantor}
+	Sia $(A,<)$ un insieme totalmente ordinato tale che:
+	\begin{enumerate}[1.]
+		\item $|A| = \aleph_0$
+		\item $(A,<)$ è denso
+		\item $(A,<)$ non ha \vocab{estremi}, ossia non ha né massimo né minimo elemento
+	\end{enumerate}
+	allora $(A,<)\sim(\QQ,<)$.
+\end{theorem}
+
+L'idea è di costruire l'isomorfismo per ricorsione. Ad ogni passo della ricorsione avremo $f_i : A_i \rightarrow Q_i$ isomorfismo con $A_i \subseteq A$ finito 
+e $Q_i \subseteq \QQ$. Dovremo quindi estendere $f_i$ ingrandendo il suo dominio. Supponiamo, per esempio, di
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width = 12cm]{immagini/IsoCantor.png}
+\end{figure}
+
+voler definire $f_{i+1}(x)$ con $x \not \in A_i$. Allora, siccome $A_i$ è finito, per sapere la posizione di $x$ a ciascuno degli elemento di $A_i$, ci basta sapere quale sia l'ultimo elemento prima di $x$,
+e quale sia il primo dopo $x$ - diciamo che, per esempio, sono $a_2$  e $a_3$ rispettivamente. Dovremo allora mandare $x$ in un $f_{i+1}(x)$ con $f_i(a_2) < f_{i+1}(x) < f_i(a_3)$, e questo esiste per la densità di $\QQ$.
+Ragionando simmetricamente, possiamo anche estendere $f_i$, dato un $y \in \QQ$ con $y \not\in Q_i$, in modo tale che $y \in \Imm(f_{i+1})$.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width = 12cm]{immagini/IsoCantor2.png}
+\end{figure}
+
+In definitiva, ci basta quindi fissare un'enumerazione di $A$ e una di $\QQ$, e fare questi passi di estensione in maniera alternata, assicurandoci così di aggiungere al dominio della $f$, uno per uno,
+tutti gli elementi di $A$, e di aggiungere all'immagine, uno per uno, tutti gli elementi di $\QQ$. Ci farà comodo la segue osservazione.
+
+\begin{remark}[L'unione di un insieme di funzioni è una funzione se\dots]
+	Sia $F \subseteq \ps(A \times B)$ un insieme di funzioni. Se:	
+	\[ \forall f_1,f_2 \in F \; f_{1|\Dom(f_1) \cap \Dom(f_2)} = f_{2|\Dom(f_1) \cap \Dom(f_2)}
+			\]
+	ossia $\forall x \in \Dom(f_1) \cap Dom(f_2) \; f_1(x) = f_2(x)$, allora $\bigcup F$ è una funzione: $\bigcup\{\Dom(f) | f\in F\} \rightarrow B$.
+\end{remark}
+
+\begin{proof}
+	
+\end{proof}
+
+Siamo ora pronti per dimostrare formalmente il teorema.
+
+\begin{proof}
+	
+\end{proof}
+
+\begin{corollary}
+	Sia $(A,<)$ un ordine totale con $|A| \leq \aleph_0$. Allora esiste $B \subseteq Q$ tale che $(A,<) \sim (B,<)$ con l'ordinamento indotto su $B$ da $\QQ$.
+\end{corollary}
+
+\begin{note}
+	Volendo, si potrebbe dimostrare questo corollario ripetendo, con qualche variazione, la dimostrazione del teorema. Ora daremo, però,
+	un argomento che, invece, applica il teorema. È comodo definire, prima, il prodotto di ordini.
+\end{note}
+
+\begin{definition}[Prodotto lessicografico di ordini]
+	Dati $(A,<_A)$ e $(B,<_B)$ definiamo:
+	\[ (A,<_A) \times (B,<_B) \Mydef (A \times B, <_{A \times B})
+ 		\]
+	dove $(a,b) <_{A \times B} (a',b') \Mydef b <_B b' \lor (b = b' \land a <_A a')$.
+\end{definition}
+
+Ossia: $(A,<_A) \times (B,<_B)$ è il prodotto cartesiano $A \times B$ munito dell'ordine che CONFRONTA PRIMA LA SECONDA COMPONENTE.
+Visualmente, si può immaginare $(A,<_A) \times (B,<_B)$ come ``$(A,<_A)$ ripetuto $(B,<_B)$ volte''.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width = 12cm]{immagini/ordine_lessicografico.png}
+\end{figure}
+
+\begin{remark}
+	Il prodotto è un ordine. Inoltre se $(A, <_A)$ e $(B,<_B)$ sono ordini totali, allora anche 
+	$(A,<_A) \times (B,<_B)$ lo è.
+\end{remark}
+
+\begin{exercise}[Associatività del prodotto lessicografico]
+	Dati $(A,<_A),(B,<_B)$ e $(C,<_C)$ dimostra che:
+	\[ ((A,<_A) \times (B,<_B)) \times (C,<_C) \times (A,<_A) \times ((B,<_B) \times (C,<_C))
+		\]
+	ossia che il prodotto lessicografico di ordini è associativo a meno di isomorfismi.
+\end{exercise}
+
+Veniamo ora alla dimostrazione del corollario
+
+\begin{proof}
+	
+\end{proof}
+
+\begin{exercise}
+	Dimostra che se $(A,<)$ è denso e $2 \leq |A| \leq \aleph_0$, allora $(A,<)$ è isomorfismo a uno dei seguenti intervalli di $\QQ$:
+	\[ [0,1]_{\QQ} \qquad ]0,1]_{\QQ} \qquad [0,1[_{\QQ} \qquad ]0,1[_{\QQ}
+		\]
+\end{exercise}
+
+\subsection{Il grafo random}
+
+La tecnica di estendere indefinitamente isomorfismi parziali che ci ha permesso di dimostrare il teorema di isomorfismo di Cantor
+si chiama \vocab{back-and-forth}, ed è un metodo fondamentale per trovare isomorfismi fra strutture.\\
+Cogliamo questa occasione per suggerire un esercizio di applicazione della medesima tecnica che è un po' complicato. Si tratta di definire il \vocab{grafo random}
+o \vocab{grafo di Rado}.
+
+\begin{definition}[Grafo]
+	Un \vocab{grafo} $(V,e)$ sull'insieme di vertici $V$ è dato da una relazione $e$ simmetrica ($\forall x,y \in V \; (x,y) \in e \leftrightarrow (y,x) \in e$) e 
+	irriflessiva ($\forall x \in V \; (x,x) \not\in e$).
+\end{definition}
+
+L'idea è che $V$ può essere immaginato come un insieme di punti che possono essere connessi da archi. C'è un arco fra $x$ e $y$ se $(x,y) \in e$.\\
+%
+Partiamo da un'idea intuitiva -  chi ha già seguito un corso di probabilità saprà formalizzare questa cosa in termini precisi. Data una probabilità $p \in ]0,1[$ costruiamo un grafo
+$G_p$ con insieme di vertici $\omega$ come segue. Per ogni coppia $(i,j) \in \omega \times \omega$ con $i < j$ lanciamo una moneta \textbf{che fa testa con probabilità $p$} - tutte queste monete indipendentemente - e, se viene testa, mettiamo un arco 
+fra $i$ e $j$.\\
+Potremmo pensare che i grafi $G_{0.01}$ e $G_{0.99}$ debbano venire molto diversi: uno ha l'1\% degli archi possibili, l'altro ha il 99\%, insomma uno è quasi vuoto, l'altro quasi completo. Avviene, tuttavia, che, con probabilità 1, questi grafi sono isomorfismi, dove, per essere precisi
+[possiamo definire l'isomorfismo tra grafi].
+
+\begin{definition}[Isomorfismo fra grafi]
+	I grafi $(V_1,e_1)$ e $(V_2,e_2)$ sono \vocab{isomorfi} se esiste una bigezione $f : V_1 \rightarrow V_2$ tale che:
+	\[ \forall v,w \in V_1 \; (v,w) \in e_1 \longleftrightarrow (f(v),f(w)) \in e_2
+		\]
+\end{definition}
+
+Vediamo perché. Dati due sottoinsiemi finiti $X$ e $Y$ di $\omega$, e dato un vertice $v \not \in X \cup Y$ la probabilità che $x$ sia connesso da un arco a tutti i vertici di $X$ e a nessuno di quelli di $Y$
+è $p^{|X|} \cdot (1 - p)^{|Y|}$ - come che sia, è un centro numero $>0$ - e ci sono infiniti $v \not \in X \cup Y$. Si capisce, quindi, che con probabilità 1 - ossia certamente - almeno uno di questi vincerà questa lotteria, ossia sarà connesso 
+a tutti gli $X$ e a nessuno degli $Y$. Usiamo l'esistenza di questo $v$ per definire un grafo random.
+
+\begin{definition}[Grafo random]
+	Il grafo $(\omega,e)$ è un \vocab{grafo random} se:
+	\[ \forall X \subseteq \omega \; \forall Y \subseteq \omega\setminus X \; \exists v \in \omega \setminus(X \cup Y) \; \underbrace{X \times \{v\} \subseteq e}_{\forall x\in X \; (x,v) \in e} \land \underbrace{(Y \times \{v\}) \cap e = \emptyset}_{\neg\exists y \in Y \; (y,v) \in e}
+		\]
+\end{definition}
+
+\begin{exercise}
+	Dimostra che esiste un grafo random, ed è unico a meno di isomorfismi.
+\end{exercise}
+
+\newpage
+\section{\texorpdfstring{$\mathbb{R}$ e la cardinalità del continuo}{R e la cardinalità del continuo}}
+
+In questa sezione daremo una definizione di $\RR$ come insieme ordinato. Estenderemo, poi, la definizione ad includere le operazioni di campo, ma senza svolgere le verifiche.
+
+\begin{definition}[Maggiorante, insieme superiormente limitato ed estremo superiore]
+	Sia $(A,<)$ un ordine totale, allora:
+	\begin{itemize}
+		\item $m \in A$ è un \vocab{maggiorante} di $B \subseteq A$ se $\forall x \in B \; x \leq m$
+		\item $B \subseteq A$ è \vocab{superiormente limitato} se ha un maggiorante
+		\item $s\in A$ è \vocab{l'estremo superiore} di $B$ - denotato con $\sup B$ - se $s$ è il minimo dei maggioranti di $B$.
+	\end{itemize}
+\end{definition}
+
+\begin{note}
+	Non sempre gli estremi superiori esistono, e, se $B$ ha un estremo superiore, questo è unico\footnote{È una facile verifica che passa attraverso la definizione di minimo.}.
+\end{note}
+
+\begin{definition}[Ordine totale completo]
+	Un ordine totale $(A,<)$ è \vocab{completo} se ogni $B \subseteq A$ superiormente limitato ha un estremo superiore $\sup B \in A$.\footnote{L'Assioma di Dedekind sarà poi ciò che ci permetterà di dire che i numeri reali sono completi.}
+\end{definition}
+
+\begin{exercise}[$\QQ$ non è completo]
+	Dimostra, usando solo le proprietà di $\QQ$, che l'insieme $\{x \in \QQ | x^2 < 2\}$ non ha estremo superiore in $\QQ$.
+\end{exercise}
+
+In conseguenza dell'esercizio, possiamo dire che $\QQ$ non è completo. Costruiamo ora un ordine completo $(\RR,<)$ che contiene una copia isomorfa di $\QQ$ come sottoinsieme denso.
+
+\begin{definition}[Segmento iniziale]
+	Sia $(A,<)$ un ordine totale. $B \subseteq A$ è un \vocab{segmento iniziale} di $A$ se $\forall x \in B \; \forall y \in A \; y < x \rightarrow y \in B$.\footnote{Moralmente: un insieme di cose strettamente più piccole.}
+\end{definition}
+
+Ossia $B$ è un segmento iniziale di $A$ se, ogniqualvolta $B$ contiene un elemento, $B$ contiene altresì tutti gli elementi minori di questo.
+Un segmento iniziale $B$ di $A$ si dice \vocab{proprio} se $B \ne A$.
+
+\begin{example}[Segmento iniziale principale]
+	Dato $(A,<)$ ordine totale, $A$ stesso e $\emptyset$ sono segmenti iniziali di $A$. Dato $x \in A$, l'insieme:
+	\[ A_x \Mydef \{y \in A | y < x\}
+		\]
+	è un segmento iniziale proprio di di $A$ - detto \vocab{segmento inziale principale} determinato da $x$. Ad esempio $\{x \in \QQ | x < 0 \lor x^2 < 2\}$
+	è un segmento iniziale [proprio] di $\QQ$ che non è principale.
+\end{example}
+
+\begin{note}
+	Useremo nuovamente il concetto di segmento iniziale studiando gli ordinali. Il prossimo concetto, quello di sezione di Dedekind, invece, ci serve unicamente per definire $\RR$.
+\end{note}
+
+\begin{definition}[Sezioni di Dedekind]
+	Una \vocab{sezione} sull'insieme totalmente ordinato $(A,<)$ è un segmento iniziale \textcolor{red}{proprio}
+	e \textcolor{red}{non vuoto} di $A$ che \textcolor{red}{non ha un massimo elemento}.
+\end{definition}
+
+Ossia $B$ segmento iniziale di $A$ è una sezione se $B \ne A$, $B \ne \emptyset$ e $\forall x \in B \; \exists y \in B \; x < y$.
+
+\begin{definition}[Insieme ordinato dei numeri reali]
+	Definiamo i numeri reali come insieme:
+	\[ \RR \Mydef \{x \in \ps(Q) | \, \text{$x$ è una sezione su $x$}\}
+		\]
+	con l'ordine dato da:
+	\[ \forall x,y \in \RR \; x \leq y \Mydef x \leq y
+		\]
+\end{definition}
+
+\begin{proposition}[$\RR$ è completo]
+	$(\RR,<)$ è un ordine totale completo.
+\end{proposition}
+
+Prima della dimostrazione, isoliamo un semplice lemma.
+
+\begin{lemma}[L'unione di segmenti iniziali è un segmento iniziale]
+	Sia $(A,<)$ un ordine totale e $X$ un insieme di segmenti iniziali di $A$. Allora $\bigcup X$ è un segmento iniziale di $A$.
+\end{lemma}
+
+\begin{proof}
+	
+\end{proof}
+
+Ora possiamo dimostrare la proposizione come segue.
+
+\begin{remark}[$\QQ$ si immerge in maniera ordinata e densa in $\RR$]
+	La funzione $\iota : \QQ \rightarrow \RR : a \mapsto \QQ_a = \{x \in \QQ | x < a\}$ immerge $\QQ$ in $\RR$ in maniera strettamente
+	crescente e densa (ossia $\iota(\QQ) = \Imm(\iota)$ è densa in $\RR$).
+\end{remark}
+
+\begin{proof}
+	
+\end{proof}
+
+\begin{notation}[Abuso di immersioni]
+	Siccome le immersioni:
+	\[ \omega \hookrightarrow \ZZ \hookrightarrow \QQ \hookrightarrow \RR
+		\]
+	sono tutte iniettive e crescente, quando non c'è pericolo di confusione, possiamo abusare della notazione immaginando che 
+	queste siano vere e proprie inclusioni [di insiemi, senza passare per le immagini\footnote{Anche più immagini visto che per
+	arrivare in $\RR$ gli insiemi più a sinistra devono passare per una composizione di funzioni.}]:
+	\[ \omega \;\textcolor{red}{\subseteq}\; \ZZ \;\textcolor{red}{\subseteq} \;\QQ \;\textcolor{red}{\subseteq}\; \RR
+		\]
+	In realtà non è vero: per esempio è $\iota[\QQ]$, non $\QQ$, a essere sottoinsieme di $\RR$, ma $\iota[\QQ]$ è in corrispondenza biunivoca, in maniera 
+	canonica, tramite appunto $\iota$, con $\QQ$, e questa corrispondenza preserva tutta la struttura rilevante - l'ordine come abbiamo verificato, ma anche le 
+	operazioni di campo.
+\end{notation}
+
+\begin{corollary}[$\RR$ è più che numerabile]
+	$\aleph_0 < |\RR|$.
+\end{corollary}
+
+\begin{proof}
+	Dall'osservazione sulla notazione di sopra, abbiamo visto che $\QQ \hookrightarrow \RR$, da cui $\aleph_0 = |\QQ| \leq |\RR|$, inoltre $\QQ$ è denso in $\RR$, pertanto 
+	$\RR$ è denso [in se stesso] (per la seconda cosa ci basta che ci sia sempre qualcosa in $\RR$ tra due elementi di $\RR$, se questo qualcosa è un elemento di $\iota[\QQ]$ poco importa,
+	la proprietà è verificata lo stesso).\\ Si vede facilmente che $\RR$ non ha massimo né minimo, quindi se $\RR$ fosse numerabile sarebbe isomorfo, per l'\hyperref[isoCantor]{isomorfismo di Cantor},
+	a $\QQ$. D'altro canto $\RR$ è completo e $\QQ$ no, dunque non possono essere isomorfi, e quindi non può esserci una bigezione $\implies \aleph_0 < |\RR|$.
+\end{proof}
+
+\subsection{Caratterizzazione dei reali come ordine}
+Abbiamo stabilito che $(\RR,<)$ è un ordine completo senza estremi con un sottoinsieme, $\QQ$, denso e numerabile.
+Queste proprietà, a loro volta, caratterizzano l'insieme ordinato $(\RR,<)$ a meno di isomorfismi.
+
+\begin{proposition}[Caratterizzazione di $(\RR,<)$]
+	Sia $(A,<)$ un ordine totale completo senza estremi, supponiamo che esista $B \subseteq A$ numerabile e denso in $A$, allora 
+	$(A,<)$ è isomorfo a $(\RR,<)$.
+\end{proposition}
+
+\begin{proof}
+	
+\end{proof}
+
+Per completezza, definiamo ora la struttura di campo di $\RR$. Non verificheremo le proprietà, e neanche la correttezza di queste definizioni.
+
+\begin{definition}[Caompo ordinato]
+	$(F,0,1,+,\cdot,\leq)$ è un \vocab{campo ordinato} se:
+	\begin{itemize}
+		\item $(F,0,1,+,\cdot)$ è un campo
+		\item $(F,<)$ è un'ordine totale\footnote{Come ribadito più volte è indifferente usare $<$ o $\leq$.}
+		\item $\forall x,y,z \in F \; x < y \rightarrow x + z < y + z$
+		\item $\forall x,y \in F (0 < x \land 0 < y) \rightarrow 0 < x \cdot y$
+	\end{itemize}
+	(le ultime due richieste sono le proprietà di \textbf{compatibilità} della struttura di campo [= compatibilità delle operazioni] con l'ordinamento $<$ di $F$).
+\end{definition}
+
+\begin{definition}[Somma su $\RR$]
+	Dati $x,y \in \RR$ definiamo:
+	\[ x + y \Mydef \{a + b | a \in x \land b \in y\}
+		\]
+\end{definition}
+
+\begin{definition}[Prodotto su $\RR$]
+	Dati $x,y \in \RR$ con $x > 0$ e $y > 0$ definiamo:
+	\[ x \cdot y \Mydef \{q \in \QQ | q \leq 0\} \cup \{a\cdot b | a \in x  \land b \in y \land a > 0 \land b > 0\}
+		\]
+\end{definition}
+
+Definiamo quindi $-x$ tramite l'inverso additivo ed il prodotto nei casi $x < 0$, $y>0$ etc. tramite l'uso della regola dei segni.
+
+\begin{theorem}[Unicità di $(\RR,0,1,+,\cdot,\leq)$]
+	$\RR$ dotato delle operazioni definite, è l'unico campo ordinato completo a meno di isomorfismo.
+\end{theorem}
+
+La dimostrazione di questo teorema, talvolta, si vede nei corsi di analisi 1, noi non la studieremo, Per chi fosse interessato: LIBRO DI TESTO, capitolo 10; NOTE DEL PROF. Di Nasso, 
+fascicolo 4; LEZIONE 16 dell'a.a. 2020-21.
+
+\subsection{\texorpdfstring{La cardinalità del continuo è $2^{\aleph_0}$}{2 to the power of aleph 0}}
+Torniamo ad una questione più strettamente insiemistica.
+
+\begin{theorem}[Cardinalità del continuo]
+	$|\RR| = 2^{\aleph_0}$
+\end{theorem}
+
+Questo teorema ci dice, in un modo ancora diverso, che $\RR$ è più che numerabile - poiché $\aleph_0 < 2^{\aleph_0}$ (per Cantor) - ma, in più, caratterizza
+anche esattamente la cardinalità di $\RR$.
+
+Prima della dimostrazione formale, vediamo Intuitivamente perché il risultato è vero. Per definizione $\RR \subseteq \ps(\QQ)$, quindi si immerge nelle parti, da cui
+$|\RR| \leq 2^{\aleph_0}$, mentre la disuguaglianza da dimostrare è $2^{\aleph_0} \leq |\RR|$.\\
+Esibiamo una funziona iniettiva $\ps(\omega) \rightarrow \RR$:
+\[ f : \ps(\omega) \longrightarrow \RR : S \longmapsto 0.a_0^Sa_1^Sa_2^Sa_3^S\ldots\, \footnote{Sarebbe la scrittura decimale.} \qquad \text{con} \; a_i^s = \begin{cases}
+	0 &\text{$i \not\in S$} \\
+	1 &\text{$i \in S$}
+\end{cases}
+	\]
+Per esempio $S = \{2,3,5,7,11,\ldots\}$ dà $f(S) = 0.001101010001\ldots$. È chiaro che:
+\[ f(S) = f(T) \iff \forall i \in \omega \; a_i^S = a_i^T \iff \forall i \in \omega \; i \in S \leftrightarrow i \in T \iff S = T
+	\]
+Non è difficile formalizzare questa dimostrazione. Basterebbe definire $0.a_1a_2a_3\ldots$ come $\sum_{i = 0}^\infty a_i 10^{-i}$, poi $\sum_{i = 0}^\infty$
+come $\sup\left\{\sum_{i = 0}^n\right\}$, poi $\sum_{i = 0}^n$ per ricorsione numerabile, poi dimostrare le proprietà aritmetica rilevanti. Noi sfrutteremo la stessa idea, 
+ma formulando la dimostrazione in termini di ordini.
+
+\subsection{Operazioni che coinvolgono la cardinalità del continuo}
+Prima di dimostrare il teorema, sviluppiamo un po' di aritmetica della cardinalità $2^{\aleph_0}$. \textcolor{red}{Questi lemmi sono importanti, e serviranno per calcolare 
+la cardinalità di insiemi concreti.}
+
+\begin{remark}
+	$(2^{\aleph_0})^{\aleph_0} = 2^{\aleph_0}$.
+\end{remark}
+
+\begin{proof}
+	Basta osservare che per le proprietà delle operazioni sulla cardinalità $(2^{\aleph_0})^{\aleph_0} = 2^{\aleph_0 \cdot \aleph_0}$, e, ricordando
+	che prodotto di numerabili è numerabile, si ottiene $2^{\aleph_0 \cdot \aleph_0} = 2^{\aleph_0}$.
+\end{proof}
+
+\begin{lemma}[Assorbimento della cardinalità al più continua]
+	Siano $\alpha$, $\beta$ abbreviazioni per o ``finito'' o $\aleph_0$ o $2^{\aleph_0}$, allora:
+	\[ \alpha + \beta = \alpha \cdot \beta = \max(\alpha,\beta)
+		\]
+	\textcolor{red}{eccetto il caso} $\alpha \cdot 0 = 0 \cdot \beta = 0$.
+\end{lemma}
+
+\begin{proof}
+	Somme e prodotti di cardinalità finite sono finite (per il \hyperref[op_card_fin]{teorema} sulle
+	operazioni con cardinalità finite, la somma di cardinalità finite è la cardinalità dalla somma in $\omega$ che per definirne
+	è finita, idem prodotto e potenza). Supponiamo quindi $\aleph_0 \leq \beta$ e, senza perdita di generalità, $\alpha < \beta$.
+	Abbiamo:
+	\[ \beta = \beta + 0, \beta \cdot 1 \overset{\text{compatib. op. cardin.}}{\leq} \alpha + \beta, \alpha \cdot \beta \overset{\text{compatib. op. cardin.}}{\leq} 2\beta, \beta^2 = \beta
+		\]
+	dove l'ultima uguaglianza vale perché sia $\aleph_0^2 = \aleph_0$ (e siamo nel caso in cui $\beta$ o è $\aleph_0$ o è $2^{\aleph_0}$), sia $2^{\aleph_0} \leq (2^{\aleph_0})^2 \leq (2^{\aleph_0})^{\aleph_0}  = \aleph_0$ (le disuguaglianze 
+	sono al solito tutte giustificate dall'osservazione sulla compatibilità di $\leq$ con le operazioni fra cardinalità). Pertanto si conclude l'enunciato usando Cantor-Bernstein nella serie di disuguaglianze sopra, 
+	che ci danno proprio la tesi (ricordando che avevamo scelto WLOG $\beta$ come massimo).
+\end{proof}
+
+\begin{lemma}[$\alpha^{\aleph_0} = 2^{\aleph_0}$]
+	Se $2 \leq \alpha \leq 2^{\aleph_0}$ allora $\alpha^{\aleph_0} = 2^{\aleph_0}$.
+\end{lemma}
+
+\subsection{Sottrarre un  numerabile dal continuo}
+\newpage
+\section*{Stato del corso}
+\addcontentsline{toc}{section}{Stato del corso}
+È un dato di fatto - il primo teorema di incompletezza di Gödel - che ogni teoria \vocab{calcolabile} - i cui assiomi possano, cioè, essere elencati 
+in maniera meccanica - è necessariamente incompleta. L'incompletezza non è quindi un difetto, o meglio, che lo sia oppure no è irrilevante, perché 
+non può essere evitata.\\
+Tuttavia, gli assiomi che abbiamo introdotto fino ad ora lasciano aperte lacune che sarebbe desiderabile colmare.
+
+\begin{enumerate}[1.]
+	\item Sarebbe ragionevole che questi insiemi esistessero:
+	\[ \{\emptyset, \{\emptyset\}, \{\{\emptyset\}\}, \{\{\{\emptyset\}\}\}, \ldots\}
+		\]\[ \{\omega, s(\omega), s(s(\omega)), s(s(s(\omega))),\ldots\}
+			\]
+	Però gli assiomi 1-7 non bastano né per dimostrarne l'esistenza, né - e questo sarebbe disastroso - permettono di escluderla.
+	\item Alcune questioni sulle cardinalità, come per esempio la confrontabilità, non possono essere decise sulla base dei solo assiomi 1-7.
+	Inoltre ci mancano risultati desiderabili per via delle applicazioni, segnatamente il lemma di Zorn.
+	\item Vi sono insiemi la cui esistenza vorremmo escludere. Per esempio vorremmo che l'equazione $X = \{X\}$ non avesse soluzioni, e farebbe comodo escludere 
+	l'esistenza di qualcosa del tipo $Y = \{\{\{\{\{\ldots\}\}\}\}\}$ con infinite parentesi annidate. Il guaio qui non è grave, ma questi oggetti contraddicono, in parte, l'intuizione che vorremmo 
+	concretizzare negli assiomi della teoria degli insiemi. Noi vorremmo che un insieme fosse identificabile dalla sua struttura. Mi spiego, per esempio $\emptyset$ è identificato dal fatto di non avere elementi,
+	$\{\emptyset\}$ è identificato dal fatto di avere un solo elemento che non ha elementi etc. per tutti gli insiemi che conosciamo, ma cosa dire di $Y$? $Y$ ha un elemento $Y_1$, che ha un elemento $Y_2$,
+	che ha \ldots e la stessa descrizione si potrebbe applicare anche a $Y_1$, e anche a $Y_2$ \ldots Sono tutti uguali? 
+\end{enumerate}
+
+Queste tre lacune saranno colmate dai tre assiomi che ancora ci mancano: rispettivamente l'assioma del rimpiazzamento, l'assioma della scelta e l'assioma di buona fondazione. La teoria risultante sarà,
+inevitabilmente, incompleta - per esempio non decide il problema del continuo: l'esistenza di cardinalità intermedie fra $\aleph_0$ e $2^{\aleph_0}$ - ma è la fondazione meglio accettata della matematica.
+
+\newpage
+\section{I buoni ordinamenti}
+Il nostro prossimo obiettivo è definire e studiare la classe dei \vocab{numeri ordinali}. Questa può essere pensata come la più vasta classe
+- dotata di un ordinamento totale definito per mezzo di una formula - su cui sia corretto ragionare per induzione forte. Conteremo, quindi, sugli ordinali per formulare 
+l'induzione e la ricorsione transfinita, procedimenti che superano la forza dimostrativa dell'induzione e della ricorsione aritmetica - per esempio permettendo di ottenere 
+il teorema di Cantor-Lebesgue sugli insiemi di unicità.\\
+Siccome l'induzione forte equivala al principio del minimo, studieremo i buoni ordini. In questa sezione, dimostreremo il risultato seguente.
+
+\begin{theorem}[Isomorfismo di buoni ordini]
+	Siano $(A,<_A)$ e $(B,<_B)$\footnote{Nel seguito scriveremo semplicemente $(A,<)$ e $(B,<)$ per comodità.} insiemi bene ordinati, allora vale \textcolor{red}{una e una sola} delle seguenti:
+	\begin{itemize}
+		\item $(A,<_A)$ è isomorfo a un segmento iniziale proprio di $(B,<_B)$
+		\item $(A,<_A)$ e $(B,<_B)$ sono isomorfi
+		\item $(B,<_B)$ è isomorfo a un segmento iniziale di $(A,<_A)$
+	\end{itemize}
+\end{theorem}
+
+Ossia se definiamo:
+\[ (A,<_A) \prec (B,<_B) \Mydef \exists C \; \text{$C$ segmento iniziale proprio di $(B,<_B) e$} \, (A,<_A) \sim C
+	\]
+allora $\prec$ soddisfa le proprietà formali di un ordinamento totale fra le classi di isomorfismo di buoni ordini.
+Definiamo altresì:
+\[ (A,<_A) \preceq (B,<_B) \Mydef (A,<_A) \prec (B,<_B) \lor (A,<_A) \sim (B,<_N)
+	\]
+ossia ``$(A,<_A)$ è isomorfo a un segmento iniziale [proprio o meno] di $(B,<_B)$''.\\
+Richiamiamo le definizioni fondamentali.
+
+\begin{definition}[Buon ordinamento]
+	$(A,<)$ è un \vocab{buon ordinamento} se ogni $B \subseteq A$ non vuoto ha un minimo elemento.
+\end{definition}
+
+\begin{definition}[Segmento inziale]
+	Dato un ordine totale $(A,<)$, $B \subseteq A$ è un \vocab{segmento inziale} se $\forall b \in B \; \forall x \in A \; x < b \rightarrow x \in B$.
+\end{definition}
+
+\begin{definition}[Segmenti iniziali propri e principali]
+	Il segmento iniziale $B$ è \vocab{proprio} se $B \ne A$. Il segmento iniziale $B$ è \vocab{principale} se [è della forma]:
+	\[ B = A_a \Mydef \{x \in A | x < a\}
+		\]
+	per qualche $a \in A$, e, in questo caso, si dice \vocab{segmento iniziale principale determinato da $a$}.
+\end{definition}
+
+È chiaro che un segmento iniziale principale, $A_a$, è \underline{sempre} proprio, perché $a \not \in A_a$, e nel caso dei buoni ordini questa è una doppia implicazione (quindi se è proprio è 
+anche principale).
+
+\begin{proposition}[proprio $\implies$ principale nei buoni ordini]
+	Ogni segmento iniziale proprio di un buon ordine è principale.
+\end{proposition}
 
 \end{document}
