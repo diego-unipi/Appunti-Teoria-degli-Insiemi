@@ -1562,7 +1562,9 @@ a meno di isomorfismi.
 
 \begin{notation}[Relazione di ordine su $\omega$]
 	Dati $m,n \in \omega$, scriviamo:
-	\[ m < n \Mydef m \in n \footnote{Per essere precisi non stiamo usando $\in$ come una relazione (visto che abbiamo assunto all'inizio che fosse un simbolo del linguaggio della teoria degli insiemi), ma stiamo definendo $< \Mydef \{(m,n) \in \omega \times \omega | m \in n\}$.}
+	\[ m < n \Mydef m \in n \footnote{Per essere precisi non stiamo usando $\in$ come una relazione (visto che abbiamo assunto all'inizio che fosse un simbolo del linguaggio della teoria degli insiemi),
+	ma stiamo definendo $< \Mydef \{(m,n) \in \omega \times \omega | m \in n\}$. Inoltre se aggiungiamo la diagonale $\Delta_\omega$ a $<$, otteniamo $\leq$ (cioè $m \leq n \Mydef (m \in n) \lor (m = n)$), che, come visto, è legata alla corrispondente relazione d'ordine 
+	stretto, e godrà di tutte le stesse proprietà (come vedremo man mano).}
 		\]
 \end{notation}
 
@@ -1688,19 +1690,19 @@ Possiamo ora dimostrare la proposizione iniziale.
 \end{proof}
 
 \begin{corollary}[Più piccolo = contenuto]
-	$\forall m,n \in \omega (m \leq n \leftrightarrow m \subseteq n$).
+	$\forall m,n \in \omega (m \leq n \leftrightarrow m \subseteq n$).\footnote{Naturalmente il lemma vale anche con $<$ e $\subsetneq$.}
 \end{corollary}
 
 \begin{proof}
-	Siccome $\omega$ è totalmente ordinato, si danno due casi (nel primo dimostro $\rightarrow$, nel secondo dimostro che la negazione della premessa implica la negazione della conseguenza, che è equivalente a $\leftarrow$):
-	\[  \begin{split}
-		& m \leq n \implies \forall x \in \omega (x < m \rightarrow x < n) \implies \forall x \in \omega (x \in m \rightarrow x \in n) \implies m \subseteq n \\
+	Siccome $\omega$ è totalmente ordinato, si danno due casi (nel primo dimostro $\rightarrow$, nel secondo dimostro che la negazione della premessa implica la negazione della conseguenza, che è equivalente [via contronominale] a $\leftarrow$):
+	\begin{align*}
+		& m \leq n \implies \forall x \in \omega (x < m \rightarrow x < n) \overset{\text{def. $<$}}{\implies} \forall x \in \omega (x \in m \rightarrow x \in n) \overset{\text{def. $\subseteq$}}{\implies} m \subseteq n \\
 	    & n < m \implies n \in m \; \text{tuttavia} \; n \not\in n \; \text{quindi non può essere che $m \subseteq n$ ovvero} \; m \not\subseteq n
-		\end{split}
-			\]
-	($n \not \in n$ perché abbiamo dimostrato che $<$ è di ordine stretto su $\omega$, quindi irriflessiva).
+	\end{align*}
+	($n \not \in n$ perché abbiamo dimostrato che $<$ è di ordine stretto su $\omega$, quindi irriflessiva, inoltre, nella dimostrazione del primo caso, si osserva che nel secondo passaggio è
+	indifferente usare $<$ o $\leq$ nell'enunciato e dimostrazione del corollario\footnote{Mamino li mischia, ma valgono entrambi gli enunciati e le dimostrazioni.}.
 \end{proof}
-
+\pagebreak
 \subsection{Induzione forte e principio del minimo}
 \begin{theorem}
 	[Principio di induzione - forma forte]
@@ -2366,13 +2368,13 @@ Con gli assiomi introdotti fino ad ora, possiamo solo dimostrare che finito $\ri
 	Quindi $f[B] \subsetneq n$ (volendo perché la restrizione di $f$ a $B$ è ancora iniettiva ma non surgettiva\footnote{È conseguenza del fatto che $B$ sia un sottoinsieme proprio e che $f$ è bigettiva.}, quindi non può
 	avere in arrivo tutto $n$). D'altro canto, per l'iniettività di $f$, $|f[B]| = |B| \overset{\text{Hp. assurda}}{=} |A| = n$.
 	Ci basta quindi dimostrare per induzione su $n$, che:
-	\[ \forall n \in \omega \; \forall B \subseteq n (|B|=|n|\longrightarrow B = n)
+	\[ \forall n \in \omega \; \forall B \subseteq n (|B|=|n|\rightarrow B = n)
 		\]
 	(cioè che ogni sottoinsieme di un numero naturale con la stessa cardinalità è il numero stesso) in questo modo avremmo $f[B] = f[A] = n$ (prima avevamo un sottoinsieme di $A$ non di $n$), che è assurdo in quanto abbiamo detto che $f[B] \subsetneq n$.
 	\begin{itemize}
 		\item[$\boxed{\text{caso $n = \emptyset$}}$] Necessariamente $B = \emptyset$, quindi $B = n$ come richiesto dalla tesi.
 		\item[$\boxed{\text{caso $n = s(m)$}}$] L'ipotesi induttiva è $\forall C \subseteq m \; |C| = |m| \rightarrow C = m$, vogliamo dimostrare che $\forall B \subseteq s(m) \; |B| = |s(m)| \rightarrow B = s(m)$.\\
-		Sia $f : s(m) \rightarrow B$ bigettiva (come ipotesi antecedente). Si danno due casi. Se $f(m) = m$, allora sia $C := \Imm(f_{|m})$, e, per l'iniettività di $f$, si ha $|C| = |m|$, quindi, per l'ipotesi induttiva (essendo $C \subseteq m$), vale $C = m$. Ma in questo modo $B = \Imm(f) = C \cup \{\underbrace{f(m)}_{= m}\} = m \cup \{m\} = s(m) = n$.
+		Sia $f : s(m) \rightarrow B$ bigettiva (come ipotesi antecedente). Si danno due casi. Se $f(m) = m$ (ricordiamo che l'insieme d'arrivo è un sottoinsieme di $s(m)$), allora sia $C := \Imm(f_{|m})$, e, per l'iniettività di $f$, si ha $|C| = |m|$, quindi, per l'ipotesi induttiva (essendo $C \subseteq m$), vale $C = m$. Ma in questo modo $B = \Imm(f) = C \cup \{\underbrace{f(m)}_{= m}\} = m \cup \{m\} = s(m) = n$.
 		\begin{figure}[H]
 			\centering
 			\includegraphics[width = 1.95cm]{immagini/cassetti1.png}
@@ -2416,7 +2418,8 @@ stabilisce una corrispondenza biunivoca fra $\omega$ e $\omega \setminus\{0\} \s
 		\id_A(a) &\text{altrimenti}
 	\end{cases}
 		\]
-	È immediato vedere che $\Imm(g) = A \setminus \{f(0)\} \subsetneq A$ (l'unico escluso è lo 0, perché non può esserci un elemento che ha come controimmagine un elemento di $\omega$ il cui successore sia 0, perché per quanto visto non esiste), dunque $A$ è in bigezione con un suo sottoinsieme proprio.
+	È immediato vedere che $\Imm(g) = A \setminus \{f(0)\} \subsetneq A$ (l'unico escluso è lo 0, perché non può esserci un elemento che ha come controimmagine un elemento di $\omega$ il cui
+	successore sia 0, perché per quanto visto non esiste), dunque $A \hookrightarrow \Imm(g) \subsetneq A$, pertanto è in bigezione con un suo sottoinsieme proprio, per cui non può essere Dedekind-finito.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width = 4.5cm]{immagini/cassetti3.png}
@@ -2457,16 +2460,48 @@ Accettato che non possiamo dimostrare che $\omega$ si immerge in qualsiasi insie
 
 \begin{proof}
 	Sia $A$ finito e $B \subseteq A$. Se, per assurdo $B$ fosse infinito, avremmo $|A| < |B| \leq |A| \, \lightning$ (poiché $|A| = |n|$ per definizione di finito e per la proposizione precedente tutti gli $n$ si immergono in un insieme infinito si ha $A \rightarrow n \hookrightarrow B$, dove la prima funzione è bigettiva e la seconda iniettiva, e per le proprietà di composizione delle 
-	funzioni iniettive, la composizione di queste ultime due ci dà $A \hookrightarrow B$)
+	funzioni iniettive, la composizione di queste ultime due ci dà $A \hookrightarrow B$, da cui $A \hookrightarrow A$, ma essendo finito è anche Dedekind-finito, quindi questo è assurdo).
 \end{proof}
 
 \begin{exercise}
 	Dimostrare che:
 	\begin{itemize}
-		\item se $|A| < |n|$ con $n \in \omega$, allora $|A| = |m|$ per qualche $m < n$.
+		\item se $|A| < |n|$ con $n \in \omega$, allora $|A| = |m|$ per qualche $m < n$.\footnote{Fondamentalmente ogni sottoinsieme di $\omega$ (che non è detto sia un elemento di $\omega$) è in bigezione con un elemento di $\omega$.}
 		\item se $A$ è finito e $f : A \rightarrow B$, allora $f[A]$ è finito.
 	\end{itemize}	
 \end{exercise}
+
+\begin{soln}
+	Verifichiamo le due cose separatamente:
+	\begin{itemize}
+		\item Se $|A|<|n|$, allora esiste una funzione $f : A \hookrightarrow n$ iniettiva ma non surgettiva, in particolare si ottiene che $f[A]\subsetneq n$,
+		con $|A| = |f[A]|$, osservando che $n$ è finito e usando il corollario sopra, si ottiene che $f[A]$ è finito, in particolare $|A| = |f[A]| = m$, per $m \in \omega$.
+		Infine, abbiamo che $|m| = |A| < |n|$, ci resta da osservare che:
+		\[ \forall m,n \in \omega \; |m|<|n|\longleftrightarrow m <n
+			\]
+		La freccia $\leftarrow$ è banale, perché, per un noto corollario $m < n \leftrightarrow m \subsetneq n$, che implica $|m| < |n|$ (basta usare $\id_m$).\footnote{Per concludere si può osservare,
+		alternativamente, che $n$ finito implica Dedekind-finito, dunque non può essere in bigezione con un suo sottoinsieme in proprio $m$ (di fatto stiamo nascondendo sotto al tappeto la definizione di $<$ tra cardinalità),
+		dunque la disuguaglianza [ottenuta da $m \subseteq n$] deve essere stretta.}\\
+		Viceversa, posto $|m|<|n|$, se per assurdo fosse $m \geq n$, allora per definizione di $\leq$ tra cardinalità $|n| \leq |m|$, da cui $|m|<|n|\leq |m| \implies |m| < |m|$, che è assurdo perché viola il principio dei cassetti.
+		\item Diamo per buono che in generale $|f[A]| \leq |A|$. Ora $|A|$ è finito, dunque, per il corollario sopra, il suo sottoinsieme $g[f[A]]$ è finito (con $g$ la mappa iniettiva da $f[A]$ ad $A$), pertanto [poiché $g$ iniettiva]
+		$|f[A]| = |g[f[A]]| = m$, per $m \in \omega$, e quindi abbiamo che $f[A]$ è finito.\\
+		Ci resta da verificare l'assunzione iniziale, possiamo farlo con la seguente funzione:
+		\[ g : f[A] \longrightarrow A : x \longmapsto \min_{<_{|n}}\{h[f^{-1}(x)]\}
+			\]
+		dove $<_{|n}$ è l'ordine usuale di $\omega$ ristretto ad $n$ e $h$ è la bigezione che esiste per ipotesi da $A$ ad $n$.
+		Vediamo che $g$ è iniettiva:
+		\[	\begin{split}
+			g(x) = g(y) &\iff \min_{<_{|n}}\{h[f^{-1}(x)]\} = \min_{<_{|n}}\{h[f^{-1}(y)]\} \\
+						&\iff h(a) = h(b)
+		\end{split}
+			\]
+		con $a \in f^{-1}(x)$ e $b \in f^{-1}(y)$ (in altre parole abbiamo dato un nome ai minimi). Ora, essendo $h$ bigettive quanto scritto equivale ad $a  = b$, che, applicando $f$,
+		equivale a:
+		\[ x = f(a) \overset{a = b}{=} f(b) = y
+			\]
+		per cui $g$ è iniettiva e vale la disuguaglianza iniziale.
+	\end{itemize}
+\end{soln}
 
 \subsection{Operazioni fra le cardinalità finite}
 
@@ -2503,16 +2538,16 @@ Accettato che non possiamo dimostrare che $\omega$ si immerge in qualsiasi insie
 			|m| \cdot |s(a)| \overset{\text{oss. iniziale}}{=}\quad& |m| \cdot (|a| + |1|) \\
 						 \overset{\text{propr. operaz. card.}}{=}& |m| \cdot |a| + \underbrace{|m| \cdot |1|}_{|m \times \{0\}| = |m|} \\
 						 \overset{\text{Hp. indutt}}{=}\quad& |m \cdot a| + |m| \\
-						 \overset{\text{propr. $+$ card.}}{=}\quad& |m \cdot a + m| \\
+						 \overset{\text{propr. $+$ card. fin.}}{=}\quad& |m \cdot a + m| \\
 						 \overset{\text{def. di $\cdot$}}{=}\quad\;& |m \cdot s(a)|
  		\end{split} 
 			\]
 	\end{itemize}
 	\textcolor{purple}{$|m|^{|n|} = |m^n|$}
 	\begin{itemize}
-		\item[$\boxed{\text{caso $n = 0$}}$] $|m|^{|0|} =  |{}^{0}m| = |1| = |m^0|$ (l'unica funzione possibile dal vuoto a $m$ è $f = \emptyset$\footnote{E quindi ${}^0m = \{f : \emptyset \rightarrow m\} = \{\emptyset\} = 1$, o in alternativa si può pensare che
+		\item[$\boxed{\text{caso $n = 0$}}$] $|m|^{|0|} =  |{}^{0}m| = |\{f : 0 \rightarrow m\}| = |\{\emptyset\}| =  |1| = |m^0|$ (l'unica funzione possibile dal vuoto a $m$ è $f = \emptyset$\footnote{E quindi ${}^0m = \{f : \emptyset \rightarrow m\} = \{\emptyset\} = 1$, o in alternativa si può pensare che
 		$f \subseteq \emptyset \times m = \emptyset \implies f \in \ps(\emptyset) = \{\emptyset\}$ e quindi $f = \emptyset \implies {}^0m = \{f\} = \{\emptyset\} = 1$.}).
-		\item[$\boxed{\text{caso $n = s(a)$}}$] Per ipotesi induttiva abbiamo $|m|^|a| = |m^a|$, da cui possiamo verificare la tesi come segue:
+		\item[$\boxed{\text{caso $n = s(a)$}}$] Per ipotesi induttiva abbiamo $|m|^{|a|} = |m^a|$, da cui possiamo verificare la tesi come segue:
 		\[ \begin{split}
 			|m|^{|s(a)|} \overset{\text{oss. iniziale}}{=}\quad& |m|^{|a| + |1|} \\
 						 \overset{\text{propr. operaz. card.}}{=}& |m|^{|a|} \cdot \underbrace{|m|^{|1|}}_{=|m|} \\
@@ -2521,17 +2556,23 @@ Accettato che non possiamo dimostrare che $\omega$ si immerge in qualsiasi insie
 						 \overset{\text{def. potenza}}{=}\quad\;& |m^{s(a)}|
  		\end{split} 
 			\]
+		(dove $|m|^{|1|} = |m|$ perché $|{}^{1}m|  = |\{f : 1 \rightarrow m\}| = |\{\{(0,0)\},\{(0,1)\},\{(0,2)\},\ldots,\linebreak(0,m-1)\}|$, e quest'ultimo insieme è banalmente in bigezione con $m$).
 	\end{itemize}
 \end{proof}
 
 \begin{note}
-	Questa proposizione ci fornisce una dimostra delle proprietà aritmetiche elementari delle operazioni su $\omega$ [sfruttando le proprietà delle operazione fra cardinalità], alternativa a quella per induzione (che è stata lasciata per esercizio).
-	Basta, infatti, applicare le corrispondenti proprietà delle operazioni sulle cardinalità\footnote{E ciò non comporta problemi di circolarità poiché nella dimostrazione della proposizione precedente abbiamo usato solo la definizione delle tre operazione e nessuna delle  loro proprietà.}.
+	Questa proposizione ci fornisce una dimostrazione delle proprietà aritmetiche elementari delle operazioni su $\omega$ [sfruttando le proprietà delle operazione fra cardinalità], alternativa a quella per induzione (che è stata lasciata per esercizio).
+	Basta, infatti, applicare le corrispondenti proprietà delle operazioni sulle cardinalità\footnote{E ciò non comporta problemi di circolarità poiché nella dimostrazione della proposizione precedente abbiamo usato \textbf{solo} la definizione delle tre operazione e nessuna delle  loro proprietà.}.
 \end{note}
 
 \begin{exercise}
 	Dimostra che se $m,n \in \omega$ e $m \leq n$, esista un unico $n-m \in \omega$ tale che $m + (n-m) = n$. In due modi diversi.
 \end{exercise}
+
+\begin{soln}
+	
+\end{soln}
+
 
 \newpage
 \section{La cardinalità del numerabile}
@@ -2559,7 +2600,7 @@ e $B$. Per esempio, una funzione successore. In questo corso, giocheranno un ruo
 
 \begin{definition}[Buon ordinamento]
 	Un insieme totalmente ordinato $(S,<)$ si dice \vocab{bene ordinato} se ogni suo sottoinsieme non vuoto ha un minimo.
-	\[ \forall A \subseteq S \; A \ne \emptyset \longrightarrow \exists m \in A \; \forall a \in A \; m \leq x
+	\[ \forall A \subseteq S \; A \ne \emptyset \rightarrow \exists m \in A \; \forall a \in A \; m \leq x
 		\]
 \end{definition}
 
@@ -2585,7 +2626,7 @@ Il trucco è che un isomorfismo di ordini è, in particolare, una bigezione, e s
 \end{exercise}
 
 \begin{remark}[Ogni insieme finito è isomorfo alla sua cardinalità]
-	Sia $(A,<_A)$ totalmente ordinato con $|A| = n \in \omega$. Allora $(A,<_A) \sim (n,<)$, dove $<$ denota l'ordinamento indotto da $\omega$ (cioè l'ordine che abbiamo definito su $\omega$ ristretto a $n$).
+	Sia $(A,<_A)$ totalmente ordinato con $|A| = n \in \omega$. Allora $(A,<_A) \sim (n,<)$, dove $<$ denota l'ordinamento [buono\footnote{Per restrizione.}] indotto da $\omega$ (cioè l'ordine che abbiamo definito su $\omega$ ristretto a $n$).
 \end{remark}
 
 \begin{proof}
@@ -2593,16 +2634,15 @@ Il trucco è che un isomorfismo di ordini è, in particolare, una bigezione, e s
 	\begin{itemize}
 		\item[$\boxed{\text{caso $n = 0$}}$] $A = \emptyset$, quindi $(A,<_A) \sim (\emptyset,\emptyset)$.
 		\item[$\boxed{\text{caso $n = s(m)$}}$] Se $m = 0$, allora $A = \{a\}$ e $(A,<_A) \sim (1,<)$, cioè la tesi è banalmente vera. Assumiamo quindi $m>0$. Dimostriamo intanto che $(A,<_A)$ ha un massimo elemento.
-		Fissiamo una bigezione $f : s(m) \rightarrow A$. Allora $|f[m]| = m$, quindi $f[m]$ con l'ordinamento indotto da $<_A$ è isomorfo a $(m,<)$ per ipotesi induttiva e, in particolare, ha massimo $M$. Ora per la totalità di $<_A$,
+		Fissiamo una bigezione $f : s(m) \rightarrow A$ (esiste per ipotesi). Allora $|f[m]| = m$, quindi $f[m]$ con l'ordinamento indotto da $<_A$ è isomorfo a $(m,<)$ per ipotesi induttiva e, in particolare, ha massimo $M$. Ora per la totalità di $<_A$,
 		o $M < f(m)$ oppure $f(m)<M$. Si verifica immediata che, nel primo caso, $f(m)$ è il massimo di $A$, e nel secondo $M$ è il massimo di $A$.\\
 		Stabilito che $A$ ha un massimo $N$, osserviamo che, detto $A' := A \setminus\{N\}$, siccome $|A'| = m$, usando nuovamente l'ipotesi induttiva abbiamo un isomorfismo $f : A' \rightarrow m$ fra $A'$, con l'ordinamento indotto da $<_A$ e $(m,<)$.
-		Si verifica facilmente che:
+		Si verifica facilmente che l'isomorfismo cercato è:
 		\[ f' : A \longrightarrow s(m) : x \longmapsto \begin{cases}
 			f(x) &\text{se $x \in A'$} \\
 			m &\text{se $x = N$}
 		\end{cases}
 			\]
-		è l'isomorfismo cercato.
 	\end{itemize}
 \end{proof}
 
@@ -2614,17 +2654,18 @@ Possiamo caratterizzare $\omega$ in termini delle proprietà del suo ordinamento
 		\item $(\omega,<)$ è un buon ordine.
 		\item $(\omega,<)$ è \vocab{illimitato} - ossia $\forall x \in \omega \; \exists y \in \omega \; x < y$.
 		\item Ogni $A \subseteq \omega$ superiormente limitato e non vuoto ha un massimo, ossia:
-		\[ \forall A \subseteq \omega (A \ne \emptyset \land (\exists L \in \omega \; \forall x \in A \; x \leq L)) \longrightarrow (\exists M \in A \; \forall x \in A \; x \leq M)
+		\[ \forall A \subseteq \omega (A \ne \emptyset \land (\exists L \in \omega \; \forall x \in A \; x \leq L)) \rightarrow (\exists M \in A \; \forall x \in A \; x \leq M)
 			\]
 	\end{enumerate}
 \end{proposition}
 
 \begin{proof}
-	Abbiamo che (1) è il principio del minimo che abbiamo già dimostrato su $\omega$, per (2) basta prendere $y = s(x)$ (e $x \in s(x) \implies x < y$). Per (3) se $A$ è superiormente limitato da $L \in \omega$, allora $A \subseteq s(L)$, quindi $A$ è finito.
-	Siccome $A$ è finito, l'ordinamento totale su $A$ definito da:
+	Abbiamo che (1) è il principio del minimo che abbiamo già dimostrato su $\omega$, per (2) basta prendere $y = s(x)$ (e $x \in s(x) \implies x < y$). Per (3) se $A$ è superiormente limitato da $L \in \omega$, allora $A \subseteq s(L)$, quindi $A$ è finito (perché sottoinsieme di un 
+	insieme finito). Siccome $A$ è finito, l'ordinamento totale su $A$ (eredita la totalità da quello di $\omega$) definito da:
 	\[ x \prec y \Mydef y < x
 		\]
-	è buono, quindi, in particolare, c'è il minimo di $A$ secondo l'ordinamento $\prec$. Questo è il massimo di $A$ (secondo l'ordinamento $<$).
+	è buono [perché ogni insieme finito è isomorfo al buon ordine della sua cardinalità], quindi, in particolare, c'è il minimo di $A$ (sottoinsieme improprio di se stesso) 
+	secondo l'ordinamento $\prec$. Questo è il massimo di $A$ (secondo l'ordinamento $<$).
 \end{proof}
 
 \begin{proposition}[Caratterizzazione di $\omega$ come ordine]
@@ -2634,7 +2675,7 @@ Possiamo caratterizzare $\omega$ in termini delle proprietà del suo ordinamento
 		\item illimitato
 		\item tale che ogni sottoinsieme superiormente limitato e non vuoto di $A$ ha un massimo secondo $\prec$
 	\end{enumerate}
-	allora $(A,\prec) \sim (\omega,<)$.
+	allora $(A,\prec) \sim (\omega,<)$.\footnote{Questa proposizione completa la caratterizzazione di $(\omega,<)$ come ordine totale.}
 \end{proposition}
 
 Dimostriamo prima un facile lemma.
@@ -2651,7 +2692,7 @@ Dimostriamo prima un facile lemma.
 	Ora, da un'\hyperref[succ2]{osservazione precedente}, essendo $m < s(n')$, si ha $m = n' \lor m < n'$. Nel primo caso, dall'ipotesi segue:
 	\[ f(m) \prec f(s(m)) = f(s(n')) = f(n)
 		\]
-	contraddicendo $f(m) \not\prec f(n)$. Nel secondo caso, per la minimalità di $n$, deve accadere per forza $f(m) \prec f(n')$, ma $f(n') \prec f(s(n')) = f(n)$ per ipotesi, quindi abbiamo di nuovo una contraddizione,
+	contraddicendo $f(m) \not\prec f(n)$. Nel secondo caso, per la minimalità di $n$ (quindi ciò che è più piccolo di $n$ ha immagine sopra $m$), deve accadere per forza $f(m) \prec f(n')$, ma $f(n') \prec f(s(n')) = f(n)$ per ipotesi, quindi abbiamo di nuovo una contraddizione,
 	pertanto deve essere necessariamente $f(m) \prec f(n)$.
 \end{proof}
 
@@ -2661,16 +2702,16 @@ Possiamo ora dimostrare la proposizione.
 	Costruiamo per ricorsione un isomorfismo $f$ da $(\omega, <)$ a $(A,\prec)$:
 	\[ f(0) = \min_\prec A \qquad f(s(n)) = \min_\prec\{a \in A | f(n) \prec a\} \, \footnote{Cioè la funzione manda il successore nel più piccolo termine in $(A,\prec)$ che sta ``sopra'' a $f(n)$ (in pratica la stiamo costruendo apposta affinché sia strettamente crescente).}
 		\]
-	dove $\min_\prec$ denota il minimo secondo la relazione d'ordine (buona) $\prec$. Occorre dimostrare intanto che $f$ è ben definita. $f(0)$ è ben definita, perché $A \ne \emptyset$, dunque (essendo ben ordinato per ipotesi ha un minimo\footnote{Per essere precisi essendo $A \in \ps(A)$ tecnicamente il principio del buon ordinamento si applica anche ad $A$ stesso (oltre che ai suoi sottoinsiemi propri), che quindi ha minimo.}).
-	Per dire che $f(s(n))$ è ben definita, occorre dire che la funzione $h : A \rightarrow A$, $h(x) = \min_\prec\{a \in A|f(n) \prec a\}$ è ben definita (sarebbe la funzione che definisce la ricorsione - prima forma -), 
-	ossia che $\{a \in A | x \prec a\}$ è non vuoto (e quindi di nuovo esiste il minimo perché stiamo supponendo $A$ ben ordinato). Ma questo avviene, qualsiasi sia $x\in A$, perché altrimenti $A$ sarebbe limitato [superiormente] da $x$ (e non illimitato superiormente come abbiamo supposto nelle ipotesi).\\
+	dove $\min_\prec$ denota il minimo secondo la relazione d'ordine (buona) $\prec$ di $A$. Occorre dimostrare intanto che $f$ è ben definita. $f(0)$ è ben definita, perché $A \ne \emptyset$, e quindi vale il principio del minimo (che abbiamo per ipotesi).
+	Per dire che $f(s(n))$ è ben definita, occorre dire che la funzione $h : A \rightarrow A$, $h(x) = \min_\prec\{a \in A|x \prec a\}$ è ben definita (sarebbe la funzione che definisce la ricorsione - prima forma -), 
+	ossia che $\{a \in A | x \prec a\}$ è non vuoto, e quindi di nuovo esiste il minimo usando che per ipotesi $A$ è ben ordinato. Ma questo [cioè il fatto che quell'insieme sia non vuoto] avviene, qualsiasi sia $x\in A$, perché altrimenti $A$ sarebbe limitato [superiormente] da $x$ (e non illimitato superiormente come abbiamo supposto nelle ipotesi).\\
 	Per come è costruita, e per il lemma, $f$ è [strettamente] crescente (cioè l'abbiamo costruita in modo che sia una funzione da $\omega$ in $A$ crescente rispetto al successore, per cui vale il lemma sopra, dunque è sempre crescente), quindi iniettiva.
 	Di conseguenza, ci basta dimostrare la surgettività.\\
-	Prendiamo $y \in A$ e cerchiamo $x \in \omega$ tale che $y = f(x)$. Se, per ogni $x \in \omega$, avessi $f(x) \prec y$, allora $f[\omega]$ sarebbe superiormente limitato da $y$, e tuttavia non avrebbe massimo perché ogni $f(x)$ è $\prec$ di $f(s(x))$, il che è assurdo.
-	Quindi c'è il minimo $x \in \omega$ tale che $y \preceq f(x)$. Dimostriamo che $f(x) \preceq y$, da cui l'uguaglianza (e quindi la surgettività).
+	Prendiamo $y \in A$ e cerchiamo $x \in \omega$ tale che $y = f(x)$. Se, per ogni $x \in \omega$, avessi $f(x) \prec y$, allora $f[\omega]$ sarebbe [non vuoto e] superiormente limitato da $y$, tuttavia non avrebbe massimo perché ogni $f(x)$ è $\prec$ di $f(s(x))$, il che è assurdo [\underline{qui} stiamo usando che violerebbe 3.].
+	Quindi c'è \textbf{il minimo $x \textcolor{red}{\in \omega}$ tale che $y \preceq f(x)$}. Dimostriamo che, per tale $x$, $f(x) \preceq y$, da cui l'uguaglianza (e quindi la surgettività).
 	\begin{itemize}
 		\item[$\boxed{\text{$x = 0$}}$] in tal caso $f(x)$ è il minimo di $A$, quindi $f(x) \preceq y \in A$.
-		\item[$\boxed{x = s(x')}$] in questo caso $f(x') \prec y$ per la minimalità di $x$ (avendo preso $x$ come il minimo in $\omega$ tale che $f(x) \preceq y$, tutto ciò che sta sotto non può rispettare l'ultima condizione), ma allora, $y \in \{a \in A | f(x') \prec a\}$, quindi $f(x) = f(s(x')) = \min_\prec\{a \in A | f(x) \prec a\} \preceq y$ (dove l'ultima disuguaglianza deriva dal fatto che $y$
+		\item[$\boxed{x = s(x')}$] in questo caso $f(x') \prec y$ per la minimalità di $x$ (avendo preso $x$ come il minimo in $\omega$ tale che $f(x) \succeq y$, tutto ciò che sta sotto non può rispettare l'ultima condizione), ma allora, $y \in \{a \in A | f(x') \prec a\}$, quindi $f(x) = f(s(x')) = \min_\prec\{a \in A | f(x') \prec a\} \preceq y$ (dove l'ultima disuguaglianza deriva dal fatto che $y$
 		appartiene all'insieme di cui stiamo facendo il minimo, mentre la seconda uguaglianza è la definizione di $f$).
 	\end{itemize}
 \end{proof}
@@ -2686,11 +2727,11 @@ Tornando alla proposizione iniziale.
 	ci basta dimostrare che dato $B \subseteq \omega$, o $B$ è finito o è numerabile.\\
 	Sia $B \subseteq \omega$ infinito, dimostriamo che $B$, con l'ordinamento indotto dall'ordine naturale di $\omega$ soddisfa le ipotesi della proposizione precedente. 1 e 3 \footnote{Typo di Mamino.} valgono
 	in quanto ogni sottoinsieme di $B$ è in particolare, sottoinsieme di $\omega$ (dunque abbiamo buon ordinamento ed esistenza del massimo). Per ottenere 2 dobbiamo dire che $B$
-	non ha un massimo elemento (cioè è illimitato). Se, infatti, ci fosse un $M \in B$ tale che $\forall b \in B \; b \leq M$, allora avremmo che $B \subseteq s(M)$, $B$ sarebbe dunque finito, contro l'ipotesi.
+	non ha un massimo elemento (cioè è illimitato). Se, infatti, ci fosse un $M \in B$ tale che $\forall b \in B \; b \leq M$, allora avremmo che $B \subseteq s(M)$, $B$ sarebbe dunque finito [perché sottoinsieme di un insieme finito], contro l'ipotesi.
 	Pertanto $(B,<_{|B}) \sim (\omega,<) \implies |B| = \aleph_0$, dunque se un sottoinsieme di $\omega$ è infinito, allora è necessariamente numerabile.\\
 	Il caso di un sottoinsieme non infinito coincide col caso di un elemento di $\omega$ (che sappiamo essere un sottoinsieme per le proprietà di $\omega$), che è dunque banalmente in bigezione con se stesso (via identità) e quindi finito per definizione.
 \end{proof}
-
+\pagebreak
 \begin{exercise}
 	\label{ex7.13}
 	Dimostra che se $|A| \leq \aleph_0$ e $f : A \twoheadrightarrow B$ è surgettiva, allora $|B| \leq \aleph_0$.
@@ -2698,7 +2739,7 @@ Tornando alla proposizione iniziale.
 
 \begin{soln}
 	Mostriamo che sotto queste ipotesi esiste $h : B \hookrightarrow \omega$ (iniettiva), sia $g : A \hookrightarrow \omega$ e poniamo:
-	\[ h(b) = \min(g[\underbrace{\{a \in A | f(a) = b\}}_{= ``f^{-1}(b)''}]) \, \footnote{Si noti che, essendo $f$ non necessariamente iniettiva, $f^{-1}$ denota la controimmagine, non la funzione inversa, da cui la scelta delle parentesi quadre quando si applica $g$, per evidenziare che stiamo facendo l'immagine di un'insieme.}
+	\[ h(b) = \min_<(g[\underbrace{\{a \in A | f(a) = b\}}_{= ``f^{-1}(b)''}]) \, \footnote{Si noti che, essendo $f$ non necessariamente iniettiva, $f^{-1}$ denota la controimmagine, non la funzione inversa, da cui la scelta delle parentesi quadre quando si applica $g$, per evidenziare che stiamo facendo l'immagine di un'insieme.}
 		\]
 	l'insieme tra graffe è non vuoto per surgettività di $f$, dunque il minimo è ben definito.
 	Inoltre, se $h(b) = h(b')$, allora i minimi [che chiamiamo] $g(a)$ e $g(a')$ sono uguali, ma $a$ e $a'$ sono elementi nelle controimmagini rispettivamente di $b$ e $b'$, cioè tali che $f(a) = b$ e $f(a') = b'$.
@@ -2722,7 +2763,8 @@ Vale a dire che le operazioni sulle cardinalità sono monotone, nel senso delle 
 
 \begin{proof}
 	Detta $f : B \rightarrow C$ la funzione iniettiva che testimonia che $|B| \leq |C|$ e detto $B' = f[B]$ abbiamo che $|B| = |B'|$ (come al solito per definizione di disuguaglianza
-	tra cardinalità), quindi basta dimostrare le disuguaglianze asserite con $B'$ al posto di $B$. Ora, giocando sul fatto che $B' \subseteq C$ (abbiamo fatto apposta lo scambio tra $B$ e $B'$ per poter usare i contenimenti),
+	tra cardinalità), quindi basta dimostrare le disuguaglianze asserite con $B'$ al posto di $B$\footnote{Oppure potevamo assumere WLOG che $B$ fosse proprio contenuto in $C$ e che la mappa
+	fosse proprio $\id_B$, in ogni caso è solo una questione di nomi.}. Ora, giocando sul fatto che $B' \subseteq C$ (abbiamo fatto apposta lo scambio tra $B$ e $B'$ per poter usare i contenimenti),
 	si vede che queste disuguaglianze rappresentano, in realtà, relazioni di contenimento fra RHS e LHS. Per esempio:
 	\[ \begin{split}
 		B' \subseteq C &\overset{\text{ovvio}}{\implies} (A \times \{0\}) \cup (B' \times \{1\}) \subseteq (A \times \{0\}) \cup (C \times \{1\}) \; \textcolor{red}{= A \sqcup B' \subseteq A \sqcup C}\\
@@ -2741,7 +2783,7 @@ Vale a dire che le operazioni sulle cardinalità sono monotone, nel senso delle 
 	Basta osservare che la seguente funzione è iniettiva:
 	\[ f : A \cup B \longrightarrow (A \times \{0\}) \cup (B \times \{1\}) : x \longmapsto \begin{cases}
 		(x,0) &\text{se $x \in A$} \\
-		(x,1) &\text{altrimenti}
+		(x,1) &\text{altrimenti}\,\footnote{Cioè se $x \in B\setminus(A \cap B)$.}
 	\end{cases}
 		\]
 \end{proof}
@@ -2761,7 +2803,7 @@ Tutto il resto invece no.
 	Da cui per il \hyperref[CB]{Cantor-Bernstein}:
 	\[ \aleph_0 + \aleph_0 = \aleph_0 \cdot \aleph_0 = \aleph_0
 		\]
-	Ora è facile vedere per induzione che $n \in \omega \setminus\{0\} \rightarrow \aleph_0^n = \aleph_0 $, infatti $\aleph_0^1 = \aleph_0$ e $\aleph_0^{n+1} = \aleph_0^n \cdot \aleph_0 \overset{\text{Hp. indutt.}}{=} \aleph_0 \cdot \aleph_ 0 = \aleph_0$.
+	Ora è facile vedere per induzione che $n \in \omega \setminus\{0\} \rightarrow \aleph_0^n = \aleph_0 $, infatti $\aleph_0^1 = \aleph_0$ [e $\aleph_0^2 = \aleph_0 \cdot \aleph_0 = \aleph_0$], quindi $\aleph_0^{n+1} = \aleph_0^n \cdot \aleph_0 \overset{\text{Hp. indutt.}}{=} \aleph_0 \cdot \aleph_ 0 = \aleph_0$.
 \end{proof}
 
 Per concludere la dimostrazione precedente, resta da dimostrare il lemma seguente.
@@ -2783,8 +2825,11 @@ Altrimenti, è possiamo esibire delle bigezioni esplicite, per esempio:
 	\]
 È possibile scrivere i due numeri della coppia in base 10 a cifre alternate, tipo: $(\textcolor{blue}{64},\textcolor{red}{4096}) \mapsto \textcolor{red}{4}\textcolor{cyan}{0}\textcolor{red}{0}\textcolor{red}{9}\textcolor{cyan}{0}\textcolor{blue}{6}\textcolor{red}{6}\textcolor{red}{4}\textcolor{blue}{4}$.\\
 
-\emph{Dimostrazione.} Consideriamo l'ordinamento su $\omega \times \omega$ definito come segue:
-	\begin{wrapfigure}[8]{l}{2.5cm}
+
+\newpage
+\pagebreak
+\hspace{-0.43cm}\emph{Dimostrazione.}\hspace{-0.70cm} Consideriamo l'ordinamento su $\omega \times \omega$ definito come segue:
+	\begin{wrapfigure}[9]{l}{2.5cm}
 		\includegraphics[width=2.5cm]{immagini/ordine_omega.png}
 	\end{wrapfigure}
 	\[ \begin{split}
@@ -2794,24 +2839,26 @@ Altrimenti, è possiamo esibire delle bigezioni esplicite, per esempio:
 	\end{split}
 		\]
 	(dove per max sulla coppia si intende il max tra $a$ e $b$) ossia per confrontare $(a,b)$ con $(a',b')$, si confrontano prima $\max(a,b)$ e $\max(a',b')$; a parità si confrontano $a$ ed $a'$ (cioè se hanno una delle due componenti con lo stesso modulo massimo, si passa a confrontare il valore delle prime componenti);
-	se anche queste coincidono, allora si confrontano $b$ e $b'$.\footnote{Come si vede nella figura a lato, nel primo caso, avendo $b$ modulo massimo, ci sono anche punti più a destra, che in quest'ordinamento sono più piccoli (perché hanno un valore più piccolo come massima componente).}\\
-	L'idea è che, in questo modo, le coppie $\prec$ di una certa $(a,b)$ fissata sono tutte contenute nel quadrato $\{0,\ldots,\max(a,b)\} \times \{0,\ldots,\max(a,b)\}$, quindi sono in numero finito, e questo 
-	implica che $(\omega \times \omega, \prec)$ è isomorfo $(\omega,<)$.\\
-	Formalmente, iniziamo col verificare che $\prec$ sia effettivamente un ordine stretto. La proprietà irriflessiva è immediata (perché in tutti gli OR nella definizione stiamo usando l'ordinamento stretto di $\omega$, dunque
+	se queste coincidono, allora si confrontano $b$ e $b'$.\footnote{Come si vede nella figura a lato, nel primo caso, avendo $b$ modulo massimo, ci sono anche punti più a destra, che in quest'ordinamento sono più piccoli (perché hanno un valore più piccolo come massima componente).}\\
+	\textcolor{MidnightBlue}{L'idea è che, in questo modo, le coppie $\prec$ di una certa $(a,b)$ fissata sono tutte contenute nel quadrato $\{0,\ldots,\max(a,b)\} \times \{0,\ldots,\max(a,b)\}$, quindi sono in numero finito, e questo 
+	implica che $(\omega \times \omega, \prec)$ è isomorfo $(\omega,<)$.}\\
+	Formalmente, iniziamo col verificare che $\prec$ sia effettivamente un ordine stretto e totale. La proprietà irriflessiva è immediata (perché in tutti gli OR nella definizione stiamo usando l'ordinamento stretto di $\omega$, dunque
 	$\neg (a,b) \prec (a,b)$). Per verificare la proprietà transitiva, prendiamo $(a,b) \prec (a',b) \prec (a'',b'')$ (vorremo vedere che questo implica $(a,b) \prec (a'',b'')$). Dalle disuguaglianze precedenti segue $\max(a,b) \leq \max(a',b') \leq \max(a'',b'')$. Se una di queste disuguaglianze è stretta allora $(a,b) \prec (a'',b'')$ (e avremmo concluso),
 	altrimenti $\max(a,b) = \max(a',b') = \max(a'',b'')$, segue dalla definizione che $a \leq a' \leq a''$.
-	Nuovamente, se una disuguaglianza è stretta abbiamo concluso, altrimenti $a = a' = a''$, quindi, affinché la scrittura iniziale sia ancora vera deve essere necessariamente che $b < b' < b''$, da cui $b < b''$, e quindi anche in questo caso vale $(a,b) \prec (a'',b'')$.\\
-	Per dire che l'ordine è totale osserviamo che se $(a,b)$ e $(a',b')$ non sono né $\prec$ ne $\succ$ allora dobbiamo avere $\max(a,b) = \max(a',b')$, $a = a'$, $b = b'$, ovvero $(a,b) = (a',b')$, dunque l'ordine stretto è anche totale.
-	Ora vogliamo dire che $(\omega \times \omega, \prec) \sim (\omega, <)$ (in questo modo, avendo un'isomorfismo di ordini, avremmo in particolare una bigezione tra $\omega$ e $\omega \times \omega$, dunque il prodotto di cardinalità numerabili è numerabile).\\
-	Partiamo dall'osservazione che se $(a,b) \in \omega \times \omega$ allora:
+	Nuovamente, se una disuguaglianza è stretta abbiamo concluso, altrimenti $a = a' = a''$, quindi, affinché la scrittura iniziale sia ancora vera deve essere necessariamente che $b < b' < b''$, da cui $b < b''$, e quindi anche in questo caso vale $(a,b) \prec (a'',b'')$.
+	Per dire che l'ordine è totale osserviamo che se $(a,b)$ e $(a',b')$ non sono né $\prec$ ne $\succ$ allora dobbiamo avere $\max(a,b) = \max(a',b')$, $a = a'$, $b = b'$, ovvero $(a,b) = (a',b')$, dunque l'ordine stretto è anche totale.\\
+	Ora vogliamo dire che $(\omega \times \omega, \prec) \sim (\omega, <)$ (in questo modo, avendo un'isomorfismo di ordini, avremmo in particolare una bigezione tra $\omega$ e $\omega \times \omega$, dunque il prodotto di cardinalità numerabili è numerabile).
+	Partiamo dall'osservazione che se $(a,b) \in \omega \times \omega$ allora possiamo definire:
 	\[ (\omega \times \omega)_{(a,b)} \Mydef \{(x,y) \in \omega \times \omega | (x,y) \prec (a,b)\}
 		\]
-	detto il ``\vocab{segmento iniziale} determinato da $(a,b)$ su $(\omega \times \omega,<)$'', è finito\footnote{È quello che abbiamo detto sopra sulla definizione di $\prec$, pensando alle due figure.}. Infatti $(\omega \times \omega)_{(a,b)} \subseteq s(\max(a,b)) \times s(\max(a,b))$.
-	Ci serve dire \textcolor{red}{1.} $(\omega \times \omega, \prec)$ è bene ordinato \textcolor{red}{2.} $(\omega \times \omega, \prec)$ è illimitato \textcolor{red}{3.} ogni sottoinsieme non vuoto e superiormente limitato di $\omega \times \omega$ ha un massimo.
+	detto il ``\vocab{segmento iniziale} determinato da $(a,b)$ su $(\omega \times \omega,\prec)$''. Tale segmento iniziale è finito, infatti $(\omega \times \omega)_{(a,b)} \subseteq s(\max(a,b)) \times s(\max(a,b))$ (il RHS è un insieme finito e quindi tutti i suoi sottoinsiemi 
+	sono finiti).\\
+	Ci serve dire: \textcolor{red}{1.} $(\omega \times \omega, \prec)$ è bene ordinato \textcolor{red}{2.} $(\omega \times \omega, \prec)$ è illimitato \textcolor{red}{3.} ogni sottoinsieme non vuoto e superiormente limitato di $\omega \times \omega$ ha un massimo.
 	\begin{enumerate}[1.]
 		\item Dato $A \subseteq \omega \times \omega$ con $A \ne \emptyset$, considero $a \in A$. Se $(\omega \times \omega)_a \cap A = \emptyset$ (stiamo considerando il segmento iniziale rispetto a un generico elemento $a\in\omega \times \omega$), allora $a$ è il minimo di $A$ (sta in $a$ e
-		non c'è nulla più piccolo nell'insieme perché l'intersezione col segmento iniziale di $a$ (= cose strettamente più piccole in $(\omega \times \omega,\prec)$) è vuota). Altrimenti $A' = (\omega \times \omega)_{(a,a)} \cap A$ è non vuoto e finito,
-		quindi ha minimo $m$ (perché $\prec$ è un ordine totale). Questo deve essere anche il minimo di $A$, perché se $x \in A \setminus A'$, allora $m \prec a \preceq x$ (dove la seconda disuguaglianza segue per quanto detto nel caso dell'intersezione vuota, mentre la prima perché sia $a$ che $m$ stanno nell'intersezione in cui abbiamo preso il minimo).
+		non c'è nulla più piccolo nell'insieme perché l'intersezione col segmento iniziale di $a$ (= cose strettamente più piccole in $(\omega \times \omega,\prec)$) è vuota). Altrimenti $A' = (\omega \times \omega)_{(a,a)} \cap A$ è non vuoto e finito [perché sto intersecando con un insieme finito],
+		quindi ha minimo $m$ (perché $\prec_{|A}$ è un ordine totale).\\ Questo deve essere anche il minimo di $A$, perché se $x \in A \setminus A'$, con $(A \setminus A') \cap (\omega \times \omega)_a = \emptyset$, allora $m \prec a \preceq x$ (dove la seconda disuguaglianza segue esattamente per il caso dell'intersezione vuota,
+		mentre la prima disuguaglianza perché $m, a \in (\omega \times \omega)_a \cap A$, e quindi $m \prec_{|A} a$ per come è definito).
 		\item Dato $(a,b) \in \omega \times \omega$, $(a,b) \prec (s(a),s(b))$, dunque $\omega \times \omega$ è illimitato.
 		\item Dato $A \subseteq \omega \times \omega$ non vuoto e superiormente limitato da $(a,b) \in \omega \times \omega$, abbiamo che $A \subseteq (\omega \times \omega)_{(a+1,b+1)}$ è finito (per quanto osservato sopra), quindi ammette massimo perché $\prec$ è totale (abbiamo un numero finito di elementi da confrontare).
 	\end{enumerate}
@@ -2878,8 +2925,9 @@ Per dimostrare la numerabilità di $\ZZ$ e $\QQ$, è comodo richiamare ancora un
 \end{corollary}
 
 \begin{proof}
-	La freccia $\Longleftarrow$ deriva dall'esercizio citato prima con $A = \omega$ e $B = A$\footnote{Quelli al LHS sono quelli nell'enunciato dell'esercizio, quelli al RHS sono quelli presi dalle ipotesi del corollario.}. Per
-	l'inverso, supponiamo $A$ al più numerabile e mostriamo che c'è sempre una mappa surgettiva tra $\omega$ ed $A$. Sappiamo che se un insieme è al più numerabile, o è finito o è numerabile, se $|A| = \aleph_0$ allora c'è $f$
+	La freccia $\Longleftarrow$ deriva dall'esercizio citato prima con $A = \omega$ (l'insieme al più numerabile) e $B = A$ (l'insieme  a cui arriva la mappa surgettiva)\footnote{Quelli al LHS sono quelli nell'enunciato dell'esercizio,
+	quelli al RHS sono quelli presi dalle ipotesi del corollario.}.\\
+	Per l'inverso, supponiamo $A$ al più numerabile e mostriamo che c'è sempre una mappa surgettiva tra $\omega$ ed $A$. Abbiamo dimostrato che se un insieme è al più numerabile, o è finito o è numerabile, se $|A| = \aleph_0$ allora c'è $f$
 	bigettiva (e quindi in particolare surgettiva), se $|A| < \aleph_0$ allora c'è [per definizione] $g : n \rightarrow A$ bigettiva per qualche $n \in \omega\setminus\{0\}$, da questa definiamo:
 	\[ f(x) = \begin{cases}
 		g(x) &\text{se $x < n$} \\
@@ -2950,7 +2998,7 @@ assumere di averla, così si corregge il ragionamento impreciso di prima.
 \begin{definition}
 	[Parti finite]
 	Definiamo:
-	\[ \psf(A) \Mydef = \{X \in \ps(A) | |X| < \aleph_0\}
+	\[ \psf(A) \Mydef \{X \in \ps(A) | |X| < \aleph_0\}
 		\]
 \end{definition}
 
@@ -3350,8 +3398,8 @@ Definiamo quindi $-x$ tramite l'inverso additivo ed il prodotto nei casi $x < 0$
 	$\RR$ dotato delle operazioni definite, è l'unico campo ordinato completo a meno di isomorfismo.
 \end{theorem}
 
-La dimostrazione di questo teorema, talvolta, si vede nei corsi di analisi 1, noi non la studieremo, Per chi fosse interessato: LIBRO DI TESTO, capitolo 10; NOTE DEL PROF. Di Nasso, 
-fascicolo 4; LEZIONE 16 dell'a.a. 2020-21.
+La dimostrazione di questo teorema, talvolta, si vede nei corsi di analisi 1, noi non la studieremo, Per chi fosse interessato: LIBRO DI TESTO \cite{jech}, capitolo 10; NOTE DEL PROF. Di Nasso, 
+fascicolo 4 \cite{diNasso_eti_2019_20}; LEZIONE 16 dell'a.a. 2020-21 \cite{mamino_eti_20_21}.
 
 \subsection{\texorpdfstring{La cardinalità del continuo è $2^{\aleph_0}$}{2 to the power of aleph 0}}
 Torniamo ad una questione più strettamente insiemistica.
@@ -3489,5 +3537,128 @@ anche principale).
 \begin{proposition}[proprio $\implies$ principale nei buoni ordini]
 	Ogni segmento iniziale proprio di un buon ordine è principale.
 \end{proposition}
+
+\begin{proof}
+	Sia $(A,<)$ ben ordinato e $I \subsetneq A$ un segmento iniziale proprio. Consideriamo $a := \min(A \setminus I)$ (per l'ipotesi di buon ordinamento il minimo c'è). Allora $I = A_a$ (ovvero 
+	il nostro segmento iniziale proprio è principale determinato da $a$).\\
+	Verifiche: $x \in A_a \implies x < a \implies x \not \in A \setminus I \implies x \in I$ ($x < a$ con $a$ minimo di $A \setminus I$ ci assicura che $x$ non possa stare in quell'insieme per la relazione
+	d'ordine totale, dunque deve stare nel complementare), dunque $A_a \subseteq I$. Viceversa, supponiamo per assurdo $x \in I$ e $x \not \in A_a$, la seconda equivale ad $a \leq x$ (per definizione di segmento iniziale 
+	principale), ma allora, siccome $x \in I$, $a \in I$ (per definizione di segmento iniziale) $\lightning$ Quindi $x \in I \implies x \in A_a$, da cui $I \subseteq A_a$.
+\end{proof}
+
+\begin{exercise}[Buon ordine $\iff$ (proprio $\implies$ principale)]
+	Dimostra che la proposizione precedente caratterizza i buoni ordini. Più precisamente, dato un ordine totale $(A,<)$, se ogni segmento iniziale proprio di $A$
+	è principale, allora $A$ è bene ordinato da $<$.
+\end{exercise}
+
+\begin{lemma}[Proprietà delle funzioni strettamente crescenti]
+	Sia $(A,<)$ un buon ordinamento e $f : A \rightarrow A$ una funzione crescente - $\forall x,y \in A \; x < y \rightarrow f(x) < f(y)$ -, allora $\forall x \in A \; x \leq f(x)$.
+\end{lemma}
+
+\begin{proof}
+	Per assurdo, assumiamo la negazione della tesi, $x > f(x)$. Quindi l'insieme $B = \{x \in A | f(x) < x\}$ non è vuoto. Sia $k := \min B$.
+	Allora $f(k) < k$ (perché elemento di $B$), e, siccome $f$ è crescente $f(\textcolor{red}{f(k)}) < \textcolor{red}{f(k)}$, per cui $f(k) \in B$ a sua volta (è [strettamente] più grande della sua immagine),
+	e, ricordando che per ipotesi $f(k)<k$, contraddice la minimalità di $k$ e ci dà un assurdo.
+\end{proof}
+
+\begin{corollary}[Proprietà isomorfismi tra buoni ordinamenti]
+	Valgono le seguenti:
+	\begin{enumerate}[(1)]
+		\item Un buon ordinamento non è isomorfo a un suo segmento iniziale proprio.
+		\item L'identità è il solo isomorfismo fra un buon ordinamento e se stesso.
+		\item Se $(A,<)$ e $(B,<)$\footnote{Ricordare che quelli sono $<_A$ e $<_B$.} sono buoni ordini isomorfi allora esiste un unico isomorfismo fra di essi.
+	\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+	Dimostriamo singolarmente gli enunciati:
+	\begin{enumerate}[(1)]
+		\item Supponiamo che $(A,<)$ sia isomorfo al suo segmento iniziale proprio $A_a$, ordinato - si intende - dalla restrizione di $<$, e sia $f : A \rightarrow A_a$ un isomorfismo.
+		Allora $f$ è crescente per definizione. Tuttavia $f(a) < a$, poiché $f(a) \in A_a$, contraddicendo il lemma, quindi abbiamo un assurdo.
+		\item Sia $f : A \rightarrow A$ un automorfismo del buon ordine $(A,<)$, dobbiamo dimostrare che $f = \id_A$. Se così non fosse, ci sarebbe almeno un $x \in A$ tale che $f(x) \ne x$.
+		Se $f(x) < x$ stiamo contraddicendo il lemma perché $f$ deve essere crescente (in quanto isomorfismo di ordini). Se $x < f(x)$, vale la stessa considerazione di prima con $f^{-1}$, e quindi di nuovo un assurdo.
+		\item Se $f : A \rightarrow B$ e $g : A \rightarrow B$ fossero due isomorfismi diversi, allora $g^{-1} \circ f$ sarebbe un automorfismo di $A$ diverso dall'identità,
+		contraddicendo il punto (1).	
+	\end{enumerate}
+\end{proof}
+
+\begin{remark}[Transitività della relazione d'ordine tra buoni ordini]
+	Siano $(A,<)$, $(B,<)$, $(C,<)$ buoni ordini. Allora:
+	\[ (A,<) \preceq (B,<) \land (B,<) \preceq (C,<) \rightarrow (A,<) \preceq (C,<)
+		\]
+\end{remark}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\pagebreak
+\begin{thebibliography}{9}
+	\addcontentsline{toc}{section}{Bibliografia}
+	\bibitem{jech}
+	Karel Hrbacek, Thomas Jech,
+	\textit{Introduction to Set Theory, Revised and Expanded},
+	CRC Press, Boca Raton, Florida,
+	3rd edition,
+	1999.
+
+	\bibitem{diNasso_eti_2019_20}
+	Mauro Di Nasso,
+	\href{https://people.dm.unipi.it/dinasso/ETI/dispensa-04ss.pdf}{\textit{Elementi di teoria degli insiemi, Dispensa 4}},
+	Università di Pisa, Pisa,
+	2019-20.
+
+
+	\bibitem{mamino_eti_20_21}
+	Marcello Mamino,
+	\href{https://ciovil.li/eti20/}{\textit{Elementi di teoria degli insiemi}},
+	Università di Pisa, Pisa,
+	2020-21.
+\end{thebibliography}
 
 \end{document}
