@@ -1787,7 +1787,15 @@ La nozione di buon ordine è stata introdotta da Cantor agli albori della teoria
 \end{exercise}
 
 \begin{soln}
-
+	Dato $(\omega,<)$, basta considerare la seguente relazione:
+	\[ \prec := < \cup (\omega \times \{\omega\}) \cup (s(\omega) \times \{s(\omega)\}) \cup (s(s(\omega)) \times \{s(s(\omega))\})\,\footnote{Che formalmente è un sottoinsieme di $s(s(s(\omega))) \times s(s(s(\omega)))$.}
+		\]
+	dove $(x,y) \in \prec \leftrightarrow x \in y$. Si vede quindi che $(s(s(s(\omega))),\prec)$ è un ordine totale (fondamentalmente perché $<$ lo è, 
+	e le coppie che abbiamo aggiunto sono costruite apposta per rispettare la definizione di ordine [stretto] totale). Abbiamo costruito $\prec$ in modo che 
+	$\forall n \in \omega \; n \prec \omega$, inoltre vale anche [per costruzione] che $\omega \prec s(\omega) \prec s(s(\omega))$, dunque, dato $S \subseteq s(s(s(\omega)))$,
+	se $S \cap \omega \ne \emptyset$, allora il minimo esiste ed è dato da $\min_<(S \cap \omega)$. Se $S \cap \omega = \emptyset$ (ovvero se $S$ è un sottoinsieme di $\{\omega,s(\omega),s(s(\omega))\}$),
+	allora per definizione di $\prec$ (come scritto sopra), per tutti i sottoinsiemi possibili abbiamo sempre un minimo [per la totalità di $\prec$]. Pertanto $\forall S \subseteq s(s(s(\omega)))$ c'è un minimo
+	e quindi in $s(s(s(\omega)))$ vale il principio del minimo, cioè è ben ordinato.
 \end{soln}
 
 \subsection{Ricorsione numerabile}
@@ -3115,7 +3123,8 @@ Il prossimo risultato che vedremo è, come al solito, dovuto a Cantor, e caratte
 	Abbiamo già osservato, in un esercizio, che $\QQ$ è denso, infatti:
 	\[ x < y \rightarrow x < \frac{x+y}{2} < y
 		\]
-	cioè presi due qualsiasi elementi di $\QQ$, la loro media aritmetica è sempre in mezzo e sta in $\QQ$.
+	cioè presi due qualsiasi elementi di $\QQ$, la loro media aritmetica è sempre in mezzo e sta in $\QQ$ (formalmente le due disuguaglianze si giustificano con le operazioni di $\QQ$ + l'ordinamento totale + le proprietà 
+	di compatibilità tra operazioni e ordinamento).
 \end{example}
 
 \begin{notexample}[$(\omega,<)$ non è denso in se stesso]
@@ -3159,7 +3168,8 @@ tutti gli elementi di $A$, e di aggiungere all'immagine, uno per uno, tutti gli 
 	Sia $F \subseteq \ps(A \times B)$ un insieme di funzioni. Se vale che:	
 	\[ \forall f_1,f_2 \in F \; f_{1|\Dom(f_1) \cap \Dom(f_2)} = f_{2|\Dom(f_1) \cap \Dom(f_2)}
 			\]
-	cioè se le funzioni da $A$ a $B$ coincidono sull'intersezione dei domini, $\forall x \in \Dom(f_1) \cap Dom(f_2) \; f_1(x) = f_2(x)$, allora $\bigcup F$ è ancora una funzione dall'unione dei domini a $B$:
+	cioè se le funzioni da $A$ a $B$ coincidono sull'intersezione dei domini [a due a due], $\forall x \in \Dom(f_1) \cap Dom(f_2) \; f_1(x) = f_2(x)$, allora $\bigcup F$ è ancora una funzione dall'unione dei domini a $B$:\footnote{Moralmente se prendiamo l'unione delle funzioni 
+	sull'unione dei domini, se tutti i pezzi che ``incolliamo'' coincidono sugli intervalli dove sono definiti comunemente, allora non c'è alcun problema di buona definizione di una funzione.}
 	\[ \bigcup F : \bigcup\{\Dom(f) | f\in F\} \rightarrow B
 		\]
 \end{remark}
@@ -3180,42 +3190,45 @@ Siamo ora pronti per dimostrare formalmente il teorema.
 		\]
 	Intendiamo costruire una successione di funzioni $\{f_i\}_{i \in \omega}$ tali che, per ogni $i \in \omega$:
 	\begin{enumerate}[1.]
-		\item $f_i : A_i \rightarrow Q_i$ con $|A_i| = |Q_i| < \aleph_0$
+		\item $f_i : A_i \rightarrow Q_i$ con $|A_i| = |Q_i| < \aleph_0$\footnote{Ricordiamo che $A_i = \{a_0,\ldots,a_{i-1}\} \subseteq A$ e $Q_i = \{q_0,\ldots,q_{i-1}\} \subseteq \QQ$.}
 		\item $f_i$ è un isomorfismo di ordini fra $A_i$ e $Q_i$
 		\item $f_{i} \subseteq f_{s(i)}$, ossia $f_{s(i)}$ estende $f_i$
-		\item $\forall j < u \; a_j \in A_i \land q_j \in Q_i$, ossia $\{a_0,\ldots,a_{i-1}\} \subseteq \Dom(f_i)$ e $\{q_0,\ldots,q_{i-1}\} \subseteq \Imm(f_i)$
+		\item $\forall j < i \; a_j \in A_i \land q_j \in Q_i$, ossia $A_i = \{a_0,\ldots,a_{i-1}\} \subseteq \Dom(f_i)$ e $Q_i = \{q_0,\ldots,q_{i-1}\} \subseteq \Imm(f_i)$, $\forall i \in \omega$.
 	\end{enumerate}
-	Verificare, per cominciare, che dalle proprietà appena elencate segue che $f\Mydef \bigcup_{i \in \omega} f_i$ è un isomorfismo di ordini fra $A$ e $\QQ$.
+	Verifichiamo, per cominciare, che dalle proprietà appena elencate segue che $f\Mydef \bigcup_{i \in \omega} f_i$ è un isomorfismo di ordini fra $A$ e $\QQ$.\\
 	Da 3. segue, con una facile induzione, che $\forall i,j \in \omega \; i \leq j \rightarrow f_i \subseteq f_j$ (stiamo semplicemente estendendo il fatto che la successiva estenda la precedente a 
-	due arbitrarie nell'ordine giusto). Quindi [visto che sono tutte estensioni] siamo nelle ipotesi dell'osservazione precedente e $f$ è una funzione. Inoltre 4. implica che $\Dom(f) = A$ e $\Imm(f)  = \QQ$.\\
-	Ci resta quindi da verificare che, dati $x,y \in A$:
-	\[ x < y \longleftrightarrow f(x) < f(y)
+	due arbitrarie nell'ordine giusto). Quindi [visto che sono tutte estensioni] siamo nelle ipotesi dell'osservazione precedente e $f$ è una funzione.\\
+	4. invece implica che [l'unione numerabile dei domini dà proprio] $\Dom(f) = A$ e $\Imm(f)  = \QQ$ (avendo usato $a_i$ e $q_i$ per enumerare $A$ e $\QQ$, questa cosa implica in automatico $f$ surgettiva). Ci resta quindi da verificare che, dati $x,y \in A$ la mappa è crescente [e quindi in automatico anche iniettiva]:
+	\[ x < y \leftrightarrow f(x) < f(y)
 		\]
-	Siccome $\{a_i\}_{i \in \omega}$ enumera $A$, esistono $m,n \in \omega$ tali che $x = a_m$ e $y = a_n$. Preso $t \in \omega$, con $m,n < t$, per la 4., $a_m,a_n \in \Dom(f_t)$ e, siccome $f_t$ è 
-	un isomorfismo di ordini per la 2., abbiamo:
-	\[ x = a_m < a_n = y \longleftrightarrow f(x) = f_t(a_m) < f_t(a_n) = f(y)
+	Fissati $x,y \in A$, siccome $\{a_i\}_{i \in \omega}$ enumera [aka è surgettiva] $A$, esistono $m,n \in \omega$ tali che $x = a_m$ e $y = a_n$. Preso $t \in \omega$, con $m,n < t$ [possiamo perché $\omega$ è illimitato], per la 4., $a_m,a_n \in \Dom(f_t)$ e, siccome $f_t$ è 
+	un isomorfismo di ordini per la 2. [ora possiamo usarla perché ha nel suo dominio sia $a_m$ che $a_n$ e quindi ha senso usare la proprietà di isomorfismo], abbiamo:
+	\[ x \overset{\text{enum.}}{=} a_m < a_n \overset{\text{enum.}}{=} y \leftrightarrow f(x) \overset{\text{def.}}{=} f_t(a_m) < f_t(a_n) \overset{\text{def.}}{=} f(y)
 		\]
-	abbiamo quindi che $f$ è ben definita ed è l'isomorfismo di ordini tra $(\QQ,<)$ e $(A,<)$ cercato. Non ci resta altro da fare che definire per ricorsione numerabile la successione di funzioni $\{f_i\}_{i \in \omega}$.
-	Intanto poniamo $f_0 = \emptyset$.\\
-	Per costruire $f_{s(i)}$ definiamo prima un passo intermedio $f_{i+0.5}$ (notazione puramente indicativa). Se $a_i \in \Dom(f_i)$, allora $f_{i+0.5} = f_i$. Altrimenti sia:
-	\[ \overline{j} := \min\{j \in \omega | f_i \cup \{(a_i,q_i)\} \,\text{è un isomorfismo}\footnote{Ossia è strettamente crescente.}\}
+	abbiamo quindi che $f$ è ben definita [è una bigezione] ed è l'isomorfismo di ordini tra $(\QQ,<)$ e $(A,<)$ cercato. Non ci resta altro da fare che definire per ricorsione numerabile la successione di funzioni $\{f_i\}_{i \in \omega}$ (in particolare 
+	stiamo definendo via ricorsione numerabile una mappa $\omega \rightarrow {}^{\omega}A$). Intanto poniamo $f_0 = \emptyset$.\\
+	Per costruire $f_{s(i)}$ definiamo prima un passo intermedio $f_{i+0.5}$ (notazione puramente indicativa). Se $a_i \in \Dom(f_i)$ [$a_i$ è preso in $A_{i+1}$ perché stiamo estendendo, dunque dobbiamo aggiungere il nuovo elemento nell'insieme di partenza], allora $f_{i+0.5} = f_i$ [cioè è già definita ed è $f_i$]. Altrimenti [ovvero se $a_i \not \in \Dom(f_i)$] sia:
+	\[ \overline{j} := \min\{j \in \omega | f_i \cup \{(a_i,q_j)\} \,\text{è un isomorfismo}\}
 		\]
-	poniamo $f_{i+0.5} = f_i \cup \{(a_i,q_{\ol j})\}$. Ora possiamo definire $f_{s(i)}$. Se $q_i \in \Imm(f_{i+0.5})$ allora $f_{s(i)} = f_{i+0.5}$. Altrimenti, sia:
+	poniamo $f_{i+0.5} = f_i \cup \{(a_i,q_{\ol j})\}$. Ora possiamo definire $f_{s(i)}$.\\
+	Se $q_i \in \Imm(f_{i+0.5})$\footnote{Stiamo estendendo $f_i$ in due passi in modo da poterla estendere prima in avanti [aggiungendo $a_i$ al dominio] e poi all'indietro [aggiungendo $q_i$ all'insieme d'arrivo], che è proprio la tecnica del \vocab{back-and-forth}.} [$q_i$ preso in $Q_{i+1}$, stiamo estendendo l'insieme d'arrivo (e estendendo a sua volta $f_i$ in modo che rimanga un isomorfismo)] allora $f_{s(i)} = f_{i+0.5}$ [in analogia con prima, l'isomorfismo estende il precedente se l'elemento cade dentro $\Imm(f_i)$]. Altrimenti, sia:
 	\[ \ol \iota := \min\{\iota \in \omega | f_{i+0.5} \cup \{(a_\iota,q_i)\}\,\text{è un isomorfismo}\}
 		\]
 	poniamo $f_{s(i)} = f_{i+0.5} \cup \{(a_{\ol \iota},q_i)\}$. Le proprietà 1.,\ldots,4. seguono in maniera immediata per induzione, a patto che la costruzione sia ben posta, ossia i minimi esistano.\\
 	Ad essere precisi, occorre quindi dimostrare, per induzione su $i$, la proposizione:
 	\[ \forall i \in \omega \; \text{``la costruzione di $f_i$ è ben posta e valgono 1.,\ldots,4.''}
 		\]
-	Vediamo che esiste il minimo nel primo passaggio:
+	Per verificare che la costruzione della successione delle $f_i$ sia ben posta, vediamo che esiste il minimo nel primo passaggio:
 	\[ \ol j = \min\{j \in \omega | f_i \cup \{(a_i,q_j)\}\,\text{è un isomorfismo}\}
 		\]
-	ossia che l'insieme di cui si prende il minimo non è vuoto. Il secondo caso è analogo. Per ipotesi induttiva $A_i$ è finito. Se $A_i = \emptyset$ non c'è niente da dimostrare, altrimenti, 
-	detto $n = |A_i|$. e sfruttando il fatto che un ordine totale finito è isomorfismo ad un numero naturale:
+	ossia che l'insieme di cui si prende il minimo non è vuoto, il secondo caso [per vedere che il minimo esiste] sarà analogo.\\
+	Per ipotesi induttiva $A_i$ è finito. Se $A_i = \emptyset$ non c'è niente da dimostrare, altrimenti, 
+	detto $n = |A_i|$, e sfruttando il fatto che un ordine totale finito è isomorfismo ad un numero naturale [lo si può ordinare totalmente]:
 	\[ A_i = \{\alpha_0,\ldots,\alpha_{n-1}\} \qquad\text{con $\alpha_0<\ldots<\alpha_{n-1}$}
 		\]
-	Ora, l'ipotesi è che $a_i \not \in A_i$, quindi o $a_i <\alpha_0$, o $\alpha_k < a_i < \alpha_{k+1}$ per qualche $k$, o $a_{n-1}<a_i$. Nel primo e terzo caso, rispettivamente, siccome $\QQ$ non ha estenda, c'è un $q_j < f_i(\alpha_0)$, o $q_j > f_i(\alpha_n)$ rispettivamente.
-	Nel secondo caso, per la densità di $\QQ$, esiste $q_j$ con $f_i(\alpha_k)<q_j<f_i(\alpha_{k+1})$.
+	Ora, l'ipotesi [nella costruzione] è che $a_i \not \in A_i$, quindi [sta fuori o in uno dei ``buchi'' nel dominio, ovvero] o $a_i <\alpha_0$, o $\alpha_k < a_i < \alpha_{k+1}$ per qualche $k$, o $a_{n-1}<a_i$. Nel primo e terzo caso, rispettivamente, siccome $\QQ$ non ha estremi, c'è un $q_j < f_i(\alpha_0)$, o $q_j > f_i(\alpha_n)$ rispettivamente
+	[dunque possiamo estendere $f_i$ prendendo quest'elemento fuori da associare al nostro $a_i \not \in \Dom(f_i)$ (a sua volta fuori), per preservare l'ordinamento].
+	Nel secondo caso, per la densità di $\QQ$, esiste $q_j$ con $f_i(\alpha_k)<q_j<f_i(\alpha_{k+1})$ [e quindi come prima, possiamo estendere la funzione, preservando l'ordinamento con questo elemento].
 \end{proof}
 
 \begin{corollary}[Ogni ordine al più numerabile è isomorfo ad un sottoinsieme di $\QQ$]
@@ -3287,6 +3300,26 @@ Veniamo ora alla dimostrazione del corollario
 		\]
 \end{exercise}
 
+\begin{soln}
+	Osserviamo che per l'ipotesi di densità $2 \leq |A| \leq \aleph_0 \implies |A| = \aleph_0$\footnote{Stiamo escludendo l'insieme denso con un solo elemento}. A questo punto, se $A$ è senza estremi si ha:
+	\[ (A,<) \sim (\QQ,<) \sim ]0,1[_\QQ
+		\]
+	($]0,1[_\QQ$ è totalmente ordinato [ereditariamente dall'ordine di $\QQ$], senza estremi, numerabile [sottoinsieme di $\QQ$ + $n \mapsto \frac 1n$] e denso [basta prendere la media di due elementi e osservare che sta sempre in mezzo per le proprietà algebriche di $\QQ$]).\\
+	Negli altri casi si osserva che:
+	\[ [0,1]_{\QQ} = ]0,1[_{\QQ} \,\cup\, \{0,1\}  \qquad ]0,1]_{\QQ} = ]0,1[_{\QQ} \,\cup\, \{1\} \qquad [0,1[_{\QQ} = ]0,1[_{\QQ} \,\cup\, \{0\}
+		\]
+	vediamo, ad esempio, nel caso di $A$ con entrambi gli estremi, che, detti questi $a$ e $b$, si ha:
+	\[ (A\setminus\{a,b\},<_{|A\setminus\{a,b\}}) \sim (\QQ,<) \sim (]0,1[_{\QQ},<)
+		\]
+	e analogamente negli altri due casi. Pertanto, nel caso in cui $A$ abbia entrambi gli estremi:
+	\[ (A,<) \sim (\QQ\cup\{\alpha,\beta\},<') \sim ([0,1]_\QQ,<) = (]0,1[_{\QQ} \,\cup\, \{0,1\},<)
+		\]
+	con $f(a) = \alpha$, $f(b) = \beta$ e $<' = < \cup (\{\alpha\} \times \QQ) \cup (\QQ \times \{\beta\})$\footnote{Per essere precisi,
+	detto $f$ l'isomorfismo tra $(\QQ,<)$ e $]0,1[_{\QQ}$, per estenderlo ad un isomorfismo tra $(\QQ \cup \{\alpha,\beta\},<')$ e $([0,1]_\QQ,<)$, ci basta porre $f' := f \cup \{(\alpha,0),(\beta,1)\}$,
+	in questo modo, componendolo con l'isomorfismo tra $(A,<)$ e $(\QQ\cup\{\alpha,\beta\},<')$, si ottiene l'isomorfismo tra $A$ il chiuso $[0,1]_\QQ$ voluto.}. Gli altri due casi ($A$ chiuso in un estremo solo) sono analoghi e danno l'isomorfismo 
+	con $[0,1[_{\QQ}$ e $]0,1[_{\QQ}$.
+\end{soln}
+
 \subsection{Il grafo random}
 
 La tecnica di estendere indefinitamente isomorfismi parziali che ci ha permesso di dimostrare il teorema di isomorfismo di Cantor
@@ -3319,8 +3352,8 @@ probabilità $(1-p)^{|Y|}$.} - come che sia, è un centro numero $>0$ - e ci son
 a tutti gli $X$ e a nessuno degli $Y$. Usiamo l'esistenza di questo $v$ per definire un grafo random.
 
 \begin{definition}[Grafo random]
-	Il grafo $(\omega,e)$ è un \vocab{grafo random} se:
-	\[ \forall X \subseteq \omega \; \forall \,Y \subseteq \omega\setminus X \; \exists v \in \omega \setminus(X \cup Y) \; \underbrace{X \times \{v\} \subseteq e}_{\forall x\in X \; (x,v) \in e} \land \underbrace{(Y \times \{v\}) \cap e = \emptyset}_{\neg\exists y \in Y \; (y,v) \in e}
+	Il grafo $(\omega,e)$ è un \vocab{grafo random} se:\footnote{Typo di Mamino.}
+	\[ \forall X \subseteq \omega \; \forall \,Y \subseteq \omega\setminus X \; |X|,|Y|<\aleph_0\; \exists v \in \omega \setminus(X \cup Y) \; \underbrace{X \times \{v\} \subseteq e}_{\forall x\in X \; (x,v) \in e} \land \underbrace{(Y \times \{v\}) \cap e = \emptyset}_{\neg\exists y \in Y \; (y,v) \in e}
 		\]
 	(cioè se per ogni coppia di sottoinsiemi di vertici disgiunti esiste un vertice fuori dall'unione di questi ultimi, connesso a tutti i vertici di uno ed a nessuno dei vertici dell'altro).
 \end{definition}
@@ -3352,13 +3385,17 @@ In questa sezione daremo una definizione di $\RR$ come insieme ordinato. Estende
 \end{note}
 
 \begin{definition}[Ordine totale completo]
-	Un ordine totale $(A,<)$ è \vocab{completo} se ogni $B \subseteq A$ superiormente limitato ha un estremo superiore $\sup B \in A$.\footnote{Questa definizione è a priori diversa dalla Cauchy-completezza.}
+	Un ordine totale $(A,<)$ è \vocab{completo} se ogni $B \subseteq A$ superiormente limitato ha un estremo superiore $\sup B \in A$.\footnote{Questa definizione [la Dedekind-completezza] è a priori diversa dalla Cauchy-completezza (ovvero che tutte le successioni di Cauchy convergono).}
 \end{definition}
 
 \begin{exercise}[$\QQ$ non è completo]
 	\label{q_noncompleto}
 	Dimostra, usando solo le proprietà di $\QQ$, che l'insieme $\{x \in \QQ | x^2 < 2\}$ non ha estremo superiore in $\QQ$.
 \end{exercise}
+
+\begin{soln}
+	
+\end{soln}
 
 In conseguenza dell'esercizio, possiamo dire che $\QQ$ non è completo. Costruiamo ora un ordine completo $(\RR,<)$ che contiene una copia isomorfa di $\QQ$ come sottoinsieme denso.
 
@@ -3419,8 +3456,8 @@ Ora possiamo dimostrare la proposizione come segue.
 \begin{proof}
 	Abbiamo un ordine parziale perché il contenimento $\subseteq$, è un ordine parziale su $\ps(\text{quello che sia})$. Supponiamo per assurdo, che non sia totale, allora esistono $x,y \in \RR$ per cui $x \not\subseteq y$ e 
 	$y \not\subseteq x$, quindi ci sono $a \in x \setminus y$ e $b \in y \setminus x$ (non essendo contenuti né uguali fare queste sottrazioni di insiemi ci lascia sempre insiemi non vuoti in cui prendere gli elementi).
-	Ora si danno due casi: se $a <_{\QQ} b$\footnote{Le sezioni di Dedekind sono sottoinsiemi di $\QQ$, quindi i loro elementi sono ordinati dall'ordine totale in $(\QQ,<)$.} allora [per definizione di segmento iniziale] $b \in y \implies a \in y \,\lightning$, simmetricamente, se $b < a$ allora $a \in x \implies b \in x \, \lightning$. Dunque $\subseteq$ è un ordine totale.\\
-	Resta da dimostrare la completezza. Sia $A \subseteq \RR$ non vuoto e superiormente limitato [= ammette un maggiorante] da $m \in \RR$. Dimostriamo che $\sup A = \bigcup A \in \RR$.\\
+	Ora si danno due casi: se $a <_{\QQ} b$\footnote{Le sezioni di Dedekind sono sottoinsiemi di $\QQ$, quindi i loro elementi sono ordinati dall'ordine totale in $(\QQ,<)$.} allora [per definizione di segmento iniziale] $b \in y \implies a \in y \,\lightning$, simmetricamente, se $b < a$ allora $a \in x \implies b \in x \, \lightning$. Dunque $\subseteq$ è un ordine totale.
+	Resta da dimostrare la completezza.\\ Sia $A \subseteq \RR$ non vuoto e superiormente limitato [= ammette un maggiorante] da $m \in \RR$. Dimostriamo che $\sup A = \bigcup A \in \RR$.\\
 	Per il lemma precedente $\bigcup A$ è ancora un segmento iniziale, e siccome $A$ non è vuoto $\bigcup A \ne \emptyset$, inoltre poiché $m$ è un maggiorante di $A$ [quindi per l'ordinamento definito contiene tutti gli elementi e in automatico gli elementi degli elementi], si ha $\bigcup A \subseteq m$, per cui $\bigcup A \ne A$ (ovvero è un segmento iniziale proprio).
 	In definitiva $\bigcup A$ è una sezione di Dedekind di $\QQ$, e, di conseguenza un elemento di $\RR$.\\
 	Verifichiamo che $\bigcup A$ è un maggiorante di $A$. Se $x \in A$, allora $x \subseteq \bigcup A$ [per definizione], cioè, appunto $x \leq \bigcup A$ per come abbiamo definito l'ordine su $\RR$.\\
@@ -3428,17 +3465,18 @@ Ora possiamo dimostrare la proposizione come segue.
 \end{proof}
 
 \begin{remark}[$\QQ$ si immerge in maniera ordinata e densa in $\RR$]
-	La funzione $\iota : \QQ \rightarrow \RR : a \mapsto \QQ_a = \{x \in \QQ | x < a\}$, cioè la funzione che manda ogni razionale nella sua sezione di Dedekind principale, immerge $\QQ$ in $\RR$ in maniera strettamente
+	La funzione $\iota : \QQ \hookrightarrow \RR : a \mapsto \QQ_a = \{x \in \QQ | x < a\}$, cioè la funzione che manda ogni razionale nella sua sezione di Dedekind principale\footnote{È in automatico ben definita essendo l'oggetto in arrivo una sezione di Dedekind di $\QQ$.}, immerge $\QQ$ in $\RR$ in maniera strettamente
 	crescente e densa (ossia $\iota(\QQ) = \Imm(\iota)$ è densa in $\RR$).
 \end{remark}
 
 \begin{proof}
-	Dati $a,b \in \QQ$, con $a < b$, abbiamo $\QQ_a \subsetneq \QQ_b$ (perché ad esempio $a \not \in \QQ_a$, ma $a \in \QQ_b$), quindi $\iota$ è strettamente crescente. Dati $x,y \in \RR$, con $x < y$, ciò equivale 
-	per definizione di ordine su $\RR$ a $x \subsetneq y$, dunque esiste $a \in y \setminus x$. Siccome $y$ non ha massimo [e $a \in y$], c'è un $b \in y$ con $a < b$. Ora per tale $b$ si ha: $x \subsetneq \QQ_b \subsetneq y$,
-	dove il primo contenimento è stretto perché $a \not \in x$ [per definizione di $a$] e $a \in \QQ_b$ [perché $a<b$ per come è definito $b$], mentre 
-	il secondo è stretto perché $b \not \in \QQ_b$ [per definizione di di segmento iniziale principale] e $b \in y$ [per definizione]. Dunque $\Imm(\iota)$ è densa in $\RR$.
+	Dati $a,b \in \QQ$, con $a < b$, abbiamo $\QQ_a \subsetneq \QQ_b$ (perché ad esempio $a \not \in \QQ_a$, ma $a \in \QQ_b$, dunque vale $\QQ_a \subsetneq \QQ_b \equiv \QQ_a < \QQ_b$), quindi $\iota$ è strettamente crescente [dunque anche iniettiva]\footnote{In particolare così abbiamo già che $(\QQ,<)$ è isomorfo a $(\iota[\QQ],<_{|\iota[\QQ]})\subseteq (\RR,<)$.}.
+	Dati $x,y \in \RR$, con $x < y$, ciò equivale per definizione di ordine su $\RR$ a $x \subsetneq y$, dunque esiste $a \in y \setminus x$ ($a \in \QQ$ per definizione di sezione).\\
+	Siccome $y$ non ha massimo (per definizione di sezione) [e $a \in y$], c'è un $b \in y$ [dunque $b \in \QQ$] con $a < b$. Ora per tale $b$ si ha: $x \subsetneq \QQ_b \subsetneq y$,
+	dove il primo contenimento\footnote{Per costruzione $a \in y\setminus x$, e $a \in \QQ_b$, dunque $x < a$ e per la definizione di segmento iniziale tutti gli elementi di $x$ stanno in $\QQ_b$.} è stretto perché $a \not \in x$ [per definizione di $a$] e $a \in \QQ_b$ [perché $a<b$ per come è definito $b$], mentre 
+	il secondo è stretto perché $b \not \in \QQ_b$ [per definizione di di segmento iniziale principale] e $b \in y$ [per definizione] (inoltre sono contenimenti di segmenti iniziali, dunque è naturale che tutti gli elementi di quelli più a sinistra siano contenuti da quelli più a destra). Dunque $\Imm(\iota)$ densa in $\RR$.
 \end{proof}
-
+\pagebreak
 \begin{notation}[Abuso di immersioni]
 	Siccome le immersioni:
 	\[ \omega \hookrightarrow \ZZ \hookrightarrow \QQ \hookrightarrow \RR
@@ -3480,20 +3518,20 @@ Queste proprietà, a loro volta, caratterizzano l'insieme ordinato $(\RR,<)$ a m
 \end{proposition}
 
 \begin{proof}
-	Sia $\widetilde{A}$ l'insieme delle sezioni su $B$. Osserviamo che $(A,\leq) \sim (\widetilde{A},\subseteq)$. L'isomorfismo è infatti dato da:
+	Sia $\widetilde{A}$ l'insieme delle sezioni su \textcolor{red}{$B$}. Osserviamo che $(A,\leq) \sim (\widetilde{A},\subseteq)$. L'isomorfismo è infatti dato da:
 	\[ f : A \rightarrow \widetilde{A} : a \mapsto B_a = \{x \in B | x < a\}\subsetneq B
 		\]
 	la cui inversa è:
 	\[ g : \widetilde{A} \rightarrow A : Y \mapsto \sup Y
 		\]
 	\textcolor{MidnightBlue}{Verifiche: $a$ è un maggiorante di $B_a$ (per definizione), ed è il minimo perché se $x<a$ fosse un maggiorante, per la densità di $B$ in $A$, esiste $y \in B$ con $x<y<a$, quindi $y \in B_a$ per la
-	seconda disuguaglianza, e $x<y$ non può essere ovviamente un maggiorante di $B_a$. Quindi $\sup B_a = a$, ossia $g(f(a)) = a$.\\
+	seconda disuguaglianza (cioè per definizione di segmento iniziale), e $x<y$ non può essere ovviamente un maggiorante di $B_a$ [abbiamo appena trovato un elemento in $B_a$ più grande]. Quindi $\sup B_a = a$, ossia $g(f(a)) = a$.\\
 	Per ottenere la composizione opposta, $B_{\sup Y} = Y$, dimostriamo che $x \in B_{\sup Y} \leftrightarrow x \in Y$ [che è equivalente per estensionalità].
 	\begin{itemize}
 		\item[$\boxed{\longleftarrow}$] Per costruzione, vale che $x \in Y \rightarrow x \leq \sup Y$, perché il sup per definizione è un maggiorante di $Y$, inoltre 
 		non può essere $x = \sup Y$ perché, per definizione di sezione, $Y$ non ha massimo, quindi $x \in B_{\sup Y}$.
 		\item[$\boxed{\longrightarrow}$] Per ottenere la freccia opposta, abbiamo $x \in B_{\sup Y} \iff x < \sup Y$, allora $x$ non può essere un maggiorante di $Y$
-		- perché $\sup Y$ è il minimo di questo e $x < \sup Y$ - quindi esiste $y \in Y$\footnote{Sarebbe la caratterizzazione del sup di un insieme.}, con $x < y$, ma $Y$ è un segmento iniziale, quindi per definizione $x \in Y$.
+		- perché $\sup Y$ è il minimo di questo e $x < \sup Y$ - quindi esiste $y \in Y$\footnote{Sarebbe la caratterizzazione del sup di un insieme.} [se non ci fosse $y$, $x$ sarebbe un maggiorante, ma come detto, ciò è assurdo], con $x < y$, ma $Y$ è un segmento iniziale, quindi per definizione $x \in Y$.
 	\end{itemize}}
 	Ora per il \hyperref[isoCantor]{teorema di isomorfismo di Cantor} [è numerabile per 3., è denso per lo stesso motivo (se lo è in $A$, lo è
 	a maggior ragione in se stesso\footnote{Tutti gli elementi di $B$ sono anche elementi di $A$.}), ed essendo $A$ senza estremi e $B$ denso
@@ -3513,8 +3551,8 @@ Per completezza, definiamo ora la struttura di campo di $\RR$. Non verificheremo
 	\begin{itemize}
 		\item $(F,0,1,+,\cdot)$ è un campo
 		\item $(F,<)$ è un'ordine totale \footnote{Come ribadito più volte è indifferente usare $<$ o $\leq$.}
-		\item $\forall x,y,z \in F \; x < y \rightarrow x + z < y + z$
-		\item $\forall x,y \in F (0 < x \land 0 < y) \rightarrow 0 < x \cdot y$
+		\item $\forall x,y,z \in F \; x < y \rightarrow x + z < y + z$ \textcolor{orange}{(compatibilità con la somma)}
+		\item $\forall x,y \in F (0 < x \land 0 < y) \rightarrow 0 < x \cdot y$ \textcolor{orange}{(compatibilità con il prodotto)}
 	\end{itemize}
 	(le ultime due richieste sono le proprietà di \textbf{compatibilità} della struttura di campo [= compatibilità delle operazioni] con l'ordinamento $<$ di $F$).
 \end{definition}
@@ -3528,9 +3566,9 @@ Per completezza, definiamo ora la struttura di campo di $\RR$. Non verificheremo
 
 \begin{definition}[Prodotto su $\RR$]
 	Dati $x,y \in \RR$ con $x > 0$ e $y > 0$ definiamo il \vocab{prodotto di numeri reali}:
-	\[ x \cdot y \Mydef \{q \in \QQ | q \leq 0\} \cup \{a\cdot b | a \in x  \land b \in y \land a > 0 \land b > 0\}
+	\[ x \cdot y \Mydef \{q \in \QQ | q \leq 0\} \cup \{a\cdot b \in \QQ| a \in x  \land b \in y \land a > 0 \land b > 0\}
 		\]
-	cioè l'unione di $\QQ_0 \cup \{0\}$ con la sezione di $\QQ$ che ha come elementi i razionali somme di elementi \textbf{positivi} di $x$ e $y$.
+	cioè l'unione di $\QQ_0 \cup \{0\}$ con la sezione di $\QQ$ che ha come elementi i razionali prodotti di elementi \textbf{positivi} di $x$ e $y$.
 \end{definition}
 
 Definiamo quindi $-x$ tramite l'inverso additivo ed il prodotto nei casi $x < 0$, $y>0$ etc. tramite l'uso della regola dei segni.
@@ -3674,32 +3712,33 @@ Siamo finitamente pronti per dimostrare che $|\RR| = 2^{\aleph_0}$.
 	\textcolor{MidnightBlue}{\underline{Intuitivamente}: $X \in A$ rappresenta lo sviluppo in notazione binaria di un $x \in ]0,1[$ - $x = 0.a_1a_2a_3 \ldots$, $a_i = 1 \leftrightarrow i \in X$ - la condizione $X \ne \emptyset$ serve a escludere lo 0, la 
 	condizione di co-infinitezza a escludere l'uno periodico.}\\
 	Ci basta dimostrare che $|A| = 2^{\aleph_0}$ e che esiste $f : A \rightarrow \RR$ iniettiva. La prima cosa è facile:
-	\[ A = \ps(\omega)\setminus (\{\emptyset\} \cup \underbrace{\{X \in \ps(\omega) : |\omega \setminus X|<\aleph_0\}}_{\Mydef S})\,\footnote{Cioè l'insieme dei sottoinsiemi non vuoti e co-infiniti è il complementare dell'unione del singoletto del vuoto (prendendo l'unione rimarrà il vuoto come sottoinsieme) e 
-	dei sottoinsiemi con complementare, rispetto ad $\omega$, finito.}
+	\[ A = \ps(\omega)\setminus (\{\emptyset\} \cup \underbrace{\{X \in \ps(\omega) : |\omega \setminus X|<\aleph_0\}}_{\Mydef S})
 		\]
 	L'insieme $S$ è in corrispondenza biunivoca con $\psf(\omega)$ tramite la funzione ``complementare rispetto a $\omega$'':
-	\[ \ol \square : S \rightarrow \psf(\omega) : X \mapsto \ol X = \omega \setminus X\,\footnote{Essendo gli $X$ finiti, per quanto visto in un'osservazione precedente, il complementare}
+	\[ \ol \square : S \rightarrow \psf(\omega) : X \mapsto \ol X = \omega \setminus X
 		\]
-	Quindi $S = |\psf(\omega)| = \aleph_0$, e, di conseguenza\footnote{$|\{\emptyset\} \cup S| \leq |\emptyset| + |S| = 1 + \aleph_0 = \aleph_0$ e $S \subseteq (\{\emptyset\} \cup S)$, da cui formalmente
+	Quindi $|S| = |\psf(\omega)| = \aleph_0$, e, di conseguenza\footnote{$|\{\emptyset\} \cup S| \leq |\emptyset| + |S| = 1 + \aleph_0 = \aleph_0$ e $S \subseteq (\{\emptyset\} \cup S)$, da cui formalmente
 	si ottiene che l'unione è numerabile.} $|A| = |\ps(\omega)\setminus(\{\emptyset\}\cup S)| = 2^{\aleph_0}$, grazie al lemma precedente.
 	Resta da costruire $f : A \rightarrow \RR$ iniettiva.\\
-	Cominciamo col definire un ordine totale su $A$. Dati $X,Y \in A$:
-	\[ X < Y \Mydef \exists i \in \omega \; \underbrace{(i \cap X = i \cap Y)}_{\forall j < i \; j \in X \leftrightarrow j \in Y} \land \underbrace{(i \in Y \setminus X)}_{i \in Y \land i \not\in X}
+	Cominciamo col definire un ordine totale su $A$. Dati $X,Y \in A$ (cioè sottoinsiemi non vuoti e co-infiniti di $\omega$):
+	\[ X <_A Y \Mydef \exists i \in \omega \; \underbrace{(i \cap X = i \cap Y)}_{\forall j \,<\, i \; j \,\in\, X \leftrightarrow j \,\in\, Y} \land \underbrace{(i \in Y \setminus X)}_{i \,\in\, Y\; \land\; i \,\not\in \,X}
 		\]
-	In altri termini, detto $i$ il minimo elemento della differenza simmetrica $X \Delta Y \Mydef (X \setminus Y) \cup (Y \setminus X)$, se $i \in Y$ - per cui, chiaramente, $i \not \in X$ - allora $Y < X$.
-	La verifica del fatto che questo è un ordine totale è immediata.\\
-	Consideriamo $B \Mydef \psf(\omega) \setminus \{\emptyset\} \subseteq A$. Chiaramente $|B| = \aleph_0$. Dimostriamo che $B$ è denso in $A$.
-	Dati $X,Y \in A$, con $X < Y$, sia $i := \min X \Delta Y$ e $j > i$ minimo tale che $j \not \in X$, che esiste perché $X$ è co-infinito. Sia $Z \Mydef (X \cap j) \cup \{j\}$,
-	$Z$ è finito, quindi appartiene a $B$ per costruzione. Inoltre $j$ è il minimo elemento di $X \Delta Z$ e $j \in Z$, quindi $X < Z$, e, similmente, $i$ è il minimo di $Z \Delta Y$ e $i \in Y$, quindi $Z < Y$.
+	In altri termini, detto $i$ il minimo elemento della differenza simmetrica $X \Delta Y \Mydef (X \setminus Y) \cup (Y \setminus X)$ [che è ancora un sottoinsieme di $\omega$ per cui il minimo esiste], se $i \in Y$ - per cui, chiaramente, $i \not \in X$ - allora $X < Y$, se, invece $i \in X$ -
+	per cui $i \not \in Y$ - allora $Y < X$ (in altri termini, presa la differenza simmetrica di due insiemi, chi dei due ha il minimo elemento è il maggiore). La verifica del fatto che questo è un ordine totale è immediata.\\
+	Consideriamo $B \Mydef \psf(\omega) \setminus \{\emptyset\} \subseteq A$. Chiaramente $|B| = \aleph_0$. Dimostriamo ora che $B$ è denso in $A$.\\
+	Dati $X,Y \in A$, con $X < Y$, sia $i := \min X \Delta Y$ (che c'è per quanto appena scritto e in particolare sta in $Y$) e $j > i$ minimo tale che $j \not \in X$, che esiste perché $X$ è co-infinito. Sia $Z \Mydef (X \cap j) \cup \{j\}$ (ricordiamo che siamo in $\omega$,
+	quindi stiamo togliendo da $X$ tutte le cose maggiori o uguali a $j$ e poi stiamo riaggiungendo $j$),
+	$Z$ è finito [perché intersezione con $j\in \omega$ + unione con singoletto], quindi appartiene a $B$ per definizione. Inoltre $j$ è il minimo elemento di $X \Delta Z$ [l'abbiamo preso come il più piccolo non in $x$ e poi lo abbiamo aggiunto a $Z$] e $j \in Z$, quindi [per come è definito l'ordine] $X < Z$, e, similmente,
+	$i$ è il minimo di $Z \Delta Y$ e $i \in Y$, quindi di nuovo si ha $Z < Y$, pertanto $X<Z<Y$.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width = 7.0cm]{immagini/cardinalità_R.png}
 	\end{figure}
-	Stabilito che $B$ è denso in $A$, $B$ è, in particolare, denso, quindi, c'è un isomorfismo di ordini $g : B \rightarrow \QQ$. Ora, siccome, nuovamente, $B$ è denso in $A$,
+	Stabilito che $B$ è denso in $A$, $B$ è, in particolare, denso [numerabile e naturalmente illimitato rispetto all'ordine dato ad $A$\footnote{Segue dal fatto che $\omega$ è illimitato.}], quindi, c'è un isomorfismo di ordini $g : B \rightarrow \QQ$. Ora, siccome, nuovamente, $B$ è denso in $A$,
 	la funzione:
-	\[ h : A \rightarrow \; \text{sezioni su $B$} : X \mapsto \{Y \in B | Y < X\}
+	\[ h : A \rightarrow \; \text{sezioni [principali] su $B$} : X \mapsto B_X = \{Y \in B | Y < X\}
 		\]
-	è iniettiva. Quindi $f : A \rightarrow \RR : X \mapsto g[h(X)]$ è una funzione iniettiva da $A$ a $\RR$.
+	è iniettiva [e sezioni di $B = \RR$]. Quindi $f : A \rightarrow \RR : X \mapsto g[h(X)]$ è una funzione iniettiva da $A$ a $\RR$ (per essere formali dovremmo comporre anche $\iota$ alla fine, per quanto osservato sul fatto che $\QQ\subseteq \RR$).
 \end{proof}
 
 
@@ -3737,6 +3776,11 @@ Tuttavia, gli assiomi che abbiamo introdotto fino ad ora lasciano aperte lacune 
 Queste tre lacune saranno colmate dai tre assiomi che ancora ci mancano: rispettivamente l'assioma del rimpiazzamento, l'assioma della scelta e l'assioma di buona fondazione. La teoria risultante sarà,
 inevitabilmente, incompleta - per esempio non decide il problema del continuo: l'esistenza di cardinalità intermedie fra $\aleph_0$ e $2^{\aleph_0}$ - ma è la fondazione meglio accettata della matematica.
 
+
+
+
+
+
 \newpage
 \section{I buoni ordinamenti}
 Il nostro prossimo obiettivo è definire e studiare la classe dei \vocab{numeri ordinali}. Questa può essere pensata come la più vasta classe
@@ -3745,7 +3789,7 @@ l'induzione e la ricorsione transfinita, procedimenti che superano la forza dimo
 il teorema di Cantor-Lebesgue sugli insiemi di unicità.\\
 Siccome l'induzione forte equivala al principio del minimo, studieremo i buoni ordini. In questa sezione, dimostreremo il risultato seguente.
 
-\begin{theorem}[Isomorfismo di buoni ordini]
+\begin{theorem}[Tutti i buoni ordini sono ``totalmente ordinati'' fra loro]
 	Siano $(A,<_A)$ e $(B,<_B)$\footnote{Nel seguito scriveremo semplicemente $(A,<)$ e $(B,<)$ per comodità.} insiemi bene ordinati, allora vale \textcolor{red}{una e una sola} delle seguenti:
 	\begin{itemize}
 		\item $(A,<_A)$ è isomorfo a un segmento iniziale proprio di $(B,<_B)$
@@ -3754,12 +3798,12 @@ Siccome l'induzione forte equivala al principio del minimo, studieremo i buoni o
 	\end{itemize}
 \end{theorem}
 
-Ossia se definiamo:
+Di fatto stiamo creando un'ordinamento totale tra buoni ordini con questo teorema, se definiamo:
 \[ (A,<_A) \prec (B,<_B) \Mydef \exists C \; \text{$C$ segmento iniziale proprio di $(B,<_B)$ e} \; (A,<_A) \sim C
 	\]
-allora $\prec$ soddisfa le proprietà formali di un ordinamento totale fra le classi di isomorfismo di buoni ordini.
-Definiamo altresì:
-\[ (A,<_A) \preceq (B,<_B) \Mydef (A,<_A) \prec (B,<_B) \lor (A,<_A) \sim (B,<_N)
+allora $\prec$ soddisfa le \textcolor{red}{proprietà formali di un ordinamento totale fra le classi di isomorfismo di buoni ordini}.
+Definiamo altresì l'ordine largo associato:
+\[ (A,<_A) \preceq (B,<_B) \Mydef ((A,<_A) \prec (B,<_B)) \lor ((A,<_A) \sim (B,<_B))
 	\]
 ossia ``$(A,<_A)$ è isomorfo a un segmento iniziale [proprio o meno] di $(B,<_B)$''.\\
 Richiamiamo le definizioni fondamentali.
@@ -3769,14 +3813,14 @@ Richiamiamo le definizioni fondamentali.
 \end{definition}
 
 \begin{definition}[Segmento inziale]
-	Dato un ordine totale $(A,<)$, $B \subseteq A$ è un \vocab{segmento inziale} se $\forall b \in B \; \forall x \in A \; x < b \rightarrow x \in B$.
+	Dato un ordine totale $(A,<)$, $B \subseteq A$ è un \vocab{segmento inziale} se [assorbe gli elementi più piccoli] $\forall b \in B \; \forall x \in A \; x < b \rightarrow x \in B$.
 \end{definition}
 
 \begin{definition}[Segmenti iniziali propri e principali]
 	Il segmento iniziale $B$ è \vocab{proprio} se $B \ne A$. Il segmento iniziale $B$ è \vocab{principale} se [è della forma]:
 	\[ B = A_a \Mydef \{x \in A | x < a\}
 		\]
-	per qualche $a \in A$, e, in questo caso, si dice \vocab{segmento iniziale principale determinato da $a$}.
+	per qualche $a \in A$, e, in questo caso, si dice  che è un \vocab{segmento iniziale principale determinato da $a$}.
 \end{definition}
 
 È chiaro che un segmento iniziale principale, $A_a$, è \underline{sempre} proprio, perché $a \not \in A_a$, e nel caso dei buoni ordini questa è una doppia implicazione (quindi se è proprio è 
@@ -3787,11 +3831,12 @@ anche principale).
 \end{proposition}
 
 \begin{proof}
-	Sia $(A,<)$ ben ordinato e $I \subsetneq A$ un segmento iniziale proprio. Consideriamo $a := \min(A \setminus I)$ (per l'ipotesi di buon ordinamento il minimo c'è). Allora $I = A_a$ (ovvero 
+	Sia $(A,<)$ ben ordinato e $I \subsetneq A$ un segmento iniziale proprio. Consideriamo $a := \min_<(A \setminus I)$ (per l'ipotesi di buon ordinamento il minimo c'è). Allora $I = A_a$ (ovvero 
 	il nostro segmento iniziale proprio è principale determinato da $a$).\\
-	Verifiche: $x \in A_a \implies x < a \implies x \not \in A \setminus I \implies x \in I$ ($x < a$ con $a$ minimo di $A \setminus I$ ci assicura che $x$ non possa stare in quell'insieme per la relazione
-	d'ordine totale, dunque deve stare nel complementare), dunque $A_a \subseteq I$. Viceversa, supponiamo per assurdo $x \in I$ e $x \not \in A_a$, la seconda equivale ad $a \leq x$ (per definizione di segmento iniziale 
-	principale), ma allora, siccome $x \in I$, $a \in I$ (per definizione di segmento iniziale) $\lightning$ Quindi $x \in I \implies x \in A_a$, da cui $I \subseteq A_a$.
+	\textcolor{MidnightBlue}{Verifiche: vediamo i due contenimenti, $x \in A_a \overset{\text{def.}}{\implies} x < a \overset{\text{$a$ min. in $A\setminus B$}}{\implies} x \not \in A \setminus I \implies x \in I$
+	(cioè se $x < a$, poiché $a$ è il minimo che sta nel complementare di $I$ rispetto ad $A$, $x$ che è più piccolo non può soddisfare la proprietà e quindi non sta nel complementare aka sta in $I$), dunque $A_a \subseteq I$.\\
+	Viceversa, supponiamo per assurdo $x \in I$ e $x \not \in A_a$, la seconda equivale ad $a \leq x$ (per definizione di segmento iniziale 
+	principale), ma allora, siccome $x \in I$, per definizione di segmento iniziale $a \in I$, ma per definizione $a$ era il minimo in $A \setminus I \implies$ non poteva essere in $I$, dunque assurdo, quindi $x \in I \implies x \in A_a$, da cui $I \subseteq A_a$.}
 \end{proof}
 
 \begin{exercise}[Buon ordine $\iff$ (proprio $\implies$ principale)]
@@ -3799,20 +3844,39 @@ anche principale).
 	è principale, allora $A$ è bene ordinato da $<$.
 \end{exercise}
 
-\begin{lemma}[Proprietà delle funzioni strettamente crescenti]
-	Sia $(A,<)$ un buon ordinamento e $f : A \rightarrow A$ una funzione crescente - $\forall x,y \in A \; x < y \rightarrow f(x) < f(y)$ -, allora $\forall x \in A \; x \leq f(x)$.
+\begin{soln}
+	La proposizione appena vista ci fornisce già $\Longrightarrow$, dunque non ci resta che dimostrare la freccia opposta, ovvero se vale la proposizione su un ordine totale $(A,<)$, allora questo è un buon ordine.
+	Sia $B \subseteq A$, $B \ne \emptyset$, vogliamo vedere che ha un minimo, $\forall x \in B$ sia $B_x$ il segmento iniziale principale determinato da un elemento di $B$, consideriamo:
+	\[ \bigcap_{x \in B} B_x \,\footnote{Ricordiamo che: $\bigcap_{x \in B} B_x = \bigcap \{B_x | x \in B\}$.}
+		\]
+	osserviamo che l'intersezione di segmenti iniziali è ancora un segmento iniziale [ogni $x$ nell'intersezione sta in tutti i segmenti iniziali, quindi vale la solita proprietà], inoltre, tale segmento iniziale è necessariamente proprio
+	(infatti, se ci sono almeno due elementi in $B$ l'intersezione dei segmenti iniziali principali taglia fuori l'elemento più grande), dunque \textbf{per ipotesi}, l'intersezione è un segmento iniziale principale. Sia $m \in B$ l'elemento tale che:
+	\[ B_m = \{x \in B | x < m\} = \bigcap_{x \in B} B_x
+		\]
+	verifichiamo che $m$ è il minimo di $B$ [aka $B_m = \emptyset$]. Supponiamo per assurdo che esista $y < m$, ovvero $y \in B_m = \bigcap_{x \in B} B_x$, ciò equivale a $y < x$, $\forall x \in B$, compreso $y$ stesso, si ottiene cioè $y < y \; \lightning$.
+	Dunque $m$ è il minimo e $B_m = \emptyset$.
+\end{soln}
+
+\begin{remark}[Finto buon ordine]
+	In $\ZZ$ ogni segmento iniziale proprio è principale, come accade in $\omega$, tuttavia $\ZZ$ non è buon ordine. Ciò apparentemente contraddirebbe quanto appena dimostrato,
+	tuttavia non è così, infatti, come visto nella dimostrazione sopra il vuoto è un segmento iniziale proprio, che in $\omega$ è principale [corrisponde a $\omega_0$], mentre in $\ZZ$ non c'è un elemento che lo determini come 
+	segmento iniziale principale (pur essendo proprio), da ciò si vede che l'implicazione proprio $\implies$ principale, non si verifica in $\ZZ$, che non è un buon ordine, come già sapevamo. 
+\end{remark}
+
+\begin{lemma}[Le funzioni crescenti di un buon ordine stanno sopra la diagonale]
+	Sia $(A,<)$ un buon ordinamento e $f : A \rightarrow A$ una funzione \textcolor{red}{strettamente} crescente - $\forall x,y \in A \; x < y \rightarrow f(x) < f(y)$ -, allora $\forall x \in A \; x \leq f(x)$.
 \end{lemma}
 
 \begin{proof}
-	Per assurdo, assumiamo la negazione della tesi, $x > f(x)$. Quindi l'insieme $B = \{x \in A | f(x) < x\}$ non è vuoto. Sia $k := \min B$.
+	Per assurdo, assumiamo la negazione della tesi, $\exists x \in A \; x > f(x)$. Quindi l'insieme $B = \{x \in A | f(x) < x\}$ non è vuoto. Sia $k := \min B$.
 	Allora $f(k) < k$ (perché elemento di $B$), e, siccome $f$ è crescente $f(\textcolor{red}{f(k)}) < \textcolor{red}{f(k)}$, per cui $f(k) \in B$ a sua volta (è [strettamente] più grande della sua immagine),
 	e, ricordando che per ipotesi $f(k)<k$, contraddice la minimalità di $k$ e ci dà un assurdo.
 \end{proof}
 
-\begin{corollary}[Proprietà isomorfismi tra buoni ordinamenti]
+\begin{corollary}[Proprietà degli isomorfismi tra buoni ordinamenti]
 	Valgono le seguenti:
 	\begin{enumerate}[(1)]
-		\item Un buon ordinamento non è isomorfo a un suo segmento iniziale proprio.
+		\item Un buon ordinamento \textcolor{red}{non} è isomorfo a un suo segmento iniziale proprio. \textcolor{orange}{(irriflessività)}
 		\item L'identità è il solo isomorfismo fra un buon ordinamento e se stesso.
 		\item Se $(A,<)$ e $(B,<)$\footnote{Ricordare che quelli sono $<_A$ e $<_B$.} sono buoni ordini isomorfi allora esiste un unico isomorfismo fra di essi.
 	\end{enumerate}
@@ -3822,67 +3886,767 @@ anche principale).
 	Dimostriamo singolarmente gli enunciati:
 	\begin{enumerate}[(1)]
 		\item Supponiamo che $(A,<)$ sia isomorfo al suo segmento iniziale proprio $A_a$, ordinato - si intende - dalla restrizione di $<$, e sia $f : A \rightarrow A_a$ un isomorfismo.
-		Allora $f$ è crescente per definizione. Tuttavia $f(a) < a$, poiché $f(a) \in A_a$, contraddicendo il lemma, quindi abbiamo un assurdo.
+		Allora $f$ è crescente per definizione di isomorfismo. Tuttavia $f(a) < a$, poiché in arrivo $f(a) \in A_a$, contraddicendo il lemma sopra, quindi abbiamo un assurdo.
 		\item Sia $f : A \rightarrow A$ un automorfismo del buon ordine $(A,<)$, dobbiamo dimostrare che $f = \id_A$. Se così non fosse, ci sarebbe almeno un $x \in A$ tale che $f(x) \ne x$.
 		Se $f(x) < x$ stiamo contraddicendo il lemma perché $f$ deve essere crescente (in quanto isomorfismo di ordini). Se $x < f(x)$, vale la stessa considerazione di prima con $f^{-1}$, e quindi di nuovo un assurdo.
-		\item Se $f : A \rightarrow B$ e $g : A \rightarrow B$ fossero due isomorfismi diversi, allora $g^{-1} \circ f$ sarebbe un automorfismo di $A$ diverso dall'identità,
-		contraddicendo il punto (1).	
+		\item Se $f : A \rightarrow B$ e $g : A \rightarrow B$ fossero due isomorfismi diversi, allora $g^{-1} \circ f : A \rightarrow A$ sarebbe un automorfismo di $A$ diverso dall'identità,
+		contraddicendo il punto (2).	
 	\end{enumerate}
 \end{proof}
 
-\begin{remark}[Transitività della relazione d'ordine tra buoni ordini]
+\begin{remark}[Transitività della ``relazione d'ordine'' tra buoni ordini]
 	Siano $(A,<)$, $(B,<)$, $(C,<)$ buoni ordini. Allora:
 	\[ (A,<) \preceq (B,<) \land (B,<) \preceq (C,<) \rightarrow (A,<) \preceq (C,<)
 		\]
 \end{remark}
 
+\begin{proof}
+	Siano $f : A \rightarrow B$ e $g : B \rightarrow C$ isomorfismi fra $A$ e un segmento iniziale di $B$ e fra $B$ e un segmento iniziale di $C$ rispettivamente.
+	Dimostriamo che $g \circ f : A \rightarrow C$ è un isomorfismo fra $A$ e un segmento iniziale di $C$ [non necessariamente proprio]\footnote{Una definizione alternativa ed equivalente di minore o uguale tra buoni ordini, rispetto a quella data all'inizio, è 
+	che un buon ordine sia isomorfo ad un segmento iniziale non necessariamente proprio dell'altro.}. Si ha che $g \circ f$ è crescente in quanto composizione di funzioni crescenti.
+	Occorre verificare che $g \circ f[A]$ è un segmento iniziale di $C$.\\
+	\textcolor{MidnightBlue}{Verifica: sia $g(f(a))$ un qualunque elemento di $g \circ f[A]$, se sia $x < g(f(a))$, dobbiamo verificare [per avere la definizione di segmento iniziale] che $x \in g \circ f[A]$.
+	$g(f(a)) \in g[B]$ e [per ipotesi] $g[B]$ è segmento iniziale di $C$, quindi $g[B] \ni g(f(a)) > x \in g[B]$. Scriviamo $x = g(y)$. Ora, siccome $g$ è un isomorfismo, da $x < g(f(a))$ deduciamo $y < f(a) \in f[A]$.
+	Siccome $f[A]$ è segmento iniziale di $B$, segue che $y \in f[A]$, quindi possiamo scrivere $y = f(z)$, per qualche $z \in A$. In definitiva abbiamo quindi $x = g(f(z)) \in g \circ f[A]$.}
+\end{proof}
+
+\begin{remark}[Antisimmetria della ``relazione d'ordine'' sui buoni ordini]
+	Siano $(A,<)$ e $(B,<)$ buoni ordini, allora:
+	\[ (A,<) \preceq (B,<) \land (B,<) \preceq (A,<) \rightarrow (A,<) \sim (B,<)
+		\]
+	dunque vale la proprietà antisimmetrica\footnote{I buoni ordini sono una classe, non un'insieme, dunque la relazione $\preceq$ (o $\prec$), volendo, è una relazione d'ordine su una classe, non su un insieme.}
+\end{remark}
+
+\begin{proof}
+	Siano $f : A \rightarrow B$ e $g : B \rightarrow A$ isomorfismi fra $A$ e un segmento iniziale di $B$ e fra $B$ e un segmento iniziale di $A$.
+	Ricordando la dimostrazione dell'osservazione precedente, $g \circ f$ è un isomorfismo fra $A$ e un \textbf{segmento iniziale} $g \circ f[A]$ di $A$. Ma per l'(1) del corollario 
+	$g \circ f[A]$ non può essere un segmento iniziale \textbf{proprio}, quindi [deve essere tutto $A$] $g \circ f[A] = A$. Ma allora, per il (2) del medesimo corollario, $g \circ f = \id_A$.\\
+	Ragionando simmetricamente $f \circ g = \id_B$, quindi $f$ è un isomorfismo fra $A$ e $B$, con inversa $g$.
+\end{proof}
+
+Possiamo finalmente passare alla dimostrazione d'ordine del teorema.
+
+\begin{theorem}[Totalità della ``relazione d'ordine'' sui buoni ordini]
+	Siano $(A,<)$ e $(B,<)$ insiemi ben ordinati, allora vale \textcolor{red}{una e una sola} delle seguenti:
+	\[ (A,<) \prec (B,<) \qquad (A,<) \sim (B,<) \qquad (B,<) \prec (A,<)
+		\]
+\end{theorem}
+
+\begin{wrapfigure}[12]{l}{2.82cm}
+	\includegraphics[width = 2.80cm]{immagini/ordine_totale_buoni_ordini.png}
+\end{wrapfigure}
+
+\textcolor{MidnightBlue}{\underline{Idea}: Il teorema ci dice che vale al più una delle alternative, quindi la difficoltà risiede nel dimostrare che una si verifica. Molto vagamente potremmo ragionare così.
+Identifichiamo, progressivamente, segmenti iniziali sempre più lunghi di $A$ e $B$. All'inizio identifichiamo il minimo di $A$ con il minimo di $B$, poi il secondo elemento di $A$ con il secondo elemento di $B$, etc. Fatti $\omega$
+passaggi avremo identificato un segmento iniziale di $A$, diciamo $A_x$, isomorfo a $\omega$, con un $B_y$, anch'esso ovviamente isomorfo a $\omega$. Bene: continuiamo identificando $x$ con $y$. Quando potrebbe bloccarsi il procedimento?
+Solo se, ad un certo punto, abbiamo identificato interamente uno dei due insiemi, con un segmento iniziale dell'altro - perché altrimenti, abbiamo identificato due segmenti iniziali $A_x$ e $B_y$ e possiamo continuare attaccando $x$ a $y$. È 
+come la chiusura di una cerniera lampo : ad ogni istante c'è un prossimo dente.\\
+\textcolor{red}{Questa discorso, però, non è una dimostrazione.} Se vogliamo, sarebbe un tentativo di costruire l'isomorfismo cercato per \textcolor{purple}{ricorsione transfinita}. Il guaio è che i numeri che permetterebbero di numerare i passaggi della costruzione,
+gli \textcolor{purple}{ordinali}, sono appunto l'oggetto che stiamo tentando di costruire.}
+
+\begin{proof}
+	Per il teorema\footnote{Typo di Mamino.}, si può verificare al più una delle tre condizioni. Consideriamo ora $f$ definita come segue:
+	\[ f = \{(a,b) \in A \times B | A_a \sim B_b\}
+		\]
+	Vogliamo dimostrare che $f$ è una funzione crescente, che $\Dom(f)$ è un segmento iniziale di $A$, e che $\Imm(f)$ è un segmento iniziale di $B$ (cioè $f$ manda segmenti iniziali in segmenti iniziali). Quindi $f$ è un isomorfismo fra un segmento iniziale di $A$ e uno di $B$.
+	Infine dimostriamo che $\Dom(f) = A$ o $\Imm(f) = B$, e questo conclude la dimostrazione (perché se si verifica una delle due o tutte e due, abbiamo ottenuto la tesi del teorema). Procediamo ora con tutte le verifiche.
+	\begin{itemize}
+		\item[$\boxed{\text{$f$ è una funzione}}$] \textcolor{MidnightBlue}{Supponiamo per assurdo $(a,b) \in f$ e $(a,b') \in f$ con $b \ne b'$. Senza perdita di generalità supponiamo $b < b'$ (quindi $B_b$ s.i. proprio di $B_{b'}$), e, per la definizione data di $f$ ciò corrisponde a:
+		\[ B_b \sim A_a \sim B_{b'}
+			\]
+		dunque $B_{b'}$ sarebbe isomorfo al suo segmento iniziale proprio $B_b$ $\lightning$ (a causa dell'(1) del corollario).}
+		\item[$\boxed{\text{$f$ è crescente}}$] \textcolor{MidnightBlue}{Dati $a,a' \in A$, con $a<a'$, dobbiamo dimostrare $f(a) < f(a')$. Supponiamo, per assurdo $f(a') \leq f(a)$, abbiamo allora:
+		\[ A_{a'} \sim B_{f(a')} \preceq B_{f(a)} \sim A_a
+			\]
+		dove i due isomorfismi, vengono semplicemente dalla definizione di $f$ (cioè manda s.i. in s.i. [isomorfi] in arrivo), e $B_{f(a')} \preceq B_{f(a)}$ segue da $B_{f(a')} \subseteq B_{f(a)}$, che vale perché stiamo supponendo $f(a') \leq f(a)$ per ipotesi assurda.\\
+		Abbiamo quindi che $A_{a'}\preceq A_a$ [$\implies A_{a'}\subseteq A_a \implies a' \leq a$] che è assurdo perché $A_a$ è un segmento iniziale proprio di $A_{a'}$ [poiché avevamo assunto $a<a'$].}
+		\item[$\boxed{\text{$\Dom(f)$ è s.i. di $A$}}$] \textcolor{MidnightBlue}{Sia $a \in \Dom(f)$ e $a' < a$, vogliamo dimostrare che $a' \in \Dom(f)$ (che quindi è un segmento iniziale). L'ipotesi $a \in \Dom(f)$ equivale a dire che esiste $b \in B$ tale che $A_a \sim B_b$,
+		quindi, in particolare, $A_a \preceq B_b$ (per la definizione di $f$ abbiamo l'isomorfismo e per l'osservazione sull'antisimmetria possiamo indebolire la cosa a disuguaglianza).
+		Da $a'<a$ segue come al solito che $A_{a'} \subsetneq A_a$, quindi [per definizione di $\prec$] $A_{a'} \prec A_a$.\\
+		Per transitività abbiamo quindi $A_{a'}\prec B_b$ e, siccome ogni segmento iniziale [proprio] è principale [in un buon ordine], esiste $b' \in B_b$, tale che $A_{a'} \sim (B_b)_{b'}$ (stiamo usando la definizione di $\prec$).
+		Si conclude osservando che $(B_b)_{b'} \sim B_{b'}$ (basta verificare i due contenimenti banali), quindi $A_{a'}\sim B_{b'} \iff f(a') = b' \iff (a',b') \in f \implies a' \in \Dom(f)$.}
+		\item[$\boxed{\text{$\Imm(f)$ è s.i. di $B$}}$] \textcolor{MidnightBlue}{Dimostrazione simmetrica alla precedente.}
+		\item[$\boxed{\begin{aligned}\text{$\Dom(f) = A$} \\ \text{o $\Imm(f) = B$}\end{aligned}}$] \textcolor{MidnightBlue}{Se così non fosse, per la terza verifica vista, $\Dom(f) = A_a$ e per la penultima $\Imm(f) = B_b$ \footnote{Stiamo negando un OR quindi
+		l'unica possibilità è che siano entrambe false, dunque, visto quanto verificato sopra, abbiamo ottenuto che sono entrambi segmenti iniziali propri e quindi principali.}, per opportuni $a \in A$ e $b \in B$. Per la seconda verifica $f$ è crescente, quindi è un isomorfismo fra $\Dom(f) = A_a$ e $\Imm(f) = B_b$.
+		Ma allora, per definizione di $f$, $A_a \sim B_b$, cioè $(a,b) \in f$. Quindi $a \in \Dom(f) = A_a \; \lightning$ (o anche $b \in \Imm(f) = B_b \; \lightning$).}
+	\end{itemize}
+\end{proof}
+
+\begin{exercise}[Ogni sottoinsieme proprio di un buon ordine è isomorfo a un s.i. non necessariamente proprio]
+	Sia $(A,<)$ un buon ordine e sia $B \subsetneq A$. Dimostra che $B \preceq A$, ma non necessariamente $B \prec A$.
+\end{exercise}
+
+\begin{soln}
+	Osserviamo che $(B,<_{|B})$ è un buon ordine [eredita la totalità di $<$ e tutti i sottoinsiemi di $B$ sono anche sottoinsiemi di $A$, dunque c'è sempre un minimo],
+	segue che, per il teorema precedente, $(B,<_{|B})$ è isomorfo a un segmento iniziale di $A$, ma non necessariamente proprio,
+ 	infatti nel caso di cardinalità infinita $B \subsetneq A \notimplies |B|<|A|$\footnote{Cioè non vale la Dedekind-finitezza.}, dunque soltanto $|B|\leq|A|$ (quindi il segmento iniziale in arrivo potrebbe anche essere proprio), e concludiamo [potendo la cardinalità anche essere la stessa che] $B \preceq A$.
+\end{soln}
+
+\begin{exercise}
+	Sia $(A,<_A)$ un ordine totale con $A = \bigcup S$. Supponiamo che:
+	\begin{enumerate}[1.]
+		\item ogni $X \in S$ è un buon ordine con la restrizione $<_{A|X}$
+		\item per ogni $X,Y \in S$, o $X$ è segmento iniziale di $Y$ o $Y$ è segmento iniziale di $X$
+	\end{enumerate}
+	Dimostra che allora $(A,<_A)$ è un buon ordine. Esibisci inoltre un controesempio eliminando la condizione 2.
+\end{exercise}
+
+\begin{soln}
+	
+\end{soln}
+
+\subsection{Operazioni aritmetiche fra buoni ordinamenti}
+Per ora, non abbiamo visto molti esempi di buoni ordini. Le operazione definite in questa sezione forniscono una prima sorgente di esempi concreti.
+Nel seguito del corso, vedremo buoni ordini assai più versatile di quelli ottenibili con queste operazioni.
+
+\begin{definition}[Somma di ordini totali]
+	Dati $(A,<_A)$ e $(B,<_B)$ ordini totali. Definiamo la \vocab{somma di ordini totali} come:
+	\[ (A,<_A) + (B,<_B) \Mydef (A \sqcup B, <_+)
+		\]
+	dove, ricordiamo che $A \sqcup B = (A \times\{0\}) \cup (B \times \{1\})$, e $<_+$ è definito da:
+	\[ \begin{split}
+		(x,y) <_+ (x',y') &\Mydef (y = 0 \land y' = 1) \\
+						  &\lor (y = 0 \land y' = 0 \land x <_A x') \\
+						  &\lor (y = 1 \land y' = 1 \land x <_B x')
+	\end{split}
+		\]
+\end{definition}
+
+\textcolor{MidnightBlue}{L'idea è che $(A,<_A) + (B,<_B)$ si ottiene attaccando $(B,<_B)$ in coda a $(A,<_A)$}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width = 7.5cm]{immagini/somma_ordini_totali.png}
+\end{figure}
+
+Riproponiamo, per completezza, la definizione di prodotto lessicografico.
+
+\begin{definition}[Prodotto di lessicografico]
+	Siano $(A,<_A)$ e $(B,<_B)$ ordini totali. Definiamo il \vocab{prodotto del lessicografico}:
+	\[ (A,<_A) \cdot (B,<_B) \Mydef (A \times B, <_\times)
+		\]
+	dove $<_\times$ è definito da:
+	\[ (x,y) <_\times (x',y') \Mydef (y <_B y') \land (y = y' \land x <_A x')
+		\]
+\end{definition}
+
+\textcolor{MidnightBlue}{L'idea di confrontare prima la seconda componente, deriva dal fatto che $(A,<_A) \cdot (B,<_B)$ sono 
+tante copie di $(A,<_A)$ giustapposte, quanti sono gli elementi di $B$ (e quindi associate nello stesso ordine)}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width = 10.5cm]{immagini/ordine_lessicografico.png}
+\end{figure}
+
+Per definire l'esponenziale ci serve la nozione di supporto.
+
+\begin{definition}[Supporto di una funzione a un buon ordine]
+	Dato un buon ordine $(B,<)$ e $f : A \rightarrow B$, il \vocab{supporto} di $f$ è:
+	\[ \supp_B(f) \Mydef \{x \in A | f(x) \ne \min_{<_B} B\}
+		\]
+	(ometteremo il pedice $B$ quando è chiaro cosa sia $B$).
+\end{definition}
+
+\textcolor{MidnightBlue}{Il supporto è quindi l'insieme dei punti sull'insieme [qualsiasi] di partenza, sui quali $f$ verso un buon ordine non assume il minimo di quest'ultimo.}
+
+\begin{definition}[Esponenziali di ordini totali]
+	Dati $(A,<_A)$ e $(B,<_B)$ ordini totali, definiamo l'\vocab{esponenziale di ordini totali}:
+	\[ (A,<_A)^{(B,<_B)} \Mydef (\{f \in {}^{B}A \, : \, |\supp_A f| < \aleph_0\},<_{\exp})
+		\]
+	dove l'insieme è quello delle funzioni a supporto finito (quindi che su un numero finito di punti non assumono il valore $\min_{<_B}B$), e l'ordine $<_{\exp}$ è definito da:
+	\[ f <_{\exp} g \Mydef (f \ne g) \land (f(m) <_A g(m))
+		 \]
+	dove $m$ è il massimo valore in $B$ su cui $f$ e $g$ sono diverse [dunque stiamo confrontando l'immagine dell'elemento massimo (nell'unione dei supporti) su cui non sono uguali], $m := \max_{<_B}\{x \in B | f(x) \ne g(x)\}$.\footnote{In particolare si ha che le funzioni coincidono (in quanto a supporto finito),
+	$\forall n \in B \; m <_B n \rightarrow f(n) = g(n)$, dunque stiamo confrontando l'ultimo valore su cui differiscono, e prendendo il massimo.}
+\end{definition}
+
+\textcolor{MidnightBlue}{L'idea è che una funzione $B \rightarrow A$ può essere vista come una specie di tupla con tante componenti quanti sono gli elementi di $B$\footnote{D'altronde abbiamo visto che $|{}^{B}A| = |A|^{|B|}$, il che ci fa notare che la definizione data di insieme di funzioni come una sorta di esponenziazione di un
+insieme ad un altro, è coerente con quella di esponenziazione come prodotto [cartesiano] ripetuto un numero di volte pari alla cardinalità dell'esponente, da qui l'identificazione di ${}^{B}A$ con $\underbrace{A \times \ldots \times A}_{\text{$|B|$ volte}}$, che ci dà l'intuizione descritta (e che formalmente si traduce nell'insieme di funzioni).}.
+Ordinare queste tuple lessicograficamente significa che vince la componente diversa più a destra [se definitivamente c'è il minimo in entrambe le tuple (per la finitezza del supporto non può essere diversamente), basta confrontare l'ultima componente dove sono diverse (questa cosa corrisponde a dire che entrambe le funzioni fanno definitivamente il minimo)], ossia quella corrispondente all'elemento di $B$ più grande (morale: vince chi fa di più prima che siano definitivamente uguali).}
+
+\begin{exercise}
+	Verificare che $(\omega,<)^{(\omega,<)} \sim (\NN[x],\prec)$, dove $\NN[x]$ denota l'insieme dei polinomi a coefficienti in $\NN$, e definiamo:
+	\[ p \prec q \Mydef \exists N \in \NN \; \forall x \in \NN \; x > N \rightarrow p(x) < q(x)
+		\]
+	(ossia $p \prec q$ se $p(x)<q(x)$ da un certo punto in poi).
+\end{exercise}
+
+\begin{soln}
+	
+\end{soln}
+
+\begin{proposition}[Somma, prodotto ed esponenziale di buoni ordini è un buon ordine]
+	Se $(A,<_A)$ e $(B,<_B)$ sono buoni ordini, allora anche:
+	\[ (A,<_A) + (B,<_B) \qquad (A,<_A) \cdot (B,<_B) \qquad (A,<_A)^{(B.<_B)}
+		\]
+	sono buoni ordini.
+\end{proposition}
+
+\begin{proof}
+	Si tratta di banali verifiche, \textcolor{red}{eccetto la terza}.
+\end{proof}
+
+\begin{proposition}[Buona definizione delle operazioni tra ``classi di equivalenza'' di buoni ordini]
+	Le operazioni aritmetiche sui buoni ordini \vocab{passano al quoziente modulo isomorfismi}. Ossia, dati due buoni ordinamenti $\mathcal A = (B,<_A)$
+	e $\mathcal B = (B,<_B)$, e dati $\mathcal A' = (A',<_{A'}) \sim \mathcal A$ e $\mathcal{B}' = (B',<_{B'}) \sim \mathcal B$, si ha:
+	\[ \mathcal{A} + \mathcal{B} \sim \mathcal{A}' + \mathcal{B'} \qquad \mathcal{A} \cdot \mathcal{B} \sim \mathcal{A}' \cdot \mathcal{B'} \qquad \mathcal{A}^{\mathcal{B}} \sim \mathcal{A}'^{\mathcal{B'}}
+		\]
+	quindi le operazioni fra buoni ordini sono equivalenti modulo l'essere isomorfi.\footnote{In altre parole le operazioni tra buoni ordini sono definite sulle classi di equivalenza di buoni ordini isomorfi, e la proposizione mostra che queste 
+	operazioni sono ben definite.}
+\end{proposition}
+
+\begin{proof}
+	
+\end{proof}
+
+\begin{proposition}[Proprietà delle operazioni sui buoni ordini]
+	Siano $\mathcal{A} = (A,<_A)$, $\mathcal{B} = (B,<_B)$ e $\mathcal{C} = (C,<_C)$ buoni ordini. Allora:\footnote{Valgono in realtà anche l'esistenza e le proprietà degli elementi neutri per $\cdot$ e $+$.}
+	\[\begin{split}
+		\text{\textcolor{red}{associatività:}} &\quad (\mathcal A + \mathcal B) + \mathcal C \sim \mathcal A + (\mathcal B + \mathcal C) \quad (\mathcal A \cdot \mathcal B) \cdot \mathcal C \sim \mathcal A \cdot (\mathcal B \cdot \mathcal C)\\
+		\text{\textcolor{red}{distributività a sinistra:}} &\quad  \mathcal A \cdot (\mathcal B + \mathcal C) \sim \mathcal A \cdot \mathcal B + \mathcal A \cdot \mathcal C \\
+		\text{\textcolor{red}{proprietà delle potenze:}} &\quad {\mathcal A}^{\mathcal B + \mathcal C} \sim \mathcal A^{\mathcal B} \cdot {\mathcal A}^{\mathcal C} \qquad ({\mathcal A}^{\mathcal B})^{\mathcal{C}} \sim {\mathcal A}^{\mathcal B \cdot \mathcal C}
+	\end{split}\]
+\end{proposition}
+
+\begin{proof}
+	Facili verifiche.
+\end{proof}
+
+\begin{exercise}
+	Fare qualcuna delle verifiche delle proprietà sopra.
+\end{exercise}
+
+È importante notare che non tutte le proprietà delle operazioni aritmetiche su $\omega$ valgono per i buoni ordini.
+
+\begin{exercise}[Proprietà \textcolor{red}{false} delle operazioni tra buoni ordini]
+	Esibire controesempi alle seguenti:
+	\textcolor{red}{\begin{align*}
+		& \mathcal A + \mathcal B \sim \mathcal B + \mathcal A &(\mathcal A + \mathcal B) \cdot \mathcal C \sim \mathcal A \cdot \mathcal C + \mathcal B \cdot \mathcal C \\
+		& \mathcal A \cdot \mathcal B \sim \mathcal B \cdot \mathcal A &(\mathcal A \cdot \mathcal B)^{\mathcal C} \sim \mathcal A^{\mathcal C} \cdot \mathcal B^{\mathcal C}
+	\end{align*}}
+	ovvero non valgono: \textcolor{red}{commutatività}, \textcolor{red}{distributività a destra} e \textcolor{red}{potenza di un prodotto}.
+\end{exercise}
+
+Un altro tranello in cui si potrebbe cadere è credere che le operazioni sui buoni ordini generalizzino quelle sulle cardinalità [perché provando le operazioni con gli ordini finiti, valgono tutte le proprietà, comprese quelle false]. Questo è vero per le cardinalità finite, e anche in generale 
+per somma è prodotto - come è ovvio dalla definizione - ma fallisce per l'esponenziale quando è infinito.\footnote{Un trucco è ricordare che le proprietà che valgono sono quelle con le parentesi a destra, perché ridefiniremo le operazioni per ricorsione transfinita in maniera analoga a quanto fatto per quelle in $\omega$ con la ricorsione numerabile,
+ed in questo caso le parentesi saranno a destra.}
+
+\begin{exercise}
+	Dimostra che se $\mathcal A = (A,<_A)$ e $\mathcal B = (B,<_B)$ sono buoni ordini con $|A| = |B| = \aleph_0$ e $(C,<_C) = \mathcal A^{\mathcal B}$ allora $|C| = \aleph_0$.\footnote{Cioè per l'esponenziale di ordini valgono proprietà diverse rispetto a quelle classiche per le cardinalità (proprio perché le cose sono definite in maniera completamente diversa, e qui stiamo considerando solo alcune delle funzioni da $\omega$ in $\omega$),
+	quindi ad esempio $|\omega^\omega| = \aleph_0$ (cioè la cardinalità dell'esponenziazione), mentre $|{}^\omega \omega| = |\omega|^{|\omega|} = \aleph_0^{\aleph_0} = 2^{\aleph_0}>\aleph_0$ (cioè la cardinalità delle funzioni da $\omega$ in $\omega$ [che abbiamo associato alle $\omega$-uple di elementi di $\omega$].)} \footnote{\underline{\textbf{Hint}}: ricordare che $\psf(\omega) = \aleph_0$ e pensare a come si possa identificare ciò con $\omega^\omega$.}
+\end{exercise}
+
+\subsection{Gli ordinali di Von Neumann}
+In questa sezione definiremo gli ordinali di Von Neumann. L'idea che vogliamo concretizzare è che, siccome abbiamo visto che, 
+a meno di isomorfismi, due buoni ordinamenti sono sempre l'uno nell'altro [abbiamo creato un ordine totale formale tra di essi basato su ciò], unendo fra loro tutti i buoni ordinamenti - o tutte le classe di isomorfismo 
+di questi - dovrebbe potersi costruire un buon ordinamento più grande di tutti. Questa vasta struttura sarà inevitabilmente una classe propria:
+la classe dei \vocab{numeri ordinali}, i cui elementi sono rappresentanti di tutte le possibili classi di isomorfismo di buoni ordini.\footnote{Vorremo anche fissare un rappresentate canonico per le ``classi di equivalenza'' dei buoni ordini, viste sopra a meno di isomorfismo, da cui l'idea di introdurre gli ordinali,
+questa cosa ci richiederà qualcosa in più in termini di ipotesi e anche la necessità di introdurre un nuovo assioma, queste cose possono essere aggirate continuando a lavorare con i buoni ordini, ma il tutto verrebbe estremamente più pesante al livello di trattazione.}
+
+\begin{definition}[Insieme transitivo]
+	L'insieme $\alpha$ è \vocab{transitivo} se $\forall x \in \alpha \; x \subseteq \alpha$, o equivalentemente, se $\forall x \in \alpha \, \forall y \in x \; y \in \alpha$ (da cui il termine transitivo).
+\end{definition}
+
+\textcolor{MidnightBlue}{Ossia: diciamo che $\alpha$ è transitivo se gli elementi degli elementi di $\alpha$ sono, a loro volta, elementi di $\alpha$ (cioè se gli elementi
+sono a loro volta insiemi di elementi).}\footnote{$\omega$ è un esempio di insieme transitivo, e naturalmente negli insiemi transitivi, così come $\omega$ gli elementi sono sottoinsiemi, ma non tutti i sottoinsiemi sono elementi.}
+
+\begin{definition}[Ordinali di Von Neumann]
+	L'insieme $\alpha$ è un \vocab{ordinale} se è \textcolor{red}{transitivo e bene ordinato dalla relazione di appartenenza}. Formalmente, l'insieme transitivo $\alpha$
+	è un ordinale se $(\alpha, <_\alpha)$ è un buon ordine, con:
+	\[ <_\alpha \Mydef \{(x,y) \in \alpha \times \alpha | x \in y\}\,\footnote{Esattamente come su $\omega$, $x < y \leftrightarrow x \in y \leftrightarrow (x,y) \in <$.}
+		\]
+	Denotiamo con $\Ord$ la classe degli ordinali\footnote{Tale classe contiene un elemento per ogni buon ordine, ad esempio, preso $(\omega,<)$, come classe di buoni ordini isomorfi a lui, prenderemo solo $\omega$ (il buon ordine transitivo e che ha come ordinamento proprio quello dato dall'appartenenza, e quindi ordinale), come
+	rappresentante della ``classe di equivalenza'' nella classe dei buoni ordini (attenzione a non confondere i due significati del termine classe).}, per cui:
+	\[ \alpha \in \Ord \Mydef \; \text{``$\alpha$ è transitivo e ben ordinato da $\in$''}
+		\]
+\end{definition}
+
+\begin{example}[Esempi di ordinali]
+	Alcuni esempi di ordinali già incontrati:
+	\begin{itemize}
+		\item $\omega$ è un ordinale
+		\item gli elementi di $\omega$ sono ordinali
+		\item $s(\omega) = \omega \cup \{\omega\}$ è un ordinale\footnote{E in generale il successore di un ordinale è un ordinale, ciò ci permette di descrivere bene gli elementi di $\omega$ senza l'assioma dell'infinito, ci basta prendere gli ordinali finiti, dove finito può essere espresso ad esempio con il principio del massimo,
+		quindi elemento di $\omega$ = insieme ben ordinato, transitivo e con il principio del massimo.}
+	\end{itemize}
+\end{example}
+
+\begin{remark}[$\Ord$ è \lbrack una classe\rbrack\;transitiva]
+	Se $\alpha \in \Ord$ e $\beta \in \alpha$, allora $\beta \in \Ord$ e $\beta = \alpha_\beta$ (ovvero $\beta$ è il segmento iniziale principale [e in automatico proprio] di $\alpha$, determinato da $\beta$). In particolare la classe degli ordinali $\Ord$ è transitiva.\footnote{Cioè tutti gli ordinali sono a loro volta insiemi di ordinali.}
+\end{remark}
+
+\begin{proof}
+	Siccome $\beta \in \alpha$, per la transitività di $\alpha$ [tutti gli elementi sono sottoinsiemi], $\beta \subseteq \alpha$, quindi $\beta$ è bene ordinato da $\in$ [ristretto come ordine a $\beta$].
+	La transitività di $\beta$ segue dalla transitività della relazione di ordine $<_{\alpha}$. Prendiamo, infatti, $\delta \in \gamma$, con $\gamma \in \beta$. Dobbiamo 
+	dimostrare che $\delta \in \beta$ (che è equivalente al dire $\gamma \subseteq \beta$, e che quindi i suoi elementi sono anche sottoinsiemi).\\
+	Siccome $\gamma \in \beta$, per la transitività di $\alpha$, $\gamma \in \alpha$ [abbiamo usato che $\beta$ è anche un sottoinsieme di $\alpha$], e, da questo, nuovamente per la transitività di $\alpha$ [ora che abbiamo $\gamma \in \alpha$, essendo $\alpha$ transitivo, 
+	abbiamo in automatico $\gamma \subseteq \alpha$], $\delta \in \alpha$ (e quindi anche $\delta \subseteq \alpha$\footnote{È una specie di bootstrap per chi conoscesse il termine dall'analisi.}). Ora $\delta,\gamma,\beta \in \alpha$ (e anche tutti sottoinsiemi), e abbiamo 
+	l'ipotesi $\delta \in \gamma \land \gamma \in \beta$ (e vogliamo dimostrare $\gamma \subseteq \beta$), ossia [in termini di $<_\alpha$, che ora possiamo usare, perché sono tutti elementi di $\alpha$] $\delta <_\alpha \gamma \land \gamma <_\alpha \beta$, da cui [per transitività della relazione d'ordine] $\delta <_\alpha \beta$.
+	Quest'ultima dice, appunto, che $\delta \in \beta$ (dunque $(\beta,<_{\alpha|\beta})$ è transitivo).
+	Resta da dire che $\beta = \alpha_\beta$, e segue facilmente:
+	\[ x \in \alpha_\beta \overset{\text{def. s.i.}}{\iff} x \in \alpha \land x <_\alpha \beta \overset{\text{def. $<_\alpha$}}{\iff} x \in \alpha \land x \in \beta
+		\]
+	Ora, $x \in \beta \rightarrow x \in \alpha$ per la transitività di $\alpha$, quindi l'AND si riduce a un solo termine:
+	\[ x \in \alpha \land x \in \beta \iff x \in \beta
+		\]
+	e concludiamo che $x \in \alpha_\beta \leftrightarrow x \in \beta$, dunque per estensionalità, $\alpha_\beta = \beta$.
+\end{proof}
+
+La proposizione seguente ci dice che due ordinali non possono essere nella stessa classe di isomorfismo di buoni ordini [cioè per ogni classe di isomorfismo c'è \textbf{al più} un ordinale]. Vorremmo poi dimostrare che ogni classe 
+di isomorfismo contiene almeno un ordinale [in modo da poter dire che in ogni classe ce n'è uno ed uno solo]. Enunciamo prima una semplice osservazione.
+
+\begin{remark}[Gli isomorfismi tra ordini totali mantengono i s.i. principali]
+	Se $f : A \rightarrow B$ è un isomorfismo fra $(A,<_A)$ e $(B,<_B)$, allora preso un qualunque $a \in A$ abbiamo $f[A_a] = B_{f(a)}$.
+\end{remark}
+
+\begin{proof}
+	Basta semplicemente osservare che:
+	\[\begin{split}
+		x \in B_{f(a)} &\iff x <_B f(a) \\
+					   &\iff f^{-1}(x) <_A a \\
+					   &\iff \iff f^{-1}(x) \in A_a \\
+					   &\iff x \in f[A_a]
+	\end{split}
+		\]
+\end{proof}
+
+\begin{proposition}
+	Dati $\alpha,\beta \in \Ord$, se $(\alpha,<_\alpha) \sim (\beta,<_\beta)$, allora $\alpha = \beta$.
+\end{proposition}
+
+\begin{proof}
+	Sia $f : \alpha \rightarrow \beta$ un isomorfismo. Ci basta dimostrare che $\forall \gamma \in \alpha \; f(\gamma) = \gamma$. Sia, per assurdo,
+	$\gamma$ il minimo elemento di $\alpha$ tale che $f(\gamma) \ne \gamma$. Allora:
+	\[ \gamma = \alpha_\gamma = f[\alpha_\gamma] = \beta_{f(\gamma)} = f(\gamma)\;\lightning
+		\]
+\end{proof}
+
+Possiamo ora chiederci come si rifletta l'ordinamento totale delle classi di isomorfismo di buoni ordini, dato dalla relazione 
+``essere segmento iniziale di'', sugli ordinali. La risposta è che diventa la relazione di appartenenza.
+
+\begin{theorem}
+	Dati $\alpha,\beta \in\Ord$, vale \textcolor{red}{una e una sola} delle seguenti:
+	\begin{align*}
+		& \alpha \in \beta \;\text{che vale se e solo se $(\alpha,<_\alpha) \prec (\beta,<_\beta)$} \\
+		& \alpha = \beta \;\text{che vale se e solo se $(\alpha,<_\alpha) \sim (\beta,<_\beta)$} \\
+		& \beta \in \alpha \;\text{che vale se e solo se $(\beta,<_\beta) \prec (\alpha,<_\alpha)$}
+	\end{align*}
+\end{theorem}
+
+\textcolor{MidnightBlue}{Notazione: d'ora in poi [avendo dimostrato che per ogni classe di isomorfismo di buoni ordini c'è (al più) un ordinale\footnote{Per il
+viceversa serve l'assioma del rimpiazzamento.} corrispondente], porremo per comodità: $\alpha \prec \beta \Mydef (\alpha,<_\alpha) \prec (\beta,<_\beta)$, e analogamente $\alpha \sim \beta$ e $\beta \prec \alpha$.}
+
+\begin{proof}
+	
+\end{proof}
+
+\begin{notation}[Ordine della classe degli ordinali]
+	Dati $\alpha,\beta \in \Ord$, poniamo:
+	\[ \alpha < \beta \Mydef \alpha \in \beta
+		\]
+\end{notation}
+
+\textcolor{MidnightBlue}{Il teorema precedente ci dice che la relazione $<$ gode delle proprietà di un ordine totale stretto sulla classe degli ordinali.}
+
+\begin{proposition}[Ordine largo sulla classe degli ordinali]
+	Siano $\alpha,\beta \in \Ord$, allora:
+	\[ \alpha \leq \beta \leftrightarrow \alpha \subseteq \beta
+		\]
+	con $\alpha \leq \beta \Mydef \alpha < \beta \lor \alpha = \beta$.
+\end{proposition}
+
+\begin{proof}
+	
+\end{proof}
+
+Ricordiamo che $s(\alpha) \Mydef \alpha \cup \{\alpha\}$. La proposizione segue dice che $s(\alpha)$ è, a buon diritto, il successore di $\alpha$, anche quando $\alpha$
+è un ordinale.
+
+\begin{proposition}
+	Dato $\alpha \in \Ord$, $s(\alpha)$ è il minimo ordinale $> \alpha$.
+\end{proposition}
+
+\begin{proof}
+	
+\end{proof}
+
+\begin{corollary}
+	$\forall \alpha,\beta \in\Ord \; \beta \leq \alpha \leftrightarrow \beta < s(\alpha)$.
+\end{corollary}
+
+\begin{proposition}
+	Dato un insieme di ordinali $X$:
+	\begin{enumerate}[1.]
+		\item Se $X \ne \emptyset$, allora esiste il minimo di $X$, detto \vocab{$\min X$}, inoltre $\min X = \bigcap X$.
+		\item Esiste il minimo dei maggioranti di $X$\footnote{Gli $\alpha \in \Ord$ tali che $\forall \beta \in X \; \beta \leq \alpha$.}, detto \vocab{$\sup X$}, inoltre $\sup X = \bigcup X$.
+		\item C'è un ordinale che non appartiene a $X$.
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	
+\end{proof}
+
+\begin{corollary}
+	Un insieme di ordinali è un ordinale se e solo se è transitivo.
+\end{corollary}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{corollary}[Paradosso di Burali-Forti]
+	$\Ord$ è una classe propria.
+\end{corollary}
+
+\textcolor{MidnightBlue}{Ossia non esiste l'insieme di tutti gli ordinali.}
+
+\begin{proof}
+	Per il punto 3. della proposizione, se $\Ord$ fosse un insieme, esisterebbe un ordinale che non vi appartiene, che è assurdo.
+\end{proof}
+
+\begin{note}[Cosa c'è di paradossale nel paradosso di Burali-Forti?]
+	Nel 1897, \href{https://it.wikipedia.org/wiki/Cesare_Burali-Forti}{\textcolor{purple}{Cesare Burali-Forti}} era assolutamente convinto della esistenza dell'insieme
+	di tutti gli ordinali - definiti allora come le classi di isomorfismo dei buoni ordini - quello che non sapeva è se la relazione $\prec$ fosse un ordine totale su queste classi.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width = 7.5cm]{immagini/Burali_Forti.png}
+	\end{figure}
+	Burali-Forti credette di poter negare la totalità dell'ordine $\prec$ ragionando per assurdo. Se $\prec$ fosse un ordine totale, si può dimostrare che sarebbe buono, ma 
+	allora $\Omega \Mydef [(\Ord,\prec)]$, la classe di isomorfismo di $(\Ord,\prec)$, sarebbe uno dei membri della classe $\Ord$, e, considerando il suo successore $s(\Omega)$,
+	avremmo $\Omega \prec s(\Omega)$, ma anche $s(\Omega) \prec \Omega$, perché $s(\Omega) \in \Ord\;\lightning$.\\
+	Il guaio è che, nello stesso anno, Cantor pubblicò una dimostrazione del fatto che la relazione $\prec$ è totale - esattamente l'argomento dei segmenti iniziali isomorfi che abbiamo illustrato 
+	nel corso. Come è stata risolta la contraddizione? Concludendo che l'insieme di tutti gli ordinali esiste? \textcolor{red}{No}. Sfortunatamente Burali-Forti 
+	aveva capito male la definizione di buon ordine, e ancora così, forse, nessuno se ne sarebbe accorto, ma, quel che è peggio, aveva tentato di correggerla, facendo, in realtà un pasticcio.
+	La contraddizione è stata quindi imputata, da Burali-Forti e da Cantor, al bisticcio di definizioni ed il paradosso è stato dimenticato. Cinque anni dopo, \href{https://en.wikipedia.org/wiki/Bertrand_Russell}{\textcolor{purple}{Russell}}
+	si rese conto del fatto che l'assurdo sussiste anche se si usa la definizione correttezza di buon ordine, e fu così che il paradosso di Burali-Forti acquisì il suo nome. E tutti vissero felici e contenti.
+\end{note}
+
+\subsection{L'assioma del rimpiazzamento}
+Gli ordinali di Von Neumann sono eleganti, ma quanti ne abbiamo di questi arnesi? Si può dimostrare che, assumendo i soli assiomi 1-7, il gran totale degli ordinali potrebbe essere:
+\[ \textcolor{purple}{\Ord \overset{?}{=} \underbrace{\{\emptyset, s(\emptyset),\ldots,s^n(\emptyset),\ldots,\omega,s(\omega),\ldots,s^n(\omega),\ldots\}}_{\textnormal{\textcolor{MidnightBlue}{in realtà, questo si chiamerà $\omega + \omega$}}}}
+	\]
+la classe degli ordinali raggiungibili a partire da $\emptyset$ o da $\omega$ con un numero finito di applicazioni della mappa successore.
+
+\begin{exercise}
+	Dimostra che la classe descritta sopra è effettivamente una classe, ossia è definita da una formula.
+\end{exercise}
+
+Se vogliamo poter rispondere alla domanda ``quanti ordinali esistono?'' occorre un nuovo assioma: l'assioma del rimpiazzamento. Sotto questa ipotesi addizionale, la risposta sarà
+``tutti quelli che potrebbero esistere'', ossia avremo un ordinale per ogni classe di isomorfismo di buoni ordini.\\
+Per formulare l'assioma, ci serve il concetto di funzione classe.
+
+\begin{definition}[Funzione classe]
+	Date due classi $A$ e $B$ una \vocab{funzione classe} da $A$ a $B$ è una formula insiemistica $\varphi(x,y)$ tale che:
+	\[ \forall x \in A \;\exists \textcolor{red}{!}\,y \in B \; \varphi(x,y)
+		\]
+\end{definition}
+
+\textcolor{MidnightBlue}{Ossia, una funzione classe è una proprietà, espressa nel linguaggio della teoria degli insiemi, che ad ogni $x \in A$ associa un \textcolor{red}{unico} $y \in B$.}
+
+\begin{notation}[Funzione classe]
+	Possiamo denotare una funzione classe $\varphi(x,y)$ da $A$ a $B$ mediante la notazione più familiare:
+	\[ F : A \rightarrow B
+		\]
+	In questo caso, la scrittura $y = F(x)$ è una semplice abbreviazione:
+	\[ y = F(x) \Mydef y \in B \land \varphi(x,y)
+		\]
+\end{notation}
+
+\begin{example}[Esempi di funzioni classe]
+	Le seguenti sono funzioni classe $V \rightarrow V$:
+	\[ F_1(x) = x \qquad F_2(x) = \{x\} \qquad F_3(x) = \ps(x) \qquad F_4(x) = s(x)
+		\]
+	La funzione classe $F_5(x) = \sup(x \cap \Ord)$, con $x \cap \Ord \Mydef \{\alpha \in x | \alpha \in \Ord\}$, è $V \rightarrow \Ord$.
+\end{example}
+
+\begin{axiom}[Assioma del rimpiazzamento]
+	\label{ax8}
+	Se $A$ è un insieme e $F : V \rightarrow V$ è una funzione classe, allora $F[A] \Mydef \{F(x) | x \in A\}$ è un insieme.\footnote{Come per la separazione, anche questo è uno \vocab{schema di assiomi}, uno per ogni possibile funzione classe $F$.}
+	\[ \forall A \; \exists B \; \forall y \; y \in B \leftrightarrow \exists x \in A \; y = F[x]
+		\]
+	(cioè per ogni insieme esiste un insieme i cui elementi sono immagini di quelli di $A$ rispetto alla funzione classe $F$).
+\end{axiom}
+
+\begin{proposition}[Unicità del rimpiazzo]
+	Data una funzione classe $F : V \rightarrow V$ vale che:
+	\[ \forall A \; \exists\,\textcolor{red}{!} B \; \forall y \; y \in B \leftrightarrow \exists x \in A \; y = F[x]
+		\]
+\end{proposition}
+
+\begin{proof}
+	Estensionalità.
+\end{proof}
+
+\begin{remark}[Rimpiazzamento da insieme a classe]
+	Dato un \textcolor{red}{insieme} $A$ e una funzione classe $G : \textcolor{red}{A} \rightarrow V$, esiste ed è unico l'\textcolor{red}{insieme} $G[A]$ tale che:
+	\[ \forall y \; y \in G[A] \leftrightarrow \exists x \in A \; y = G(x)
+		\]
+\end{remark}
+
+\begin{proof}
+	Applicando l'\hyperref[ax8]{assioma del rimpiazzamento} appena enunciato, applicato alla funzione classe $F : V \rightarrow V$, abbiamo:
+	\[ y = F(x) \Mydef (x \in A \land y = G(x)) \lor (x \not \in A \land y = \emptyset)
+		\]
+	ossia:
+	\[ F(x) \Mydef \begin{cases}
+		G(x) &\text{se $x \in A$} \\
+		\emptyset &\text{altrimenti}
+	\end{cases}
+		\]
+	Infatti $x \in A$ implica $G(x) = F(x)$, per cui $G[A] = F[A]$.
+\end{proof}
+
+\begin{exercise}
+	Dimostra che, dati due insiemi $A$ e $B$, esiste il loro prodotto cartesiano $A \times B$, usando l'assioma del rimpiazzamento ma \textcolor{red}{senza usare l'assioma delle parti}.
+\end{exercise}
+
+\begin{theorem}[Ogni buon ordine è isomorfo ad un unico ordianle]
+	Dato un buon ordine $(A,<)$, esiste un unico ordinale $\alpha$ tale che $(A,<)\sim\alpha$.\footnote{Questo conclude il discorso sull'identificazione tra ordinali e buoni ordini, infatti prima abbiamo dimostrato che per ogni classe 
+	di isomorfismo di buoni ordini c'è al più un ordinale, e ora che ce n'è sempre uno, e quindi ce n'è esattamente uno corrispondente.}
+\end{theorem}
+
+\begin{proof}
+	
+\end{proof}
+
+Una conseguenza del risultato precedente è che possiamo definire le operazioni sugli ordinali come semplice riflesso di quelle sui buoni ordini.
+
+\begin{definition}[Operazioni sugli ordinali - v.1]
+	Dati $\alpha,\beta \in\Ord$, definiamo \vocab{$\alpha + \beta$}, \vocab{$\alpha\cdot\beta$}, \vocab{$\alpha^\beta$} come, rispettivamente, l'unico ordinale tale che:
+	\[ \textcolor{purple}{\alpha + \beta} \sim (\alpha,<_\alpha)+(\beta,<_\beta) \qquad \textcolor{purple}{\alpha \cdot \beta} \sim (\alpha,<_\alpha) \cdot (\beta,<_\beta)
+		\]\[ \textcolor{purple}{\alpha^\beta} \sim (\alpha,<_\alpha)^{(\beta,<_\beta)}
+			\]
+\end{definition}
+
+\begin{exercise}[Esistenza del prodotto cartesiano via rimpiazzamento]
+	Dimostra che l'insieme introdotto all'inizio della sezione è effettivamente $\omega + \omega$, ossia, più precisamente:
+	\[ \forall x \; x \in \omega + \omega \leftrightarrow (\exists m \in \omega \; x = m) \lor (\exists n \in \omega \; x = \omega +n)
+		\]
+\end{exercise}
+
+\subsection{Induzione e ricorsione transfinita}
+Il piatto forte di questa sezione è una seconda applicazione dell'assioma del rimpiazzamento: il teorema di ricorsione transfinita. Questo risultato sarà più chiaro a chi ha, in precedenza, risolto il seguente esercizio.
+
+\begin{exercise}
+	Dimostra che esiste un insieme $A$ tale che:
+	\[ \forall x \; x \in A \leftrightarrow x = \emptyset \lor \exists y \in A \; x = \{y\}
+		\]
+	\textcolor{MidnightBlue}{ossia, in sostanza dimostra che esiste:
+	\[ \{\emptyset,\{\emptyset\},\{\{\emptyset\}\},\{\{\{\emptyset\}\}\},\ldots\}
+		\]}
+\end{exercise}
+
+L'idea per risolvere questo esercizio è contenuta nella dimostrazione del teorema di ricorsione \textcolor{red}{numerabile}, che abbiamo già visto. Attenzione, però,
+che questo teorema non si può applicare dire alla situazione dell'esercizio. La soluzione è poco sotto.
+
+\begin{soln}
+	
+\end{soln}
+
+\begin{proposition}[Induzione transfinita - v.1]
+	\label{induz_transf1}
+	Data una formula insiemistica $\varphi(x)$. Se vale [l'ipotesi dell'induzione]\footnote{Come nell'induzione normale, il difficile è mostrare il passo induttivo, rappresentato dall'implicazione nell'ipotesi, poi il teorema assicura la veridicità dell'enunciato.}:
+	\[ \forall \alpha \in \Ord(\forall \beta < \alpha \; \varphi(\beta))\rightarrow \varphi(\alpha)
+		\]
+	[ovvero se per ogni ordinale, sapere che la formula è vera per gli ordinali più piccoli, rende vera la formula per l'ordinale stesso], allora $\forall \alpha \in \Ord \; \varphi(\alpha)$.
+\end{proposition}
+
+\textcolor{MidnightBlue}{In termini di classi, rappresentando con $C$ la classe definita dalla formula $\varphi(x)$, abbiamo che se vale $\forall\alpha\in\Ord \;(\forall \beta < \alpha \; \varphi(\beta))\rightarrow \alpha \in C$\footnote{Ricordiamo
+$\alpha$ in una classe $= \alpha$ soddisfa la formula che definisce tale classe.}, allora $\forall \alpha \in \Ord \; \varphi(\alpha)$, oppure, in forma più coincisa:
+\[ (\forall \alpha \in \Ord \; \alpha \subseteq C \rightarrow \alpha \in C) \rightarrow \Ord \subseteq C
+	\]
+(in altre parole, assumere che $\alpha$ è un sottoinsieme di $C$ e da questo dimostrare che ne è un elemento, ci assicura che la classe degli ordinali è contenuta nella classe degli oggetti che soddisfano la formula che definisce $C$).}
+
+\begin{proof}
+	Per assurdo, assumiamo [la negazione della tesi] $\neg \varphi(\alpha)$\footnote{Formalmente $\neg(\forall \alpha \in\Ord\;\varphi(\alpha)) = \exists \alpha \in \Ord \;\neg\varphi(\alpha)$, e stiamo considerando un $\alpha$ per cui la formula è falsa.},
+	essendo l'ipotesi vera e [per ipotesi assurda] $\varphi(\alpha)$ falsa, l'ipotesi [come formula insiemistica] diventa una implicazione\footnote{Materiale (qualunque cosa significhi).} vera, con conseguente falso, quindi l'unica possibilità è che anche l'antecedente sia falso,
+	ovvero $\neg (\forall \beta < \alpha \; \varphi(\beta))$, cioè $\exists \beta < \alpha \; \neg \varphi(\beta)$.\\
+	Quindi il ragionamento per assurdo ci ha portato a dire che esiste almeno un $\beta < \alpha$ per cui la proposizione è falsa, in particolare il sottoinsieme di $\alpha$ dei $\beta$ per cui $\varphi$ è falsa è non vuoto, quindi possiamo considerare\footnote{Perché
+	ora possiamo scrivere un insieme per separazione da cui prendere il minimo, prima sarebbe stato il minimo preso su qualcosa definito per separazione sulla classe degli ordinali, e poteva essere problematico, così invece non abbiamo alcun problema.} $\beta_0 := \min \{\beta \in \alpha | \neg\varphi(\beta)\}$.
+	Ora, usando $\beta_0$ nell'ipotesi [come fatto all'inizio con $\alpha$] (essendo un altro ordinale per cui la formula è falsa), si ottiene che $\exists \beta < \beta_0 \; \neg \beta$ (cioè la formula ci procura un'ordinale più piccolo per cui la formula è falsa), contro la minimalità di $\beta$, che è assurdo.
+\end{proof}
+
+\begin{note}[L'induzione transfinita è uno schema di teoremi]
+	Il principio di induzione transfinita non è, letteralmente, un teorema della teoria degli insiemi, quanto piuttosto uno scherma di teoremi - o metateorema - che ci permette 
+	di costruire un diverso teorema per ogni possibile formula $\varphi$.
+\end{note}
+
+C'è una chiara ideologia fra la forma precedente del principio di induzione transfinita e la forma forte dell'induzione aritmetica.
+A volte, però, è comodo esprimere l'induzione transfinita in una forma che meglio ricorda il principio di induzione di Peano.
+
+\begin{definition}[Ordinale successore]
+	Diciamo che $\alpha \in \Ord$ è un \vocab{ordinale successore} se $\exists \beta \in \Ord \; \alpha = s(\beta)$. Un ordinale $\alpha \textcolor{red}{>0}$
+	che non è successore è detto \vocab{ordinale limite}.
+\end{definition}
+
+\begin{remark}
+	Un ordinale $\alpha$ è successore se e solo se ha un massimo elemento.
+\end{remark}
+
+\begin{proof}
+	$\beta$ è il massimo di $\alpha$ \textcolor{red}{se e solo se} $\alpha$ è il minimo ordinale $>\beta$ \textcolor{red}{se e solo se} $\alpha = s(\beta)$.
+\end{proof}
+
+\begin{proposition}[Induzione transfinita - v.2]
+	\label{induz_transf2}
+	Sia $\varphi(x)$ una formula insiemistica. Se:
+	\begin{itemize}
+		\item $\varphi(0)$ \textcolor{orange}{(caso base)}
+		\item $\forall \gamma \in \Ord \; \varphi(\gamma) \rightarrow \varphi(s(\gamma))$ \textcolor{orange}{(caso successore)}
+		\item per ogni ordinale limite $\lambda$, $(\forall \beta < \lambda \; \varphi(\beta)) \rightarrow \varphi(\lambda)$ \textcolor{orange}{(caso limite)}
+	\end{itemize}
+	allora $\forall \alpha \in \Ord \; \varphi(\alpha)$.
+\end{proposition}
+
+\begin{proof}
+	Basta verificare l'ipotesi della \hyperref[induz_transf1]{prima forma dell'induzione transfinita}, per avere in automatico la veridicità della formula, dunque, fissato $\alpha \in \Ord$ bisogna mostrare che vale:
+	\[ (\forall \beta < \alpha \; \varphi(\beta)) \rightarrow \varphi(\alpha)
+		\]
+	Se $\alpha$ è limite o $0$ abbiamo questa formula tout court. Altrimenti $\alpha = s(\gamma)$ e abbiamo:
+	\[ \forall \beta < \alpha \; \varphi(\beta) \implies \varphi(\gamma) \implies \varphi(s(\gamma)) = \varphi(\alpha)
+		\]
+\end{proof}
+
+Ora possiamo dimostrare il teorema di ricorsione transfinita. Faremo uso della notazione seguente.
+
+\begin{notation}[Restrizione di una funzione classe]
+	Data una funzione classe $F : A \rightarrow B$ e un insieme $X \subseteq A$ esiste la funzione:
+	\[ f = F_{|X} : X \rightarrow F[X] : a \mapsto F[a]
+		\]
+\end{notation}
 
 
+\begin{theorem}[Ricorsione transfinita - v.1]
+	\label{ric_transf1}
+	Data una funzione classe $G : V \rightarrow V$ esiste
+	un'unica\footnote{Dove l'unicità va intesa nel senso seguente: date $F_1,F_2$ come sopra,
+	vale $\forall \alpha \in \Ord \; F_1(\alpha) = F_2 (\alpha)$.} funzione $F : \Ord \rightarrow V$ tale che:
+	\[ \forall \alpha \in \Ord \; F(\alpha) = G(F_{|\alpha})
+		\]
+\end{theorem}
 
+\begin{proof}
+	
+\end{proof}
 
+Come per l'induzione, possiamo esprimere la ricorsione transfinita separando i casi zero, successore e limite.
 
+\begin{definition}[Prodotto cartesiano  di classi]
+	Date due classi $A,B$ definiamo la classe $A \times B$ come:
+	\[ x \in A \times B \Mydef \exists a \in A \; \exists b \in B \; x = (a,b)
+		\]
+	(cioè $x$ è uguale a una coppia di elementi ciascuno in una classe, ovvero ciascuno soddisfa un predicato).
+\end{definition}
 
+\begin{corollary}[Ricorsione transfinita - v.2]
+	\label{ric_transf2}
+	Date le funzioni classe $G_1 : \Ord \times V \rightarrow V$ e $G_2 : V \rightarrow V$. Detto $x_0$ un insieme, esista un'unica funzione classe $F$ tale che:
+	\begin{align*}
+		& F(0) = x_0 \\
+		& \forall \alpha \in \Ord \; F(s(\alpha)) = G_1(\alpha,F(\alpha)) \\
+		& \forall \lambda \in \Ord \; \text{$\lambda$ limite} \rightarrow F(\lambda) = G_2(F_{|\lambda})
+	\end{align*}
+\end{corollary}
 
+\begin{proof}
+	
+\end{proof}
 
+\begin{corollary}[Operazioni tra ordinali (definizione ricorsiva)]
+	Esistono le funzioni (classe) di somma, prodotto e potenza di ordinali, così definite:
+	\begin{align*}
+		&\alpha + 0 = \alpha &\quad &\alpha \cdot 0 = 0 \\
+		&\alpha + s(\beta) = s(\alpha + \beta)  &\quad &\alpha \cdot s(\beta) = \alpha \cdot \beta + \alpha \\
+		&\alpha^\lambda = \sup\{\alpha + \beta | \beta < \lambda\} &\quad &\alpha\cdot \lambda = \sup\{\alpha \cdot \beta | \beta < \lambda\}
+	\end{align*}
+	\begin{align*}
+		&\alpha^0 = 1 \\
+		&\alpha^{s(\beta)} = \alpha^\beta \cdot \alpha \\
+		&\alpha^{\lambda} = \sup\{\alpha^\beta | \beta < \lambda\}
+	\end{align*}
+\end{corollary}
 
+Ossia, le operazioni aritmetiche sugli ordinali si possono definire in modo analogo alle operazioni aritmetiche su $\omega$ nei casi 0 e successore,
+estendendole \vocab{con continuità} nel caso limite.
 
+\begin{definition}[Continuità]
+	Una funzione classe $F : \Ord \rightarrow \Ord$ mai decrescente - $\alpha < \beta \rightarrow F(a) \leq F(\beta)$ - si dice \vocab{continua} se, per ogni ordinale limite $\lambda$ vale $F(\lambda) = \sup F[\lambda]$.
+\end{definition}
 
+\begin{notation}
+	Sarebbe corretto osservare che, letteralmente, il teorema di ricorsione transfinita non pare sufficiente a garantire l'esistenza, per esempio, della funzione classe $+ : \Ord \times \Ord$.
+	Il problema è che, fissato $\alpha$, possiamo costruire ricorsivamente la funzione classe ``$\alpha +$'' $\Ord \rightarrow \Ord$, ma abbiamo, a quanto pare, una diversa funzione per ogni possibile $\alpha$.
+	Ci sono due vie d'uscita da questo impasse.\\
+	La più solida è, forse, dimostrare una versione parametrica del teorema, in cui sia $G$ sia $F$ hanno un argomento in più, un parametro, per accomodare $\alpha$.
+	Questa è una operazione del tutto elementare, ma aggiunge burocrazia alla dimostrazione, che è già abbastanza complicata.\\
+	La seconda strada è, tuttavia, osservare che il teorema si trova già in forma parametrica, anche se non si vede. Una funzione classe non è, infatti, altro che una formula insiemistica - con determinate proprietà - e nulla vieta 
+	che questa formula contenga una variabile libera $\alpha$. Il teorema di ricorsione transfinita dice che, se una certa formula - quella che definisce $G$ - è una funzione classe, allora un'altra formula - quella di $F$ - scritta esplicitamente nella 
+	dimostrazione è anch'essa una funzione classe. Ebbene se la formula per $G$ ha una variabile libera $\alpha$, questa variabile comparirà altresì nella formula di $F$, ed avremo così, in realtà, una funzione classe di due argomenti: $\alpha$ e l'argomento di $F$.\\
+	Comunque sia, questa dei parametri è una sottigliezza che, al livello del nostro corso, si può trascurare. Sono sicuro che, chiunque sia giunto a padroneggiare la materia abbastanza da rendersi conto del problema, capirà anche che la sua soluzione 
+	non presenta difficoltà.
+\end{notation}
 
+\begin{proposition}[Le operazioni fra ordinali definite ricorsivamente sono equivalenti alle corrispondeti sui buoni ordini]
+	Vale che:
+	\[ \alpha + \beta \sim (\alpha,<_\alpha) + (\beta,<_\beta) \qquad \alpha \cdot \beta \sim (\alpha,<_\alpha) \cdot (\beta,<_\beta) 
+		\]\[ \alpha^\beta \sim (\alpha,<_\alpha)^{(\beta,<_\beta) }
+			\]
+	ossia: che si definiscano le operazioni sugli ordinali per ricorsione o che lo si faccia mediante le corrispondenti operazioni sui buoni ordini, il risultato è il medesimo.
+\end{proposition}
 
+\begin{proof}
+	
+\end{proof}
 
+Per la proposizione predente, la definizione ricorsiva delle operazioni aritmetiche fra ordinali equivale a quella basata sulle operazioni fra buoni ordini. Quella ricorsiva è una \vocab{definizione intensionale} - il termine 
+è parente più prossimo di intendere che di inteso - ossia specifica le proprietà che caratterizzano un certo oggetto, in questo caso le operazioni ordinali. L'altra è una \vocab{definizione estensionale} -
+ossia descrive l'oggetto definito. Generalmente, la difficoltà con le definizioni intensionali è dimostrare che il definendo esiste, con le definizioni estensionali è, invece, ricavarne le proprietà.
 
+\newpage
+\section{Aritmetica ordinale e forma normale di Cantor}
+In questa sezione studieremo nel dettaglio le proprietà delle operazioni aritmetiche fra gli ordinali. Il risultato principale sarà che ogni ordinale $\alpha$ si scrive, in modo unico, nella forma:
+\[ \alpha = \omega^{\beta_1}\cdot k_1 + \omega^{\beta_2}\cdot k_2 + \ldots + \omega^{\beta_n}\cdot k_n
+	\]
+con $n \in \omega$, $k_1,k_2,\ldots,k_n \in \omega\setminus\{0\}$ e $\beta_1 > \beta_2 > \ldots > \beta_n$. Con queste forme normali di Cantor è possibile calcolare le operazioni aritmetiche in modo esplicito.
 
+\begin{note}
+	Per procederemo con ordine, assumeremo la definizione ricorsiva delle operazioni ordinali e procederemo unicamente da quella.
+\end{note}
 
+\begin{proposition}
+	Le funzioni $(\alpha,\beta)\mapsto \alpha + \beta$, $(\alpha,\beta) \mapsto \alpha \cdot \beta$ e $(\alpha,\beta) \alpha^\beta$ sono \textcolor{red}{strettamente crescenti nel secondo argomento} - per $\alpha \cdot \beta$ assumendo $\alpha \ne 0$,
+	per $\alpha^\beta$ assumendo $1<\alpha$ - e \textcolor{red}{ma decrescenti nel primo argomento}.
+\end{proposition}
 
+Per dimostrare la proposizione ci serviranno queste note.
 
+\begin{note}
+	Dati due insiemi di ordinali $X,Y$ non vuoti.
+\[ \forall \alpha \in X \; \exists \beta \in Y \; \alpha \leq \beta \rightarrow \sup X \leq \sup Y
+	\]
+\end{note}
 
+\begin{proof}
+	
+\end{proof}
 
+\begin{note}
+	La funzione $\alpha \mapsto s(\alpha)$ è crescente.
+\end{note}
 
+\begin{proof}
+	$\alpha < \beta \leftrightarrow s(\alpha) \leq \beta \leftrightarrow s(\alpha) < s(\beta)$.
+\end{proof}
 
+Possiamo quindi dimostrare la proposizione.
 
+\begin{proof}
+	
+\end{proof}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\subsection{Sottrazione e divisione euclidea}
+Introduciamo, ora, due lemmi che serviranno per calcolare la formale normale di Cantor: la sottrazione e la divisione di ordinali.
 
 
 \pagebreak
