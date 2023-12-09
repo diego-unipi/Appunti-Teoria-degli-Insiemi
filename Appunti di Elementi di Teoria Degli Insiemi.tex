@@ -8,7 +8,7 @@
 %
 % Copyright (c) 2022 Evan Chen [evan at evanchen.cc]
 % https://web.evanchen.cc/ || github.com/vEnhance
-%
+%  
 % Available for download at:
 % https://github.com/vEnhance/dotfiles/blob/main/texmf/tex/latex/evan/evan.sty
 %
@@ -405,7 +405,7 @@ la collezione delle collezioni che non sono membri di se stessi - la $N$ sta per
 Il paradosso di Russell ci dice che, del principio di collezione - ossia l'idea che data una proprietà ben definita $P$ si possa costruire la collezione $\{X | P(X)\}$ - non ci si può fidare.
 
 \paragraph*{Paradosso di Berry}\mbox{}\\
-L'italiano annovera un numero finito di parole, è quindi possibile formare solo un numero finito di frasi di meno di centro parole. Alcune di queste descrivono un numero naturale, altre no. Comunque, solo un numero 
+L'italiano annovera un numero finito di parole, è quindi possibile formare solo un numero finito di frasi di meno di cento parole. Alcune di queste descrivono un numero naturale, altre no. Comunque, solo un numero 
 finito di numeri naturali può essere descritto con meno di cento parole. Per il principio del minimo, esiste:
 \begin{align*}
 	h = \text{``il più piccolo numero naturale che l'italiano non può} \\ 
@@ -2654,6 +2654,10 @@ Il trucco è che un isomorfismo di ordini è, in particolare, una bigezione, e s
 	\end{itemize}
 \end{proof}
 
+\begin{remark}[Ogni ordine finito totale ha massimo e minimo]
+	Questa proposizione ci dice che ogni ordine totale finito è isomorfo ad un buon ordine ($n \in \omega$), dunque ogni ordine totale finito ammette sia minimo [perché $\omega$ è ben ordinato], sia massimo [come vedremo a breve nella caratterizzazione di $\omega$].
+\end{remark}
+
 Possiamo caratterizzare $\omega$ in termini delle proprietà del suo ordinamento naturale. Quelle che servono sono le seguenti.
 
 \begin{proposition}[Proprietà di $(\omega,<)$]
@@ -3348,7 +3352,7 @@ Potremmo pensare che i grafi $G_{0.01}$ e $G_{0.99}$ debbano venire molto divers
 
 Vediamo perché. Dati due sottoinsiemi finiti $X$ e $Y$ di $\omega$, e dato un vertice $v \not \in X \cup Y$ la probabilità che $x$ sia connesso da un arco a tutti i vertici di $X$ e a nessuno di quelli di $Y$
 è $p^{|X|} \cdot (1 - p)^{|Y|}$\footnote{Eventi indipendenti: $v$ è connesso ad un vertice di $X$ con probabilità $p$, ed è connesso a tutti i vertici di $X$ con probabilità $p^{|X|}$, viceversa non è connesso ad alcun vertice di $Y$ con
-probabilità $(1-p)^{|Y|}$.} - come che sia, è un centro numero $>0$ - e ci sono infiniti [siamo in $\omega$] $v \not \in X \cup Y$. Si capisce, quindi, che con probabilità 1 - ossia certamente - almeno uno di questi vincerà questa lotteria (ne abbiamo infiniti, quindi quasi certamente ne troviamo uno), ossia sarà connesso 
+probabilità $(1-p)^{|Y|}$.} - come che sia, è un certo numero $>0$ - e ci sono infiniti [siamo in $\omega$] $v \not \in X \cup Y$. Si capisce, quindi, che con probabilità 1 - ossia certamente - almeno uno di questi vincerà questa lotteria (ne abbiamo infiniti, quindi quasi certamente ne troviamo uno), ossia sarà connesso 
 a tutti gli $X$ e a nessuno degli $Y$. Usiamo l'esistenza di questo $v$ per definire un grafo random.
 
 \begin{definition}[Grafo random]
@@ -3580,7 +3584,7 @@ Definiamo quindi $-x$ tramite l'inverso additivo ed il prodotto nei casi $x < 0$
 La dimostrazione di questo teorema, talvolta, si vede nei corsi di analisi 1, noi non la studieremo, Per chi fosse interessato: LIBRO DI TESTO \cite{jech}, capitolo 10; NOTE DEL PROF. Di Nasso, 
 fascicolo 4 \cite{diNasso_eti_2019_20}; LEZIONE 16 dell'a.a. 2020-21 \cite{mamino_eti_20_21}.
 
-\subsection{\texorpdfstring{La cardinalità del continuo è $2^{\aleph_0}$}{2 to the power of aleph 0}}
+\subsection{\texorpdfstring{La cardinalità del continuo è $2^{\aleph_0}$}{2 alla aleph-zero}}
 Torniamo ad una questione più strettamente insiemistica.
 
 \begin{theorem}[Cardinalità del continuo]
@@ -4062,7 +4066,8 @@ Per definire l'esponenziale ci serve la nozione di supporto.
 
 \textcolor{MidnightBlue}{L'idea è che una funzione $B \rightarrow A$ può essere vista come una specie di tupla con tante componenti quanti sono gli elementi di $B$\footnote{D'altronde abbiamo visto che $|{}^{B}A| = |A|^{|B|}$, il che ci fa notare che la definizione data di insieme di funzioni come una sorta di esponenziazione di un
 insieme ad un altro, è coerente con quella di esponenziazione come prodotto [cartesiano] ripetuto un numero di volte pari alla cardinalità dell'esponente, da qui l'identificazione di ${}^{B}A$ con $\underbrace{A \times \ldots \times A}_{\text{$|B|$ volte}}$, che ci dà l'intuizione descritta (e che formalmente si traduce nell'insieme di funzioni).}.
-Ordinare queste tuple lessicograficamente significa che vince la componente diversa più a destra [se definitivamente c'è il minimo in entrambe le tuple (per la finitezza del supporto non può essere diversamente), basta confrontare l'ultima componente dove sono diverse (questa cosa corrisponde a dire che entrambe le funzioni fanno definitivamente il minimo)], ossia quella corrispondente all'elemento di $B$ più grande (morale: vince chi fa di più prima che siano definitivamente uguali).}
+Ordinare queste tuple lessicograficamente significa che vince la componente diversa più a destra [se definitivamente c'è il minimo in entrambe le tuple (per la finitezza del supporto non può essere diversamente), basta confrontare l'ultima componente dove sono diverse (questa cosa corrisponde a dire che entrambe le funzioni fanno definitivamente il
+minimo)], ossia quella corrispondente all'elemento di $B$ più grande (morale: vince chi fa di più prima che $f$ e $g$ siano definitivamente uguali).}
 
 \begin{exercise}
 	Verificare che $(\omega,<)^{(\omega,<)} \sim (\NN[x],\prec)$, dove $\NN[x]$ denota l'insieme dei polinomi a coefficienti in $\NN$, e definiamo:
@@ -4083,10 +4088,47 @@ Ordinare queste tuple lessicograficamente significa che vince la componente dive
 \end{proposition}
 
 \begin{proof}
-	Si tratta di banali verifiche, \textcolor{red}{eccetto la terza}.
+	Si tratta di banali verifiche, \textcolor{red}{eccetto la terza}.\\
+	La relazione $<_{\exp}$ è irriflessiva per definizione [richiede $f \ne g$, dunque se sono uguali non sono in relazione]. Occorre, intanto, verificare la transitività.
+	Assumiamo $f <_{\exp} g$ e $g <_{\exp} h$ [naturalmente $f,g \in {}^BA$] con:
+	\begin{align*}
+		&m_1 = \max_{<_B}\{x\in B | f(x) \ne g(x)\} \\
+		&m_2 = \max_{<_B}\{x\in B | g(x) \ne h(x)\} \\
+		&m_3 = \max_{<_B}\{x\in B | f(x) \ne h(x)\} \\
+	\end{align*}
+	Detto $m := \max(m_1,m_2)$, abbiamo [per ipotesi abbiamo le due disuguaglianze con $<_{\exp}$ e stiamo usando il massimo tra i due che rendono vere le disuguaglianze] $f(m) \leq_A g(m) \leq_A h(m)$, dove la prima disuguaglianza è
+	stretta se $m = m_1$, e la seconda se $m = m_2$ (sempre per la definizione di $<_{\exp}$).  In ogni caso, almeno una delle due disuguaglianze è stretta e quindi abbiamo $f(m) <_A h(m)$.
+	D'altro canto, se $m  <_B x$, allora $f(x) = g(x) = h(x)$ (cioè le funzioni, essendo a supporto finito, sono definitivamente costanti), quindi $m = m_3$ [cioè $m$ è proprio il più grande valore per cui $f<h$ prima che diventino definitivamente costanti, ovvero $m_3$] e la transitività è dimostrata.\\
+	La relazione $<_{\exp}$ è un ordine totale perché, se $f \ne g$ [allora per definizione di ordine stretto totale vogliamo una delle due disuguaglianze strette], allora esiste $m = \max_{<_B}\{x \in B | f(x) \ne g(x)\}$, e o $f(m)<_A g(m)$ o $g(m) <_A f(m)$. Nel primo caso $f <_{\exp} g$, nel secondo $g <_{\exp} f$ (quindi prese due funzioni distinte, essendo entrambe a supporto finito, il sottoinsieme di $B$
+	su cui sono distinte è non vuoto, ed in particolare ha un massimo [è un insieme finito e $B$ è totalmente ordinato], per tale massimo si verifica necessariamente una delle due disuguaglianze strette, pertanto $f$ e $g$ sono necessariamente in una delle due relazioni).\\
+	Resta da verificare che l'ordine ottenuto esponenziando è buono. Per assurdo, supponiamo che non lo sia, allora, detto $S$ l'insieme delle funzioni $B \rightarrow A$ a supporto finito, abbiamo:
+	\[ \underbrace{\exists f \in S \; \exists A \subseteq S (f \in A}_{\text{c'è un $A \subseteq S$ non vuoto}}\land\underbrace{\forall g \in A \; \exists h \in A \; h <_{\exp} g}_{\text{che non ha minimo}})
+		\]
+	Ora, fissiamo una $f \in S$ tale che $\exists A \subseteq S$ etc. con queste proprietà [possiamo farlo perché stiamo negando la tesi, quindi fissata una $f$ che non la rispetti, esiste il sottoinsieme etc.]: che $\max_{<_B}(\supp_A(f))$ sia minimo, e che, a parità di $m = \max_{<_B}(\supp_A(f))$ il valore di $f(m)$ sia minimo.
+	Fissiamo ora $A$ in modo tale che $f \in A$ ed $A$ non abbia minimo. Il nostro scopo è costruire $\widetilde{A} \subseteq S$ che non ha minimo e contiene una funzione $\widetilde{f}$ con $\max_{<_B}(\supp_A(f)) <_B m$, in questo modo neghiamo la minimalità di $m$ ed otteniamo 
+	la contraddizione voluta.\\
+	Osserviamo, intanto che $A$ può essere ripartito in:
+	\begin{align*}
+		&A_1 = \{g \in A |\max_{<_B}(\supp_A(g)) <_B m\} \\
+		&A_2 = \{g \in A |\max_{<_B}(\supp_A(g)) = m \land g(m) = f(m)\} \\
+		&A_3 = \{g \in A |\max_{<_B}(\supp_A(g)) = m \land f(m) <_A g(m)\} \\
+		&A_4 = \{g \in A |m <_B \max_{<_B}(\supp_A(g))\}
+	\end{align*}
+	e segue dalla definizione che le funzioni in $A_1$, sono $<_{\exp}$ di quelle in $A_2$, che sono $<_{\exp}$ etc. fino ad $A_4$.
+	Però $A_1$ è vuoto, perché altrimenti, presa $f' \in A_1$, abbiamo $f' \in A$ e $\max(\supp_A(f))<m$ contro la minimalità di $m$. Allora $A_2$,
+	che non è vuoto perché contiene $f$ nona ha minimo, se, infatti, l'avesse, questo dovrebbe essere anche minimo di $A$.\\
+	Concentriamoci ora su $A_2$. Tutte le $g \in A_2$ assumono il medesimo valore su $m$, quindi, comparando due di queste funzioni con $<_{\exp}$, il valore assunto da entrambe su $m$ 
+	è irrilevante. Ossia la funzione:
+	\[ H : A_2 \rightarrow S : g \mapsto \widehat{g} \quad\text{con}\quad\widehat{g}(x) = \begin{cases}
+		\min A &\text{se $x = m$}\\
+		g(x) &\text{altrimenti}
+	\end{cases}
+		\]
+	è strettamente crescente. Per cui $\widetilde{A} \Mydef H[A_2]$ non ha minimo.\\
+	Ora, però, segue dalla definizione che, fissata $g \in A_2$, $\supp(\widehat{g}) = \supp(g) \setminus \{m\}$, quindi, ponendo $\widetilde{f} \Mydef \widehat{g}$, abbiamo $\max(\supp(\widehat{f}))<m$, e questo contraddice la minimalità di $m$.
 \end{proof}
 
-\begin{proposition}[Buona definizione delle operazioni tra ``classi di equivalenza'' di buoni ordini]
+\begin{proposition}[Buona definizione delle operazioni tra ``classi di isomorfismo'' di buoni ordini - ovvero le operazioni tra buoni ordini sono definite modulo isomorfismo]
 	Le operazioni aritmetiche sui buoni ordini \vocab{passano al quoziente modulo isomorfismi}. Ossia, dati due buoni ordinamenti $\mathcal A = (B,<_A)$
 	e $\mathcal B = (B,<_B)$, e dati $\mathcal A' = (A',<_{A'}) \sim \mathcal A$ e $\mathcal{B}' = (B',<_{B'}) \sim \mathcal B$, si ha:
 	\[ \mathcal{A} + \mathcal{B} \sim \mathcal{A}' + \mathcal{B'} \qquad \mathcal{A} \cdot \mathcal{B} \sim \mathcal{A}' \cdot \mathcal{B'} \qquad \mathcal{A}^{\mathcal{B}} \sim \mathcal{A}'^{\mathcal{B'}}
@@ -4096,8 +4138,25 @@ Ordinare queste tuple lessicograficamente significa che vince la componente dive
 \end{proposition}
 
 \begin{proof}
-	
+	Fissati gli isomorfismi $f : A \rightarrow A'$ e $g : B \rightarrow B'$, è facile scrivere esplicitamente gli isomorfismi richiesti. Per esempio, nel caso di $\mathcal{A}^{\mathcal{B}}$, si considera la restrizione alle funzioni a supporto finito di:
+	\[ {}^{B}A \rightarrow {}^{B'}A' : h \mapsto f \circ h \circ g^{-1}
+		\]
+	in altre parole, l'isomorfismo richiesto per dimostrare la tesi, che è quello scritto sopra, è quello che fa commutare il diagramma seguente:
+	\[\begin{tikzcd}
+		B & A \\
+		{B'} & {A'}
+		\arrow["h", from=1-1, to=1-2]
+		\arrow["{g^{-1}}", from=2-1, to=1-1]
+		\arrow[from=2-1, to=2-2]
+		\arrow["f", from=1-2, to=2-2]
+	\end{tikzcd}\]
+	andrebbe verificato che anche la nuova funzione $f \circ h \circ g^{-1}$ sia a supporto finito, ma questo segue dal fatto che $f$ e $g$ sono isomorfismi di ordini, quindi dove $h$ fa il minimo di $A$,
+	allora $h'$ dovrà necessariamente fare il minimo, e viceversa, pertanto vale che $\supp_{A'}(f \circ h \circ g^{-1}) = g[\supp_A(f)]$ (e $g$ isomorfismo).
 \end{proof}
+
+\begin{exercise}[Buona definizione delle operazioni tra buoni ordini]
+	Fare le altre verifiche della proposizione sopra.
+\end{exercise}
 
 \begin{proposition}[Proprietà delle operazioni sui buoni ordini]
 	Siano $\mathcal{A} = (A,<_A)$, $\mathcal{B} = (B,<_B)$ e $\mathcal{C} = (C,<_C)$ buoni ordini. Allora:\footnote{Valgono in realtà anche l'esistenza e le proprietà degli elementi neutri per $\cdot$ e $+$.}
@@ -4112,7 +4171,7 @@ Ordinare queste tuple lessicograficamente significa che vince la componente dive
 	Facili verifiche.
 \end{proof}
 
-\begin{exercise}
+\begin{exercise}[Proprietà delle operazioni tra buoni ordini]
 	Fare qualcuna delle verifiche delle proprietà sopra.
 \end{exercise}
 
@@ -4126,6 +4185,19 @@ Ordinare queste tuple lessicograficamente significa che vince la componente dive
 	\end{align*}}
 	ovvero non valgono: \textcolor{red}{commutatività}, \textcolor{red}{distributività a destra} e \textcolor{red}{potenza di un prodotto}.
 \end{exercise}
+
+\begin{soln}
+	Vediamo controesempi caso per caso.
+	\begin{itemize}
+		\item[\textcolor{red}{$\boxed{\text{commutatività $+$}}$}] Basta considerare $1+\omega$ e $\omega + 1$ (sia $1$ che $\omega$ sono buoni ordini), infatti abbiamo che:
+		\begin{align*}
+			1+\omega = (1 \sqcup \omega, <_+) \qquad \omega + 1 = (\omega \sqcup 1, <_+) 
+		\end{align*}
+		dove $1 \sqcup \omega = (1,0)\cup (\omega \times \{1\}) = \{(1,0),(0,1),(1,1),(2,1),\ldots\}$, con $<_+$ che è l'ordine dato dalla somma di buoni ordini, dunque $(1,0)<_+(n,1)$, $\forall n \in \omega$. Si vede facilmente
+		quindi che $1 + \omega$ (oltre ad essere un buon ordine in quanto somma di buoni ordini) è superiormente illimitato e vale il principio del massimo, dunque $1+\omega \sim \omega$. Viceversa, dove $\omega \sqcup 1 = (\omega \times \{0\})\cup \{(1,1)\} = \{(1,1),(0,0),(1,0),(2,0),\ldots\}$,
+		con $<_+$ che è sempre l'ordine dato dalla somma di buoni ordini, ma in questo caso si ha $(n,0) <_+ (1,1)$, $\forall n \in \omega$, dunque $\omega + 1$ è superiormente limitato, pertanto non può essere isomorfo ad $\omega$, dunque $1 + \omega \ne \omega + 1$.
+	\end{itemize}
+\end{soln}
 
 Un altro tranello in cui si potrebbe cadere è credere che le operazioni sui buoni ordini generalizzino quelle sulle cardinalità [perché provando le operazioni con gli ordini finiti, valgono tutte le proprietà, comprese quelle false]. Questo è vero per le cardinalità finite, e anche in generale 
 per somma è prodotto - come è ovvio dalla definizione - ma fallisce per l'esponenziale quando è infinito.\footnote{Un trucco è ricordare che le proprietà che valgono sono quelle con le parentesi a destra, perché ridefiniremo le operazioni per ricorsione transfinita in maniera analoga a quanto fatto per quelle in $\omega$ con la ricorsione numerabile,
@@ -4172,7 +4244,8 @@ sono a loro volta insiemi di elementi).}\footnote{$\omega$ è un esempio di insi
 \end{example}
 
 \begin{remark}[$\Ord$ è \lbrack una classe\rbrack\;transitiva]
-	Se $\alpha \in \Ord$ e $\beta \in \alpha$, allora $\beta \in \Ord$ e $\beta = \alpha_\beta$ (ovvero $\beta$ è il segmento iniziale principale [e in automatico proprio] di $\alpha$, determinato da $\beta$). In particolare la classe degli ordinali $\Ord$ è transitiva.\footnote{Cioè tutti gli ordinali sono a loro volta insiemi di ordinali.}
+	\label{Ord_trans}
+	Se $\alpha \in \Ord$ e $\beta \in \alpha$, allora $\beta \in \Ord$ e $\beta = \alpha_\beta$ (ovvero $\beta$ è il segmento iniziale principale [e in automatico proprio] di $\alpha$, determinato da $\beta$). In particolare la classe degli ordinali $\Ord$ è transitiva.\footnote{Cioè tutti gli ordinali sono a loro volta insiemi di ordinali di più piccoli.}
 \end{remark}
 
 \begin{proof}
@@ -4204,49 +4277,65 @@ di isomorfismo contiene almeno un ordinale [in modo da poter dire che in ogni cl
 	\[\begin{split}
 		x \in B_{f(a)} &\iff x <_B f(a) \\
 					   &\iff f^{-1}(x) <_A a \\
-					   &\iff \iff f^{-1}(x) \in A_a \\
+					   &\iff f^{-1}(x) \in A_a \\
 					   &\iff x \in f[A_a]
 	\end{split}
 		\]
+	e si conclude per estensionalità.
 \end{proof}
 
-\begin{proposition}
-	Dati $\alpha,\beta \in \Ord$, se $(\alpha,<_\alpha) \sim (\beta,<_\beta)$, allora $\alpha = \beta$.
+\begin{proposition}[Gli ordinali isomorfi sono proprio uguali]
+	Dati $\alpha,\beta \in \Ord$, se $(\alpha,<_\alpha) \sim (\beta,<_\beta)$, allora $\alpha = \beta$.\footnote{La proposizione ha come conseguenza che per ogni classe di isomorfismo di buoni ordini, c'è \textbf{al più} un ordinale, perché se ce ne fosse più di uno (posto che per ora non sappiamo nemmeno se ce ne sia uno) sarebbero esattamente uguali.}
 \end{proposition}
 
 \begin{proof}
-	Sia $f : \alpha \rightarrow \beta$ un isomorfismo. Ci basta dimostrare che $\forall \gamma \in \alpha \; f(\gamma) = \gamma$. Sia, per assurdo,
+	Sia $f : \alpha \rightarrow \beta$ un isomorfismo. Ci basta dimostrare che $\forall \gamma \in \alpha \; f(\gamma) = \gamma$ [cioè che $f = \id_\alpha$]. Sia, per assurdo,
 	$\gamma$ il minimo elemento di $\alpha$ tale che $f(\gamma) \ne \gamma$. Allora:
-	\[ \gamma = \alpha_\gamma = f[\alpha_\gamma] = \beta_{f(\gamma)} = f(\gamma)\;\lightning
+	\[ \gamma \overset{\text{\hyperref[Ord_trans]{Oss. sull'$\in$ degli ord.}}}{=} \alpha_\gamma \overset{(\star)}{=} f[\alpha_\gamma] \overset{\text{Oss. sopra}}{=} \beta_{f(\gamma)} \overset{\text{\hyperref[Ord_trans]{Oss. sull'$\in$ degli ord.}}}{=} f(\gamma)\;\lightning
 		\]
+	dove $(\star)$ è vero in quanto, abbiamo preso $\gamma$ come il più piccolo ordinale per cui $f$ non è l'identità, ma $\alpha_\gamma$ è fatto da cose strettamente più piccole di $\gamma$, dunque $f[\alpha_\gamma] = \alpha_\gamma$.
 \end{proof}
 
-Possiamo ora chiederci come si rifletta l'ordinamento totale delle classi di isomorfismo di buoni ordini, dato dalla relazione 
-``essere segmento iniziale di'', sugli ordinali. La risposta è che diventa la relazione di appartenenza.
+Possiamo ora chiederci [avendo modo di ordinare questi particolari buoni ordini, detti ordinali] come si rifletta l'ordinamento totale delle classi di isomorfismo di buoni ordini, dato dalla relazione 
+``essere segmento iniziale di'', sugli ordinali. La risposta è che diventa la relazione di appartenenza (cioè gli ordinali sono proprio tutti ordinati dall'appartenenza, d'altronde abbiamo già visto come sono ordinati i buoni ordini,
+nel caso di questa particolare classe di buoni ordini transitivi, abbiamo appena visto che non ci sono classi di isomorfismo ma direttamente uguaglianze, è naturale quindi che l'essere isomorfo ad un segmento iniziale di un altro buon ordine, diventi in questo caso essere proprio esattamente quel segmento iniziale,
+quindi, venuto via l'isomorfismo abbiamo direttamente l'appartenenza come ordine).
 
-\begin{theorem}
-	Dati $\alpha,\beta \in\Ord$, vale \textcolor{red}{una e una sola} delle seguenti:
+\textcolor{MidnightBlue}{Morale: ci piacerebbe ordinare gli ordinali usando $\in$, gli ordinali in quanto buoni ordini sono già ordinati dalla ``relazione d'ordine sulle classi di isomorfismo di buoni ordini'', ebbene si scopre proprio che il fatto che i buoni ordini siano ordinati totalmente da $\prec$ è equivalente al 
+fatto che gli ordinali delle corrispondenti classi di isomorfismo [che per ora non sappiamo esserci, ma se ci sono, sono unici] sono ordinati totalmente secondo $\in$.}
+
+\begin{theorem}[Gli ordinali sono totalmente ordinati dalla ``relazione'' di appartenenza]
+	Dati $\alpha,\beta \in\Ord$, vale \textcolor{red}{una e una sola} delle seguenti:\footnote{Siamo in una classe, dunque ordinare
+	gli ordinali è impreciso perché non abbiamo mai parlato di relazioni sulle classi, tuttavia, li stiamo ordinando nello stesso senso [ed a partire proprio] dall'ordinamento
+	dei buoni ordini, usando in questo caso l'appartenenza.}
 	\begin{align*}
-		& \alpha \in \beta \;\text{che vale se e solo se $(\alpha,<_\alpha) \prec (\beta,<_\beta)$} \\
-		& \alpha = \beta \;\text{che vale se e solo se $(\alpha,<_\alpha) \sim (\beta,<_\beta)$} \\
-		& \beta \in \alpha \;\text{che vale se e solo se $(\beta,<_\beta) \prec (\alpha,<_\alpha)$}
+		& \alpha \in \beta \;\text{che vale \textcolor{orange}{se e solo se} $(\alpha,<_\alpha) \prec (\beta,<_\beta)$} \\
+		& \alpha = \beta \;\text{che vale \textcolor{orange}{se e solo se} $(\alpha,<_\alpha) \sim (\beta,<_\beta)$} \\
+		& \beta \in \alpha \;\text{che vale \textcolor{orange}{se e solo se} $(\beta,<_\beta) \prec (\alpha,<_\alpha)$}
 	\end{align*}
+	(l'implicazione $\Longleftarrow$ tra i due fatti in mezzo la abbiamo già dimostrata con la proposizione precedente).
 \end{theorem}
 
-\textcolor{MidnightBlue}{Notazione: d'ora in poi [avendo dimostrato che per ogni classe di isomorfismo di buoni ordini c'è (al più) un ordinale\footnote{Per il
-viceversa serve l'assioma del rimpiazzamento.} corrispondente], porremo per comodità: $\alpha \prec \beta \Mydef (\alpha,<_\alpha) \prec (\beta,<_\beta)$, e analogamente $\alpha \sim \beta$ e $\beta \prec \alpha$.}
+\textcolor{MidnightBlue}{Notazione: d'ora in poi porremo per comodità: $\alpha \prec \beta \Mydef (\alpha,<_\alpha) \prec (\beta,<_\beta)$, e analogamente $\alpha \sim \beta$ e $\beta \prec \alpha$.}
 
 \begin{proof}
-	
+	Dimostriamo il primo caso [il terzo sarà simmetrico a questo]. Se $\alpha \prec \beta$ allora, per definizione di $\prec$, esiste $\gamma \in \beta$ tale che $\alpha \sim \beta_{\gamma}$. Però, $\beta$ è un ordinale e
+	per quanto visto in un'\hyperref[Ord_trans]{osservazione precedente}, si ha $\beta_\gamma = \gamma$, da cui $\alpha \sim \gamma$, ma dalla proposizione precedente sappiamo che due ordinali isomorfi sono proprio uguali, ovvero $\alpha \sim \gamma \rightarrow \alpha = \gamma$.\\
+	Abbiamo quindi che $\alpha = \gamma \in \beta$ [e ciò dimostra che se vale l'ordinamento come buon ordine vale l'appartenenza di ordinali]. D'altro canto, se $\alpha \in \beta$, allora $\alpha = \beta_\alpha$ (sempre per la solita \hyperref[Ord_trans]{osservazione}), quindi 
+	$\alpha \prec \beta$ (esattamente per la definizione di $\prec$ visto che $\alpha$ diventa proprio un segmento iniziale di $\beta$).\\
+	Se $\alpha \sim \beta$, come detto, la proposizione precedente ci assicura l'uguaglianza, il viceversa è immediato per la definizione di isomorfismo tra ordini totali.
 \end{proof}
 
 \begin{notation}[Ordine della classe degli ordinali]
-	Dati $\alpha,\beta \in \Ord$, poniamo:
+	Dati $\alpha,\beta \in \Ord$, avendo dimostrato che l'appartenenza è una ``relazione di ordine totale'' per gli ordinali, quando si parla di ordinali useremo la notazione:
 	\[ \alpha < \beta \Mydef \alpha \in \beta
 		\]
+	Infatti il teorema precedente ci dice che la relazione $<$ gode delle proprietà di un ordine totale stretto sulla classe degli ordinali.
 \end{notation}
 
-\textcolor{MidnightBlue}{Il teorema precedente ci dice che la relazione $<$ gode delle proprietà di un ordine totale stretto sulla classe degli ordinali.}
+\begin{exercise}[Gli ordinali finiti sono tutti e soli quelli di $\omega$]
+	Dimostra che $\alpha$ è un ordinale finito se e solo se $\alpha \in \omega$.
+\end{exercise}
 
 \begin{proposition}[Ordine largo sulla classe degli ordinali]
 	Siano $\alpha,\beta \in \Ord$, allora:
@@ -4256,43 +4345,74 @@ viceversa serve l'assioma del rimpiazzamento.} corrispondente], porremo per como
 \end{proposition}
 
 \begin{proof}
-	
+	Vediamo le due implicazioni:
+	\begin{itemize}
+		\item[$\boxed{\longrightarrow}$] Se $\alpha < \beta$ allora $\alpha \in \beta$ per la definizione di ordine sugli ordinali, quindi $\alpha \subseteq \beta$ per la transitività di $\beta$.
+		Se $\alpha = \beta$, allora in particolare $\alpha \subseteq \beta$.
+		\item[$\boxed{\longleftarrow}$] Dato $\alpha \subseteq \beta$, supponiamo per assurdo che $\beta < \alpha$. Allora $\beta \in \alpha$, ma per ipotesi si ha $\beta \in \alpha \subseteq \beta$.
+		Per la transitività di $\beta$ [nel senso che gli elementi degli elementi sono elementi], si ha $\beta \in \beta\;\lightning$ [per definizione (se $\beta \in \beta$ allora $\beta < \beta \; \lightning$) o anche perché abbiamo dimostrato con la proposizione precedente che è un ordine stretto e totale sugli ordinali, dunque irriflessiva].\footnote{Segnalo che sulle dispense originali di Mamino c'è un divertente riferimento a buona fondazione.}
+	\end{itemize}
 \end{proof}
 
 Ricordiamo che $s(\alpha) \Mydef \alpha \cup \{\alpha\}$. La proposizione segue dice che $s(\alpha)$ è, a buon diritto, il successore di $\alpha$, anche quando $\alpha$
 è un ordinale.
 
-\begin{proposition}
+\begin{proposition}[Il successore è un ordinale]
 	Dato $\alpha \in \Ord$, $s(\alpha)$ è il minimo ordinale $> \alpha$.
 \end{proposition}
 
 \begin{proof}
-	
+	Occorre inizialmente verificare che $s(\alpha)$ è un ordinale.
+	\begin{itemize}
+		\item[$\boxed{\text{transitività}}$] Se $\beta \in s(\alpha)$, o $\beta \in \alpha$ o $\beta = \alpha$ (per la definizione di successore). Nel secondo caso è ovviamente transitivo, nel ugualmente per quanto visto nell'\hyperref[Ord_trans]{osservazione}.
+		\item[$\boxed{\text{buon ordine}}$] Siccome $s(\alpha)$ è un insieme di ordinali, $\in$ è un ordine totale su $s(\alpha)$ [per quanto già dimostrato]. Dato $X \subseteq s(\alpha) = \alpha \cup \{\alpha\}$, con $X \ne \emptyset$, abbiamo che o $X = \alpha$ o $X \cap \alpha = \emptyset$ [$\alpha$ è un elemento dell'insieme unione ed è a sua volta un insieme di ordinali].
+		Nel primo caso $X$ ha chiaramente un minimo, nel secondo, $\min(X \cap \alpha)$ è il minimo di $X$ [gli elementi di $X$ fuori dall'intersezione sono ordinali di $\alpha$ e quindi più piccoli].
+	\end{itemize}
+	Supponiamo, ora $\alpha < \beta$, dobbiamo dimostrare $s(\alpha) \leq \beta$. Sappiamo che $\alpha < \beta \implies \alpha \in \beta \implies \alpha \subseteq \beta$, allora dalla prima implicazione si ottiene $\{\alpha\} \subseteq \beta$ [transitività di $\beta$], e ciò, unito alla seconda implicazione, dà $s(\alpha) = \alpha \cup \{\alpha\}\subseteq \beta$, pertanto [per la proposizione sopra] $s(\alpha) \leq \beta$.
 \end{proof}
 
-\begin{corollary}
+\begin{corollary}[Successore del primo termine in una disuguaglianza tra ordinali]
 	$\forall \alpha,\beta \in\Ord \; \beta \leq \alpha \leftrightarrow \beta < s(\alpha)$.
 \end{corollary}
 
-\begin{proposition}
+\begin{proposition}[Proprietà degli insiemi di ordinali]
 	Dato un insieme di ordinali $X$:
 	\begin{enumerate}[1.]
 		\item Se $X \ne \emptyset$, allora esiste il minimo di $X$, detto \vocab{$\min X$}, inoltre $\min X = \bigcap X$.
-		\item Esiste il minimo dei maggioranti di $X$\footnote{Gli $\alpha \in \Ord$ tali che $\forall \beta \in X \; \beta \leq \alpha$.}, detto \vocab{$\sup X$}, inoltre $\sup X = \bigcup X$.
-		\item C'è un ordinale che non appartiene a $X$.
+		\item Esiste il minimo dei maggioranti di $X$\footnote{I maggioranti di un insieme di ordinali sono definiti allo stesso modo di quanto visto per i reali, ovvero sono gli $\alpha \in \Ord$ tali che $\forall \beta \in X \; \beta \leq \alpha$.}, detto \vocab{$\sup X$}, inoltre $\sup X = \bigcup X$.
+		\item C'è un ordinale che non appartiene a $X$.\footnote{Questa cosa ci garantisce che non esiste un insieme di tutti gli ordinali, perché ci sarebbe sempre un ordinale fuori.}
 	\end{enumerate}
 \end{proposition}
 
 \begin{proof}
-	
+	Vediamo i vari punti.
+	\begin{enumerate}[1.]
+		\item Dimostriamo, prima, che il minimo esiste. Sia $\alpha \in X$ fissato, che c'è perché supponiamo $X \ne \emptyset$. Consideriamo $\mu \Mydef \min_{<_{s(\alpha)}}(X \cap s(\alpha))$.
+		Questo esiste perché $X \cap s(\alpha) \ne \emptyset$ in quanto $\alpha$ vi appartiene [e l'intersezione è sottoinsieme di $s(\alpha)$ che è ben ordinato, avendo dimostrato sopra che $s(\alpha)$ è un ordinale].\\
+		Vediamo che $\mu = \min X$. Infatti, preso $\beta \in X$, se $\beta \leq \alpha$ allora [per il corollario sopra $\beta \in s(\alpha)$] $\beta \in s(\alpha) \cap X$, dunque $\beta \leq \mu$ [cioè partecipa alla scelta per il minimo nell'intersezione]. Se però $\alpha < \beta$ (cioè $s(\alpha) \leq \beta$), allora 
+		$\mu < s(\alpha) \leq \beta$, dove la prima disuguaglianza è stretta perché c'è anche $\alpha$ in $s(\alpha) \cap X$ (e quindi $\mu$ è minimo per tutti gli ordinali in $X$ che sono maggiori o uguali ad $\alpha$).\\
+		Ora verifichiamo che $\mu = \bigcap X$. Chiaramente $\forall \gamma \in X \; \mu \leq \gamma$, quindi $\forall \gamma \in X \; \mu \subseteq \gamma$, cioè $\mu$ è un sottoinsieme di ogni elemento di $X$, dunque è un sottoinsieme degli elementi comuni degli elementi, ossia $\mu \subseteq \bigcap X$. D'altro
+		canto $\mu \in X$, quindi [poiché si prendono gli elementi comuni anche a $\mu$, necessariamente l'intersezione è un sottoinsieme] $\bigcap X \subseteq \mu$.
+		\item Dimostriamo in primis che $\bigcup X$ è un ordinale.
+		\begin{itemize}
+			\item[$\boxed{\text{transitività}}$] Dato $\alpha \in \bigcup X$, esiste $\beta \in X$ tale che $\alpha \in \beta$. Per transitività di $\beta$ si ha $\alpha \subseteq\beta$. Da cui [$\alpha$ è un sottoinsieme degli elementi di $\beta$, quindi unendo questi elementi ad altri, $\alpha$ rimarrà ancora un sottoinsieme dei nuovi elementi] $\alpha \subseteq X$.
+			\item[$\boxed{\text{buon ordine}}$] Ogni $\alpha \in \bigcup X$ appartiene a qualche $\beta \in X$, ed è, quindi, un ordinale (per la solita \hyperref[Ord_trans]{osservazione}). Stabilito che $\bigcup X$ è un insieme di ordinali, è chiaro che ogni suo sottoinsieme non vuoto è un insieme non vuoto di ordinali. Quindi ha minimo per il punto 1.
+		\end{itemize}
+		Dimostriamo ora che $\sigma \in \Ord$ è un maggiorante per $X$ se e solo se $\bigcup X \leq \sigma$ (in questo modo sappiamo che $\bigcup X$ è più piccolo di tutti i maggioranti, e si vede facilmente che è a sua volta un maggiorante in quanto $\forall x \in X$ si ha che un elemento di un insieme è naturalmente un sottoinsieme della sua unione [in altre parole, unendo
+		un insieme stiamo prendendo tutti gli elementi degli elementi, dunque un elemento dell'insieme iniziale sarà un sottoinsieme dell'unione, in quanto ne abbiamo preso gli elementi nell'unione], pertanto segue $x \subseteq \bigcup X \leftrightarrow x \leq \bigcup X$).
+		\[ \underbrace{\forall \alpha \in X \; \alpha \leq \sigma}_{\text{$\sigma$ è un maggiorante}} \iff \forall \alpha \in X \; \alpha \subseteq \sigma \iff \bigcup X \subseteq \sigma \iff \bigcup X \leq \sigma 
+			\]
+		dove l'equivalenza centrale deriva dal fatto che se tutti gli elementi di $X$ sono contenuti in $\sigma$, allora i loro elementi appartengono a $\sigma$, e dunque ovviamente la loro unione [degli elementi degli elementi] è un sottoinsieme di $\sigma$.
+		\item Basta considerare $s(\sup X)$, per il 2. sappiamo che l'estremo superiore di $X$ esiste, e dalle proprietà viste sugli ordinali, sappiamo che il successore di un ordinale è il minimo ordinale più grande, dunque, in questo caso, per definizione di estremo superiore, necessariamente non sta nell'insieme.
+	\end{enumerate}
 \end{proof}
 
-\begin{corollary}
+\begin{corollary}[Gli insiemi di ordinali transitivi sono ordinali]
 	Un insieme di ordinali è un ordinale se e solo se è transitivo.
 \end{corollary}
 
 \begin{proof}
-
+	Per il 2. della proposizione precedente sappiamo che ogni insieme di ordinali è ben ordinato, dunque la definizione di ordinale in questo caso si riduce al richiedere la transitività dell'insieme.
 \end{proof}
 
 \begin{corollary}[Paradosso di Burali-Forti]
@@ -4302,9 +4422,11 @@ Ricordiamo che $s(\alpha) \Mydef \alpha \cup \{\alpha\}$. La proposizione segue 
 \textcolor{MidnightBlue}{Ossia non esiste l'insieme di tutti gli ordinali.}
 
 \begin{proof}
-	Per il punto 3. della proposizione, se $\Ord$ fosse un insieme, esisterebbe un ordinale che non vi appartiene, che è assurdo.
+	Per il punto 3. della proposizione sulle proprietà degli insiemi di ordinali, se $\Ord$ fosse un insieme, esisterebbe un ordinale che non vi appartiene, che è assurdo.
 \end{proof}
 
+
+\pagebreak
 \begin{note}[Cosa c'è di paradossale nel paradosso di Burali-Forti?]
 	Nel 1897, \href{https://it.wikipedia.org/wiki/Cesare_Burali-Forti}{\textcolor{purple}{Cesare Burali-Forti}} era assolutamente convinto della esistenza dell'insieme
 	di tutti gli ordinali - definiti allora come le classi di isomorfismo dei buoni ordini - quello che non sapeva è se la relazione $\prec$ fosse un ordine totale su queste classi.
@@ -4312,9 +4434,9 @@ Ricordiamo che $s(\alpha) \Mydef \alpha \cup \{\alpha\}$. La proposizione segue 
 		\centering
 		\includegraphics[width = 7.5cm]{immagini/Burali_Forti.png}
 	\end{figure}
-	Burali-Forti credette di poter negare la totalità dell'ordine $\prec$ ragionando per assurdo. Se $\prec$ fosse un ordine totale, si può dimostrare che sarebbe buono, ma 
-	allora $\Omega \Mydef [(\Ord,\prec)]$, la classe di isomorfismo di $(\Ord,\prec)$, sarebbe uno dei membri della classe $\Ord$, e, considerando il suo successore $s(\Omega)$,
-	avremmo $\Omega \prec s(\Omega)$, ma anche $s(\Omega) \prec \Omega$, perché $s(\Omega) \in \Ord\;\lightning$.\\
+	Burali-Forti credette di poter negare la totalità dell'ordine $\prec$ ragionando per assurdo. Se $\prec$ fosse un ordine totale, si può dimostrare che sarebbe buono [esattamente come abbiamo visto sopra, un insieme di ordinali è sempre ben ordinato], ma 
+	allora $\Omega \Mydef [(\Ord,\prec)]$, la classe di isomorfismo di $(\Ord,\prec)$, sarebbe [a sua volta una classe di isomorfismo di un buon ordine e quindi] uno dei membri della classe $\Ord$ stessa, e, considerando il suo successore $s(\Omega)$,
+	avremmo $\Omega \prec s(\Omega)$, ma anche $s(\Omega) \prec \Omega$ [per definizione], perché $s(\Omega) \in \Ord\;\lightning$.\\
 	Il guaio è che, nello stesso anno, Cantor pubblicò una dimostrazione del fatto che la relazione $\prec$ è totale - esattamente l'argomento dei segmenti iniziali isomorfi che abbiamo illustrato 
 	nel corso. Come è stata risolta la contraddizione? Concludendo che l'insieme di tutti gli ordinali esiste? \textcolor{red}{No}. Sfortunatamente Burali-Forti 
 	aveva capito male la definizione di buon ordine, e ancora così, forse, nessuno se ne sarebbe accorto, ma, quel che è peggio, aveva tentato di correggerla, facendo, in realtà un pasticcio.
@@ -4332,8 +4454,15 @@ la classe degli ordinali raggiungibili a partire da $\emptyset$ o da $\omega$ co
 	Dimostra che la classe descritta sopra è effettivamente una classe, ossia è definita da una formula.
 \end{exercise}
 
+\begin{soln}
+	Chiamiamo $O = \{\emptyset, s(\emptyset),\ldots,s^n(\emptyset),\ldots,\omega,s(\omega),\ldots,s^n(\omega),\ldots\}$, allora la formula che descrive $O$ è:
+	\[ \forall x \; x \in O \leftrightarrow ((x = \emptyset) \lor (x = \omega) \lor (\exists n \, n \in \omega \land (x = s^n(\emptyset) \lor x = s^n(\omega))))
+		\]
+	avendo una formula, abbiamo che $O$ è una classe.
+\end{soln}
+
 Se vogliamo poter rispondere alla domanda ``quanti ordinali esistono?'' occorre un nuovo assioma: l'assioma del rimpiazzamento. Sotto questa ipotesi addizionale, la risposta sarà
-``tutti quelli che potrebbero esistere'', ossia avremo un ordinale per ogni classe di isomorfismo di buoni ordini.\\
+``tutti quelli che potrebbero esistere'', ossia avremo un ordinale per ogni classe di isomorfismo di buoni ordini (che è proprio quello che vorremmo avendo dimostrato che per ogni classe ce n'è al più uno).
 Per formulare l'assioma, ci serve il concetto di funzione classe.
 
 \begin{definition}[Funzione classe]
@@ -4342,7 +4471,7 @@ Per formulare l'assioma, ci serve il concetto di funzione classe.
 		\]
 \end{definition}
 
-\textcolor{MidnightBlue}{Ossia, una funzione classe è una proprietà, espressa nel linguaggio della teoria degli insiemi, che ad ogni $x \in A$ associa un \textcolor{red}{unico} $y \in B$.}
+\textcolor{MidnightBlue}{Ossia, una funzione classe è una proprietà, espressa nel linguaggio della teoria degli insiemi, che ad ogni $x \in A$ [$=$ elemento che soddisfa la formula che definisce $A$] associa un \textcolor{red}{unico} $y \in B$ [$=$ elemento che soddisfa la formula che definisce $B$].}
 
 \begin{notation}[Funzione classe]
 	Possiamo denotare una funzione classe $\varphi(x,y)$ da $A$ a $B$ mediante la notazione più familiare:
@@ -4362,10 +4491,10 @@ Per formulare l'assioma, ci serve il concetto di funzione classe.
 
 \begin{axiom}[Assioma del rimpiazzamento]
 	\label{ax8}
-	Se $A$ è un insieme e $F : V \rightarrow V$ è una funzione classe, allora $F[A] \Mydef \{F(x) | x \in A\}$ è un insieme.\footnote{Come per la separazione, anche questo è uno \vocab{schema di assiomi}, uno per ogni possibile funzione classe $F$.}
-	\[ \forall A \; \exists B \; \forall y \; y \in B \leftrightarrow \exists x \in A \; y = F[x]
+	Se $A$ è un \textcolor{LimeGreen}{insieme} e $F : V \rightarrow V$ è una funzione classe, allora $F[A] \Mydef \{F(x) | x \in A\}$ è un \textcolor{LimeGreen}{insieme}.\footnote{Come per la separazione, anche questo è uno \vocab{schema di assiomi}, uno per ogni possibile funzione classe $F$.}
+	\[ \forall A \; \exists B \; \forall y \; y \in B \leftrightarrow \exists x \in A \; y = F(x)
 		\]
-	(cioè per ogni insieme esiste un insieme i cui elementi sono immagini di quelli di $A$ rispetto alla funzione classe $F$).
+	(cioè per ogni insieme [che ricordiamo essere le uniche variabili del nostro linguaggio] esiste un insieme i cui elementi sono immagini di quelli di $A$ rispetto alla funzione classe $F$).
 \end{axiom}
 
 \begin{proposition}[Unicità del rimpiazzo]
@@ -4382,35 +4511,78 @@ Per formulare l'assioma, ci serve il concetto di funzione classe.
 	Dato un \textcolor{red}{insieme} $A$ e una funzione classe $G : \textcolor{red}{A} \rightarrow V$, esiste ed è unico l'\textcolor{red}{insieme} $G[A]$ tale che:
 	\[ \forall y \; y \in G[A] \leftrightarrow \exists x \in A \; y = G(x)
 		\]
+	In altre parole, l'assioma del rimpiazzamento vale anche con una funzione classe che va da un insieme ad una classe.
 \end{remark}
 
 \begin{proof}
-	Applicando l'\hyperref[ax8]{assioma del rimpiazzamento} appena enunciato, applicato alla funzione classe $F : V \rightarrow V$, abbiamo:
+	Ci basta semplicemente applicare l'\hyperref[ax8]{assioma del rimpiazzamento} appena enunciato, applicato alla funzione classe $F : V \rightarrow V$ definita come:
 	\[ y = F(x) \Mydef (x \in A \land y = G(x)) \lor (x \not \in A \land y = \emptyset)
 		\]
-	ossia:
+	ossia [in termini meno formali]:
 	\[ F(x) \Mydef \begin{cases}
 		G(x) &\text{se $x \in A$} \\
 		\emptyset &\text{altrimenti}
 	\end{cases}
 		\]
-	Infatti $x \in A$ implica $G(x) = F(x)$, per cui $G[A] = F[A]$.
+	infatti se $x \in A$ si ha $G(x) = F(x)$, altrimenti c'è il vuoto, per cui $G[A] = F[A]$\footnote{Per la precisione $F[A]$, con $F : V \rightarrow V$, dà l'insieme $G[A] \cup \emptyset = G[A]$}.
 \end{proof}
 
-\begin{exercise}
+\begin{exercise}[Esistenza del prodotto cartesiano via rimpiazzamento]
 	Dimostra che, dati due insiemi $A$ e $B$, esiste il loro prodotto cartesiano $A \times B$, usando l'assioma del rimpiazzamento ma \textcolor{red}{senza usare l'assioma delle parti}.
 \end{exercise}
 
+\begin{soln}
+	[FALSA, DA SISTEMARE]
+	Ci basta considerare la funzione classe $F : \ps(\ps(A \cup B)) \rightarrow V$ definita come:
+	\[ F(z) \Mydef \begin{cases}
+		(x,y) &\exists x \in A \; \exists y \in B \; z = (x,y) \\
+		\emptyset &\text{altrimenti}
+	\end{cases}
+		\]
+	a questo punto $F[\ps(\ps(A \cup B))]$ è un insieme ed è proprio uguale a $A \times B$.
+\end{soln}
+
 \begin{theorem}[Ogni buon ordine è isomorfo ad un unico ordianle]
 	Dato un buon ordine $(A,<)$, esiste un unico ordinale $\alpha$ tale che $(A,<)\sim\alpha$.\footnote{Questo conclude il discorso sull'identificazione tra ordinali e buoni ordini, infatti prima abbiamo dimostrato che per ogni classe 
-	di isomorfismo di buoni ordini c'è al più un ordinale, e ora che ce n'è sempre uno, e quindi ce n'è esattamente uno corrispondente.}
+	di isomorfismo di buoni ordini c'è al più un ordinale, e ora che ce n'è sempre uno, che è appunto unico.}
 \end{theorem}
 
 \begin{proof}
-	
+	L'unicità segue per quanto abbiamo già visto, cioè $\alpha \sim \alpha' \rightarrow \alpha = \alpha'$. Basta quindi da dimostrare l'esistenza di $\alpha$. Sia:
+	\[ A' = \{x \in A | \exists \gamma \in \Ord \; A_x \sim \gamma\}
+		\]
+	ovvero gli elementi nel buon ordine i cui segmenti iniziali sono isomorfi ad un ordinale (dopo questa dimostrazione potremo assumere che ce n'è uno per segmento iniziale, ma per ora, non lo sappiamo).
+	Consideriamo la funzione classe $F : A' \rightarrow \Ord$:
+	\[ F(x) = \text{l'unico $\gamma \in \Ord$ tale che $A_x \sim \gamma$}
+		\]
+	(cioè quella che associa ad ogni elemento di $A$ l'ordinale isomorfo al suo segmento iniziale), l'unicità vale perché:
+	\[ A_x \sim \gamma \land A_x \sim \gamma' \implies \gamma \sim \gamma' \implies \gamma = \gamma'
+		\]
+	Vogliamo dimostrare che $\alpha\Mydef F[A'] \sim (A,<)$ (in altre parole l'immagine della funzione classe di $A'$ [che è un insieme per rimpiazzamento] è proprio l'ordinale corrispondente alla classe di isomorfismo del buon ordine $(A,<)$).\\
+	Dimostriamo dunque che $\alpha$ è un ordinale, $A'$ è un segmento iniziale di $A$ e $\alpha \sim A'$. Infine concludiamo dimostrando che $A' = A$ e quindi si ha proprio che $\alpha \sim A$.
+	\begin{itemize}
+		\item[$\boxed{\text{$\alpha$ è un ordinale}}$] $\alpha$ è definito come l'insieme degli ordinali isomorfi ai segmenti iniziali corrispondenti agli elementi di $A'$, dunque è un insieme di ordinali, e per quanto visto, ci basta dimostrare che è transitivo affinché sia un ordinale a sua volta.
+		Supponiamo $\beta < \gamma \in \alpha$, dobbiamo dimostrare che $\beta \in \alpha$ [cioè che $\beta$ è un sottoinsieme di $\alpha$].\\ Sia $f : \gamma \rightarrow A_x$ un isomorfismo [che abbiamo perché $\gamma \in \alpha$ significa che è isomorfismo a qualche segmento iniziale principale di un $x \in A$], allora
+		$f_{|\beta} : \beta \rightarrow A_{f(\beta)}$ è un isomorfismo [la restrizione dell'isomorfismo deve necessariamente essere ancora iniettiva e preservare l'ordinamento, dunque l'unica cosa da osservare è che $f[\beta] = A_{f(\beta)}$, che è vero in quanto, dato $x \in A$ con $x \in f[\beta]$ e,
+		preso $y \in A$, con $y <_A x$, allora $f^{-1}(y) < f^{-1}(x)$ e $f^{-1}(x) \in \beta$ (perché $f$ isomorfismo), dunque per transitività $f^{-1}(y) \in \beta$, per cui
+		tornando indietro con $f$ si ottiene che $y \in f[\beta]$, dunque l'immagine di $\beta$ via $f$ è proprio il segmento iniziale determinato su $A$ da $f(\beta)$], quindi $\beta$ è l'ordinale corrispondente al segmento iniziale su $A$ determinato da $f(\beta)$, ovvero $\beta = F(f(\beta)) = F(A_{f(\beta)})$, pertanto sta in $\alpha = F[A']$.
+		\item[$\boxed{\text{$A'$ s.i. di $A$}}$] Se $y < x \in A'$, allora esiste un isomorfismo $f : A_x \rightarrow \gamma$, quindi $f_{|A_y} : A_y \rightarrow \gamma_{f(y)}$ è un isomorfismo [poiché gli isomorfismi di ordini totali mandano segmenti iniziali in segmenti iniziali si ha che $f(A_y) = \gamma_{A_y}$, inoltre come sopra nella restrizione si
+		mantengono iniettività e ordinamento] e, siccome [per le solite proprietà degli ordinali] $\gamma_{f(y)}  = f(y)$, abbiamo quindi proprio per $f$ ristretta che $\gamma_{A_y} = A_y \sim f(y)$.
+		Per cui, per definizione di $A'$, essendo $A_y$ isomorfo ad un ordinale, si ha proprio $y \in A'$\footnote{Typo di Mamino.}, dunque $A'$ è un segmento iniziale di $A$.
+		\item[$\boxed{\alpha\sim A'}$] Sia $f : A' \rightarrow \alpha$, la funzione, tra insiemi, definita da $f(x) = F(x)$, che esiste per l'\hyperref[ax8]{assioma di separazione} applicato ad $A' \times \alpha$ (quindi con la funzione classe abbiamo ottenuto l'insieme $\alpha$, ed ora possiamo proprio prendere una funzione tra i due insiemi, che faccia le stesse cose che faceva $F$).
+		Dimostriamo quindi che $f$ è un isomorfismo di ordini.\\
+		La surgettività è immediata perché, per costruzione, abbiamo che $\alpha = F[A'] = f[A']$. Verifichiamo la monotonia:
+		\[ x < y \overset{\text{def. s.i.}}{\implies} A_x \prec A_y 
+			\]
+		ora, essendo che $f$ è definita tramite $F$, associa ad ogni elemento di $A$ l'ordinale a cui è isomorfo il suo segmento iniziale, cioè $f(x) \sim A_x$ e $f(y) \sim A_y$, dunque,
+		avendo la relazione $\prec$ in partenza (che ci ricordiamo definita mediante isomorfismo), componendo gli isomorfismi troviamo che $f(x) \textcolor{red}{\prec} f(y)$, ovvero $f(x)$ è un segmento iniziale proprio di $f(y)$ mediante l'isomorfismo,
+		ma, essendo $f(x)$ e $f(y)$ ordinali, sappiamo che la relazione d'ordine dei buoni ordini, coincide su di essi con l'appartenenza, pertanto $f(x) < f(y)$ (e con la monotonia stretta dimostrata abbiamo gratis l'iniettività).
+		\item[$\boxed{A' = A}$] Se così non fosse $A'$ [che per 3. è un s.i.] sarebbe un segmento iniziale proprio di $A$, avremmo quindi $A' = A_k$ per qualche $k \in A$.\\
+		Ma allora, per i punti 1-3, $A_k = A' \sim \alpha \in \Ord$, quindi, per definizione stessa di $A'$, $k \in A'$ [perché $k \in A$ sarebbe un elemento il cui s.i. principale è isomorfo ad un ordinale]. Però questo contraddice $A' = A_k \; \lightning$ (perché un s.i. principale non può contenere l'elemento da cui è determinato).
+	\end{itemize}
 \end{proof}
 
-Una conseguenza del risultato precedente è che possiamo definire le operazioni sugli ordinali come semplice riflesso di quelle sui buoni ordini.
+Una conseguenza del risultato precedente è che possiamo definire le operazioni sugli ordinali come semplice riflesso di quelle sui buoni ordini (perché a questo punto abbiamo una corrispondenza esatta tra classi di isomorfismo di buoni ordini e ordinali).
 
 \begin{definition}[Operazioni sugli ordinali - v.1]
 	Dati $\alpha,\beta \in\Ord$, definiamo \vocab{$\alpha + \beta$}, \vocab{$\alpha\cdot\beta$}, \vocab{$\alpha^\beta$} come, rispettivamente, l'unico ordinale tale che:
@@ -4419,26 +4591,26 @@ Una conseguenza del risultato precedente è che possiamo definire le operazioni 
 			\]
 \end{definition}
 
-\begin{exercise}[Esistenza del prodotto cartesiano via rimpiazzamento]
+\begin{exercise}
 	Dimostra che l'insieme introdotto all'inizio della sezione è effettivamente $\omega + \omega$, ossia, più precisamente:
 	\[ \forall x \; x \in \omega + \omega \leftrightarrow (\exists m \in \omega \; x = m) \lor (\exists n \in \omega \; x = \omega +n)
 		\]
 \end{exercise}
 
-\subsection{Induzione e ricorsione transfinita}
+\subsection{Induzione e ricorsione transfinite}
 Il piatto forte di questa sezione è una seconda applicazione dell'assioma del rimpiazzamento: il teorema di ricorsione transfinita. Questo risultato sarà più chiaro a chi ha, in precedenza, risolto il seguente esercizio.
 
 \begin{exercise}
 	Dimostra che esiste un insieme $A$ tale che:
 	\[ \forall x \; x \in A \leftrightarrow x = \emptyset \lor \exists y \in A \; x = \{y\}
 		\]
-	\textcolor{MidnightBlue}{ossia, in sostanza dimostra che esiste:
-	\[ \{\emptyset,\{\emptyset\},\{\{\emptyset\}\},\{\{\{\emptyset\}\}\},\ldots\}
-		\]}
+	\textcolor{MidnightBlue}{ossia, in sostanza dimostra che esiste:}
+	\[ \textcolor{MidnightBlue}{\{\emptyset,\{\emptyset\},\{\{\emptyset\}\},\{\{\{\emptyset\}\}\},\ldots\}}
+		\]
 \end{exercise}
 
 L'idea per risolvere questo esercizio è contenuta nella dimostrazione del teorema di ricorsione \textcolor{red}{numerabile}, che abbiamo già visto. Attenzione, però,
-che questo teorema non si può applicare dire alla situazione dell'esercizio. La soluzione è poco sotto.
+che questo teorema non si può applicare dire alla situazione dell'esercizio.
 
 \begin{soln}
 	
@@ -4446,46 +4618,57 @@ che questo teorema non si può applicare dire alla situazione dell'esercizio. La
 
 \begin{proposition}[Induzione transfinita - v.1]
 	\label{induz_transf1}
-	Data una formula insiemistica $\varphi(x)$. Se vale [l'ipotesi dell'induzione]\footnote{Come nell'induzione normale, il difficile è mostrare il passo induttivo, rappresentato dall'implicazione nell'ipotesi, poi il teorema assicura la veridicità dell'enunciato.}:
+	Data una formula insiemistica $\varphi(x)$. Se vale [l'ipotesi dell'induzione]\footnote{Come nell'induzione normale, il difficile sta nel mostrare che vale il passo induttivo, rappresentato dall'implicazione nell'ipotesi, poi il teorema assicura la veridicità dell'enunciato.}:
 	\[ \forall \alpha \in \Ord(\forall \beta < \alpha \; \varphi(\beta))\rightarrow \varphi(\alpha)
 		\]
 	[ovvero se per ogni ordinale, sapere che la formula è vera per gli ordinali più piccoli, rende vera la formula per l'ordinale stesso], allora $\forall \alpha \in \Ord \; \varphi(\alpha)$.
 \end{proposition}
 
 \textcolor{MidnightBlue}{In termini di classi, rappresentando con $C$ la classe definita dalla formula $\varphi(x)$, abbiamo che se vale $\forall\alpha\in\Ord \;(\forall \beta < \alpha \; \varphi(\beta))\rightarrow \alpha \in C$\footnote{Ricordiamo
-$\alpha$ in una classe $= \alpha$ soddisfa la formula che definisce tale classe.}, allora $\forall \alpha \in \Ord \; \varphi(\alpha)$, oppure, in forma più coincisa:
-\[ (\forall \alpha \in \Ord \; \alpha \subseteq C \rightarrow \alpha \in C) \rightarrow \Ord \subseteq C
+che avere $\alpha$ in una classe corrisponde al fatto che $\alpha$ soddisfa la formula per mezzo della quale è definita tale classe.}, allora $\forall \alpha \in \Ord \; \alpha \in C$, oppure, in forma più coincisa:
+\[ (\forall \alpha \in \Ord (\alpha \subseteq C \rightarrow \alpha \in C)) \rightarrow \Ord \subseteq C
 	\]
-(in altre parole, assumere che $\alpha$ è un sottoinsieme di $C$ e da questo dimostrare che ne è un elemento, ci assicura che la classe degli ordinali è contenuta nella classe degli oggetti che soddisfano la formula che definisce $C$).}
+cioè, assumendo che per tutti gli ordinali valga che $\forall \beta < \alpha \; \beta \in C \iff \forall \beta \in \alpha \; \beta \in C \iff \alpha \subseteq C$ implica $\alpha \in C$ [cioè se tutti gli elementi di un ordinale stanno in $C$, allora anche l'ordinale stesso lo è], allora la classe degli ordinali è contenuta in $C$, ovvero tutti gli ordinali soddisfano la formula che definisce $C$.}
 
 \begin{proof}
-	Per assurdo, assumiamo [la negazione della tesi] $\neg \varphi(\alpha)$\footnote{Formalmente $\neg(\forall \alpha \in\Ord\;\varphi(\alpha)) = \exists \alpha \in \Ord \;\neg\varphi(\alpha)$, e stiamo considerando un $\alpha$ per cui la formula è falsa.},
-	essendo l'ipotesi vera e [per ipotesi assurda] $\varphi(\alpha)$ falsa, l'ipotesi [come formula insiemistica] diventa una implicazione\footnote{Materiale (qualunque cosa significhi).} vera, con conseguente falso, quindi l'unica possibilità è che anche l'antecedente sia falso,
-	ovvero $\neg (\forall \beta < \alpha \; \varphi(\beta))$, cioè $\exists \beta < \alpha \; \neg \varphi(\beta)$.\\
+	Per assurdo, assumiamo [la negazione della tesi] $\neg \varphi(\alpha)$\footnote{Formalmente $\neg(\forall \alpha \in\Ord\;\varphi(\alpha)) = \exists \alpha \in \Ord \;\neg\varphi(\alpha)$.}, e consideriamo un $\alpha$ per cui la formula è falsa.
+	Essendo l'ipotesi vera e [per ipotesi assurda] $\varphi(\alpha)$ falsa, l'antecedente dell'ipotesi [che come formula insiemistica è un'implicazione materiale] deve essere necessariamente falso, cioè vale $\neg (\forall \beta < \alpha \; \varphi(\beta))$, ovvero $\exists \beta < \alpha \; \neg \varphi(\beta)$.\\
 	Quindi il ragionamento per assurdo ci ha portato a dire che esiste almeno un $\beta < \alpha$ per cui la proposizione è falsa, in particolare il sottoinsieme di $\alpha$ dei $\beta$ per cui $\varphi$ è falsa è non vuoto, quindi possiamo considerare\footnote{Perché
-	ora possiamo scrivere un insieme per separazione da cui prendere il minimo, prima sarebbe stato il minimo preso su qualcosa definito per separazione sulla classe degli ordinali, e poteva essere problematico, così invece non abbiamo alcun problema.} $\beta_0 := \min \{\beta \in \alpha | \neg\varphi(\beta)\}$.
-	Ora, usando $\beta_0$ nell'ipotesi [come fatto all'inizio con $\alpha$] (essendo un altro ordinale per cui la formula è falsa), si ottiene che $\exists \beta < \beta_0 \; \neg \beta$ (cioè la formula ci procura un'ordinale più piccolo per cui la formula è falsa), contro la minimalità di $\beta$, che è assurdo.
+	ora possiamo scrivere un insieme non vuoto da cui, per separazione, prendere il minimo. Prima sarebbe stato il minimo $\alpha$ preso su qualcosa definito per separazione sulla classe degli ordinali, e poteva essere problematico, così invece non abbiamo alcun problema.} $\beta_0 := \min \{\beta \in \alpha | \neg\varphi(\beta)\}$, che esiste in quanto $\alpha$ è un buon ordine.
+	Ora, usando $\beta_0$ nell'ipotesi [come fatto all'inizio con $\alpha$] (essendo un altro ordinale per cui la formula è falsa), si ottiene che $\exists \beta < \beta_0 \; \neg \varphi(\beta)$ (cioè l'antecedente dell'ipotesi ci procura un'ordinale più piccolo per cui la formula è falsa), contro la minimalità di $\beta_0$, che è assurdo.
 \end{proof}
 
 \begin{note}[L'induzione transfinita è uno schema di teoremi]
 	Il principio di induzione transfinita non è, letteralmente, un teorema della teoria degli insiemi, quanto piuttosto uno scherma di teoremi - o metateorema - che ci permette 
-	di costruire un diverso teorema per ogni possibile formula $\varphi$.
+	di costruire un diverso teorema per ogni possibile formula $\varphi$ [non essendo le classi oggetti della teoria degli insiemi non possono essere quantificate con i quantificatori soliti, quindi l'induzione può
+	essere enunciata solo per una formula fissata ogni volta, e non per tutte le formule].
 \end{note}
 
-C'è una chiara ideologia fra la forma precedente del principio di induzione transfinita e la forma forte dell'induzione aritmetica.
+C'è una chiara analogia fra la forma precedente del principio di induzione transfinita e la forma forte dell'induzione aritmetica.
 A volte, però, è comodo esprimere l'induzione transfinita in una forma che meglio ricorda il principio di induzione di Peano.
 
 \begin{definition}[Ordinale successore]
-	Diciamo che $\alpha \in \Ord$ è un \vocab{ordinale successore} se $\exists \beta \in \Ord \; \alpha = s(\beta)$. Un ordinale $\alpha \textcolor{red}{>0}$
+	Diciamo che $\alpha \in \Ord$ è un \vocab{ordinale successore} se $\exists \beta \in \Ord \; \alpha = s(\beta)$. Un ordinale $\alpha \textcolor{red}{>0}$\footnote{Quindi tutti gli ordinali limite devono contenere lo 0, e lo 0 NON è un ordinale limite a sua volta.}
 	che non è successore è detto \vocab{ordinale limite}.
 \end{definition}
 
-\begin{remark}
-	Un ordinale $\alpha$ è successore se e solo se ha un massimo elemento.
+\begin{remark}[Un ordinale è successore se e solo se ha max]
+	Un ordinale $\alpha$ è successore se e solo se ha un massimo elemento.\footnote{Equivalentemente questo ci dice anche che un ordinale è non successore [quindi limite tranne nel caso 0] se e solo se non ha un massimo}
 \end{remark}
 
 \begin{proof}
-	$\beta$ è il massimo di $\alpha$ \textcolor{red}{se e solo se} $\alpha$ è il minimo ordinale $>\beta$ \textcolor{red}{se e solo se} $\alpha = s(\beta)$.
+	$\beta$ è il massimo di $\alpha$ \textcolor{red}{se e solo se} $\alpha$ è il minimo ordinale $>\beta$, poiché:
+	\[ \begin{split}
+		\text{$\beta$ è il massimo di $\alpha$} \iff & \forall x \in \alpha \; x \leq \beta \land \beta \in \alpha\\
+												\overset{\text{trans. $\alpha$}}{\iff} & \forall x \in \alpha \; x \leq \beta \land \beta \subsetneq \alpha\\
+												\overset{(\star)}{\iff} & \beta \subsetneq \alpha \land \forall \gamma \in \Ord \; \beta \subseteq \gamma \rightarrow \alpha \subseteq \gamma
+	\end{split}
+		\]
+	dove $(\star)$ vale perché, se vale che se $\beta$ è contenuto in un ordinale, allora anche $\alpha$ lo è, significa che se tutti gli elementi di $\beta$ stanno in $\gamma$, allora anche tutti quelli
+	di $\alpha$ stanno in $\gamma$, ovvero $\alpha \subseteq \beta \leftrightarrow \forall x \in \alpha \; x \subseteq \alpha \rightarrow x \subseteq \beta \leftrightarrow x \leq \beta$,
+	dunque $\forall x \in \alpha \; x \leq \beta$ e quindi $\beta$ è un massimo [perché $\beta \in \alpha$]. Viceversa, $\forall x \in \alpha \, x \leq \beta \leftrightarrow x \subseteq \beta \implies x \subseteq \gamma$, ma questo, per ogni $x$, equivale a $\alpha \subseteq \gamma$.\\
+	Quando dimostrato è equivalente a dire che $\alpha$ è il minimo ordinale più grande di $\beta$. Si conclude osservando che ciò è vero \textcolor{red}{se e solo se} $\alpha = s(\beta)$ [per quanto visto sul successore di un ordinale, questo è per definizione il
+	più piccolo ordinale più grande (a cui cioè appartiene l'ordinale iniziale)].
 \end{proof}
 
 \begin{proposition}[Induzione transfinita - v.2]
@@ -4494,7 +4677,7 @@ A volte, però, è comodo esprimere l'induzione transfinita in una forma che meg
 	\begin{itemize}
 		\item $\varphi(0)$ \textcolor{orange}{(caso base)}
 		\item $\forall \gamma \in \Ord \; \varphi(\gamma) \rightarrow \varphi(s(\gamma))$ \textcolor{orange}{(caso successore)}
-		\item per ogni ordinale limite $\lambda$, $(\forall \beta < \lambda \; \varphi(\beta)) \rightarrow \varphi(\lambda)$ \textcolor{orange}{(caso limite)}
+		\item per ogni ordinale limite $\lambda$, $(\forall \beta < \lambda \; \varphi(\beta)) \rightarrow \varphi(\lambda)$\footnote{Cioè vale anche un passo induttivo [forte] per gli ordinali che non sono successori.} \textcolor{orange}{(caso limite)}
 	\end{itemize}
 	allora $\forall \alpha \in \Ord \; \varphi(\alpha)$.
 \end{proposition}
@@ -4503,26 +4686,28 @@ A volte, però, è comodo esprimere l'induzione transfinita in una forma che meg
 	Basta verificare l'ipotesi della \hyperref[induz_transf1]{prima forma dell'induzione transfinita}, per avere in automatico la veridicità della formula, dunque, fissato $\alpha \in \Ord$ bisogna mostrare che vale:
 	\[ (\forall \beta < \alpha \; \varphi(\beta)) \rightarrow \varphi(\alpha)
 		\]
-	Se $\alpha$ è limite o $0$ abbiamo questa formula tout court. Altrimenti $\alpha = s(\gamma)$ e abbiamo:
-	\[ \forall \beta < \alpha \; \varphi(\beta) \implies \varphi(\gamma) \implies \varphi(s(\gamma)) = \varphi(\alpha)
+	Se $\alpha$ è limite o $0$ abbiamo questa formula tout court [nel caso di 0 la formula sopra è sempre vera, nel caso degli ordinali limite abbiamo assunto che è vera nelle ipotesi]. Ci resta da vedere che la formula sopra è vera nel caso in cui $\alpha = s(\gamma)$, in questo caso abbiamo:
+	\[ \gamma < \alpha \overset{\text{antecedente Hp. induttiva}}{\rightarrow} \varphi(\gamma) \overset{\text{Hp. prop.}}{\rightarrow} \varphi(\alpha)
 		\]
+	dunque anche in questo caso vale l'ipotesi della prima forma dell'induzione transfinita, che quindi vale $\forall \alpha \in \Ord$, pertanto per la prima forma vale $\varphi(x)$ per tutti gli $x \in \Ord$.
 \end{proof}
 
 Ora possiamo dimostrare il teorema di ricorsione transfinita. Faremo uso della notazione seguente.
 
 \begin{notation}[Restrizione di una funzione classe]
-	Data una funzione classe $F : A \rightarrow B$ e un insieme $X \subseteq A$ esiste la funzione:
+	Data una funzione classe $F : A \rightarrow B$ e un insieme $X \subseteq A$ esiste la funzione [di insiemi]\footnote{In partenza ci stiamo restringendo ad un insieme, ed anche in arrivo, infatti $F[X]$ è un'insieme per \hyperref[ax8]{rimpiazzamento}.}:
 	\[ f = F_{|X} : X \rightarrow F[X] : a \mapsto F[a]
 		\]
+	(che è in automatico surgettiva).
 \end{notation}
 
 
 \begin{theorem}[Ricorsione transfinita - v.1]
 	\label{ric_transf1}
-	Data una funzione classe $G : V \rightarrow V$ esiste
+	Data una funzione classe $G : V \rightarrow V$\footnote{Anche in questo caso, questo è uno \vocab{schema di teoremi}, uno per ogni formula $G$, per la solita ragione che le formule delle classi non sono oggetti della teoria degli insiemi e quindi non sono quantificabili [inoltre la dimostrazione sarà uno schema di dimostrazioni].} esiste
 	un'unica\footnote{Dove l'unicità va intesa nel senso seguente: date $F_1,F_2$ come sopra,
-	vale $\forall \alpha \in \Ord \; F_1(\alpha) = F_2 (\alpha)$.} funzione $F : \Ord \rightarrow V$ tale che:
-	\[ \forall \alpha \in \Ord \; F(\alpha) = G(F_{|\alpha})
+	vale $\forall \alpha \in \Ord \; F_1(\alpha) = F_2 (\alpha)$, cioè date due formule che rispettano entrambe quanto scritto, queste danno la stessa cosa [anziché richiedere che la formula sia unica, visto che le formule possono essere scritte in tanti modi equivalenti].} funzione $F : \Ord \rightarrow V$ tale che:
+	\[ \forall \alpha \in \Ord \; F(\alpha) = G(F_{|\alpha})\footnote{Si osserva che $F_{|\alpha}$ è proprio una funzione tra insiemi $\alpha \rightarrow F[\alpha]$, come osservato sopra, per \hyperref[ax8]{rimpiazzamento}.}
 		\]
 \end{theorem}
 
@@ -4533,7 +4718,7 @@ Ora possiamo dimostrare il teorema di ricorsione transfinita. Faremo uso della n
 Come per l'induzione, possiamo esprimere la ricorsione transfinita separando i casi zero, successore e limite.
 
 \begin{definition}[Prodotto cartesiano  di classi]
-	Date due classi $A,B$ definiamo la classe $A \times B$ come:
+	Date due classi $A,B$ definiamo la \vocab{classe prodotto cartesiano} $A \times B$ come:
 	\[ x \in A \times B \Mydef \exists a \in A \; \exists b \in B \; x = (a,b)
 		\]
 	(cioè $x$ è uguale a una coppia di elementi ciascuno in una classe, ovvero ciascuno soddisfa un predicato).
@@ -4550,11 +4735,20 @@ Come per l'induzione, possiamo esprimere la ricorsione transfinita separando i c
 \end{corollary}
 
 \begin{proof}
-	
+	Ci basta applicare il \hyperref[ric_transf1]{teorema di ricorsione transfinita v.1}, e per farlo, non dobbiamo far altro che definire una funzione classe $G : \Ord \rightarrow \Ord$, rispetto a cui $F(\alpha) = G(F_{|\alpha})$, ed il teorema ci assicura esistenza ed unicità.
+	Possiamo esibire $G$ nel modo seguente:
+	\[ G(f) = \begin{cases}
+		\emptyset &\text{se $f$ NON è una funzione con $\Dom(f) \in \Ord$} \\
+		x_0 &\text{se $f = \emptyset$} \\
+		G_1(\alpha,f(\alpha)) &\text{se $\Dom(f) = \alpha + 1$ per qualche $\alpha \in \Ord$} \\
+		G_2(f) &\text{altrimenti}
+	\end{cases}
+		\]
+	(dove abbiamo definito $G(f)$, come $G$ di una certa troncata di $F$).
 \end{proof}
 
 \begin{corollary}[Operazioni tra ordinali (definizione ricorsiva)]
-	Esistono le funzioni (classe) di somma, prodotto e potenza di ordinali, così definite:
+	Esistono le funzioni (classe) di somma, prodotto e potenza di ordinali, così definite:\footnote{Ricordiamo che l'estremo superiore di un insieme di ordinali esiste sempre ed è l'unione dell'insieme.}
 	\begin{align*}
 		&\alpha + 0 = \alpha &\quad &\alpha \cdot 0 = 0 \\
 		&\alpha + s(\beta) = s(\alpha + \beta)  &\quad &\alpha \cdot s(\beta) = \alpha \cdot \beta + \alpha \\
@@ -4568,26 +4762,27 @@ Come per l'induzione, possiamo esprimere la ricorsione transfinita separando i c
 \end{corollary}
 
 Ossia, le operazioni aritmetiche sugli ordinali si possono definire in modo analogo alle operazioni aritmetiche su $\omega$ nei casi 0 e successore,
-estendendole \vocab{con continuità} nel caso limite.
+\vocab{estendendole con continuità} nel caso limite.
 
 \begin{definition}[Continuità]
-	Una funzione classe $F : \Ord \rightarrow \Ord$ mai decrescente - $\alpha < \beta \rightarrow F(a) \leq F(\beta)$ - si dice \vocab{continua} se, per ogni ordinale limite $\lambda$ vale $F(\lambda) = \sup F[\lambda]$.
+	Una funzione classe $F : \Ord \rightarrow \Ord$ mai decrescente - $\alpha < \beta \rightarrow F(a) \leq F(\beta)$ - si dice \vocab{continua} se, per ogni ordinale limite $\lambda$ vale $F(\lambda) = \sup F[\lambda]$.\footnote{L'idea è la stessa dell'estensione continua di una funzione fuori dal suo dominio, ovvero quella 
+	di far valere la funzione subito fuori l'estremo superiore dell'immagine dell'insieme subito prima.}
 \end{definition}
-
-\begin{notation}
+\pagebreak
+\begin{notation}[Sulle definizioni ricorsive di funzioni classe]
 	Sarebbe corretto osservare che, letteralmente, il teorema di ricorsione transfinita non pare sufficiente a garantire l'esistenza, per esempio, della funzione classe $+ : \Ord \times \Ord$.
-	Il problema è che, fissato $\alpha$, possiamo costruire ricorsivamente la funzione classe ``$\alpha +$'' $\Ord \rightarrow \Ord$, ma abbiamo, a quanto pare, una diversa funzione per ogni possibile $\alpha$.
-	Ci sono due vie d'uscita da questo impasse.\\
+	Il problema è che, fissato $\alpha$, possiamo costruire ricorsivamente la funzione classe $``\alpha+'' : \Ord \rightarrow \Ord$, ma abbiamo, a quanto pare, una diversa funzione per ogni possibile $\alpha$ [perché stiamo costruendo una funzione classe da $\Ord$ a $\Ord$ fissato il primo termine, e in questo caso, essendo la funzione una classe, 
+	essa cambia qualsiasi sia il primo termine fissato della somma, e come già visto le classi non possono essere quantificate all'interno della teoria degli insiemi, pertanto, abbiamo necessità di una funzione diversa per ogni fissato ordinale $\alpha$]. Ci sono due vie d'uscita da questo impasse.\\
 	La più solida è, forse, dimostrare una versione parametrica del teorema, in cui sia $G$ sia $F$ hanno un argomento in più, un parametro, per accomodare $\alpha$.
 	Questa è una operazione del tutto elementare, ma aggiunge burocrazia alla dimostrazione, che è già abbastanza complicata.\\
 	La seconda strada è, tuttavia, osservare che il teorema si trova già in forma parametrica, anche se non si vede. Una funzione classe non è, infatti, altro che una formula insiemistica - con determinate proprietà - e nulla vieta 
-	che questa formula contenga una variabile libera $\alpha$. Il teorema di ricorsione transfinita dice che, se una certa formula - quella che definisce $G$ - è una funzione classe, allora un'altra formula - quella di $F$ - scritta esplicitamente nella 
-	dimostrazione è anch'essa una funzione classe. Ebbene se la formula per $G$ ha una variabile libera $\alpha$, questa variabile comparirà altresì nella formula di $F$, ed avremo così, in realtà, una funzione classe di due argomenti: $\alpha$ e l'argomento di $F$.\\
+	che questa formula contenga una variabile libera $\alpha$. Il teorema di \hyperref[ric_transf1]{ricorsione transfinita} dice che, se una certa formula - quella che definisce $G$ - è una funzione classe, allora un'altra formula - quella di $F$ - scritta esplicitamente nella 
+	dimostrazione è anch'essa una funzione classe. Ebbene se la formula per $G$ ha una variabile libera $\alpha$ [e nulla ci vieta di inserirla], questa variabile comparirà altresì nella formula di $F$, ed avremo così, in realtà, una funzione classe di due argomenti: $\alpha$ e l'argomento di $F$.\\
 	Comunque sia, questa dei parametri è una sottigliezza che, al livello del nostro corso, si può trascurare. Sono sicuro che, chiunque sia giunto a padroneggiare la materia abbastanza da rendersi conto del problema, capirà anche che la sua soluzione 
 	non presenta difficoltà.
 \end{notation}
 
-\begin{proposition}[Le operazioni fra ordinali definite ricorsivamente sono equivalenti alle corrispondeti sui buoni ordini]
+\begin{proposition}[Le definizioni ricorsive delle operazioni tra ordinali sono equivalenti alle definizioni mediante le operazioni tra buoni ordini]
 	Vale che:
 	\[ \alpha + \beta \sim (\alpha,<_\alpha) + (\beta,<_\beta) \qquad \alpha \cdot \beta \sim (\alpha,<_\alpha) \cdot (\beta,<_\beta) 
 		\]\[ \alpha^\beta \sim (\alpha,<_\alpha)^{(\beta,<_\beta) }
@@ -4596,11 +4791,71 @@ estendendole \vocab{con continuità} nel caso limite.
 \end{proposition}
 
 \begin{proof}
-	
+	Si procede per \hyperref[induz_transf2]{induzione transfinita v.2} su $\beta$ (in modo da avere i casi esattamente corrispondenti alla definizione ricorsiva).\\
+	\textcolor{purple}{$\alpha + \beta \sim (\alpha,<_\alpha) + (\beta,<_\beta)$}
+	\begin{itemize}
+		\item[$\boxed{\beta = 0}$] Consideriamo $\alpha + 0$ e $(\alpha,<_\alpha) + (0,<_0)$, per la definizione ricorsiva sappiamo che $\alpha + 0 = \alpha$, mentre, per la definizione di somma sui buoni ordini abbiamo che:
+		\[ (\alpha,<_\alpha) + (0,<_0) = (\alpha \sqcup 0, <_+) = ((\alpha \times \{0\}) \cup (\underbrace{\emptyset \times \{1\}}_{= \emptyset}),<_+) = (\alpha \times \{0\},<_+)
+			\]
+		con $(a,b) <_+ (a',b') = (b = 0 \land b' = 1) \lor ((b = 0 \land b' = 0) \land a <_\alpha a') \lor ((b = 1 \land b' = 1) \land a <_\alpha a')$, ma, visto che ci rimane solo $\alpha \times \{0\}$, non ci possono essere coppie ordinate con seconda componente 1, dunque $<_+$ si riduce al secondo caso [ovvero a confrontare solo coppie con seconda componente $0$],
+		pertanto è immediato che $(\alpha \times \{0\},<_+) \sim (\alpha,<_\alpha)$\footnote{Formalmente l'isomorfismo manda semplicemente $(\alpha \ni) x \mapsto (x,0) (\in \alpha \times \{0\})$, è facile vedere che è iniettiva e surgettiva, ed è strettamente monotona in quanto, dati $x <_\alpha y$, si ha che $(x,0) <_+ (y,0) \equiv ((0 = 0) \land x <_\alpha y)$, che è vero per ipotesi.}.
+		A questo punto sappiamo già che $\alpha \sim (\alpha,<_\alpha)$, perché semplicemente stiamo considerando l'uno come buon ordine e l'altro come ordinale, ma sono proprio la stessa cosa [isomorfismo di buoni ordini o no].
+		\item[$\boxed{\beta = s(\gamma)}$] Assumiamo come ipotesi induttiva che $\alpha + \beta \sim (\alpha,<_\alpha) + (\beta,<_\beta)$ e dimostriamo che $\alpha + s(\beta) = (\alpha,<_\alpha) + (s(\beta),<_{s(\beta)})$. Per la definizione ricorsiva $\alpha + s(\beta) = s(\alpha + \beta)$,
+		e per ipotesi induttiva:
+		\[ s(\alpha + \beta) \sim s((\alpha,<_\alpha) + (\beta,<_\beta))
+			\]
+		(abbiamo semplicemente applicato il successore al LHS e al RHS), osserviamo ora che:
+		\[ s((\alpha,<_\alpha) + (\beta,<_\beta)) = ((\alpha,<_\alpha) + (\beta,<_\beta)) + (1,<) \,\footnote{Andrebbe verificato.}
+			\]
+		a questo punto, si applica la proprietà associativa della somma dei buoni ordini, ottenendo $(\alpha,<_\alpha) + ((\beta,<_\beta) + (1,<))$, e, di nuovo per la verifica [non fatta], si ottiene $(\alpha,<_\alpha) + (s(\beta),<_{s(\beta)})$. A questo punto si ottiene l'isomorfismo voluto.
+		\item[$\boxed{\text{$\beta = \lambda$ limite}}$] Vogliamo dimostrare che $\alpha + \lambda \sim (\alpha,<_\alpha) + (\lambda,<_\lambda)$, con $\lambda$ ordinale limite. Per definizione di somma tra buoni ordini abbiamo:
+		\[ (\alpha,<_\alpha) + (\lambda,<_\lambda) = (\alpha \sqcup \lambda,<_+)
+			\]
+		che come sappiamo è un nuovo buon ordine [in particolare una classe di isomorfismo di buoni ordini], pertanto possiamo considerare l'ordinale associato alla classe di isomorfismo $\gamma \sim (\alpha \sqcup \lambda,<_+)$ e l'isomorfismo $f : \alpha \sqcup \lambda \rightarrow \gamma$.
+		Vogliamo calcolare $\alpha + \lambda = \sup\{\alpha + \beta | \beta < \lambda\} = \bigcup \{\alpha + \beta | \beta < \lambda\}$ (la somma è definita ricorsivamente così + abbiamo visto che l'estremo superiore di un insieme di ordinali è l'unione dell'insieme). Dunque la tesi  iniziale da dimostrare si riduce a verificare che\footnote{Avendo dimostrato che la somma tra buoni ordini è isomorfa all'ordinale $\gamma$, possiamo sfruttare la transitività dell'isomorfismo e scrivere la tesi come $\gamma \sim \alpha + \lambda$, e, dovendo 
+		al RHS essere un'ordinale [per la definizione ricorsiva], si ha proprio l'uguaglianza (per quanto osservato sul fatto che ordinali isomorfi sono proprio uguali), dunque dobbiamo verificare esattamente che $\gamma = \alpha + \lambda$.} $\gamma = \alpha + \lambda = \bigcup\{\alpha + \beta | \beta < \lambda\}$.\\
+		Ora, per ipotesi induttiva (nel caso limite in un'induzione transfinita, ricordiamo che assumiamo l'ipotesi induttiva per tutti gli ordinali più piccoli di quello limite), se $\beta < \lambda$, allora vale la somma $\alpha + \beta \sim (\alpha \sqcup \beta,<_+)$, e siccome $\alpha \sqcup \beta$ è un segmento iniziale di $\alpha \sqcup \lambda$ ($\beta < \lambda \leftrightarrow \beta \in \lambda$,
+		dunque $\alpha \sqcup \beta \hookrightarrow \alpha \sqcup \lambda$ con un'immersione strettamente monotona), si ha che $f[\alpha \sqcup \beta] = \alpha + \beta$ (perché $f$ è l'isomorfismo che associa l'ordinale $\alpha \sqcup \lambda$ al suo ordinale $\gamma$, dunque manda il segmento iniziale $\alpha \sqcup \beta$ nel segmento iniziale $\gamma_{\alpha \sqcup \beta}$, ma $\alpha \sqcup \beta \sim \alpha + \beta$ per 
+		ipotesi induttiva, quindi $\gamma_{\alpha \sqcup \beta} \sim \gamma_{\alpha + \beta} \overset{\text{prop. ordinali}}{=} \alpha + \beta$, e poiché ordinali isomorfi sono uguali si ha proprio che $f[\alpha \sqcup \beta] = \gamma_{\alpha \sqcup \beta} = \alpha + \beta$).
+		Ora, siccome $\lambda$ è limite, $\lambda = \bigcup \{\beta | \beta < \lambda\}$, quindi si vede che:
+		\[ \alpha \sqcup \lambda \overset{\text{$\lambda$ limite}}{=} \bigcup \{\alpha \sqcup \beta | \beta < \lambda\} \\
+			\]
+		da cui la tesi:
+		\[ \begin{split}
+			\gamma \overset{\text{def. $f$}}{=} f[\alpha \sqcup \lambda] \overset{\text{appena visto}}{=}& \bigcup \{f[\alpha \sqcup \beta] | \beta < \lambda\} \\
+																		 \overset{\text{oss. sopra}}{=}& \bigcup \{\alpha + \lambda | \beta < \lambda\} \overset{\text{def. ord. limite}}{=} \alpha + \lambda
+		\end{split}
+			\]
+	\end{itemize}
+	Per le altre verifiche (che sono circa sulla stessa linea), riportiamo solo il caso successore dell'induzione transfinita.\\
+	\textcolor{purple}{$\alpha \cdot \beta \sim (\alpha,<_\alpha) \cdot (\beta,<_\beta)$}
+	\begin{itemize}
+		\item[$\boxed{\text{$\beta = \lambda$ limite}}$] Si procede come prima, prendendo $\gamma \sim (\alpha,<_\alpha) \cdot (\lambda,<_\lambda)$ e $f : \alpha \times \lambda \rightarrow \gamma$ isomorfismo.
+		Nuovamente $\lambda = \bigcup \{\beta | \beta < \lambda\} \implies \alpha \cdot \lambda = \bigcup\{\alpha \cdot \beta | \beta < \lambda\}$, e per ipotesi induttiva si ha che $\alpha \cdot \beta \sim \alpha \times \beta$ [come buon ordine],
+		da cui $f[\alpha \times \beta] = \alpha \cdot \beta$ [con un ragionamento analogo a quanto visto sopra]. Infine si conclude con:
+		\[ \begin{split}
+			\gamma = f[\alpha \times \lambda] &= \bigcup\{f[\alpha \times \beta] | \beta < \lambda\} \\
+											  &= \bigcup\{\alpha \cdot \beta | \beta < \lambda\} = \alpha \cdot \beta
+		\end{split}
+			\]
+		e dal fatto che $\alpha \cdot \lambda = \gamma \sim (\alpha,<_\alpha) \cdot (\lambda,<_\lambda)$, si conclude che $\alpha \cdot \lambda \sim (\alpha,<_\alpha) \cdot (\lambda,<_\lambda)$.
+	\end{itemize}
+	\textcolor{purple}{$\alpha^\beta \sim (\alpha,<_\alpha)^{(\beta,<_\beta)}$}
+	\begin{itemize}
+		\item[$\boxed{\text{$\beta = \lambda$ limite}}$] In questo caso, si ripropone il ragionamento dei due casi precedente, con un leggero problema tecnico. Dato $\beta < \lambda$, nei due casi precedente, abbiamo usato il fatto che $\alpha \sqcup \beta$ e $\alpha \times \beta$ sono,
+		rispettivamente, segmenti iniziali di $\alpha \sqcup \lambda$ e $\alpha \times \lambda$, che poi scriviamo come unione, appunto, di questi sottoinsiemi.\\
+		Il guaio, adesso, è che l'insieme delle funzioni $\beta \rightarrow \alpha$ a supporto finito non è neppure sottoinsieme dell'insieme delle funzioni $\lambda \rightarrow \alpha$ a supporto finito. La soluzione è semplice, detti:
+		\begin{align*}
+			& SF(\square \rightarrow \alpha) \equiv \{g : \square \rightarrow \alpha \; \text{a supporto finito}\} \\
+			& EXT_\beta^\alpha : SF(\beta \rightarrow \alpha) \rightarrow SF(\lambda \rightarrow \alpha) : g \mapsto h \qquad\text{con $h_{|\beta} = g$ e $\forall \delta \in \lambda\setminus\beta \; h(\delta) = 0$}
+		\end{align*}
+		ossia $EXT$ è l'operatore che estende una $g : \beta \rightarrow \alpha$ con 0 su $\alpha \setminus\beta$.\\
+		È chiaro che... (DA COMPLETARE)
+	\end{itemize}
 \end{proof}
 
-Per la proposizione predente, la definizione ricorsiva delle operazioni aritmetiche fra ordinali equivale a quella basata sulle operazioni fra buoni ordini. Quella ricorsiva è una \vocab{definizione intensionale} - il termine 
-è parente più prossimo di intendere che di inteso - ossia specifica le proprietà che caratterizzano un certo oggetto, in questo caso le operazioni ordinali. L'altra è una \vocab{definizione estensionale} -
+Per la proposizione predente, la definizione ricorsiva delle operazioni aritmetiche fra ordinali equivale a quella basata sulle operazioni fra buoni ordini. Quella \textcolor{purple}{ricorsiva} è una \vocab{definizione intensionale} - il termine 
+è parente più prossimo di intendere che di inteso - ossia specifica le proprietà che caratterizzano un certo oggetto, in questo caso le operazioni ordinali. L'altra [quella basta sulla costruzione di nuovi \textcolor{purple}{buoni ordini}] è una \vocab{definizione estensionale} -
 ossia descrive l'oggetto definito. Generalmente, la difficoltà con le definizioni intensionali è dimostrare che il definendo esiste, con le definizioni estensionali è, invece, ricavarne le proprietà.
 
 \newpage
@@ -4608,47 +4863,539 @@ ossia descrive l'oggetto definito. Generalmente, la difficoltà con le definizio
 In questa sezione studieremo nel dettaglio le proprietà delle operazioni aritmetiche fra gli ordinali. Il risultato principale sarà che ogni ordinale $\alpha$ si scrive, in modo unico, nella forma:
 \[ \alpha = \omega^{\beta_1}\cdot k_1 + \omega^{\beta_2}\cdot k_2 + \ldots + \omega^{\beta_n}\cdot k_n
 	\]
-con $n \in \omega$, $k_1,k_2,\ldots,k_n \in \omega\setminus\{0\}$ e $\beta_1 > \beta_2 > \ldots > \beta_n$. Con queste forme normali di Cantor è possibile calcolare le operazioni aritmetiche in modo esplicito.
+con $n \in \omega$, $k_1,k_2,\ldots,k_n \in \omega\setminus\{0\}$ e $\beta_1 > \beta_2 > \ldots > \beta_n$ (ordinali). Con queste forme normali di Cantor è possibile calcolare le operazioni aritmetiche in modo esplicito.
 
 \begin{note}
 	Per procederemo con ordine, assumeremo la definizione ricorsiva delle operazioni ordinali e procederemo unicamente da quella.
 \end{note}
 
-\begin{proposition}
+\begin{proposition}[Monotonia delle operazioni fra ordinali]
 	Le funzioni $(\alpha,\beta)\mapsto \alpha + \beta$, $(\alpha,\beta) \mapsto \alpha \cdot \beta$ e $(\alpha,\beta) \alpha^\beta$ sono \textcolor{red}{strettamente crescenti nel secondo argomento} - per $\alpha \cdot \beta$ assumendo $\alpha \ne 0$,
 	per $\alpha^\beta$ assumendo $1<\alpha$ - e \textcolor{red}{ma decrescenti nel primo argomento}.
 \end{proposition}
 
 Per dimostrare la proposizione ci serviranno queste note.
 
-\begin{note}
-	Dati due insiemi di ordinali $X,Y$ non vuoti.
-\[ \forall \alpha \in X \; \exists \beta \in Y \; \alpha \leq \beta \rightarrow \sup X \leq \sup Y
-	\]
+\begin{note}[Condizione sufficiente per la disuguaglianza tra gli estremi superiori]
+	Dati due insiemi di ordinali $X,Y$ non vuoti vale che:\footnote{Moralmente: se posso dominare ogni elemento di $X$ con un elemento di $Y$, allora vale la disuguaglianza tra gli estremi superiori.}
+	\[ \forall \alpha \in X \; \exists \beta \in Y \; \alpha \leq \beta \rightarrow \sup X \leq \sup Y
+		\]
 \end{note}
 
 \begin{proof}
-	
+	Basta osservare che se $\gamma$ è un maggiorante di $Y$, allora è un maggiorante di $X$.
+	Infatti, preso $\alpha \in X$ per ipotesi esiste $\beta \in Y$ con $\alpha \leq \beta$, e, siccome $\beta \leq \gamma \implies \alpha \leq \gamma$.\\
+	Ora $\sup Y$ è un maggiorante di $Y$ [quindi in automatico, per quanto appena visto, domina tutti gli elementi di $X$], dunque $\sup Y$ è un maggiorante di $X$, pertanto è maggiore o uguale a $\sup X$ [per definizione].
 \end{proof}
 
-\begin{note}
-	La funzione $\alpha \mapsto s(\alpha)$ è crescente.
+\begin{note}[Il successore è crescente]
+	La funzione classe $\alpha \mapsto s(\alpha)$ è crescente.
 \end{note}
 
 \begin{proof}
-	$\alpha < \beta \leftrightarrow s(\alpha) \leq \beta \leftrightarrow s(\alpha) < s(\beta)$.
+	$\alpha < \beta \leftrightarrow s(\alpha) \leq \beta \leftrightarrow s(\alpha) < s(\beta)$ [dove entrambe le equivalenza corrispondono alle osservazioni sul successore di uno dei due termini di una disuguaglianza].
 \end{proof}
 
 Possiamo quindi dimostrare la proposizione.
 
 \begin{proof}
-	
+	Vediamo le due richieste nel caso della somma separatamente.\\
+	\textcolor{purple}{$\beta \mapsto \alpha + \beta$ è strettamente crescente}\\
+	Dobbiamo dire che dati $\beta < \gamma$, vale che $\alpha + \beta < \alpha + \gamma$. Procediamo per \hyperref[induz_transf2]{induzione transfinita v.2} su $\gamma$.
+	\begin{itemize}
+		\item[$\boxed{\text{caso $\gamma = 0$}}$] Vera a vuoto [$\beta < 0 \leftrightarrow \beta \in \emptyset$].
+		\item[$\boxed{\text{caso $\gamma = s(\delta)$}}$] Per ipotesi induttiva abbiamo che $\beta < \delta \rightarrow \beta + \alpha < \beta + \delta$. Preso $\beta < s(\delta)$, questo è equivalente a  $\beta \leq \delta$, da cui si ha:
+		\[ \alpha + \beta \leq \alpha + \delta \,\textcolor{red}{<}\footnote{Questa disuguaglianza è letteralmente la definizione di $<$ come appartenenza, che col successore è ovvia.}\, s(\alpha + \delta) \overset{\text{def. ric.}}{=} \alpha + s(\delta) = \alpha + \gamma
+			\]
+		dove la prima disuguaglianza si ha perché o $\beta = \delta$ o $\beta < \delta$. Nel primo caso naturalmente $\alpha + \beta = \alpha + \gamma$, nel secondo vale l'ipotesi induttiva, cioè $\alpha + \beta < \alpha + \delta$.
+		\item[$\boxed{\text{caso $\gamma = \lambda$ limite}}$] Dato $\beta < \lambda$, abbiamo $s(\beta) < \lambda$ [successore di una disuguaglianza + ordinale limite, quindi non può essere uguale], dunque, possiamo applicare l'ipotesi induttiva sia a $\beta$ che a $s(\beta)$ e 
+		ottenere:
+		\[ \alpha + \beta < \alpha + s(\beta) \leq \sup\{\alpha + \delta | \delta < \lambda\} = \alpha + \lambda
+			\]
+		dove il minore o uguale vale per la definizione di $\sup$ (e per l'osservazione iniziale, cioè prendere $\beta$ sotto $\lambda$, e di conseguenza anche il suo successore sta sotto $\lambda$).
+	\end{itemize}
+	\textcolor{purple}{$\alpha \mapsto \alpha + \beta$ è non decrescente}\\
+	Dobbiamo dire che $\alpha < \gamma$, allora $\alpha + \beta \leq \gamma + \beta$. Procediamo ancora una volta per \hyperref[induz_transf2]{induzione transfinita v.2} su $\beta$.
+	\begin{itemize}
+		\item[$\boxed{\text{caso $\beta = 0$}}$] Banale per le definizioni delle operazioni [sia ricorsiva sia coi buoni ordini].
+		\item[$\boxed{\text{caso $\beta = s(\delta)$}}$] Per ipotesi induttiva, vale che $\alpha < \gamma \rightarrow \alpha + \delta \leq \gamma + \delta$, per l'osservazione precedente ci basta applicare la funzione successore a LHS e RHS per ottenere:
+		\[ \alpha + \beta = \alpha + s(\delta) = s(\alpha + \delta) \leq s(\gamma + \delta) = \gamma + s(\delta) = \gamma + \beta
+			\]
+		\item[$\boxed{\text{caso $\beta = \lambda$ limite}}$] Dobbiamo dimostrare che:
+		\[ \alpha + \lambda = \sup \{\alpha + \delta | \delta < \lambda\} \leq \sup\{\gamma + \delta | \delta < \lambda\} = \gamma + \lambda
+			\]
+		Basta applicare la prima nota, osservando che vale $\alpha + \delta \leq \gamma + \delta$ per ipotesi induttiva.
+	\end{itemize}
+	Le dimostrazioni per il prodotto e l'esponenziale ripetono pedissequamente lo schema delle precedenti, restano quindi per \underline{esercizio}. Unica osservazione:
+	nel passo induttivo del prodotto si deve usare il risultato per la somma, e nel passo induttivo dell'esponenziale si deve usare il prodotto.
 \end{proof}
+
+\begin{exercise}
+	Le ipotesi che $\alpha \ne 0$ per il prodotto e $1 < \alpha$ per l'esponenziale dove sono usate?
+\end{exercise}
+
+\begin{remark}[Controesempio alla stretta crescenza della prima componente]
+	Basta considerare $0 + \omega$ e $1 + \omega$, infatti, $\omega$ è ordinale limite, dunque:
+	\begin{align*}
+		& 0 + \omega = \sup \{0 + n | n < \omega\} = \sup \{n | n < \omega\} = \bigcup \{n | n < \omega\} = \omega \\
+		& 1 + \omega = \sup \{1 + n | n < \omega\} = \sup \{s(n) | n < \omega\} = \bigcup \{s(n) | n < \omega\} = \omega
+	\end{align*}
+	quindi la somma con $\omega$ dà lo stesso risultato, ma $0 < 1$, dunque la somma non è strettamente crescente nella prima componente.
+\end{remark}
+
+\begin{proposition}[Proprietà delle operazioni fra ordinali]
+	Dati $\alpha,\beta,\gamma \in \Ord$ valgono le seguenti proprietà:
+	\[\begin{split}
+		\text{\textcolor{red}{associatività:}} &\quad (\alpha + \beta) + \gamma = \alpha + (\beta + \gamma) \quad (\alpha \cdot \beta) \cdot \gamma = \alpha \cdot (\beta \cdot \gamma)\\
+		\text{\textcolor{red}{distributività a sinistra:}} &\quad  \alpha \cdot (\beta + \gamma) = \alpha \cdot \beta + \alpha \cdot \gamma \\
+		\text{\textcolor{red}{proprietà delle potenze:}} &\quad {\alpha}^{\beta + \gamma} = \alpha^{\beta} \cdot \alpha^{\gamma} \qquad ({\alpha}^{\beta})^{\gamma} = {\alpha}^{\beta \cdot \gamma}
+	\end{split}\]
+\end{proposition}
+
+\begin{note}
+	Abbiamo già asserito la proposizione corrispondente per i buoni ordinamenti (notare gli uguali al posto dei simboli di isomorfismo in questo caso), ma lasciando la dimostrazione per esercizio.\\
+	Lasceremo comunque parte della dimostrazione per esercizio, ma non invano: è un esercizio più facile.
+\end{note}
+
+\begin{remark}[$\sup X \not \in X \implies \sup X$ ordinale limite]
+	Dato $X \subseteq \Ord$, se $\sup X \not \in X$, allora $\sup X$ è limite.
+\end{remark}
+
+\begin{proof}
+	Se per assurdo $\sup X = s(\alpha)$, siccome $\sup X$ non è elemento di $X$, ciò equivale a $\forall \beta \in X \; \beta < \sup X$, quindi abbiamo 
+	anche $\forall \beta \in x \; \beta \leq \alpha < \sup X$ [non può accadere mai che $\beta > \alpha$, perché $s(\alpha)$ è il più piccolo ordinale più grande di $\alpha$ come
+	abbiamo visto, in tal caso dovrebbe accadere per forza che $s(\alpha) \leq \beta \implies s(\alpha) \in X$ (in ogni caso), ma $s(\alpha) = \sup X$, quindi è assurdo],
+	per cui $\alpha$ è un maggiorante di $X$ più piccolo di $\sup X \; \lightning$.
+\end{proof}
+
+\begin{remark}[Le operazioni tra ordinali sono continue - ovvero commutanto con il sup a destra]
+	Dato $X \subseteq \Ord$ e $\alpha \in \Ord$ vale che [indipendentemente dal fatto che $\sup X$ sia o meno in $X$]:
+	\begin{align*}
+		\alpha + \sup X &= \sup\{\alpha + \beta | \beta \in X\} \\
+		\alpha \cdot \sup X &= \sup \{\alpha \cdot \beta | \beta \in X\} \\
+		\alpha^{\sup X} &= \sup\{\alpha^\beta | \beta \in X\}
+	\end{align*}
+	(quindi quando si ha un ordinale limite, che sappiamo essere sempre della forma $\lambda = \sup\{\beta | \beta < \lambda\}$, vale in automatico quanto scritto sopra).
+\end{remark}
+
+\begin{proof}
+	Le dimostrazioni sono uguali. Vediamo la prima. Se $\sup X \in X$, l'enunciato è immediato, infatti, come visto, se un insieme di ordinali ha un massimo, allora è in automatico un ordinale [successore], quindi ai LHS diventano le normali operazioni fra ordinali,
+	mentre al RHS gli estremi superiori diventano proprio i massimi, che si raggiungono appunto con $\sup X = \max X$ nelle operazioni.\\
+	Supponiamo dunque che $\lambda = \sup X \not \in X$ [per quanto visto nell'osservazione sopra sappiamo quindi che $\sup X$ è un ordinale limite]. Dobbiamo dimostrare che:
+	\[ \alpha + \lambda \overset{\text{definizione}}{=} \sup\underbrace{\{\alpha + \gamma | \gamma < \lambda\}}_{A} = \sup\underbrace{\{\alpha + \beta | \beta \in X\}}_{B}
+		\]
+	Dobbiamo verificare la seconda uguaglianza, basta dire che dato $\gamma_1 < \lambda$ esiste $\beta_1 \in X$ con $\alpha + \gamma_1 \leq \alpha + \beta_1$ [dunque $\sup A \leq \sup B$], e, viceversa, dato $\beta_2 \in X$ esiste $\gamma_2 < \lambda$ con $\alpha + \beta_2 \leq \alpha + \gamma_2$ [dunque $\sup A \geq \sup B$] (stiamo usando il lemma visto prima sulla disuguaglianza dei sup).\\
+	Preso $\gamma_1 < \lambda = \sup X$, $\gamma_1$\footnote{Typo di Mamino.} non è un maggiorante di $X$, quindi esiste $\beta_1 \in X$ con $\gamma_1 < \beta_1$ (sarebbe la caratterizzazione del $\sup$),
+	per la monotonia stretta sulla seconda componente, segue $\alpha + \gamma_1 \leq \alpha + \beta_1$ [e la disuguaglianza stretta implica quella larga].\\
+	Preso $\beta_2 \in X$, siccome $\lambda = \sup X$ è limite, $\beta_2 < s(\beta_2) < \lambda$ [successore + $\lambda$ limite], quindi, ponendo $\gamma_2 = s(\beta_2)$, sempre per la stretta monotonia nella prima componente, si ha $\alpha + \beta_2 < \alpha + \gamma_2$ [e ancora una volta la disuguaglianza stretta implica quella larga].
+\end{proof}
+
+Possiamo quindi dimostrare la proposizione sulle proprietà delle operazioni tra ordinali.
+
+\begin{proof}
+	Sono tutte facili induzioni su $\gamma$. Vediamo la prima, le altre restano come \underline{esercizio}. Conviene affrontarle nell'ordine in cui sono scritte, sinistra - destra, alto-basso.\\
+	Dimostriamo \textcolor{purple}{$(\alpha + \beta) + \gamma = \alpha + (\beta + \gamma)$} per induzione su $\gamma$.
+	\begin{itemize}
+		\item[$\boxed{\text{caso $\gamma = 0$}}$] Si vede immediatamente $(\alpha + \beta) + 0 \overset{\text{def. ricors.}}{=} \alpha + \beta \overset{\text{def. ricors.}}{=} \alpha + (\beta + 0)$.
+		\item[$\boxed{\text{caso $\gamma = s(\delta)$}}$] Segue dall'ipotesi induttiva e dalla definizione ricorsiva della somma ordinale:
+		\[\begin{split}
+			(\alpha + \beta) + s(\delta) \overset{\text{def. ricors.}}{=}& s((\alpha + \beta) + \delta) \\
+										 \overset{\text{Hp. indutt.}}{=}& s(\alpha + (\beta + \delta)) \\
+										 \overset{\text{def. ricors.}}{=}& \alpha + s(\beta + \delta) \\
+										 \overset{\text{def. ricors.}}{=}& \alpha + (\beta + s(\delta))
+		\end{split}
+			\]
+		\item[$\boxed{\text{caso $\gamma = \lambda$ limite}}$] Ancora una volta segue dall'ipotesi induttiva e dalla definizione ricorsiva della somma nel caso limite:
+		\[ \begin{split}
+			(\alpha + \beta) + \lambda \overset{\text{def. ricors.}}{=}& \sup\{(\alpha + \beta) + \delta | \delta < \lambda\} \\
+									   \overset{\text{Hp. indutt.}}{=}& \sup\{\alpha + (\beta + \delta) | \delta < \lambda\} \\
+																	 =\quad\;\, &\alpha + (\sup\{\beta + \delta | \delta < \lambda\}) \\
+										\overset{\text{def. ricors.}}{=}& \alpha + (\beta + \lambda)
+			\end{split}
+			\]
+	\end{itemize}	
+\end{proof}
+
+
 
 \subsection{Sottrazione e divisione euclidea}
 Introduciamo, ora, due lemmi che serviranno per calcolare la formale normale di Cantor: la sottrazione e la divisione di ordinali.
 
+\begin{lemma}[Sottrazione di ordinali]
+	Dati $\alpha, \gamma \in \Ord$, con $\alpha \leq \gamma$, esiste un unico $\beta \in \Ord$ tale che $\alpha + \beta = \gamma$.
+\end{lemma}
 
+\textcolor{MidnightBlue}{Intuitivamente $\gamma \sim \alpha \sqcup (\gamma\setminus\alpha)$ [per la somma di ordinali definita mediante i buoni ordini], dove $\gamma\setminus\alpha = \{\delta \in \gamma | \delta \not \in \alpha\}$}.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width = 7.0cm]{immagini/sottrazione_ordinali.png}
+\end{figure}
+
+\textcolor{MidnightBlue}{Vediamo ora una dimostrazione formale.}
+
+\begin{proof}
+	Abbiamo l'unicità perché la funzione $+$ è crescente nel secondo argomento, come visto nel lemma, dunque è iniettiva, e quindi $\beta$ è unico. Dimostriamo l'esistenza. Se $\alpha = \gamma$ l'enunciato è ovvio [basta usare l'ordinale 0]. Assumiamo quindi $\alpha < \gamma$.\\
+	Consideriamo il minimo $\delta$ tale che [la somma supera $\gamma$] $\gamma < \alpha + \delta$ - $\delta$ esiste poiché $\gamma \textcolor{red}{<} s(\gamma) \leq \alpha + s(\gamma)$ [la seconda disuguaglianza è la debole monotonia sulla prima componente, dove al LHS usiamo 0 e al RHS $\alpha$, ciò dimostra che l'insieme di cui stiamo prendendo il minimo è non vuoto].
+	Se $\delta$ è successore, sia $\delta = s(\beta)$, allora [essendo $\delta$ minimo per cui $\alpha + \beta > \gamma$, si ha $\alpha + \beta \leq \gamma$] e $\alpha + \beta \leq \gamma < s(\alpha + \beta) = \alpha + s(\beta) = \alpha + \delta$ (che quindi equivale alla cosa presa per ipotesi), da cui segue:
+	\[ \alpha + \beta \leq \gamma < s(\alpha + \beta) \implies  \alpha + \beta \leq \gamma \leq \alpha + \beta
+		\]
+	E quindi [le due disuguaglianze corrispondono a due contenimenti, dunque l'uguaglianza\footnote{Abbiamo un doppio contenimento vero, quindi per tavola di verità  dell'AND devono essere necessariamente veri gli uguali.}] $\gamma = \alpha + \beta$.
+	Ci basta quindi mostrare che $\delta$ non è limite (ovviamente non è 0). Se lo fosse avremmo $\gamma \overset{\text{def. $\delta$}}{<} \alpha + \delta \overset{\text{def. ric.}}{=} \sup\{\alpha + \varepsilon | \varepsilon < \delta\}$, ma allora, non essendo l'insieme non vuoto, perché vale quanto appena scritto esiste $\varepsilon < \delta$
+	tale che $\gamma < \alpha + \varepsilon$ [il sup prende l'elemento più piccolo tra i più grandi di tutto l'insieme, quindi basta prendere $\varepsilon$ nell'insieme] contro la minimalità di $\delta \;\lightning$.
+\end{proof}
+
+\begin{lemma}[Divisione euclidea di ordinali]
+	Dati $\alpha,\gamma \in \Ord$, con $\alpha \ne 0$, esistono e sono unici $\beta, \rho \in \Ord$ tali che $\rho < \alpha$ e $\alpha \cdot \beta + \rho = \gamma$.
+\end{lemma}
+
+\begin{proof}
+	Verifichiamo esistenza e unicità separatamente.
+	\begin{itemize}
+		\item[$\boxed{\text{unicità}}$] Per il lemma precedente, fissato $\beta$, $\rho$ è unico [per unicità della differenza appunto]. Dobbiamo quindi dimostrare solo l'unicità di $\beta$. Supponiamo per assurdo:
+		\[ \alpha \cdot \beta + \rho = \alpha \cdot \beta' + \rho' \qquad\text{con (WLOG) $\beta < \beta'$ e $\rho,\rho'<\alpha$}
+			\]
+		allora, per la stretta monotonia nella seconda componente della somma, vale che:
+		\[ \begin{split}
+			\alpha \cdot \beta +\rho\;\textcolor{red}{<}\;& \alpha \cdot \beta + \alpha \\
+									  \overset{\text{def. ric.}}{=}& \alpha \cdot s(\beta) \\
+									  \overset{\beta < \beta'}{\leq}& \alpha \cdot \beta' \\
+									  \overset{\text{2ª comp.}}{\leq}& \alpha \cdot \beta' + \rho' \\
+									  \overset{\text{Hp. ass.}}{=}& \alpha \cdot \beta + \rho \quad \textcolor{red}{\lightning}
+		\end{split}
+			\]
+		\item[$\boxed{\text{esistenza}}$] Come nella dimostrazione del lemma precedente, consideriamo il minimo $\delta$ tale che $\gamma < \alpha \cdot \delta$ - che esiste in quanto $\gamma \leq \alpha \cdot \gamma \; \textcolor{red}{<} \alpha \cdot s(\alpha)$ [nella prima disuguaglianza c'è la debole monotonia della prima componente 
+		con $1$ e $\alpha$, nell'altra, quella stretta della seconda componente con $\gamma < s(\gamma)$, quindi abbiamo preso $\delta$ come minimo di un insieme non vuoto]. Se $\delta$ è successore, $\delta = s(\beta)$, allora [$\alpha \cdot \beta$, essendo $\beta < \delta$, non può essere strettamente più grande di $\gamma$] $\alpha \cdot \beta \leq \gamma$, quindi [essendo 
+		$\alpha \cdot \beta \leq \gamma$], per il lemma precedente, esiste $\rho$ tale che $\alpha \cdot \beta + \rho = \gamma$.
+		Per concludere il caso $\delta$ successore, ci basta quindi dimostrare che $\rho < \alpha$ [così da avere tutta la tesi]. Se, per assurdo, fosse $\alpha \leq \rho$, allora si avrebbe:
+		\[ \begin{split}
+			\gamma &\;\overset{s(\beta) = \delta}{\textcolor{red}{<}}\; \alpha \cdot s(\beta) \\
+									     &= \alpha \cdot \beta + \alpha \\
+										 &\leq \alpha \cdot \beta + \rho = \gamma \quad \textcolor{red}{\lightning} 
+		\end{split}
+			\]
+		(dove nell'ultima disuguaglianza si è usato appunto che $\alpha \leq \rho$, e quindi si ha la monotonia [debole, data la disuguaglianza debole] sulla seconda componente).\\
+		Dobbiamo infine escludere che $\delta$ sia limite. Se lo fosse, avremmo $\gamma < \alpha \cdot \delta \overset{\text{def. ric.}}{=} \sup\{\alpha \cdot \varepsilon | \varepsilon < \delta\}$, ma 
+		allora esisterebbe $\varepsilon < \delta$ tale che $\gamma < \alpha \cdot \varepsilon$ [per la solita storia che $\delta$ è il sup di questo insieme], contro la minimalità di $\delta$.
+	\end{itemize}
+\end{proof}
+
+\subsection{La forma normale di Cantor}
+
+\begin{theorem}[Forma normale di Cantor]
+	Ogni ordinale $\alpha$ può essere espresso in maniera unica come somma \textcolor{red}{finita} del tipo:
+	\[ \alpha = \omega^{\beta_1} \cdot k_1 + \omega^{\beta_2} \cdot k_2 + \ldots + \omega^{\beta_n} \cdot k_n
+		\]
+	con $\beta_1 > \beta_2 > \ldots > \beta_n$ ordinali, $k_1,k_2,\ldots,k_n \in \omega\setminus\{0\}$ e $n \in \omega\setminus\{0\}$.
+\end{theorem}
+
+\begin{proof}
+	Dividiamo la dimostrazione in esistenza ed unicità.
+	\begin{itemize}
+		\item[$\boxed{\text{esistenza}}$] Per induzione transfinita, supponiamo che ogni ordinale $< \alpha$ abbia una forma normale, dobbiamo dimostrare che $\alpha$ ha una forma normale. Sia $\gamma$ il minimo tale che 
+		$\alpha < \omega^\gamma$, che c'è perché [l'insieme su cui prendiamo il minimo è non vuoto in quanto vale sempre almeno che] $\alpha < \omega^{s(\alpha)}$. Come nei lemmi precedenti, consideriamo il caso $\gamma$ successore.
+		Sia $\gamma = s(\beta_1)$, allora, per il lemma sulla divisione euclidea, dato che $\omega^{\beta_1} < \alpha$ [$\gamma$ era il minimo per cui $\alpha$ era minore...], possiamo fare la divisione euclidea ottenendo:
+		\[ \alpha = \omega^{\beta_1} \cdot k_1 + \rho \qquad \text{con $\rho < \omega^{\beta_1}$}
+			\]
+		Osserviamo intanto che $0 < k_1 < \omega$. Infatti:
+		\begin{align*}
+			& 0 = k_1 \implies \alpha = \rho < \omega^{\beta_1} \qquad \text{contro la minimalità di $\gamma\;\lightning$} \\
+			& \omega \leq k_1 \implies \omega^{\gamma} = \omega^{s(\beta_1)} \overset{\text{2ª comp. prodotto}}{\leq} \omega^{\beta_1} \cdot k_1 + \rho = \alpha \; \lightning
+		\end{align*}
+		(dove il secondo assurdo c'è in quanto avevamo preso $\alpha < \omega^\gamma$). Ora $\rho < \omega^{\beta_1} \leq \alpha$ [lemma divisione + $\beta_1<\gamma$], quindi, per ipotesi induttiva, $\rho$ si può scrivere come somma finita:
+		\[ \rho = \omega^{\beta_2} \cdot k_2 + \ldots + \omega^{\beta_n} \cdot k_n
+			\]
+		Siccome $\rho < \omega^{\beta_1}$, abbiamo $\beta_2 < \beta_1$, quindi, sostituendo $\rho$ nell'espressione iniziale si ottiene:
+		\[ \alpha = \omega^{\beta_1} \cdot k_1 + \rho = \omega^{\beta_1} \cdot k_1 + \omega^{\beta_2} \cdot k_2 + \ldots + \omega^{\beta_n} \cdot k_n
+			\]
+		che è una forma normale. Come al solito non resta che escludere quindi che $\gamma$ sia limite, e ciò lo si può fare, osservando che, altrimenti, $\alpha < \omega^\gamma = \sup\{\omega^{\varepsilon} | \varepsilon < \gamma\}$, e questo implica che $\alpha < \omega^{\varepsilon}$, con $\varepsilon < \gamma$ [essendo $\gamma$ il 
+		sup dell'insieme], contro la minimalità di $\gamma$.
+		\item[$\boxed{\text{unicità}}$] Sia $\alpha$ minimo che non ha un'unica forma normale. Supponiamo che vi siano due forme normali:
+		\[ \begin{split}
+			\alpha &= \omega^{\beta_1} \cdot k_1 + \omega^{\beta_2} \cdot k_2 + \ldots + \omega^{\beta_n} \cdot k_n \\
+				   &= \omega^{\beta_1'} \cdot k_1' + \omega^{\beta_2'} \cdot k_2' + \ldots + \omega^{\beta_{n'}'} \cdot k_{n'}'
+		\end{split}
+			\]
+		(notare che abbiamo usato anche $n'$ al posto di $n$, perché la lunghezza della forma normale può essere diversa). Ci basta dire che $\beta_1 = \beta_1'$ e $k_1 = k_1'$, infatti allora:
+		\[ \omega^{\beta_2} \cdot k_2 + \ldots + \omega^{\beta_n} \cdot k_n = \omega^{\beta_2'} \cdot k_2' + \ldots + \omega^{\beta_{n'}'} \cdot k_{n'}'\, \textcolor{purple}{<\, \omega^{\beta_1}} 
+			\]
+		contro la minimalità di $\alpha$. Supponiamo $\beta_1 = \beta_1'$, allora $\omega^{\beta_1} \cdot k_1 + \overbrace{\ldots}^{\textcolor{purple}{<\,\omega^{\beta_1}}} = \omega^{\beta_1} \cdot k_1' + \overbrace{\ldots}^{\textcolor{purple}{<\, \omega^{\beta_1}}}$ quindi $k_1 = k_1'$ per la divisione euclidea.\\
+		Se infine $\beta_1 < \beta_1'$ abbiamo:
+		\[ \omega^{\beta_1} \cdot k_1 + \omega^{\beta_2} \cdot k_2 + \ldots + \omega^{\beta_n} \cdot k_n \, \textcolor{purple}{<\, \omega^{s(\beta_1)}} \leq \omega^{\beta_1'} \cdot k_1' + \ldots \; \lightning
+			\]
+	\end{itemize}
+\end{proof}
+
+\begin{exercise}
+	Dimostrare le disuguaglianza in viola (sono tutte uguali).
+\end{exercise}
+
+\subsection{Punti fissi e \texorpdfstring{$\varepsilon$}{epsilon}-numbers}
+Si potrebbe credere che il teorema precedente, applicato ricorsivamente agli esponenti $\beta_1,\ldots,\beta_n$, implichi che ogni ordinale
+si possa scrivere sotto forma di un'espressione finita composta di somme, prodotti e potenze delle costanti $0,1,2,\ldots,\omega$. Tipo questa:
+\[ \omega^{\omega^4 \cdot 7 + \omega^2 \cdot 1}\cdot 9 + \omega^{75} + 9
+	\]
+Effettivamente, se valesse $\textcolor{red}{\alpha > \beta_1}>\beta_2>\ldots>\beta_n$ per ogni $\alpha$, allora questa conclusione sarebbe corretta.\\
+Però è possibile esibire un ordinale $\varepsilon_0$ - e, in realtà, un'intera classe propria di ordinali come questo - tale che $\varepsilon_0 = \omega^{\varepsilon_0}$\footnote{Notare che in questo caso non vale che $\alpha > \beta_1$}.
+La forma normale di Cantor di $\varepsilon_0$ è quindi, chiaramente, $\omega^{\varepsilon_0}$, e procedere ricorsivamente sull'esponente $\omega^{\omega^{\varepsilon_0}},\omega^{\omega^{\omega^{\varepsilon_0}}}$, etc. non conduce ad un'espressione finita, intuitivamente verrebbe una cosa del tipo:
+\[ \varepsilon_0 = \underbrace{\omega^{\omega^{\omega^{\omega^{\iddots}}}}}_{\text{$\omega$ volte}}
+	\]
+La proposizione seguente è interessante di per sé, ma, in particolare, ci permetterà di dimostrare l'esistenza degli \vocab{$\varepsilon$-numbers}.
+
+\begin{proposition}[Ogni funzione ordinale continua ha un punto fisso $\geq \alpha$]
+	Sia $F : \Ord \rightarrow \Ord$ una funzione classe [debolmente] crescente e continua - ossia $F(\lambda) = \sup F[\lambda]$ per $\lambda$ limite. Allora, per ogni $\alpha \in \Ord$, $F$ ha un punto fisso $\geq \alpha$. Ossia:
+	\[ \exists \pi \in \Ord \; \alpha \leq \pi \land F(\pi) = \pi
+		\]
+\end{proposition}
+
+\begin{proof}
+	Definiamo per ricorsione transfinita (stiamo usando la ricorsione per mezzo di una funzione classe) $\pi_0 = \alpha$, $\pi_{s(n)} = F(\pi_n)$ per $n \in \omega$.\\
+	Se $F(0) = 0$, allora $\pi = 0$ è un punto fisso.\\
+	Se $0 < F(0)$, allora, induzione, $\forall n \in \omega \;\pi_n < \pi_{s(n)}$ per cui la funziona $n \mapsto \pi_n$ è crescente. Di conseguenza:
+	\[ \pi \Mydef \sup\{\pi_n | n \in \omega\}
+		\]
+	è limite (perché $\pi \not \in \{\pi_n | n \in \omega\}$, dunque vale il lemma sugli insiemi di ordinali in cui il sup non appartiene all'insieme). Quindi:
+	\[ F(\pi) = \sup F[\pi] = \sup \{F(\pi_n) | n \in \omega\} = \sup\{\pi_{s(n)} | n \in \omega\} = \pi
+		\]
+	(la dimostrazione ci mostra anche che i punti fissi sono una classe propria di ordinali [se fossero un insieme ci sarebbe un sup, e gli ordinali sarebbero segmenti iniziali dell'ordinale che necessariamente ne viene fuori]).
+\end{proof}
+
+\begin{example}
+	Sia $\varepsilon$ un punto fisso di $x \mapsto \omega^x$, allora la forma normale di $\varepsilon$ è $\varepsilon = \omega^\varepsilon$.
+\end{example}
+
+\begin{exercise}
+	Sia $\varepsilon_0 = \sup\{1,\omega,\omega^{\omega},\omega^{\omega^{\omega}}, \omega^{\omega^{\omega^{\omega}}},\ldots\}$. Formalmente definiamo per ricorsione $\alpha_0 = 1$, $\alpha_{n+1}=\omega^{\alpha_n}$,
+	allora $\varepsilon_0 = \sup\{\alpha_n | n \in \omega\}$. Dimostrare che $\varepsilon_0$ è il più piccolo punto fisso della funziona $x \mapsto \omega^x$.
+\end{exercise}
+
+\begin{exercise}
+	Sia $F : \Ord \rightarrow \Ord$ crescente e continua. Allora esiste $G : \Ord \rightarrow \Ord$ crescente tale che:
+	\[ \forall \alpha \in \Ord \; F(\alpha) = \alpha \leftrightarrow \exists \beta \in \Ord \; \alpha = G(\beta)
+		\]
+	(ossia $F$ ha una classe propria di punti fissi).
+\end{exercise}
+
+\begin{exercise}
+	La $G$ dell'esercizio precedente è univocamente determinata da $F$ ed è continua.
+\end{exercise}
+
+\begin{definition}[$\varepsilon$-numbers]
+	Se negli esercizi precedenti $F(\alpha) = \omega^\alpha$, allora $\varepsilon_{\alpha} \Mydef G(\alpha)$\footnote{E quindi ce n'è uno per ogni ordinale.}.
+\end{definition}
+
+\textcolor{MidnightBlue}{L'$\alpha$-esimo $\varepsilon$-number è L'$\alpha$-esimo punto fisso di $x \mapsto \omega^x$.}\\
+I primi due esercizi seguenti saranno assai più facili quando, usando l'assioma della scelta, dimostreremo che un insieme numerabile di insiemi numerabili è numerabile.\footnote{Ricordare che l'avevamo già dimostrato dando per buono di avere una successione di enumerazioni,
+ma anche il quel caso l'enumerazione ce la si può procurare solo con scelta.}
+
+\begin{exercise}[\textcolor{red}{$\star$ Difficile senza leggere l'idea sotto}]
+	$|\varepsilon_0| = \aleph_0$.\footnote{\underline{\textbf{Idea}}: dimostrare che $\alpha \in \varepsilon_0$ se e solo se $\alpha$ può essere scritto a partire da $0,1,\omega$, applicando le operazioni di somma, prodotto, ed esponente ordinale un numero finito di volte.}
+\end{exercise}
+
+\begin{exercise}[\textcolor{red}{$\star \star$ Ostico}]
+	Sia $\zeta_0$ minimo tale che $\varepsilon_{\zeta_0} = \zeta_0$, allora $|\zeta_0| = \aleph_0$.
+\end{exercise}
+
+\begin{exercise}
+	Sia $\omega$ un qualunque ordinale $\geq 2$. Ogni ordinale $\alpha$ si scrive in modo unico come somma finita:
+	\[ \alpha = \gamma^{\beta_1}\cdot k_1 + \ldots \gamma^{\beta_n}\cdot k_n
+		\]
+	con $\beta_1 > \beta_2 > \ldots > \beta_n$ (ordinali) e $k_1,\ldots,k_n < \gamma$.
+\end{exercise}
+
+\subsection{Operazioni in forma normale di Cantor}
+È facile ridurre l'aritmetica ordinale, in forma normale di Cantor, ad una piccola collezione di regole meccaniche.
+Nel contesto del corso, queste regole hanno un'importanza limitata, è però utile sapere che ci sono, ed avere un'idea del loro aspetto.
+Il lemma seguente è un caso particolare, ma è semplice e vale la pena ricordarlo.
+
+\begin{lemma}[Assorbimento a destra dell'ordinale più grande]
+	Siano $\alpha,\beta,\gamma \in \Ord$ tali che $\alpha < \omega^{\beta} \leq \gamma$\footnote{Naturalmente $\beta>0$.}, allora:
+	\[ \alpha + \textcolor{orange}{\gamma} = \textcolor{orange}{\gamma}
+		\]
+\end{lemma}
+
+\textcolor{MidnightBlue}{Ossia fare $\alpha + \gamma$ assorbe tutti gli $\alpha$ abbastanza piccoli, ossia quelli minori di qualche potenza di $\omega$ che sia a sua volta minore o uguale a $\gamma$.}\footnote{È falso 
+tuttavia che $\textcolor{red}{\gamma + \alpha = \gamma}$, infatti per la stretta monotonia nella seconda componente della somma non si può avere $\gamma + 0$ al RHS, perché $0 < \alpha$.}
+
+\begin{proof}
+	Ci basta dimostrare che $\alpha + \gamma \leq \gamma$ (l'altra disuguaglianza è automatica per debole monotonia della prima componente, $\textcolor{MidnightBlue}{0} + \gamma \leq \textcolor{MidnightBlue}{\alpha} + \gamma$\footnote{Naturalmente escludiamo il caso $\alpha = 0$, perché in questo caso si ottiene ancora banalmente la tesi.}).\\
+	Scrivendo $\alpha$ in forma normale di Cantor otteniamo:
+	\[ \alpha = \omega^{\beta_1} \cdot k_1 + \ldots + \omega^{\beta_n} \cdot k_n
+		\]
+	con gli ordinali $\beta_1 > \beta_2 > \ldots > \beta_n$. Quindi si ha che $\alpha \leq \omega^{\beta_1} \cdot k$, per qualche $k \in \omega$, infatti [iterando la debole monotonia sulla prima componente sia di somma che del prodotto, dal termine $n$-esimo al secondo, si ottiene]:
+	\[ \alpha = \omega^{\beta_1} \cdot k_1 + \ldots + \omega^{\beta_n} \cdot k_n \leq \alpha = \omega^{\beta_1} \cdot k_1 + \omega^{\beta_{\textcolor{red}{1}}} \cdot k_2 + \ldots + \omega^{\beta_{\textcolor{red}{n}}} \cdot k_n = \omega^{\beta_1}\cdot (k_1 + \ldots + k_n)
+		\]
+	con $k := k_1 + \ldots + k_n$. Ora, da [l'ipotesi] $\alpha < \omega^\beta$, deduciamo $\beta_1 < \beta$ [basta fare il confronto tra la forma normale di $\alpha$ e la disuguaglianza per ipotesi usando la monotonia delle potenze],
+	quindi $s(\beta_1) \leq \beta$ e possiamo scrivere [usando la sottrazione, visto che il primo termine sta ancora in $\gamma$ che] $\gamma = \omega^{s(\beta_1)} + \gamma' = \omega^{\beta_1} \cdot \omega + \gamma'$, $\gamma' < \gamma$.
+	Da cui:
+	\[ \alpha + \gamma \overset{\text{sopra + monot.}}{\leq} \omega^{\beta_1} \cdot k + \omega^{\beta_1} \cdot \omega + \gamma = \omega^{\beta_1} (k + \omega) \;\textcolor{red}{=}\; \omega^{\beta_1} \cdot \omega + \gamma' = \gamma
+		\]
+	dove l'uguaglianza in \textcolor{red}{rosso} segue da $k + \omega = \omega$ [ricordiamo $k \in \omega\setminus\{0\}$], che a sua volta segue da:
+	\[ k + \omega = \sup\{k + n | n < \omega\} = \omega
+		\]
+\end{proof}
+
+\begin{proposition}[Regole di calcolo in forma normale di Cantor]
+	Per le somme ($c \ne 0$, $d \ne 0$) vale che:
+	\[ \omega^{\alpha} \cdot c + \omega^\beta \cdot d = \begin{cases}
+		\omega^\beta \cdot d &\text{se $\alpha < \beta$} \\
+		\omega^\alpha \cdot (c + d) &\text{se $\alpha = \beta$} \\
+		\omega^{\alpha} \cdot c + \omega^\beta \cdot d &\text{se $\beta < \alpha$}\footnote{È già in forma normale, poiché $\beta < \alpha$, le operazioni cancellano solo cose scritte con $\omega$ con esponenti non tutti in ordine strettamente decrescente, ovvero non già completamente in forma normale.}
+	\end{cases}
+		\]
+	Per i prodotti si applica la proprietà distributiva, e poi le regole seguenti:
+	\begin{align*}
+		\beta > 0 \rightarrow (\omega^{\alpha_1} \cdot k_1 + \ldots \omega^{\alpha_2} \cdot k_2 + \ldots) \cdot \omega^{\beta} &= \omega^{\alpha_1 + \beta} \\
+		n \in \omega\setminus\{0\} \rightarrow (\omega^{\alpha_1} \cdot k_1 + \ldots \omega^{\alpha_2} \cdot k_2 + \ldots) \cdot n &= \omega^{\alpha_1} \cdot k_1\textcolor{red}{n} + \ldots \omega^{\alpha_2} \cdot k_2 + \ldots
+	\end{align*}
+	Per le potenza si usano $\alpha^{\beta + \gamma} = \alpha^\beta \cdot \alpha^\gamma$ e $\alpha^{\beta \cdot n} = (\alpha^\beta)^n$, poi:
+	\begin{align*}
+		k \in \omega\setminus\{0\}\qquad\qquad k^{\omega^{1 + \alpha}} &= \omega^{\omega^{\alpha}} \\
+		\beta > 0 \land \alpha_1 > 0 \rightarrow (\omega^{\alpha_1} \cdot k_1 + \ldots \omega^{\alpha_2} \cdot k_2 + \ldots)^{\omega^\beta} &= \omega^{\alpha_1 \cdot \omega^\beta}
+	\end{align*}
+\end{proposition}
+
+\begin{proof}
+	La regole per la somma sono immediate: la prima è il lemma precedente, infatti se $\alpha < \beta$, allora $\omega^\alpha \cdot c < \textcolor{purple}{\omega^{s(\alpha)}} \leq \omega^{\beta} \cdot d$, e quindi nella somma si salva solo il termine di destra;
+	la seconda è la proprietà distributiva a sinistra valida per tutti gli ordinali, e la terza è la stessa forma normale di Cantor, che per ipotesi non può essere semplificata ulteriormente.\\
+	Per dimostrare che:
+	\[ \textcolor{purple}{\beta > 0 \rightarrow (\omega^{\alpha_1}\cdot k_1 + \omega^{\alpha_2} \cdot k_2 + \ldots) \cdot \omega^{\beta} = \omega^{\alpha_1 + \beta}}
+		\]
+	osserviamo intanto il caso particolare $n \cdot \omega = \omega$ per $n \in \omega\setminus\{0\}$:
+	\[ \omega \leq n \cdot \omega = \sup\{n \cdot i | i \in \omega\} \leq \sup\{j | j\footnote{Typo di Mamino.} \in \omega\} \leq \omega
+		\]
+	(la prima disuguaglianza è la solita debole monotonia sulla prima componente del prodotto, la seconda disuguaglianza è il lemma sulla disuguaglianza dei sup\footnote{Se per ogni elemento del primo insieme ne trovo sempre uno del secondo che
+	lo domina, allora c'è la disuguaglianza tra gli estremi superiori.}, in particolare il lemma si può applicare al contrario e ottenere proprio uguaglianza dei sup, infine, l'ultima è proprio un'uguaglianza data dal fatto che $\omega$ è limite e quindi uguale al sup delle cose più piccole).
+	Ora, scrivendo $\beta = 1 + \gamma$ (abbiamo supposto $\beta > 0$, quindi vale il lemma sulla sottrazione, ed otteniamo un'unico $\gamma \in \Ord$ per cui vale quella somma), si ottiene:\footnote{Typo Mamino al primo uguale dopo le tre disuguaglianze.}
+	\[ \begin{split}
+		\textcolor{orange}{\omega^{\alpha_1 + \beta}} &= \omega^{\alpha_1}\omega^\beta \\
+								  &\leq \textcolor{MidnightBlue}{(\omega^{\alpha_1} \cdot k_1 + \omega^{\alpha_2} \cdot k_2 + \ldots) \cdot \omega^{\beta}} \\
+								  &\leq (\omega^{\alpha_1} \cdot k_1 + \omega^{\alpha_2} \cdot k_2 + \ldots + \textcolor{red}{\omega^{\alpha_1}}) \cdot \omega^{\beta} \\
+								  &\leq \omega^{\alpha_1}(k_1+1)\cdot \omega^{\beta} \\
+		   						  &= \omega^{\alpha_1}\underbrace{(k_1 + 1)\omega}_{\omega}\omega^{\gamma}\\
+		   						  &= \omega^{\alpha_1} \cdot \omega \cdot \omega^{\gamma} \\
+								  &= \textcolor{orange}{\omega^{\alpha_1 + \beta}}
+ 	\end{split}
+		\]
+	dove: la prima uguaglianza sono le proprietà delle potenze degli ordinali; la seconda disuguaglianza è la debole monotonia della prima componente del prodotto; nella terza abbiamo aggiunto $\omega^{\alpha_1}$ alla fine,
+	ed è la stretta monotonia sulla seconda componente della somma, essendo $0 < \omega^{\alpha_1}$, unita alla debole monotonia sulla prima componente del prodotto totale, da cui la disuguaglianza larga; la quarta è la regola della somma, infatti per l'ipotesi sulla forma normale di Cantor,
+	avendo aggiunto $\omega^{\alpha_1}$ alla fine, i termini vengono cancellati [sarebbe il lemma sopra applicato alle coppie da destra verso sinistra man mano], si ottiene $\omega^{\alpha_1} \cdot k_1 + \omega^{\alpha_1}$ e infine si usa la distributività a sinistra;
+	per la quinta uguaglianza stiamo usando quanto visto sopra, cioè $\beta = 1 + \gamma$ e le solite proprietà delle potenze; la sesta uguaglianza è il caso particolare visto sopra [$n \cdot \omega = \omega$], essendo $k_1 + 1 \in \omega$; infine, nell'ultima uguaglianza usiamo ancora che $\beta = 1 + \gamma$.\\
+	La seconda regola, del prodotto di un ordinale in forma normale e un naturale:
+	\[ \textcolor{purple}{n \in \omega\setminus\{0\} \rightarrow (\omega^{\alpha_1} \cdot k_1 + \ldots \omega^{\alpha_2} \cdot k_2 + \ldots) \cdot n = \omega^{\alpha_1} \cdot k_1\textcolor{red}{n} + \ldots \omega^{\alpha_2} \cdot k_2 + \ldots}
+		\]
+	si ottiene per induzione su $n$. La prima per il prodotto invece è immediata:
+	\[ \begin{split}
+		\textcolor{purple}{k^{\omega^{1+\alpha}}} &= k^{\omega \cdot \omega^{\alpha}} \\
+												  &= (k^{\omega})^{\omega^{\alpha}} \\
+												  &= (\sup\{k^{n} | n \in \omega\})^{\omega^{\alpha}} \\
+												  &= \omega^{\omega^{\alpha}}
+		\end{split}
+		\]
+	sono solo la definizione ricorsiva della potenza nel caso limite e le proprietà delle potenze degli ordinali, l'unica cosa degna di nota da osservare è che l'estremo superiore di quell'insieme, 
+	per il solito lemma [usato per una doppia disuguaglianza], è uguale all'estremo superiore ad esempio di $\{n | n \in \omega\}$, per questo motivo si vede che è $\omega$ stesso.\\
+	Per dimostrare infine l'ultima regola sulle potenze di ordinali in forma normale:
+	\[ \textcolor{purple}{\beta > 0 \land \alpha_1 > 0 \rightarrow (\omega^{\alpha_1} \cdot k_1 + \omega^{\alpha_2} \cdot k_2 + \ldots)^{\omega^\beta} = \omega^{\alpha_1 \cdot \omega^{\beta}}}
+		\]
+	partiamo dal caso particolare $(\omega^{\alpha} \cdot k)^{\omega} = \omega^{\alpha \cdot \omega}$:
+	\[ \begin{split}
+		\textcolor{orange}{\omega^{\alpha \cdot \omega}} &\leq \textcolor{MidnightBlue}{(\omega^{\alpha} \cdot k)^{\omega}} \\
+														 &= \sup{(\omega^\alpha \cdot k)^n | n \in \omega} \\
+														 &= \sup\{\omega^{\alpha \cdot n}\cdot k^n | n \in \omega\} \\
+														 &\leq \sup\{\omega^{\alpha \cdot (n + 1) | n \in \omega}\} \\
+														 &\leq (\omega^{\alpha})^\omega = \textcolor{orange}{\omega^{\alpha \cdot \omega}}
+	\end{split}
+		\]
+	dove: la prima disuguaglianza è la solita monotonia, applicata al prodotto interno; la seconda uguaglianza è la definizione ricorsiva di potenza di un ordinale nel caso limite;
+	la terza uguaglianza deriva dal fatto che $n \cdot \omega = \omega$ per quanto visto, quindi, facendo la potenza tutti i $k$ davanti agli $\omega^\alpha$ scompaiono e rimane solo l'ultimo;
+	la quarta disuguaglianza è la stretta monotonia sulla seconda componente del prodotto, usando $k < \omega^\alpha$, e poi sono semplicemente le proprietà delle potenze degli ordinali;
+	la quinta disuguaglianza è in realtà un uguaglianza per la definizione ricorsiva delle potenze nel caso limite, e, infine l'ultima uguaglianza è data dalle proprietà delle potenze degli ordinali.\\
+	Siccome $\beta > 0$, allora $\beta \geq 1$, dunque possiamo scrivere $\beta = 1 + \gamma$, per un unico $\gamma \in \Ord$, dunque abbiamo $\omega^\beta = \omega \cdot \omega^\gamma$ \footnote{Typo di Mamino che si porta dietro tutto il conto.}, da cui:
+	\[ \begin{split}
+		\textcolor{orange}{\omega^{\alpha_1 \cdot \omega^\beta}} &\leq \textcolor{MidnightBlue}{(\omega^{\alpha_1} \cdot k_1 + \omega^{\alpha_2} \cdot k_2 + \ldots)^{\omega^\beta}} \\
+															   &\leq (\omega^{\alpha_1} \cdot (k_1 + 1))^{\omega\cdot \omega^{\gamma}} \\
+															   &= ((\omega^{\alpha_1} \cdot (k_1 + 1))^{\omega})^{\omega^{\gamma}} \\
+															   &= (\omega^{\alpha_1 \cdot \omega})^{\omega^\gamma} \\
+															   &= \omega^{\alpha_1 \cdot \omega \cdot \omega^\gamma} \\
+															   &= \textcolor{orange}{\omega^{\alpha_1 \cdot \omega^\beta}}
+	\end{split}
+		\]
+	dove: la prima disuguaglianza è debole monotonia sulla base della potenza [ovvero il primo argomento]; per la seconda ci basta aggiungere ai termini della somma $\omega^{\alpha_1}$ alla fine (o sostituirlo all'ultimo termine, è indifferente) e poi [dopo aver usato la regola per la somma],
+	si ha la monotonia sulla seconda componente e sulla base della potenza; la terza uguaglianza sono le proprietà delle potenze; la quarta uguaglianza è il caso particolare; la quinta sono di nuovo le proprietà delle potenze di ordinali, e, infine la sesta era il fatto che $\omega^\beta = \omega^{1 + \gamma}$.
+\end{proof}
+
+\begin{example}[Operazioni tra ordinali in forma normale di Cantor]
+	Elenchiamo alcuni esempi usando le proprietà appena viste:
+	\begin{itemize}
+		\item $(\omega + 1)^2 = (\omega + 1)(\omega + 1) = (\omega + 1)\cdot \omega + (\omega + 1) \cdot 1 = \omega^2 + \omega + 1$, le uniche cose usate sono la distributività a sinistra del prodotto di ordinali, la prima regola per il prodotto di ordinali e volendo la seconda nel caso di prodotto per $1$ [che in teoria abbiamo già gratis come elemento neutro dalle regole generali per gli ordinali].
+		\item $(\omega + 1)^2 \cdot n = (\omega^2 + \omega + 1) \cdot n = \omega^2 \cdot n + \omega + 1$, dove $n \in \omega\setminus\{0\}$. In questo caso abbiamo combinato semplicemente il risultato sopra con la seconda regola per il prodotto di ordinali in forma normale.
+		\item $(\omega + 1)^2 \cdot \omega = (\omega^2 + \omega + 1) \cdot \omega = \omega^3$, come sopra, ma usando la prima regola per il prodotto.
+		\item $(\omega + 1)^3 = (\omega^2 + \omega + 1) \cdot (\omega + 1) = (\omega^2 + \omega + 1) \cdot \omega + \omega^2 + \omega + 1 = \omega^3 + \omega^2 + \omega + 1$, abbiamo usato distributività e seconda regola per il prodotto.
+		\item $(\omega + 1)^n = \omega^n + \omega^{n - 1} + \ldots + 1 = \sum_{i = n}^0 \omega^i$\footnote{Notare la somma al contrario, perché l'ordine conta in forma normale di Cantor.}, $n \in \omega$. Lo si vede per induzione, i casi base sono fatti sopra (il caso 0 è il caso base della definizione ricorsiva di potenza ordinale), dunque possiamo procedere per induzione e fare il passo induttivo:
+		\[ (\omega + 1)^{n + 1} = (\omega + 1)^n \cdot (\omega + 1) \overset{\text{Hp. indutt.}}{=} \left(\sum_{i = n}^n \omega^i\right) \cdot (\omega + 1) = \left(\sum_{i = n}^n \omega^i\right) \cdot \omega + \sum_{i = n}^n \omega^i
+			\]
+		e usando la prima regola per il prodotto si ottiene:
+		\[ \omega^{n + 1} + \sum_{i = n}^n \omega^i = \sum_{i = n + 1}^n \omega^i
+			\]
+		che è proprio la tesi nel caso successore.
+		\item $(\omega + 1)^\omega = \omega^\omega$, usando la seconda regola per le potenze.
+		\item $(2 \cdot \omega^2 + \omega \cdot 3 + 7)^3$ \footnote{Dall'\href{https://ciovil.li/eti20/exam05.pdf}{\textcolor{purple}{esame del 27-1-2020}}.}, osserviamo che $2 \cdot \omega^2 = 2 \cdot \omega \cdot \omega = (2 \cdot \omega) \cdot \omega = \omega \cdot \omega = \omega^2$, per l'osservazione fatta prima, secondo cui $n \cdot \omega = \omega$, per $n \in \omega\setminus\{0\}$.
+		Da qui si può procedere cone le regole che conosciamo, calcoliamo per comodità prima il quadrato:
+		\[ \begin{split}
+			(\omega^2 + \omega \cdot 3 + 7)^2 &= (\omega^2 + \omega \cdot 3 + 7) \cdot (\omega^2 + \omega \cdot 3 + 7) \\
+											  &= (\omega^2 + \omega \cdot 3 + 7) \cdot \omega^2 + (\omega^2 + \omega \cdot 3 + 7) \cdot \omega \cdot 3 \\
+											  &+ (\omega^2 + \omega \cdot 3 + 7) \cdot 7 \\
+											  &= \omega^4 + \omega^3 \cdot 3 + \omega^2\cdot 7 + \omega \cdot 3 + 7
+		\end{split}
+			\]
+		iterando ancora una volta la distributività, le regole per il prodotto [e ricordando che quest'ultimo è associativo], si ottiene il risultato:
+		\[ (\omega^2 + \omega \cdot 3 + 7)^3 = \omega^6 + \omega^5 \cdot 3 + \omega^4 \cdot 7 + \omega^3 \cdot 3 + \omega^2\cdot 7 + \omega \cdot 3 + 7
+			\]
+	\end{itemize}
+\end{example}
+
+\pagebreak
+\section{Gli aleph}
+In questa sezione costruiremo una funzione classe dagli ordinali in sé, $\alpha \mapsto \omega_\alpha$, la cui immagine contiene precisamente un ordinale per ogni cardinalità infinita.
+Definiremo la scrittura $|X| = \aleph_\alpha$, come $|X| = |\omega_\alpha|$ (o molto più semplicemente $|\omega_\alpha| \Mydef \aleph_\alpha$). Indagheremo inoltre l'aritmetica, che è molto semplice, di somme e prodotti di cardinalità: $\aleph_\alpha + \aleph_\beta = \aleph_\alpha \cdot \aleph_\beta = \aleph_{\max(\alpha,\beta)}$.
+Tratteremo, invece, in seguito l'esponenziale di cardinalità, che non è affatto semplice.\\
+Formalmente, in realtà, dimostreremo che ogni cardinalità infinita \textcolor{purple}{che sia la cardinalità di qualche ordinale} è un aleph. Resterà quindi da dimostrare che ogni cardinalità è la cardinalità di qualche ordinale, ma per farlo occorre l'assioma della scelta.
+Le cardinalità degli ordinali fanno comodo, per esempio, perché sono confrontabili.
+
+\begin{remark}[Confronto cardinalità degli ordinali]
+	Dati $\alpha,\beta \in \Ord$, o $|\alpha| < |\beta|$ o $|\alpha| = |\beta|$ o $|\beta| < |\alpha|$.
+\end{remark}
+
+\begin{proof}
+	Basta osservare che, data la totalità della relazione d'ordine tra gli ordinali, o $\alpha \subseteq \beta$ o $\beta \subseteq \alpha$, quindi o $|\alpha| \leq |\beta|$ o $|\beta| \leq |\alpha|$.
+\end{proof}
+
+Ad ogni cardinalità associamo un rappresentante canonico: il minimo ordinale di quella cardinalità.
+
+\begin{definition}[Ordinale iniziale]
+	$\alpha \in \Ord$ è un \vocab{ordinale iniziale} se $\forall \beta < \alpha \; |\beta| < |\alpha|$.
+\end{definition}
+
+\begin{exercise}
+	Dimostrare che se $\alpha$ è un ordinale iniziale, allora $\alpha$ è limite.
+\end{exercise}
+
+\subsection{Teorema di Hartogs}
+Il nostro scopo è, ora, dimostrare che gli ordinali iniziali sono una classe propria, e quindi enumerarli per mezzo di una funzione classe $\Ord \rightarrow \Ord : \alpha \mapsto \omega_\alpha$.
+Quello che segue è lo strumento tecnico fondamentale.
+
+\begin{theorem}[Teorema di Hartogs]
+	Dato un insieme $X$ esiste un ordinale $\alpha$ che non è equipotente ad alcun sottoinsieme di $X$, ossia $|\alpha| \not\leq |X|$.
+\end{theorem}
+
+\begin{proof}
+	
+\end{proof}
+
+\subsection{Somme e prodotti di aleph}
+
+\pagebreak
+\appendix
+\section{Soluzioni di altri esercizi e cardinalità note}
 \pagebreak
 \begin{thebibliography}{9}
 	\addcontentsline{toc}{section}{Bibliografia}
