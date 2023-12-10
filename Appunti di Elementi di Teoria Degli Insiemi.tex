@@ -5355,13 +5355,13 @@ tuttavia che $\textcolor{red}{\gamma + \alpha = \gamma}$, infatti per la stretta
 
 \pagebreak
 \section{Gli aleph}
-In questa sezione costruiremo una funzione classe dagli ordinali in sé, $\alpha \mapsto \omega_\alpha$, la cui immagine contiene precisamente un ordinale per ogni cardinalità infinita.
+In questa sezione costruiremo una funzione classe dagli ordinali in sé, $\alpha \mapsto \omega_\alpha$, la cui immagine contiene precisamente un ordinale per ogni cardinalità infinita\footnote{In realtà, senza scelta non lo possiamo ancora dire, quindi ci limitiamo a dimostrare qualcosa di più debole, almeno in questa sezione.}.
 Definiremo la scrittura $|X| = \aleph_\alpha$, come $|X| = |\omega_\alpha|$ (o molto più semplicemente $|\omega_\alpha| \Mydef \aleph_\alpha$). Indagheremo inoltre l'aritmetica, che è molto semplice, di somme e prodotti di cardinalità: $\aleph_\alpha + \aleph_\beta = \aleph_\alpha \cdot \aleph_\beta = \aleph_{\max(\alpha,\beta)}$.
 Tratteremo, invece, in seguito l'esponenziale di cardinalità, che non è affatto semplice.\\
-Formalmente, in realtà, dimostreremo che ogni cardinalità infinita \textcolor{purple}{che sia la cardinalità di qualche ordinale} è un aleph. Resterà quindi da dimostrare che ogni cardinalità è la cardinalità di qualche ordinale, ma per farlo occorre l'assioma della scelta.
+Formalmente, in realtà, dimostreremo che ogni cardinalità \textbf{infinita} \textcolor{purple}{che sia la cardinalità di qualche ordinale} è un aleph\footnote{Quindi in realtà senza scelta, sapremo solo questo, cioè che tutti gli ordinali infiniti hanno come cardinalità un aleph, in altre parole: scriviamo una funzione che produce degli ordinali, gli $\omega_\alpha$, le cui cardinalità [che sono tutte infinite] chiamiamo aleph, $\aleph_\alpha$, e mostriamo che tutti gli ordinali infiniti hanno come cardinalità uno di questi.}. Resterà quindi da dimostrare che ogni cardinalità è la cardinalità di qualche ordinale [cioè tutte finite e infinite sono realizzate da un $\omega_\alpha$ e quindi sono un aleph], ma per farlo occorre l'assioma della scelta.
 Le cardinalità degli ordinali fanno comodo, per esempio, perché sono confrontabili.
 
-\begin{remark}[Confronto cardinalità degli ordinali]
+\begin{remark}[Tutte le cardinalità degli ordinali sono confrontabili]
 	Dati $\alpha,\beta \in \Ord$, o $|\alpha| < |\beta|$ o $|\alpha| = |\beta|$ o $|\beta| < |\alpha|$.
 \end{remark}
 
@@ -5369,29 +5369,335 @@ Le cardinalità degli ordinali fanno comodo, per esempio, perché sono confronta
 	Basta osservare che, data la totalità della relazione d'ordine tra gli ordinali, o $\alpha \subseteq \beta$ o $\beta \subseteq \alpha$, quindi o $|\alpha| \leq |\beta|$ o $|\beta| \leq |\alpha|$.
 \end{proof}
 
-Ad ogni cardinalità associamo un rappresentante canonico: il minimo ordinale di quella cardinalità.
+Ad ogni cardinalità di un ordinale, associamo un rappresentante canonico: il minimo ordinale di quella cardinalità.
 
 \begin{definition}[Ordinale iniziale]
-	$\alpha \in \Ord$ è un \vocab{ordinale iniziale} se $\forall \beta < \alpha \; |\beta| < |\alpha|$.
+	Dato $\alpha \in \Ord$, diciamo che è un \vocab{ordinale iniziale} se $\forall \beta < \alpha \; |\beta| < |\alpha|$.
 \end{definition}
 
 \begin{exercise}
-	Dimostrare che se $\alpha$ è un ordinale iniziale, allora $\alpha$ è limite.
+	Dimostrare che se $\alpha$ è un ordinale infinito e iniziale, allora $\alpha$ è limite.
 \end{exercise}
 
+\begin{soln}
+	Supponiamo per assurdo che $\alpha$ sia successore, allora esiste $\beta \in \Ord$ tale che $\alpha = s(\beta) = \beta \cup \{\beta\}$ e $\beta < s(\beta) = \alpha$, 
+	da cui, essendo $\alpha$ iniziale si ottiene $|\beta| < |s(\beta)| = |\alpha|$. Osserviamo allora che, usando la disuguaglianza di inclusione-esclusione si ottiene:
+	\[ |\alpha| = |\beta \cup \{\beta\}| \leq |\beta| + |\{\beta\}| = |\beta| + 1
+		\]
+	e, unendo questa disuguaglianza a quella iniziale, si ha: $|\beta| < |\alpha| \leq |\beta| + 1 \implies |\beta| < |\beta| + 1$.
+\end{soln}
+
 \subsection{Teorema di Hartogs}
-Il nostro scopo è, ora, dimostrare che gli ordinali iniziali sono una classe propria, e quindi enumerarli per mezzo di una funzione classe $\Ord \rightarrow \Ord : \alpha \mapsto \omega_\alpha$.
+Il nostro scopo è, ora, dimostrare che gli ordinali \textbf{iniziali} sono una classe propria, e quindi enumerarli per mezzo di una funzione classe $\Ord \rightarrow \Ord : \alpha \mapsto \omega_\alpha$.
 Quello che segue è lo strumento tecnico fondamentale.
 
 \begin{theorem}[Teorema di Hartogs]
-	Dato un insieme $X$ esiste un ordinale $\alpha$ che non è equipotente ad alcun sottoinsieme di $X$, ossia $|\alpha| \not\leq |X|$.
+	Dato un insieme $X$ esiste un ordinale $\alpha$ che non è equipotente (cioè non è in bigezione) ad alcun sottoinsieme di $X$, ossia $|\alpha| \not\leq |X|$.
 \end{theorem}
 
+\textcolor{MidnightBlue}{Moralmente: esiste sempre un ordinale che non si immerge in $X$, dunque esiste sempre un'ordinale con una cardinalità più grande di qualunque insieme.}
+
 \begin{proof}
-	
+	Consideriamo il sottoinsieme [delle relazioni su $X$] dato da:
+	\[ Y = \{R \in \ps(X \times X) | \exists X' \subseteq X \; \text{$R$ è un buon ordine su $X'$}\}
+		\]
+	cioè il sottoinsieme delle parti di $X \times X$, degli insiemi che sono buoni ordini [nel senso proprio di relazione, essendo che $R \subseteq X\times X$] su un sottoinsieme di $X$, quindi stiamo considerando tutte le relazioni d'ordine su $X \times X$, 
+	che ristrette ad un sottoinsieme di $X$ sono bene ordinate.\\
+	Sia $F$ la funzione classe che associa, ad ogni buon ordine, l'unico ordinale isomorfo\footnote{Cioè $F : Y \rightarrow \Ord : R \mapsto \gamma$, tale che $\gamma \sim (X',R)$, e da quanto sappiamo $\gamma$ esiste ed è unico quindi la funzione classe $F$ è ben definita.}.
+	Per \hyperref[ax8]{rimpiazzamento}, esiste l'insieme $F[Y]$ (ovvero gli ordinali corrispondenti a tutti i buoni ordini, dati dalle relazioni in $Y$ sui sottoinsiemi di $X$), il nostro obiettivo è dimostrare che c'è almeno un ordinale che non è in bigezione con alcun sottoinsieme di $X$.\\
+	Sia $\alpha$ un ordinale con $\alpha \not \in F[Y]$ [possiamo prenderlo perché sappiamo che ogni insieme di ordinali ne ha sempre almeno uno che non gli appartiene]. Mostriamo che tale ordinale non è in bigezione ad alcun sottoinsieme di $X$, per assurdo, $|\alpha| = |X'|$, per qualche $X' \subseteq X$. Allora, per definizione,
+	abbiamo una bigezione $f : X' \rightarrow \alpha$. Questa, però, ci fornisce un buon ordinamento [indotto] su $X'$, che lo rende isomorfo ad $\alpha$ -
+	basta porre $x < y \Mydef f(x) <_\alpha f(y)$ - contrariamente al fatto che $\alpha \not \in F[Y]$, ossia non è isomorfo ad alcun buon ordinamento su un sottoinsieme di $X$, dunque assurdo. Ciò significa che tale $\alpha \not \in F[Y]$ non è in bigezione con alcune sottoinsieme di $X$, ovvero $|\alpha| \not\leq |X|$.
 \end{proof}
 
+\begin{definition}[Numero di Hartogs]
+	Dato un insieme $X$, il \vocab{numero di Hartogs} di $X$, che indichiamo con $H(X)$, è il più piccolo ordinale che non si immerge in $X$ [o non è equipotente ad alcun sottoinsieme di $X$] - ossia $H(X) \in \Ord$ è minimo tale che $|H(X)| \not\leq |X|$.
+\end{definition}
+
+\begin{remark}[Buona definizione del numero di Hartogs]
+	Il teorema di Hartogs ci garantisce che ce n'è sempre almeno uno, per ogni insieme $X$, dunque l'insieme degli ordinali non equipotenti ad alcun sottoinsieme di $X$ è non vuoto ed è un insieme di ordinali, pertanto, per quanto visto, ammette sempre minimo, di conseguenza
+il numero di Hartogs di un insieme è sempre ben definito.
+\end{remark}
+
+\begin{remark}[$H(X)$ iniziale]
+	Dato un insieme $X$, osserviamo che il suo numero di Hartogs $H(X)$ è un ordinale iniziale.
+\end{remark}
+
+\begin{proof}
+	Per assurdo, se esistesse $\beta < H(X)$ tale che $|\beta| = |H(X)|$, avremmo, per minimalità di $H(X)$ [$H(X)$ è il minimo ordinale che non si immerge in $X$, quindi qualsiasi ordinale più piccolo vi si immerge], $|\beta| \geq |X|$, da
+	cui $|H(X)| = |\beta| \leq |X| \; \lightning$.
+\end{proof}
+
+\begin{corollary}[Gli ordinali iniziali sono una classe propria]
+	La classe degli ordinali iniziali è una classe propria.\footnote{La stessa dimostrazione ci dà il medesimo risultato anche limitandoci agli ordinali iniziali infiniti.}
+\end{corollary}
+
+\begin{proof}
+	Se, per assurdo, esistesse l'insieme $X$ degli ordinali iniziali, allora per ogni ordinale iniziale $|\alpha| \leq \left\lvert \bigcup X\right\rvert$
+	[cioè ogni ordinale iniziale è un sottoinsieme dell'unione dell'insieme degli ordinali iniziali], ma [prendendo il numero di Hartogs di tale unione, otteniamo un ordinale iniziale che non è un sottoinsieme dell'unione di $X$,
+	ovvero non è un elemento di $X$, che è assurdo] $\left\lvert \bigcup X\right\rvert < \left\lvert H \left(\bigcup X\right)\right\rvert \; \lightning$.
+\end{proof}
+
+\begin{remark}[$\alpha \hookrightarrow H(\alpha)$]
+	Dato $\alpha \in \Ord$, $H(\alpha)$ è il più piccolo ordinale tale che $|\alpha| < |H(\alpha)|$.
+	Cioè $H(\alpha)$ è il più piccolo ordinale in cui si immerge $\alpha$.
+\end{remark}
+
+\begin{proof}
+	Siccome le cardinalità degli ordinali sono tutte confrontabili:
+	\[ |H(\alpha)| < |\alpha| \leftrightarrow |H(\alpha)| \not\leq |\alpha|
+		\]
+	dunque la cosa al RHS, che è la definizione di numero di Hartogs, è equivalente alla disuguaglianza a sinistra, in quanto, essendo tutte le cardinalità degli ordinali confrontabili, come visto,
+	se sono false sia $<$ che $=$, per l'osservazione fatta dave essere vero il $>$ [quindi $\alpha \hookrightarrow H(\alpha)$ non surgettivamente].\\
+	Inoltre, per definizione, tutti gli ordinali più piccoli di $H(\alpha)$, non rispettano il fatto che $|H(\alpha)| \not\leq |\alpha|$, in quanto abbiamo definito $H(\alpha)$ come il minimo per cui accade questa cosa, pertanto $H(\alpha)$ è proprio l'ordinale più piccolo in cui si immerge $\alpha$.
+\end{proof}
+
+Il teorema di Hartogs ci permette, per esempio, di esibire un ordinale più che numerabile $H(\omega)$. Per l'osservazione precedente, infatti, $\aleph_0 = |\omega| < |H(\omega)|$.
+
+\begin{exercise}
+	Cosa c'è di \textcolor{red}{SBAGLIATO} nella dimostrazione seguente dell'esistenza di un $\alpha \in \Ord$ più che numerabile?
+\end{exercise}
+
+Sia $\alpha \Mydef \sup\{\beta \in \Ord | |\beta| \leq \aleph_0\}$. Se per assurdo $|\alpha| \leq \aleph_0$, allora $|s(\alpha)| = |\alpha| + 1 \leq \aleph_0$, quindi, per la definizione di $\alpha$, $s(\alpha) \leq \alpha \;\lightning$.
+
+\begin{soln}
+	
+\end{soln}
+
+Gli ordinali iniziali possono essere elencati per mezzo di una funzione classe $\alpha \mapsto \omega_\alpha$, semplicemente, \textbf{in conseguenza del fatto che sono una classe propria}, vale infatti il lemma seguente.
+
+\begin{lemma}[Unicità degli isomrofismi tra classi proprie di ordinali]
+	Sia $C$ una classe propria di ordinali, allora esiste un'unica $F : \Ord \rightarrow C$ crescente e biunivoca.
+\end{lemma}
+
+\begin{proof}
+	Sia $G : \Ord \rightarrow C$ definita per ricorsione transfinita da:
+	\[ G(\alpha) = \;\text{il minimo $\beta \in C$ maggiore di tutti gli elementi di $G[\alpha]$}\footnote{In simboli $G(\alpha) :=\min\{\beta \in C | \forall x \in G[\alpha] \; x < \beta\}$.}
+		\]
+	Ci basta dire che $F$ soddisfa la richiesta se e solo se $F(\alpha) = G(\alpha)$ per ogni $\alpha \in \Ord$, infatti, dopo aver dimostrato che $G$ è crescente e biunivoca avremo che tutte le funzioni da $\Ord$ a $C$ coincideranno con $G$ e quindi saranno proprio uguali a $G$ per estensionalità di funzioni\footnote{Anche se in questo caso dovremmo usarne una versione per funzioni classe, che è il discorso già fatto su quando e in che senso due funzioni classe sono uguali.} [aka c'è un'unica funzione che rispetta tutte le richieste della tesi].\\
+	Si vede immediatamente che $G$ è crescente [per definizione], quindi in automatico iniettiva. Per verificare la surgettività, sia $\beta \in C$, siccome $G$ è crescente $\beta < s(\beta) \leq G(s(\beta))$ [abbiamo visto che le funzioni crescenti di buoni ordini stanno sopra le bisettrici].
+	Quindi, per la minimalità di $G(s(\beta))$ [cioè il più piccolo che sta sopra tutti gli elementi di $G[s(\beta)]$ per definizione di $G$, e in questo caso sta sopra a $\beta$], si ha necessariamente che $\beta \in G[s(\beta)]$, ed in particolare si ha proprio che $\beta$ è nell'immagine di $G$, dunque $G$ è anche surgettiva.\\
+	Ci resta da dimostrare che $F(\alpha) = G(\alpha)$, $\forall \alpha \in \Ord$. Data $F$ come nell'enunciato, $F(\alpha)$ è maggiore di tutti gli elementi di $F[\alpha]$ poiché $F$ è crescente (per ipotesi).
+	Vorremmo vedere che $F(\alpha)$ fosse proprio il minimo più grande di $F[\alpha]$, infatti, se ci fosse $\beta \in C$ minore di $F(\alpha)$ con questa proprietà [più grande di tutti gli elementi di $F[\alpha]$], allora avremmo $\beta > F(\gamma)$ per $\gamma < \alpha$ (perché $F(\gamma) \in F[\beta]$, e per come abbiamo preso $\beta$) e 
+	$\beta < F(\gamma)$ per $\gamma \geq \alpha$ [abbiamo preso $\beta < F(\gamma)$ e $F$ è strettamente crescente per ipotesi]\footnote{Typo di Mamino, ha invertito entrambe le disuguaglianze.}, quindi $\beta \ne F(\gamma)$ per ogni $\gamma$, contro la surgettività di $F$. Di conseguenza $F$ soddisfa proprio la definizione ricorsiva di $G$, e, per il teorema di ricorsione transfinita coincidono [il teorema garantisce unicità] $\forall \alpha \in \Ord \; F(\alpha) = G(\alpha)$.
+\end{proof}
+
+\begin{definition}[Funzione degli aleph]
+	La \vocab{funzione classe dagli ordinali agli ordinali iniziali} \textcolor{red}{infiniti} $\alpha \mapsto \omega_\alpha$ è definita come l'\textbf{unica crescente e biunivoca} fra queste classi [che è ben definita e unica appunto per il lemma appena visto].\footnote{Per come è definita questa funzione prende in arrivo tutti gli ordinali più piccoli associati alle cardinalità \underline{infinite} [non sappiamo ancora che sono tutte], che sono i rappresentanti canonici che cercavamo.}
+\end{definition}
+
+\begin{proposition}[Definizione ricorsiva della funzione degli aleph]
+	Definiamo per \hyperref[ric_transf2]{ricorsione transfinita v.2} la funzione aleph citata sopra:\footnote{Di fatto dobbiamo solo dimostrare che sia ben definita, cioè che l'insieme di arrivo sia effettivamente quello degli ordinali iniziali infiniti.}
+	\begin{align*}
+		\omega_0 &= \omega \\
+		\omega_{s(\alpha)} &= H(\omega_\alpha) \\
+		\omega_\lambda &= \sup\{\omega_\alpha | \alpha \in \lambda\} \; \text{per $\lambda$ limite}
+	\end{align*}
+\end{proposition}
+
+\begin{proof}
+	I casi 0 e successore sono immediati, vediamo il caso limite. Per la dimostrazione del lemma precedente, $\omega_\lambda$ deve essere il 
+	minimo ordinale \textcolor{red}{iniziale} di ogni $\alpha \in \lambda$ per la definizione ricorsiva datane.\\
+	Basta quindi dimostrare che $\beta \Mydef \sup\{\omega_\alpha | \alpha \in \lambda\}$ è iniziale [in questo modo la definizione ricorsiva data sopra della funzione, coincide necessariamente con la funzione degli aleph definita sopra, infatti, in questo caso avremmo una funzione classe dagli ordinali agli ordinali iniziali (cosa che ci manca da verificare), e per il lemma precedente è unica, dunque le due definite coincidono\footnote{Anche se la prima non l'abbiamo mai definita esplicitamente.}].
+	Se così non fosse, cioè se $\beta$ non fosse iniziale, esisterebbe $\gamma < \beta$ con $|\gamma| = |\beta|$. Ma per definizione di estremo superiore, dovrebbe esistere $\alpha \in \lambda$ tale che si abbia $\gamma < \omega_\alpha \implies \gamma \leq \omega_\alpha$ [è la caratterizzazione del sup, per averla stretta, poi quella stretta implica quella larga], dunque vale:
+	\[ |\gamma| \leq |\omega_\alpha| \;\textcolor{red}{<}\; |\omega_{s(\alpha)}| \leq |\beta| \;\lightning
+		\]
+	e la disuguaglianza stretta [vera per il caso successore, poiché usiamo l'Hartogs] in mezzo ci dà l'assurdo, in quanto avevamo supposto $|\gamma| = |\beta|$, dunque $\beta$ è un ordinale iniziale e la definizione ricorsiva è ben posta.
+\end{proof}
+
+\begin{notation}[$|\omega_\alpha| = \aleph_\alpha$]
+	Usiamo il simbolo $\aleph_\alpha$ come abbreviazione per $|\omega_\alpha|$. Così, per esempio, $X$ è numerabile $\equiv |X| = |\omega_0| \equiv |X| = \aleph_0$.
+\end{notation}
+
 \subsection{Somme e prodotti di aleph}
+
+\begin{proposition}[Somme e prodotti di aleph]
+	Dati $\aleph_\alpha$, $\aleph_\beta$ e $n \in \omega\setminus\{0\}$ vale che:
+	\begin{align*}
+		& \aleph_\alpha + \aleph_\beta = \aleph_\alpha \cdot\aleph_\beta = \max(\aleph_\alpha,\aleph_\beta) = \aleph_{\max(\aleph_\alpha,\aleph_\beta)} \\
+		& \aleph_\alpha + |n| = \aleph_\alpha \cdot |n| = \aleph_\alpha
+	\end{align*}
+\end{proposition}
+
+Assumiamo per un istante il seguente lemma.
+
+\begin{lemma}[$\aleph_\alpha \cdot \aleph_\alpha = \aleph_\alpha$]
+	$\forall \alpha \in \Ord \; \aleph_{\alpha}^2 = \aleph_\alpha \cdot \aleph_\alpha = \aleph_\alpha$.\footnote{Si verifica per induzione allora che $\aleph_\alpha^n = \aleph_\alpha$, $\forall n \in \omega\setminus\{0\}$.}
+\end{lemma}
+
+Ora dimostriamo la proposizione assumendo il lemma.
+
+\begin{proof}
+	Supponiamo WLOG che $\aleph_\beta \geq \aleph_\alpha$ (per quanto visto tutte le cardinalità degli ordinali sono confrontabili, in particolare quanto scritto equivale proprio a $\alpha \subseteq \beta$), e osserviamo che:
+	\[ \textcolor{orange}{\aleph_\beta} = \aleph_\beta + 0 \leq \aleph_\beta + \aleph_\alpha \leq \aleph_\beta \cdot 2 \leq \aleph_\beta \cdot \aleph_\beta \overset{\text{assunto}}{=} \textcolor{orange}{\aleph_\beta}
+		\]
+	dunque $\aleph_\alpha + \aleph_\beta = \aleph_\alpha \cdot\aleph_\beta = \aleph_\beta$ ovvero sono entrambi uguali a $ \max(\aleph_\alpha,\aleph_\beta) = \aleph_{\max(\aleph_\alpha,\aleph_\beta)}$.
+	Analogamente, nel caso di cardinalità finite vale:
+	\begin{align*}
+		&\aleph_\alpha = \aleph_\alpha + 0 \leq \aleph_\alpha + |n| \leq \aleph_\alpha + \aleph_0 \overset{\text{sopra}}{=} \aleph_\alpha \\
+		&\aleph_\alpha = \aleph_\alpha \cdot 1 \leq \aleph_\alpha \cdot |n| \leq \aleph_\alpha \cdot \aleph_0 \overset{\text{sopra}}{=} \aleph_\alpha \\
+	\end{align*}
+	dove abbiamo usato che $\aleph_0 \leq \aleph_\alpha$, che deriva dalla definizione ricorsiva data della funzione degli aleph (che poi sarebbe l'ordinamento totale degli ordinali), e il fatto che $|n| < \aleph_0 \implies |n| \leq \aleph_0$, dove la prima disuguaglianza è il fatto che $n \in \omega$.
+\end{proof}
+
+\begin{remark}[Ogni cardinalità infinita $\leq$ un aleph è un aleph]
+	Se $|X| = \aleph_\alpha$ e $\aleph_0 \leq |Y| \leq |X|$ {La prima disuguaglianza è equivalente a dire che $Y$ è infinito una volta assunto scelta.}, allora $|Y| = \aleph_\beta$, per qualche $\beta \leq \alpha$.
+\end{remark}
+
+\begin{proof}
+	Senza perdita di generalità possiamo assumere $X = \omega_\alpha$ [a meno di bigezione] e $Y \subseteq X$ [a meno di bigezione]. Allora $Y$ è ben ordinato dall'ordinamento indotto da $\omega_\alpha = X$.\\
+	Sia $\gamma$ il minimo ordinale tale che $|\gamma| = |Y|$ - che esiste perché l'ordinale di $(Y,<_{|\omega_\alpha})$ ha questa proprietà. Siccome $\gamma$ è il minimo della sua cardinalità, allora $\gamma$ è iniziale, quindi esiste $\beta$ tale che $\gamma = \omega_\beta$ (ovvero sta nell'immagine della funzione
+	degli aleph, che ricordiamo essere una funzione classe bigettiva, dunque surgettiva, vero la classe propria degli ordinali iniziali infiniti, dunque essere un ordinale iniziale equivale ad essere proprio uguale a $\omega_{\text{qualcosa}}$). La monotonia della funzione $x \mapsto \omega_x$ [sempre la funzione degli aleph, ma scritta con una definizione diversa], implica $\beta \leq \alpha$,
+	e quindi $|\omega_\beta| = \aleph_\beta \leq \aleph_\alpha$.
+\end{proof}
+
+Ora dimostriamo finalmente il lemma.
+
+\hspace{-0.41cm}\emph{Dimostrazione.}\quad
+	Procediamo per induzione transfinita in forma forte, dunque possiamo assumere che $\forall \beta < \alpha \; \aleph_\beta^2 = \aleph_\beta$ e dimostrare che $\aleph_\alpha^2 = \aleph_\alpha$. La strategia è costruire un buon ordine $\prec$ su $\omega_\alpha \times \omega_\alpha$,
+	tale che si abbia un'isomorfismo con $\omega_\alpha$ stesso, $(\omega_\alpha \times \omega_\alpha, \prec) \sim \omega_\alpha$.\\
+	Definiamo:
+	\begin{align*}
+		(a,b) \prec (a',b') &\Mydef \max(a,b) < \max(a',b') \\
+							&\lor ((\max(a,b) = \max(a',b')) \land a < a') \\
+							&\lor ((\max(a,b) = \max(a',b')) \land (a = a') \land b < b')
+	\end{align*}
+	\begin{wrapfigure}[9]{l}{2.5cm}
+		\includegraphics[width=2.5cm]{immagini/ordine_omega.png}
+	\end{wrapfigure}
+	Che è lo stesso ordinamento che abbiamo usato per dimostrare che $\aleph_0^2 = \aleph_0$.\\
+	\textcolor{MidnightBlue}{In pratica, per confrontare $(a,b)$ con $(a',b')$, si confrontano prima $\max(a,b)$ e $\max(a',b')$;
+	a parità si confrontano $a$ e $a'$; se anche queste coincidono, si confrontano $b$ e $b'$.}\\
+	Abbiamo già verificato, nella dimostrazione di $\aleph_0^2 = \aleph_0$, che $\prec$ è un buon ordine (con $\omega$ al posto di $\omega_\alpha$, ma le verifiche sono identiche).
+	Resta da verificare che vale proprio:
+	\[ X \Mydef (\omega_\alpha \times \omega_\alpha, \prec) \sim \omega_\alpha
+		\]
+	Sia $\beta$ l'ordinale corrispondente a $(\omega_\alpha \times \omega_\alpha, \prec)$. Dobbiamo mostrare, visto che siamo passati agli ordinali che $\beta = \omega_\alpha$. Siccome $|\omega_\alpha| \leq |\omega_\alpha \cdot \omega_\alpha| = |\beta|$ (dove la prima disuguaglianza è
+	un'ovvia mappa iniettiva, oppure semplicemente l'osservazione sulla compatibilità delle operazioni fra cardinalità con il loro ``ordinamento''), e $\omega_\alpha$ è iniziale, abbiamo, per quanto detto sugli ordinali iniziali, necessariamente che $|\omega_\alpha| \leq |\beta| \leftrightarrow \omega_\alpha \subseteq \beta \leftrightarrow \omega_\alpha \leq \beta$, resta quindi da dimostrare che 
+	$\omega_\alpha \not < \beta$, ossia che $\omega_\alpha$ non è isomorfo ad un segmento iniziale proprio di $X$, e dunque vale proprio l'uguaglianza.\\
+	Fissiamo un segmento iniziale proprio $X_{(a,b)}$ di $X$ e dimostriamo che $|X_{(a,b)}| < \aleph_\alpha$ -  quindi, necessariamente [viene impossibilitata la bigezione], $X_{(a,b)} \not \sim \omega_\alpha$, pertanto vale proprio, come ordinali, $\omega_\alpha \not < \beta$.\\
+	Sia $\mu := \max(a,b)$, siccome $\mu < \omega_\alpha$ [$a,b \in \omega_\alpha$ per costruzione] e $\omega_\alpha$ è un ordinale iniziale [infinito e limite], allora, essendo un ordinale limite, accade per forza che $s(\mu) < \omega_\alpha$ [non può esserci l'uguale perché $\omega_\alpha$ è iniziale e infinito, dunque limite], quindi $|s(\mu)| < \aleph_\alpha$.\\
+	Di conseguenza, o $|s(\mu)| = \aleph_\gamma$ per qualche $\gamma < \alpha$ [dunque la cardinalità è un aleph più piccolo di $\alpha$], oppure $s(\mu) \in \omega$ [ovvero $s(\mu)$ è un ordinale finito].
+	Nel primo caso $|s(\mu) \times s(\mu)| = \aleph_\gamma^2 \overset{\text{Hp. induttiva}}{=} \aleph_\gamma$ per ipotesi, nel secondo $|s(\mu) \times s(\mu)|$ è finito (proprio come accadeva nella dimostrazione di $\aleph_0$), dunque, in ogni caso $|s(\mu) \times s(\mu)| < \aleph_\alpha$.
+	Siccome [il segmento iniziale principale è contenuto nel prodotto dei due successorie degli elementi che lo determinano] $X_{(a,b)} \subseteq s(\mu) \times s(\mu)$, abbiamo allora che $|X_{(a,b)}| \leq |s(\mu) \times s(\mu)| \;\textcolor{red}{<}\; \aleph_\alpha$.\\
+ 	E questo conclude perché ora $\omega_\alpha$ non può essere isomorfo ad un segmento iniziale proprio di $X$, per questioni di cardinalità. \hfill $\square$
+
+\begin{exercise}
+	Dimostrare che $\forall \alpha \; \in \Ord$ [COMPLETARE]
+\end{exercise}
+
+
+\pagebreak
+\section{L'assioma della scelta}
+L'assioma della scelta è stato introdotto da \href{https://en.wikipedia.org/wiki/Ernst_Zermelo}{\textcolor{purple}{Ernst Zermelo}} nel 1904, per dimostrare che ogni insieme è ben ordinabile.
+Si potrebbe dubitare del valore di una dimostrazione ottenuta introducendo un assioma ad hoc, è tuttavia opportuno osservare che l'assioma della scelta è stato usato prima di Zermelo, ma senza accorgersene.
+Quindi Zermelo non ha tanto costruito un nuovo principio, quanto piuttosto riconosciuto la necessità di codificare un principio già applicato, ma in modo impreciso.
+Inoltre, gli assiomi che abbiamo introdotto fin'ora non permettono, per esempio, né di affermare né di negare la buona ordinabilità di $\RR$. Quindi, se si vuole dare una risposta al problema dell'esistenza di un buon ordine 
+di $\RR$, che sia positiva o negativa, questa deve per forza venire da un nuovo assioma. In questo senso, Zermelo dice che il teorema del buon ordinamento è ragionevole perché segue da una ipotesi - l'assioma della scelta - ragionevole.
+Anzi, così ragionevole che i matematici l'hanno usato senza neppure accorgersi che questo assioma è effettivamente un'ipotesi.
+
+\begin{axiom}[Assioma della scelta (AC)]
+	\label{ax9}
+	Dato un insieme $X$ di insiemi non vuoti, esiste una \vocab{funzione di scelta} $f : X \rightarrow \bigcup X$ tale che $\forall a \in X \; f(a) \in a$\footnote{Cioè la funzione manda ogni elemento $a$ di $X$ in un suo elemento.}.
+	In simboli:
+	\[ \forall X (\emptyset \not \in X) \rightarrow (\exists f \in {}^X\left(\bigcup X\right) \; \forall a \in X \; f(a) \in a)\footnote{Letteralmente le funzioni di scelta ``scelgono'' un elemento in cui mandare tutto l'insieme, preso a sua volta come elemento.}
+		\]
+\end{axiom}
+
+L'assioma della scelta è, di frequente, applicato per \vocab{fissare infiniti elementi}. Per esempio, dovendo costruire una successione $x_n$ che tende a $+\infty$, capita di ragionare dicendo
+\textcolor{MidnightBlue}{per ogni $n \in \NN$ fisso $x_n > n$ che abbia questa o quella proprietà che mi interessano.}\\
+Formalmente, in questo ragionamento, stiamo dicendo \textcolor{MidnightBlue}{considero}:
+\[ X = \{ ]n,+\infty] | n \in \NN\}
+	\]
+\textcolor{MidnightBlue}{e considero} $f : X \rightarrow \bigcup X \subseteq \RR$ \textcolor{MidnightBlue}{una funzione di scelta per $X$. Ora pongo $x_n = f(]n,+\infty])$}. Si pone quindi una domanda: perché non ci serve alcun assioma per fissare un elemento - come a dire \textcolor{MidnightBlue}{considero un
+numero $\varepsilon$ tale che etc.} - ma ci serve per fissarne infiniti?\\
+
+Il principio che, sapendo che ci sono oggetti che godono di una certa proprietà, ci permette di fissarne uno, è una legge logica.\\
+Questa legge, da un lato, è valida in ogni \vocab{teoria del primo ordine}, non solo nella teoria degli insiemi. D'altro canto, può essere vista come una mera scorciatoia nei ragionamenti, perché se da $\exists x \; \varphi(x)$ possiamo dedurre una $\psi$ che non menziona $x$,
+fissando un $x$ che soddisfa $\varphi(x)$, allora si può dimostrare che, a patto di presentare il ragionamento nella maniera opportuna, la conclusione $\psi$ può essere raggiunta senza bisogno di fissare $x$. In questo senso, la possibilità
+di fissare un oggetto - cioè dare un nome ad un oggetto - è una legge del pensiero: una caratteristica del modo in cui ragioniamo.\\
+Tecnicamente, questa legge è vendicata\footnote{Nel senso di rivendicata.} dal \vocab{teorema di completezza di Gödel}, che dice che la logica del primo ordine è quella giusta per catturare una nozione molto naturale di modello.\\
+L'assioma della scelta, d'altra parte, \textcolor{red}{si può vedere} come un modo per fissare elementi, ma \textcolor{red}{si concretizza} in un enunciato insiemistico, che asserisce l'esistenza di un certo insieme: la funzione di scelta.
+Non si tratta dunque di una caratteristica del nostro modo di ragionare - di una legge del pensiero - perché nulla ci obbliga a pensare in termini insiemistici, e, d'altro canto, nulla obbliga gli insiemi a fare quello che il nostro intuito ci dice dovrebbero fare.
+Insomma, questo è l'intoppo: che non sappiamo esprimere il concetto di \textcolor{MidnightBlue}{fissare infinite variabili} se non tramite l'espediente di \textcolor{MidnightBlue}{fissare una singola funzione di scelta}. Tuttavia, per fare questo dobbiamo asserire l'esistenza di un certo insieme, appunto la funzione di scelta,
+che, si può dimostrare, non segue dagli assiomi 1-8.\\
+Bando alle ciance.
+
+\begin{note}[Ogni funzione surgettiva ha inversa destra]
+	AC equivale all'affermazione che ogni funzione surgettiva ha un inversa destra, ossia:
+	\[ \forall f : X \rightarrow Y \; \text{surgettiva}\;\exists g : Y \rightarrow X \; f \circ g = \id_Y
+		\]
+\end{note}
+
+\begin{proof}
+	Dobbiamo verificare che l'enunciato nella nota sopra è un fatto equivalente all'assioma della scelta. Mostriamo prima che da scelta segue la proprietà richiesta e poi viceversa.
+	\begin{itemize}
+		\item[$\boxed{\Longrightarrow}$] Consideriamo:
+		\[ Z \Mydef \{A \in \ps(X) | \exists y \in Y \; \overbrace{\forall x \in X \; x \in A \leftrightarrow f(x) = y}^{A = f^{-1}(y)}\}
+			\]
+		cioè l'insieme di tutte le controimmagini degli elementi di $Y$, e ovviamente sono tutte sottoinsiemi di $X$.\\
+		Per la surgettività di $f$ gli elementi di $Z$ sono tutti non vuoti [ogni $y \in Y$ ha controimmagine non vuota], dunque per \hyperref[ax9]{AC} esiste $h : Z \rightarrow X$\footnote{$\bigcup Z  = X$ in quanto l'unione di tutti gli $A \in Z$ ricopre completamente $X$, infatti, tutti gli elementi di $X$ hanno
+		come immagine un elemento di $y$ e quindi sono tutti contenuti in una controimmagine, ovvero in un certo $A \in Z$.} funzione di scelta. Definiamo quindi $g(y) \Mydef h(f^{-1}(y))$ - più precisamente $g(y) = h(\{x \in X | f(x)  = y\})$.
+		Segue immediatamente da questa definizione che:
+		\[ f \circ g(y) = f(g(y)) = f(h(\{x \in X | f(x)  = y\}))
+			\]
+		ed essendo $h$ una funzione di scelta, si ha che $h(A) \in A$, dunque $h(f^{-1}(y)) \in f^{-1}(y)$, quindi fa un certo elemento nella controimmagine di $y$, fissato dalla nostra funzione di scelta $h$, e, indipendentemente da quale sia, torniamo indietro con $f$, dunque
+		viene proprio $y$:
+		\[ f(z) = y \qquad \text{con $z \in f^{-1}(y)$}
+			\]
+		\item[$\boxed{\Longleftarrow}$] Verifichiamo ora che da questo fatto derivi l'assioma della scelta. Sia $X$ un insieme di insiemi non vuoti, consideriamo l'insieme $X' = \{(a,A) \in \left(\bigcup X\right) \times X | a \in A \land A \in X\}$.
+		La funzione:
+		\[ f : X' \rightarrow X : (a,A) \mapsto A
+			\]
+		è surgettiva [verifica ovvia], quindi per ipotesi ha un'inversa destra $g : X \hookrightarrow X'$ che manda $A$ in una coppia $(a,A)$ per qualche $a \in A$\footnote{Tale che $f \circ g (A) = f((a,A)) = A$, per un $a \in A$, e $g$ \textcolor{red}{iniettiva} in quanto funzione inversa, dunque $g(A) = g(B) \implies A = B \land a = b$. Dunque 
+		la funzione $g$ \textbf{sta fissando un certo} $a \in A$ [fissato]\textbf{, senza scriverlo esplicitamente}, ma visto che l'assunto ci dice che è inversa, dunque iniettiva, $g$ deve necessariamente farlo, qui sta il fatto che genera la funzione di scelta $h$, il fissare una prima componente perché per ipotesi non può che essere così, sapere che è un
+		elemento di $A$, ma non sapere necessariamente chi sia.}. Ora quindi la funzione:
+		\[ h : X \rightarrow \bigcup X : A \mapsto \text{prima componente di $g(A)$}
+			\]
+		è una funzione di scelta per $X$, perché prendiamo la prima componente di $g(A)$, che sta in $A$, e questa è determinata da $g$ [quindi non so chi sia, ma è determinata dalla funzione inversa], cioè $h(A) \in A$.
+	\end{itemize}
+\end{proof}
+
+L'assioma della scelta forma, insieme ai due enunciati seguenti - il teorema del buon ordinamento ed il lemma di Zorn - una terna classica di proposizioni equivala, nel senso che gli assiomi 1-8, unitamente ad una qualunque delle tre proposizioni, implicano le altre due.
+
+\begin{theorem}[Teorema del buon ordinamento - o di Zermelo]
+	\label{buon_ordinamento}
+	Ogni insieme è ben ordinabile, ovvero:
+	\[ \forall S \; \exists < \in S \times S \; (S,<)\;\text{è un buon ordinamento}
+		\]
+\end{theorem}
+
+\begin{definition}[Sottocatena - maggiorante - massimale]
+	Dato $(S,<)$ un ordine parziale abbiamo che:
+	\begin{itemize}
+		\item una \vocab{sottocatena} è un $A \subseteq S$ tale che $(A,<_{|A})$, cioè $A$ con la restrizione dell'ordine di $S$ ad $A$, è un ordine totale
+		\item un \vocab{maggiorante} di $A \subseteq S$ è un $x \in S$ tale che $\forall y \in A \; y \leq x$
+		\item $x \in S$ è un elemento \vocab{massimale} se $\neg \exists y \in S \; x < y$.
+	\end{itemize}
+\end{definition}
+
+\begin{lemma}[Lemma di Zorn]
+	\label{Zorn}
+	Ogni insieme parzialmente ordinato, in cui ogni sottocatena ammette un maggiorante ha elementi massimali.
+\end{lemma}
+
+\begin{theorem}[AC $\iff$ buon ordinamento $\iff$ Zorn]
+	Le tre affermazioni \hyperref[ax9]{assioma della scelta}, \hyperref[buon_ordinamento]{teorema del buon ordinamento} e \hyperref[Zorn]{lemma di Zorn} sono equivalenti -
+	ossia si implicano vicendevolmente assumendo gli assiomi 1-8.
+\end{theorem}
+
+\subsection{\texorpdfstring{Buon ordinamento $\rightarrow$ AC}{Buon ordinamento implica AC}}
+
+\begin{proof}
+	(Buon ordinamento $\rightarrow$ AC)\\
+	Dato $S$ insieme di insiemi non vuoti, fissiamo, per il \hyperref[buon_ordinamento]{teorema del buon ordinamento}, un buon ordine $\prec$ su $\bigcup S$. Allora la funzione:
+	\[ f : S \rightarrow \bigcup S : x \mapsto \min_{\prec}(x)
+		\]
+	è una funzione di scelta per $S$ [perché naturalmente $\min_\prec (x) \in x$, e il fatto che per Zermelo sappiamo che $\prec$ è un buon ordinamento su $S$, ma non sappiamo esplicitamente cosa faccia, ci dice che, tale funzione fissa il minimo, ma non sappiamo necessariamente chi sia, perché non 
+	conosciamo esplicitamente $\prec$, da cui la funzione di scelta].
+\end{proof}
+
+\subsection{\texorpdfstring{AC $\rightarrow$ buon ordinamento (idea)}{AC implica buon ordinamento (idea)}}
 
 \pagebreak
 \appendix
