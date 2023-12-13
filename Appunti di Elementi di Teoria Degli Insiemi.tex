@@ -51,7 +51,7 @@
 Queste dispense sono la quasi esatta trascrizione in \LaTeX\,delle dispense del corso di Elementi di teoria degli insiemi, tenuto dal prof. Marcello Mamino nell'anno accademico 2022-23 presso l'Università di Pisa.
 
 \section*{Ringraziamenti}
-Francesco Sorce, Rubens Martino, Lorenzo Picinelli.
+Francesco Sorce, Rubens Martino, Lorenzo Picinelli, Andrea Snaidero.
 
 \mbox{}
 \vfill
@@ -494,7 +494,7 @@ la potenza espressiva del linguaggio. Vediamo le prime abbreviazioni:
 \[ x \ne y \Mydef \neg x = y \footnote{Cioè ``non è vero che $x$ è uguale a $y$''.} \qquad x \not\in y \Mydef \neg x \in y \qquad \not\exists x \,\Phi \Mydef \neg \exists x \, \Phi
 	\]\[ \Phi \rightarrow \psi \Mydef \psi \lor \neg \Phi \qquad \Phi \leftrightarrow \psi \Mydef (\Phi \rightarrow \psi) \land (\psi \rightarrow \Phi)
 		\]\[ \exists x \in y \; \Phi \Mydef \exists x (x \in y \land \Phi) \qquad \forall x \in A \; \Phi \Mydef \forall x (x \in A \rightarrow \Phi)
-			\]\[ \exists !\, x\, \Phi(x) \Mydef \exists x (\Phi(x) \land \forall y(\Phi(y) \rightarrow y = a))
+			\]\[ \exists !\, x\, \Phi(x) \Mydef \exists x (\Phi(x) \land \forall y(\Phi(y) \rightarrow y = x))
 				\]\[ \exists !\, x \in A \,\Phi(x) \Mydef \exists! \, x(x \in A \land \Phi(x))
 					\]\[ A \subseteq B \Mydef \forall x (x \in A \rightarrow x \in B) \qquad A \subsetneq B \Mydef( A \subseteq B) \land (A \ne B)
 						\]\[ C = A \cup B \Mydef \forall x \, x \in C \leftrightarrow (x \in A \lor x \in B)
@@ -2416,7 +2416,8 @@ Se adesso volessimo dimostrare il viceversa: [che formulato in versione controno
 stabilisce una corrispondenza biunivoca fra $\omega$ e $\omega \setminus\{0\} \subsetneq \omega$ (quindi non è Dedekind-finito, e per la contronominale del \hyperref[cassetti]{principio dei cassetti} non è finito). Ne segue la seguente osservazione.
 
 \begin{remark}
-	Se esiste $f : \omega \rightarrow A$ iniettiva, allora $A$ non è Dedekind-finito.
+	\label{omega_Dedekind_finito}
+	Se esiste $f : \omega \rightarrow A$ iniettiva, allora $A$ non è Dedekind-finito.\footnote{E quindi in automatico non è finito.}
 \end{remark}
 
 \begin{proof}
@@ -5607,19 +5608,20 @@ Anzi, così ragionevole che i matematici l'hanno usato senza neppure accorgersi 
 L'assioma della scelta è, di frequente, applicato per \vocab{fissare infiniti elementi}. Per esempio, dovendo costruire una successione $x_n$ che tende a $+\infty$, capita di ragionare dicendo
 \textcolor{MidnightBlue}{per ogni $n \in \NN$ fisso $x_n > n$ che abbia questa o quella proprietà che mi interessano.}\\
 Formalmente, in questo ragionamento, stiamo dicendo \textcolor{MidnightBlue}{considero}:
-\[ X = \{ ]n,+\infty] | n \in \NN\}
+\[ X = \{ \rbrack n,+\infty\rbrack | n \in \NN\}
 	\]
 \textcolor{MidnightBlue}{e considero} $f : X \rightarrow \bigcup X \subseteq \RR$ \textcolor{MidnightBlue}{una funzione di scelta per $X$. Ora pongo $x_n = f(]n,+\infty])$}. Si pone quindi una domanda: perché non ci serve alcun assioma per fissare un elemento - come a dire \textcolor{MidnightBlue}{considero un
 numero $\varepsilon$ tale che etc.} - ma ci serve per fissarne infiniti?\\
 
 Il principio che, sapendo che ci sono oggetti che godono di una certa proprietà, ci permette di fissarne uno, è una legge logica.\\
 Questa legge, da un lato, è valida in ogni \vocab{teoria del primo ordine}, non solo nella teoria degli insiemi. D'altro canto, può essere vista come una mera scorciatoia nei ragionamenti, perché se da $\exists x \; \varphi(x)$ possiamo dedurre una $\psi$ che non menziona $x$,
-fissando un $x$ che soddisfa $\varphi(x)$, allora si può dimostrare che, a patto di presentare il ragionamento nella maniera opportuna, la conclusione $\psi$ può essere raggiunta senza bisogno di fissare $x$. In questo senso, la possibilità
+fissando un $x$ che soddisfa $\varphi(x)$, allora si può dimostrare che, a patto di presentare il ragionamento nella maniera opportuna, la conclusione $\psi$ può essere raggiunta senza bisogno di fissare $x$\footnote{Cioè se fissando $x$ il predicato diventa una proposizione vera, con cui continuare il ragionamento, si dimostra che si può arrivare a $\psi$ anche senza 
+bisogno di fissare $x$, in questo senso è come se l'azione di ``fissare'' un elemento fosse un'azione vuota, nel senso che il ragionamento formalmente può essere portato avanti anche senza richiederla, ma noi lo facciamo perché ci è comodo ragionare così, ma si può equivalentemente procedere senza effettivamente farlo.}. In questo senso, la possibilità
 di fissare un oggetto - cioè dare un nome ad un oggetto - è una legge del pensiero: una caratteristica del modo in cui ragioniamo.\\
-Tecnicamente, questa legge è vendicata\footnote{Nel senso di rivendicata.} dal \vocab{teorema di completezza di Gödel}, che dice che la logica del primo ordine è quella giusta per catturare una nozione molto naturale di modello.\\
+Tecnicamente, questa legge è vendicata\footnote{Nel senso di rivendicata.} dal \vocab{teorema di completezza di Gödel}, che dice che la logica del primo ordine è quella giusta per catturare una nozione molto naturale di \vocab{modello}.\\
 L'assioma della scelta, d'altra parte, \textcolor{red}{si può vedere} come un modo per fissare elementi, ma \textcolor{red}{si concretizza} in un enunciato insiemistico, che asserisce l'esistenza di un certo insieme: la funzione di scelta.
 Non si tratta dunque di una caratteristica del nostro modo di ragionare - di una legge del pensiero - perché nulla ci obbliga a pensare in termini insiemistici, e, d'altro canto, nulla obbliga gli insiemi a fare quello che il nostro intuito ci dice dovrebbero fare.
-Insomma, questo è l'intoppo: che non sappiamo esprimere il concetto di \textcolor{MidnightBlue}{fissare infinite variabili} se non tramite l'espediente di \textcolor{MidnightBlue}{fissare una singola funzione di scelta}. Tuttavia, per fare questo dobbiamo asserire l'esistenza di un certo insieme, appunto la funzione di scelta,
+Insomma, questo è l'intoppo: che non sappiamo esprimere il concetto di \textcolor{MidnightBlue}{fissare infinite variabili} se non tramite l'espediente di \textcolor{MidnightBlue}{fissare una singola funzione di scelta}\footnote{Che fissi in un solo colpo tutti gli infiniti elementi.}. Tuttavia, per fare questo dobbiamo asserire l'esistenza di un certo insieme, appunto la funzione di scelta,
 che, si può dimostrare, non segue dagli assiomi 1-8.\\
 Bando alle ciance.
 
@@ -5637,7 +5639,7 @@ Bando alle ciance.
 			\]
 		cioè l'insieme di tutte le controimmagini degli elementi di $Y$, e ovviamente sono tutte sottoinsiemi di $X$.\\
 		Per la surgettività di $f$ gli elementi di $Z$ sono tutti non vuoti [ogni $y \in Y$ ha controimmagine non vuota], dunque per \hyperref[ax9]{AC} esiste $h : Z \rightarrow X$\footnote{$\bigcup Z  = X$ in quanto l'unione di tutti gli $A \in Z$ ricopre completamente $X$, infatti, tutti gli elementi di $X$ hanno
-		come immagine un elemento di $y$ e quindi sono tutti contenuti in una controimmagine, ovvero in un certo $A \in Z$.} funzione di scelta. Definiamo quindi $g(y) \Mydef h(f^{-1}(y))$ - più precisamente $g(y) = h(\{x \in X | f(x)  = y\})$.
+		come immagine un elemento di $y$ e quindi sono tutti contenuti in una controimmagine, ovvero in un certo $A \in Z$.} funzione di scelta. Definiamo quindi $g(y) \Mydef h(f^{-1}(y))$ - più precisamente $g(y) = h(\{x \in X | f(x)  = y\})$\footnote{Cioè stiamo semplicemente prendendo le controimmagini, e fissando un elemento in ciascuna usando AC, da qui la controimmagine diventa inversa.}.
 		Segue immediatamente da questa definizione che:
 		\[ f \circ g(y) = f(g(y)) = f(h(\{x \in X | f(x)  = y\}))
 			\]
@@ -5649,9 +5651,9 @@ Bando alle ciance.
 		La funzione:
 		\[ f : X' \rightarrow X : (a,A) \mapsto A
 			\]
-		è surgettiva [verifica ovvia], quindi per ipotesi ha un'inversa destra $g : X \hookrightarrow X'$ che manda $A$ in una coppia $(a,A)$ per qualche $a \in A$\footnote{Tale che $f \circ g (A) = f((a,A)) = A$, per un $a \in A$, e $g$ \textcolor{red}{iniettiva} in quanto funzione inversa, dunque $g(A) = g(B) \implies A = B \land a = b$. Dunque 
-		la funzione $g$ \textbf{sta fissando un certo} $a \in A$ [fissato]\textbf{, senza scriverlo esplicitamente}, ma visto che l'assunto ci dice che è inversa, dunque iniettiva, $g$ deve necessariamente farlo, qui sta il fatto che genera la funzione di scelta $h$, il fissare una prima componente perché per ipotesi non può che essere così, sapere che è un
-		elemento di $A$, ma non sapere necessariamente chi sia.}. Ora quindi la funzione:
+		è surgettiva [verifica ovvia], quindi per ipotesi ha un'inversa destra $g : X \hookrightarrow X'$ che manda $A$ in una coppia $(a,A)$ per qualche $a \in A$\footnote{Tale che $f \circ g (A) = f((a,A)) = A$, per un $a \in A$, e $g$ iniettiva in quanto funzione inversa, per cui $g(A) = g(B) \implies A = B \land a = b$. Dunque 
+		la funzione [in quanto tale, l'iniettività non serve per questo] $g$ \textbf{sta fissando un certo} $a \in A$\textbf{, senza scriverlo esplicitamente} [cioè sta fissando la seconda componente della seconda componente della coppia $(A,(A,a')) \in g$], qui sta il fatto che genera la funzione di scelta $h$, il fissare la
+		prima componente di $(a,A)$ perché per definizione di $g$, non può che essere così, sappiamo che deve essere un elemento di $A$, ma non sappiamo necessariamente chi sia.}. Ora quindi la funzione:
 		\[ h : X \rightarrow \bigcup X : A \mapsto \text{prima componente di $g(A)$}
 			\]
 		è una funzione di scelta per $X$, perché prendiamo la prima componente di $g(A)$, che sta in $A$, e questa è determinata da $g$ [quindi non so chi sia, ma è determinata dalla funzione inversa], cioè $h(A) \in A$.
@@ -5698,6 +5700,575 @@ L'assioma della scelta forma, insieme ai due enunciati seguenti - il teorema del
 \end{proof}
 
 \subsection{\texorpdfstring{AC $\rightarrow$ buon ordinamento (idea)}{AC implica buon ordinamento (idea)}}
+\textcolor{MidnightBlue}{Dimostreremo questo risultato tramite la catena di deduzioni AC $\rightarrow$ Zorn $\rightarrow$ buon ordinamento. Tuttavia conviene studiare l'idea di una dimostrazione diretta.}
+
+\begin{proof}
+	(AC $\rightarrow$ buon ordinamento (idea))\\
+	Fissiamo un insieme $X$, per \hyperref[ax9]{AC}, esiste una funzione di scelta:
+	\[ f : \ps(X) \setminus\{\emptyset\} \rightarrow \bigcup \ps(X) = X : A \mapsto f(A) \in A
+		\]
+	Ora vorremmo mettere in ordine gli elementi di $X$ così [$X \in \ps(X)$, per cui possiamo applicargli $f$]:
+	\[ x_0 = f(X) \qquad x_1 = f(X \setminus \{x_0\}) \qquad x_2 = f(X \setminus \{x_0,x_1\}) \qquad\ldots
+		\]
+	ogni volta scegliendo un elemento nuovo fra quelli che rimangono ancora da elencare. Chiaramente non è detto che questo procedimento termini
+	in una quantità numerabile di passi, per cui dovremmo definire $x_\omega = f(X\setminus\{x_0,x_1,x_2,\ldots\})$ e, più in generale, [dovremmo definire] per ricorsione transfinita:
+	\[ F(\alpha) = f(X \setminus\{x_\beta | \beta < \alpha\})
+		\]
+	o semplicemente $F(\alpha) = f(X \setminus F[\alpha])$, definita per ricorsione transfinita. Questa cosa non può funzionare per tutti gli ordinali, cioè $F$ non è ben definita, perché da un certo punto in poi $F[\alpha] = X$, infatti, se per assurdo non fosse così [cioè che $X$ non sia l'immagine di un ordinale],
+	staremmo immergendo $\Ord$ in $X$, perché a questo punto possiamo reiterare la ricorsione per tutti gli ordinali ed ottenere sempre elementi diversi con scelta, che è assurdo, banalmente perché ad esempio $H(X) \in \Ord$ non si può immergere in $X$ [o anche per Burali-Forti]. Dunque definiamo:
+	\[ F(\alpha) = \begin{cases}
+		f(X \setminus\{x_\beta | \beta < \alpha\}) &\text{se $F[\alpha] \subsetneq X$} \\
+		\spadesuit &\text{altrimenti}
+	\end{cases}
+		\] 
+	che ora è ben definita. Di nuovo, per il teorema di Hartogs da un certo punto in poi $F(\alpha) = \spadesuit$ necessariamente [altrimenti si ottiene l'immersione assurda], ed a questo punto prendendo $\alpha := \min \{\beta \in \Ord | F(\beta) = \spadesuit\}$, tale ordinale si mappa iniettivamente in $X$, e quindi abbiamo che $X$
+	è proprio isomorfo ad un ordinale, e dunque è ben ordinato.
+\end{proof}
+
+\subsection{\texorpdfstring{Zorn $\rightarrow$ buon ordinamento}{Zorn implica buon ordinamento}}
+
+\begin{proof}
+	(Zorn $\rightarrow$ buon ordinamento)\\
+	Vogliamo dimostrare che un insieme $S$ è ben ordinabile. Consideriamo:
+	\[ \begin{split}
+		T &= \{\text{funzioni iniettive da un ordinale a $S$}\} \\
+		  &= \{f \in \ps(H(S) \times S) | \; \text{$f$ è una funzione iniettiva e $\Dom(f) \in \Ord$}\}
+	\end{split}
+		\]
+	ovvero $T$ è il sottoinsieme delle funzioni iniettive da $H(S)$ [che è l'ordinale più piccolo che non si inietta, ma tutti quelli più piccoli, ovvero i suoi elementi, che sono nel dominio della funzione, lo fanno] a $S$.
+	$T$ è parzialmente ordinato dalla relazione $f < g \Mydef f \subseteq g$. E questo ordine parziale soddisfa il \hyperref[Zorn]{lemma di Zorn}.
+	Dando per buona la verifica, esiste un elemento $f \in T$ massimale per $T$ appunto [ovvero $\neg \exists h \in T \; f <_T h$]. Se $f$ non fosse surgettiva, esisterebbe $y \in S \setminus \Imm(f)$,
+	per cui $f' := f \cup \{(\Dom(f),y)\} \hspace{0.2cm}{}_{T}> f$ [perché $f'$ sarebbe una funzione iniettiva in $T$] contro la massimalità di $f$.\\
+	Pertanto la $f$ massimale di $T$ è una bigezione tra un ordinale [più piccolo di $H(S)$] ed $S$, quindi $S$ è isomorfo ad un ordinale, ovvero è ben ordinato.\\
+	\underline{\textbf{Verifica delle ipotesi del del lemma di Zorn}} Se $P \subseteq T$ è una sottocatena, $f = \bigcup P$ è un maggiorante di $P$ [quindi è una funzione iniettiva, da un ordinale a $S$, più grande di tutti gli elementi di $P$]. Per controllare che $f$ sia una funziona basta, infatti, osservare che date $g_1,g_2 \in P$, con $g_1 < g_2$ [essendo una catena tutti gli elementi sono confrontabili, quindi per tutti vale la seguente osservazione]:
+	\[ \forall x \in \Dom(g_1) \cap \Dom(g_2) \qquad g_1(x) = g_2(x)
+		\]
+	cioè si contengono, quindi sui pezzi comuni del dominio sono uguali (come accadeva ad esempio nell'isomorfismo di Cantor), dunque l'unione $f$ è una funzione. Inoltre è iniettiva, perché se $f(x) = f(y)$ allora esistono $g_1,g_2 \in P$ tali che $g_1(x) = g_2(y)$ [non possono essere la stessa perché singolarmente sono iniettive], però, siccome $P$ è una sottocatena, 
+	$g_1$ e $g_2$ sono confrontabili, dunque una è più piccola dell'altra. Prendendo WLOG $g_1 \leq g_2$, si ottiene che $g_2(x) \overset{g_1 \subseteq g_2}{=} g_1(x) \overset{\text{costruzione}}{=} g_2(y)$, ma $g_2$ è iniettiva, quindi $x = y$.\\
+	Infine, si osserva che il dominio di $f$ è un ordinale, e quindi $f \in T$ [per ora sappiamo solo che è una funzione iniettiva], in quanto, per definizione di unione di funzioni:
+	\[ \Dom(f) = \bigcup\{\Dom(g) | g \in P\} = \sup\{\Dom(g) | g \in P\}
+		\]
+	(è il sup perché stiamo unendo un insieme di insiemi di ordinali, quindi l'unione è a sua volta un insieme di ordinali e dalla teoria sugli ordinali sappiamo che l'unione di un insieme di ordinali è proprio il sup, e tale sup è a sua volta un ordinale). Infine, $f$ è un maggiorante di $P$ perché, per costruzione, se $g \in P \implies g \subseteq \bigcup P \implies g \subseteq f$, e quindi, per l'ordine dato su $T$, $g \leq_T f$.
+\end{proof}
+
+\subsection{\texorpdfstring{AC $\rightarrow$ Zorn}{AC implica Zorn}}
+
+\begin{proof}
+	(AC $\rightarrow$ Zorn)\\
+\end{proof}
+
+\subsection{Conseguenze immediate di AC}
+
+\begin{proposition}[Tutti le cardinalità infinite sono aleph]
+	Ogni insieme è equipotente ad un ordinale iniziale. In particolare, ogni cardinalità infinita è un aleph.
+\end{proposition}
+
+\begin{proof}
+	Per il \hyperref[buon_ordinamento]{teorema del buon ordinamento} ogni insieme è bene ordinabile, quindi, per le proprietà
+	degli ordinali iniziali, ogni insieme è isomorfo ad un ordinale iniziale (in particolare questo lo sapevamo già nel caso degli insiemi finiti).
+	La seconda affermazione segue dal fatto che, avendo detto che tutti gli insiemi possono essere ben ordinati e messi in corrispondenza con gli
+	ordinali iniziali delle relative cardinalità, nel caso delle cardinalità infinite, sappiamo che tutti e solo gli ordinali iniziali sono gli $\omega_\alpha$,
+	di conseguenza tutte le cardinalità infinite sono degli aleph.
+\end{proof}
+
+\begin{remark}[Tutti gli insiemi sono isomrofi ad un ordinale $\implies$ AC]
+	Viceversa, assumere che ogni insieme è equipotente ad un ordinale implica AC.
+\end{remark}
+
+\begin{proof}
+	Dal fatto che ogni $X$ è equipotente ad un ordinale deduciamo il teorema del buon ordinamento. Se $|X| = |\alpha|$, con $\alpha \in \Ord$, c'è una bigezione tra $X$ ed $\alpha$, e tale bigezione induce un buon ordinamento su $X$.
+\end{proof}
+
+\begin{corollary}[L'ordine fra le cardinalità è totale]
+	Tutte le cardinalità sono confrontabili, ovvero:
+	\[ \forall X,Y \; |X| < |Y| \lor |X| = |Y| \lor |Y| < |X|
+		\]
+\end{corollary}
+
+\begin{proof}
+	Tutte le cardinalità finite sono ordinali [lo abbiamo visto quando abbiamo dimostrato che ogni insieme finito è isomorfo alla sua cardinalità], ed ora sappiamo che anche tutte le cardinalità infinite lo sono [per la proposizione di sopra], pertanto, visto che tutte le cardinalità degli ordinali sono confrontabili, lo saranno tutte le cardinalità.
+\end{proof}
+
+\begin{remark}[Cardinalità confrontabili $\implies$ AC]
+	La confrontabilità delle cardinalità implica \hyperref[ax9]{AC}.
+\end{remark}
+
+\begin{proof}
+	Dimostriamo che il \hyperref[buon_ordinamento]{teorema del buon ordinamento} segue dall'ipotesi che tutte le cardinalità siano confrontabili. Consideriamo il confronto fra $|X|$ e $|H(X)|$.
+	Per la definizione di $H(X)$ non può valere $|H(X)| \leq |X|$, quindi per ipotesi di confrontabilità totale, deve necessariamente valere che $|X| < |H(X)|$, ovvero esiste $f : H \hookrightarrow H(X) \in \Ord$ iniettiva, ovvero $X$ è isomorfo a un ordinale contenuto in $H(X)$ e dunque è bene ordinato.
+\end{proof}
+
+\begin{corollary}[AC $\implies |X \times X| = |X|$]
+	Per ogni insieme $X$ infinito, vale che $|X \times X| = |X|$.
+\end{corollary}
+
+\begin{proof}
+	Per quanto visto, tutte le cardinalità infine sono aleph, dunque vale:
+	\[ |X \times X| = |\omega_\alpha \times \omega_\alpha| = |\omega_\alpha| = |X|
+		\]
+	dove la prima uguaglianza segue perché abbiamo preso $|X| = |\omega_\alpha|$, con $\omega_\alpha$ l'ordinale iniziale della cardinalità di $X$ (sono isomorfi per
+	l'osservazione fatta sopra, sul fatto che tutte le cardinalità sono aleph perché tutti gli insiemi sono ben ordinabili), mentre la seconda vale perché avevamo già dimostrato che $\aleph_\alpha \cdot \aleph_\alpha = \aleph_\alpha$.
+\end{proof}
+
+\begin{note}[Teorema di Tarski]
+	Anche $|X \times X| = |X| \implies$ AC. Questo però è il teorema di Tarski che vedremo più avanti.
+\end{note}
+
+
+\begin{corollary}[$X$ infinito $\longleftrightarrow \aleph_0\leq |X|$]
+	Ogni insieme infinito ha un sottoinsieme numerabile cioè:
+	\[ \forall X \; \text{$X$ infinito $\longleftrightarrow \aleph_0 \leq |X|$}
+		\]
+\end{corollary}
+
+\begin{proof}
+	Abbiamo già dimostrato $\leftarrow$ [per l'\hyperref[omega_Dedekind_finito]{osservazione 6.5}, $X$ non è Dedekind-finito, ma, essendo che finito $\implies$ Dedekind-finito,
+	la contronominale ci dice che $X$ non è finito], mentre la freccia $\rightarrow$ opposta segue dal fatto che, $X$ infinito implica $|X| = |\omega_\alpha|$, per quanto visto,
+	ma per la definizione ricorsiva della funziona aleph, $\omega = \omega_0 \leq \omega_\alpha$, $\forall \alpha \in \Ord$, dunque, al livello di cardinalità:
+	\[ |X| = |\omega_\alpha| \geq |\omega| = \aleph_0
+		\]
+\end{proof}
+
+Ricordiamo che un insieme si dice \vocab{Dedekind-finito} (o \vocab{finito secondo Dedekind}) se non può essere messo in corrispondenza biunivoca con un suo sottoinsieme proprio.
+
+\begin{proposition}[Insieme finito $\iff$ Dedekind-finito]
+	Osserviamo che vale che $X$ finito $\longleftrightarrow X$ è Dedekind-finito.
+\end{proposition}
+
+\begin{proof}
+	Vediamo le due frecce.
+	\begin{itemize}
+		\item[$\boxed{\longrightarrow}$] Già visto in precedenza, è il \hyperref[cassetti]{principio dei cassetti}.
+		\item[$\boxed{\longleftarrow}$] Supponiamo che $X$ non sia finito, dunque è infinito e per quanto detto la sua cardinalità è necessariamente un aleph, $|X| = \aleph_\alpha$, per qualche $\alpha \in \Ord$,
+		dunque esiste una bigezione $f : \omega_\alpha \rightarrow X$. Consideriamo la funzione:
+		\[ g : X \rightarrow X \setminus \{f(0)\} : x \mapsto f \circ s \circ f^{-1}(x)
+			\]
+		(dove $s$ è il successore) questa è una bigezione tra $X$ e $X \setminus \{f(0)\} \subsetneq X$, che viola l'ipotesi di Dedekind-finitezza.\footnote{È identica alla dimostrazione fatta nella sezione dedicata alle cardinalità finite (anche in quel caso serviva AC), solo che stiamo usando $\omega_\alpha$ al posto di $\omega$.}
+	\end{itemize}
+\end{proof}
+
+\begin{proposition}[Surgettività $\iff$ disuguaglianza tra cardinalità]
+	Vale che:
+	\[ 0 < |X| \leq |Y| \longleftrightarrow \exists f : Y \twoheadrightarrow X \; \text{surgettiva}
+		\]
+\end{proposition}
+
+\begin{proof}
+	Vediamo le due implicazioni.
+	\begin{itemize}
+		\item[$\boxed{\longrightarrow}$] Per ipotesi esiste $g : X \hookrightarrow Y$ iniettiva, preso $a \in X$, possiamo definire:
+		\[ f : Y \rightarrow X : y \mapsto \begin{cases}
+			g^{-1}(y) &\text{se $y \in g[X]$}\footnote{Typo di mamino, deve essere $g$ non $f$.} \\
+			a &\text{altrimenti}
+		\end{cases}
+			\]
+		e tale funzione è surgettiva, in quanto per ogni $x \in X$ abbiamo definito $g(x) = y$, e quindi $f[\Imm(g)] = g^{-1}[\Imm(g)] = X$ (essendo $g$ iniettiva l'inversa è una funzione ben definita su $\Imm(g)$\footnote{In particolare si ha che $g^{-1} : \Imm(g) \rightarrow X$ è proprio una bigezione.}),
+		quindi in arrivo abbiamo sempre almeno $X$ [ed in particolare esattamente $X$ per la definizione di $f$].\footnote{Notare che non abbiamo usato scelta per questa implicazione, dunque è vero anche senza che la disuguaglianza tra cardinalità
+		ci procura una funzione surgettiva, con lo stesso procedimento visto nella dimostrazione.}
+		\item[$\boxed{\longleftarrow}$] Data $f : Y \twoheadrightarrow X$ surgettiva, abbiamo visto che è un fatto equivalente ad \hyperref[ax9]{AC} dire che esiste un'inversa destra, $f : X \rightarrow Y$,
+		che è iniettiva, per definizione di inversa da $\Imm(f) = X$ a $Y$, e quindi ci dà proprio che $|X| \leq |Y|$.
+	\end{itemize}
+\end{proof}
+
+\begin{proposition}[Unione di al più $\aleph_\alpha$ insiemi al più $\aleph_\alpha$]
+	Se $S$ è un insieme, di cardinalità al più $\aleph_\alpha$, di insiemi, di cardinalità al più $\aleph_\alpha$, allora l'unione di $S$ è a sua volta un insieme di cardinalità al più $\aleph_\alpha$, in simboli:
+	\[ |S| \leq \aleph_\alpha \; \forall A \in S \; |A| \leq \aleph_\alpha \rightarrow \left\lvert \bigcup S \right\rvert \leq \aleph_\alpha 
+		\]
+\end{proposition}
+
+\begin{proof}
+	Possiamo assumere $\emptyset \not \in S \ne \emptyset$. È sufficiente esibire una funzione surgettiva:
+	\[ f : \omega_\alpha \times \omega_\alpha \twoheadrightarrow \bigcup S
+		\]
+	sia $g : \omega_\alpha \rightarrow S$ surgettiva [che esiste per ipotesi], ed è la funzione che enumera $S$ [manda un elemento di $\omega_\alpha$ in uno di $S$, ovvero un insieme di cardinalità al più $\aleph_\alpha$].
+	Sempre per ipotesi per ogni $A \in S$ l'insieme $H_A \Mydef \{h : \omega_\alpha \twoheadrightarrow A | \, \text{$h$ surgettiva}\}$
+	è non vuoto [stiamo considerando un insieme di insiemi tutti al più $\aleph_\alpha$, dunque vi è un'enumerazione data da $\omega_\alpha$, per ogni $A \in S$, dunque $H_A$ non è vuoto per nessun $A$ per ipotesi].
+	Sia $\iota$ una funzione di scelta per l'insieme $\{H_A | A \in S\}$, cioè $\iota : \{H_A | A \in S\} \rightarrow \bigcup \{H_A | A \in S\} = \{h : \omega_\alpha \twoheadrightarrow A | A \in S\} \footnote{Quesa notazione è
+	abusiva perché non stiamo scrivedno davvero un insieme per separazione, ma è giusto per rendere l'idea.} : H_A \mapsto \iota(H_A) \in H_A$\footnote{Cioè $\iota(H_A) : \omega_\alpha \twoheadrightarrow A$.}, cioè mappa ogni insieme di enumerazioni [da $\omega_\alpha$] di un insieme [fissato] $A \in S$,
+	in un'enumerazione di $A$ dentro l'insieme [$H_A$] stesso.
+	Possiamo quindi definire:
+	\[ f : \omega_\alpha \times \omega_\alpha \rightarrow \bigcup S : (x,y) \mapsto (\iota(H_{g(x)}))(y)
+		\]
+	cioè, la funzione che tramite $x$ ottiene un insieme di enumerazioni [sempre da $\omega_\alpha$] $H_{g(x)}$ di un elemento $g(x) \in S$, poi tramite la funzione di scelta $\iota$ ne fissa una al suo interno (cioè prende un'enumerazione $\omega_\alpha \twoheadrightarrow g(x)$), e la applica ad $y \in \omega_\alpha$ (è ben definita),
+	che quindi restituisce un elemento di $g(x) \in S$, ovvero un elemento dell'unione.\\
+	Tale funzione è surgettiva, infatti, preso $z \in \bigcup S$ per definizione esiste $A \in S$ tale che $z \in A$, quindi esiste $x \in \omega_\alpha$ tale che $z \in g(x) = A$ [$g$ è un'enumerazione di $S$ tramite $\omega_\alpha$].
+	Inoltre, siccome $z \in g(x) = A$, ed $A$ è enumerato [usiamo scelta per procurarci un'enumerazione nell'insieme $H_A = H_{g(x)}$] da $h \in H_A$, con $h = \iota(H_A) = \iota(H_{g(x)})$ enumerazione di $A$, allora esiste $y$ [per surgettività di $h \in {}^{\omega_\alpha}A$] tale che $z = h(y)$,
+	dunque abbiamo trovato $(x,y) \in \omega_\alpha \times \omega_\alpha$ tali che $f(x,y) = (\iota(H_{g(x)}))(y) = z$.
+\end{proof}
+
+\begin{corollary}[Unione al più numerabile di insiemi al più numerabili]
+	Un'unione numerabile (o anche al più numerabile) di insiemi numerabili (al più numerabile) è numerabile (al più numerabile).
+\end{corollary}
+
+\begin{remark}[Parti di cardinalità al più $n$]
+	Sia $\ps^{\leq n}(X) \Mydef \{A \in \ps(X) : |A| \leq n\}$, se $X$ è infinito e $0 < n < \omega$, allora $|\ps^{\leq n}(X)| = |X|$.
+\end{remark}
+
+\begin{proof}
+	La disuguaglianza $|X| \leq |\ps^{\leq n}(X)|$ si ottiene con la mappa $X \hookrightarrow \ps^{\leq n}(X) : x \mapsto \{x\}$ [iniettiva]. Per dimostrare la disuguaglianza opposta, osserviamo che poiché $X$ è infinito,
+	allora [è equipotente ad un ordinale iniziale] $|X| = \aleph_\alpha$, allora, $|{}^n X| = |X|^{|n|} = \aleph_\alpha^n = \aleph_\alpha$ (l'ultima uguaglianza è la proprietà vista sul prodotto degli aleph)\footnote{Osserviamo inoltre che, come
+	già detto, la definizione di funzioni ${}^n X$ è compatibile con l'immaginare la funzione come una $n$-upla e quindi identificare [in modo esatto con una bigezione tra gli insiemi] ${}^n X$ con $\underbrace{X \times \ldots \times X}_{\text{n volte}}$, e, usando l'identificazione e 
+	vedendo la cosa dal punto di vista del prodotto, $|{}^n X| = |\underbrace{X \times \ldots \times X}_{\text{n volte}}| = \underbrace{|X| \times \ldots \times |X|}_{\text{n volte}}$, ottenendo di conseguenza $\aleph_\alpha^n$, cioè lo stesso risultato ottenuto pensando la cosa in termini di funzioni anziché di prodotto, ciò sottolinea ancora una volta la compatibilità
+	delle definizioni date, con l'idea che le potenze siano prodotti iterati. Il ragionamento inoltre rimane corretto ed esatto anche sostituendo ad $n$ un ordinale $\alpha$.}, da ciò segue che basta definire la funzione surgettiva:
+	\[ \footnote{Typo Mamino.}{}^n X \twoheadrightarrow \{A \in \ps(X) | 0 < |A| \leq n\} \subseteq \ps^{\leq n}(A) : f \mapsto \Imm(f)
+		\]
+	che è surgettiva, perché ogni insieme in $\ps(X)$ ha una cardinalità $\leq n$, dunque è in bigezione con un sottoinsieme di $n$, quindi basta prendere l'immagine di questa bigezione.
+\end{proof}
+
+\begin{exercise}[$|\ps^{n}(X)| = |X|$]
+	Se $X$ è infinito e $0<n<\omega$, allora $|\ps^n(X) = \{A \in \ps(X) | |A| = n\}| = |X|$.
+\end{exercise}
+
+\begin{proposition}[$|\psf(X)| = |X|$]
+	Se $X$ è infinito, allora vale che $|\psf(X)| = |X|$.
+\end{proposition}
+
+\begin{proof}
+	Mettendo assieme quanto visto fin'ora, se $X$ è infinito, allora $|X| = aleph_\alpha$, da cui ha:
+	\[ \psf(X) = \bigcup_{n \in \omega} \ps^{\leq n}(X)
+		\]
+	cioè le parti finite sono unione numerabile dei $\ps^{\leq n}(X)$, ma $|\ps^{\leq n}(X)| = |X| = \aleph_\alpha$, dunque stiamo facendo l'unione numerabile di insiemi al più $\aleph_\alpha$,
+	e per quanto visto sulla cardinalità dell'unione, questo basta per dire che $\left\lvert \bigcup_{n \in \omega} \ps^{\leq n}(X)\right\rvert = |\psf(X)| = \aleph_\alpha = |X|$.
+\end{proof}
+
+\begin{proposition}[Principio della discesa infinita]
+	Un ordine totale $(A,<)$ è un buon ordine se e solo se non esiste una successione decrescente $\{a_n\}_{n \in \omega}$ di elementi di $A$.
+\end{proposition}
+
+\begin{proof}
+	Da un lato, se $\{a_n\}_{n \in \omega}$ è una successione decrescente [quindi strettamente o debolmente ma non definitivamente costante], allora $\{a_n | n\in\omega\} \subseteq A$ non ha minimo,
+	violando la definizione di buon ordine, pertanto $(A,<)$ non può esserlo.\\
+	Viceversa, se $(A,<)$ non è un buon ordine, allora esiste almeno un sottoinsieme non vuoto $S \subseteq A$, $S \ne \emptyset$, che non ha minimo.
+	Consideriamo la funzione di scelta $f : \ps(S)\setminus\{\emptyset\} \rightarrow S : A \mapsto f(A) \in A$, e, fissato $a_0 \in S$ qualunque, definiamo per ricorsione numerabile la successione:
+	\[ a_{n+1} = f(\{x \in S | x < a_n\})\footnote{Notare che $\{x \in S | x < a_n\} \subseteq S$, quindi sta nelle parti di $S$ e non è mai vuoto perché $S$ non ha minimo, dunque possiamo applicare la funzione
+	di scelta, pescare un suo elemento [che è in automatico più piccolo di $a_n$ per come è costruito] e ripetere il procedimento. Notare inoltre che in questo caso la funzione di scelta è la funzione che definisce la ricorsione numerabile in forma debole.}
+		\]
+	Siccome $S$ non ha minimo, l'insieme a cui è applicata $f$ non è mai vuoto, dunque $f$ è sempre ben definita, per cui la sequenza $a_n$ [in $A$] è per costruzione strettamente decrescente e ben definita.\footnote{Abbiamo provato il se e solo se della negazione, che è equivalente al se e solo se della tesi senza le negazioni, di conseguenza abbiamo dimostrato la tesi.}
+\end{proof}
+
+\subsection{Esempi di applicazione di AC}
+Vediamo qui alcuni esempi di applicazione di AC al di fuori del contesto, strettamente, della teoria degli insiemi. Un primo esempio, molto facile, è dimostrare che, in uno spazio primo-numerabile \textcolor{MidnightBlue}{(ossia, ogni punto ha una base di intorni numerabile, per esempio uno spazio metrico, per via delle palle di raggio $\frac 1n$)} un punto $x$ è nella 
+chiusura $\overline A$ di $A$ se è limite di una successione di punti di $A$. Considerando, per concretezza, lo spazio $\RR$, abbiamo:
+
+\begin{proposition}[Caratterizzazione della chiusura di un sottoinsieme di $\RR$]
+	Sia $A \subseteq \RR$, allora abbiamo che:
+	\[ x \in \ol A \longleftrightarrow \exists \{x_i\}_{i \in \omega} \; (\forall i \in \omega \; x_i \in A) \land \left(\lim_{i \to +\infty} x_i = x\right)
+		\]
+	dove $x \in \ol A \equiv \forall \varepsilon > 0 \; ]x - \varepsilon, x + \varepsilon[ \; \cap\; A \ne \emptyset$.
+\end{proposition}
+
+\begin{proof}
+	Vediamo le due implicazioni.
+	\begin{itemize}
+		\item[$\boxed{\longleftarrow}$] Usando la definizione di limite, l'ipotesi equivale a:
+		\[ \forall \varepsilon > 0 \; \exists j \in \omega \; \forall i \geq j \; \underbrace{x_i}_{\in A} \in \;]x - \varepsilon, x + \varepsilon[
+			\]
+		dunque per ogni fissato $\varepsilon > 0$ l'intersezione $]x - \varepsilon, x + \varepsilon[ \; \cap\; A$ non è mai vuota, perché $x_i \in A$ appartiene sempre all'intervallo per la definizione di limite, e ciò equivale a $x \in \ol A$.
+		\item[$\boxed{\longrightarrow}$] Per il viceversa, dato $x \in \ol A \equiv \forall \varepsilon > 0 \; ]x - \varepsilon, x + \varepsilon[ \; \cap\; A \ne \emptyset$, vogliamo costruire una successione $\omega \rightarrow A$ che tenda ad $x$.
+		Sia $f$ una \textcolor{purple}{funzione di scelta} per $\ps(A) \setminus\{\emptyset\}$ [che in arrivo va nell'unione dei sottoinsiemi di $A$, ovvero $A$ stesso] e definiamo per ricorsione numerabile [in forma debole]:
+		\[ x_i = f\left( \Bigr] x - \frac{1}{i + 1}, x + \frac{1}{i+1} \Bigl[ \; \cap \; A\right)
+			\]
+		l'intersezione non è mai vuota perché, per ipotesi, $x$ sta nella chiusura, inoltre la $f$ ci dà sempre un punto $x_i \in A$, dunque abbiamo costruito una successione $\omega \rightarrow A$, che tende ad $x$ per il teorema dei carabinieri.
+	\end{itemize}
+\end{proof}
+
+\subsection{Basi di spazi vettoriali}
+
+Un'altra applicazione è l'esistenza delle basi di spazi vettoriali infinito-dimensionali [e non finitamente generati]. Questo ragionamento, in realtà, si applica non solo alla dipendenza lineare, ma a qualunque \textcolor{purple}{relazione di dipendenza}
+che soddisfi il \href{https://en.wikipedia.org/wiki/Steinitz_exchange_lemma}{\textcolor{purple}{lemma dello scambio di Steinitz}}, per esempio la dipendenza algebrica.
+
+\paragraph*{Promemoria}\mbox{}\\
+Sia $F$ un campo e $V$ uno spazio vettoriale su $F$. $A \subseteq V$ è \vocab{linearmente indipendente} se per ogni $a_1,\ldots,a_n \in A$ e $x_1,\ldots,x_n \in F$:
+\[ x_1a_1 + \ldots x_na_n = 0 \longleftrightarrow x_1 = \ldots = x_n = 0
+	\]
+$B \subseteq V$ linearmente indipendente è una \vocab{base} se, dato qualunque $v \in V$, esistono $b_1,\ldots,b_n \in B$ e $x_1,\ldots,x_n \in F$ tali che $v = x_1b_1+\ldots+x_nb_n$.\\
+\textcolor{MidnightBlue}{Ossia $B$ è una base di $V$ se ogni elemento di $V$ si scrive in modo unico come combinazione lineare FINITA di elementi di $B$. Né avrebbe senso, in generale, parlare di combinazioni lineari se non finite.}\\
+
+L'osservazione segue è la chiave per applicare il \hyperref[Zorn]{lemma di Zorn}.
+
+\begin{remark}[Base $\iff$ sottoinsieme linearmente indipendente massimale]
+	$B$ è una base (= insieme linearmente indipendente di generatori) se e solo se è un sottoinsieme linearmente indipendente di $V$, massimale rispetto alla relazione di inclusione.
+\end{remark}
+
+\begin{proof}
+	Vediamo prima che base implica insieme linearmente indipendente massimale e poi viceversa.
+	\begin{itemize}
+		\item[$\boxed{\longrightarrow}$] Se $B$ non fosse massimale, ci sarebbe [almeno un] $v \in V$ tale che $B \cup \{v\}$ è linearmente indipendente. Ma $B$ è un insieme di generatori per ipotesi, dunque 
+		$v = b_1x_1 + \ldots + b_nx_n$ per opportuni $b_1,\ldots,b_n \in B$ e $x_1,\ldots,x_n \in F$. Quindi $B \cup \{v\}$ non è indipendente, perché:
+		\[ b_1x_1 + \ldots + b_nx_n + v \cdot (-1) = 0 \; \lightning
+			\]
+		(è una combinazione lineare nulla con coefficienti non tutti nulli).
+		\item[$\boxed{\longleftarrow}$] Sia $B$ massimale e $v \in V$. Se $v \in B$, chiaramente $v = v \cdot 1$. Altrimenti, per la massimalità di $B$, $B \cup \{v\}$ non è indipendente.
+		Di conseguenza esistono $b_1,\ldots,b_n \in B$ e $x_1,\ldots,x_n,y \in F$ tali che $x_1b_1 + \ldots + x_nb_n + yv = 0$ ma non accade che \textcolor{red}{$x_1 = \ldots = x_n = y = 0$}.\\
+		Se $y$ fosse uguale a 0, avremmo $x_1 = \ldots = x_n = 0$ per l'indipendenza di $B$ [e avremmo trovato un insieme linearmente indipendente più grande, assurdo]. Quindi $y \ne 0$ e di conseguenza $v = \left(-\frac{x_1}{y}\right)b_1 + \ldots + \left(-\frac{x_n}{y}\right)b_n$.
+	\end{itemize}
+\end{proof}
+
+\begin{proposition}[Esistenza delle basi in uno spazio vettoriale]
+	Dato uno spazio vettoriale $V$ e $X \subseteq V$ linearmente indipendente, esiste una base $B$ di $V$ tale che $X \subseteq B$.
+\end{proposition}
+
+\begin{proof}
+	Applichiamo il \hyperref[Zorn]{lemma di Zorn} all'insieme dei sottoinsiemi $A$ di $V$ linearmente indipendenti, tali che $X \subseteq A$, ordinati dall'inclusione\footnote{Cioè all'insieme $\{A \in \ps(V) | \; \text{$X \subseteq A$ e $A$ linearmente indipendente}\}$, tale insieme è non vuoto perché contiene
+ 	sempre almeno $X$ stesso, quindi stiamo di fatto dimostrando l'esistenza delle basi in spazi vettoriali in cui vi sia almeno un insieme linearmente indipendente [basta anche un solo elemento], cioè in tutti gli spazi tranne $V = \{0\}$.}, in modo da procurarci un elemento massimale, che per la caratterizzazione vista sopra, sarà una base.
+	Occorre dimostrare che l'unione di una catena di insiemi linearmente indipendenti [che contengono $X$] $C$ è linearmente indipendente (e in automatico tale unione contiene anche $X$, dunque ci serve solo la lineare indipendenza, per avere un maggiorante) [così da avere un maggiorante per ogni sottocatena].\\
+	Siano $a_1,\ldots,a_n \in \bigcup C$. Consideriamo $A_1,\ldots,A_n \in C$ tali che per ogni $i = 1,\ldots,n \; a_i \in A_i$ [cioè gli insiemi da cui prendiamo i maggiorante]. Siccome $C$ è una catena per l'inclusione, c'è un $j \in \{1,\ldots,n\}$ tale che $A_j$
+	include tutti gli altri $A_i$ [per l'ordinamento totale su $C$]. Quindi accade che $a_1,\ldots,a_n \in A_j$ e, siccome $A_j$ è indipendente, $x_1a_1 + \ldots + x_na_n = 0 \leftrightarrow x_1 = \ldots = x_n = 0$, dunque $a_1,\ldots,a_n$ linearmente indipendenti in $\bigcup C$, pertanto $\bigcup C$ è linearmente indipendente (contiene $X$ per definizione), ed è quindi un maggiorante per la sottocatena $C$.
+\end{proof}
+
+\begin{exercise}[$\RR$ come $\QQ$-spazio vettoriale]
+	Sia $B$ una base di $\RR$ come $\QQ$-spazio vettoriale, determinare $|B|$.
+\end{exercise}
+
+\begin{example}
+	Esiste una funzione $f : \RR \rightarrow \RR$ tale che:
+	\[ \forall x,y \in \RR \; f(x + y) = f(x) + f(y)
+		\]
+	tuttavia $f$ \textcolor{red}{NON} è della forma $f(x) = k\cdot x$.
+\end{example}
+
+\begin{proof}
+	Sia $B$ una base di $\RR$ come $\QQ$-spazio vettoriale. Fissiamo $b_1 \in B$ e consideriamo la funzione:
+	\[ f : \RR \rightarrow \QQ : x \mapsto y_1 \quad \text{tale che $\exists y_2,\ldots,y_n \; x = b_1x_1 + \ldots + b_ny_n$}
+		\]
+\end{proof}
+
+\subsection{Invariante di Dehn}
+
+È nato dall'antichità che due poligoni aventi la stessa area sono scomponibili in un numero finito di poligoni congruenti - \vocab{equiscomponibili} - questa si può considerare, anzi, la definizione stessa di area di un poligono.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width = 10cm]{immagini/Dehn_1.png}
+\end{figure}
+
+\textcolor{MidnightBlue}{Per passare da un poligono ad un quadrato equivalente [= con la stessa area], è sufficiente spezzarlo in triangoli, poi trasformare i triangoli in rettangoli, poi, passando per un parallelogramma, si trasforma un rettangolo in un altro con uno dei due lati arbitrario.
+Infine, portando tutti i rettangoli ad avere un lato uguale, unendoli, e trasformando il nuovo rettangolo in un quadrato, di nuovo col trucco del parallelogramma, si ottiene appunto il quadrato desiderato.}
+
+\begin{note}[L'area secondo Euclide]
+	Curiosamente, \href{https://en.wikipedia.org/wiki/Euclid}{\textcolor{purple}{Euclide}} non definisce l'area, ma, dal momento che ci ragiona aggiungendo e togliendo pezzi congruenti, possiamo adattare, a posteriori, una definizione basata sull'equiscomponibilità alla matematica classica.
+	Ancora più curiosamente, i ragionamenti di Euclide richiedono in realtà di definire $\text{Area}(A) = \text{Area}(B)$ se e solo se esistono due poligoni $C$ e $D$, rispettivamente non sovrapposti ad $A$ e $B$, equiscomponibili fra loro, tali che $A \cup C$ e $B \cup D$
+	sono equiscomponibili. Per dedurre, che, in realtà, due poligoni con la stessa area sono equiscomponibili serve \href{https://en.wikipedia.org/wiki/Archimedean_property}{\textcolor{purple}{l'assioma di Archimede}} che Euclide non aveva. La sistemazione formale di questi concetti è dovuta 
+	a \href{https://en.wikipedia.org/wiki/David_Hilbert}{\textcolor{purple}{Hilbert}}, e al XIX secolo.
+\end{note}
+
+Ebbene, tutti questi anacronismi solo per dire che in tre dimensioni questa definizione di area non funziona.
+
+\begin{theorem}[\href{https://en.wikipedia.org/wiki/Max_Dehn}{\textcolor{purple}{Dehn}}]
+	Un cubo ed un tetraedro regolare, sia pure aventi il medesimo volume, non si possono scomporre in un numero finito di poliedri congruenti.\footnote{Questa proposizione
+	e annessa dimostrazione sono un caso particolare della soluzione generale di Dehn al \href{https://en.wikipedia.org/wiki/Hilbert\%27s_third_problem}{\textcolor{purple}{terzo problema di Hilbert}}.}
+\end{theorem}
+
+\begin{proof}
+	
+\end{proof}
+
+\subsection{Insieme di Vitali}
+
+Vediamo ora un'altra applicazione che da luogo ad un risultato negativo: il \vocab{controesempio di Vitali}.
+
+\begin{definition}[Misura $\sigma$-additiva]
+	Una \vocab{misura $\sigma$-additiva} su $\ps(\RR)$ è una funzione $\mu : \ps(\RR) \rightarrow \RR_{\geq 0}\cup\{+\infty\}$, tale che $\mu(\emptyset) = 0$ e, se $\{A_i\}_{i \in \omega}$ è 
+	una successione di elementi \textcolor{red}{disgiunti} di $\ps(\RR)$ allora:
+	\[ \mu\left(\bigcup\{A_i | \in \in \omega\}\right) = \sum_{i = 0}^{+\infty} \mu(A_i)
+		\]
+\end{definition}
+
+\begin{definition}[Misura invariante per traslazioni]
+	Una misura $\mu$ si dice \vocab{invariante per traslazioni} se $\forall x \in \RR$ e $A \in \ps(\RR)$:
+	\[ \mu(A) = \mu(\{y \in \RR | \underbrace{y - x \in A}_{\Mydef A + x}\})
+		\]
+	(cioè la misura di un sottoinsieme di $\RR$ è invariante se trasliamo il sottoinsieme [cioè se sommiamo a tutti gli elementi di $A$ un elemento $x \in \RR$]).
+\end{definition}
+
+\begin{remark}[Monotonia di una misura]
+	Si osserva che se $A \subseteq B \subseteq \RR$, allora $\mu(A) \leq \mu(B)$.
+\end{remark}
+
+\begin{proof}
+	Si vede che $\mu(B) = \mu(A \sqcup (B \setminus A)) \overset{\text{additività}}{=} \mu(A) + \mu(B \setminus A) \geq \mu(A)$.
+\end{proof}
+
+\begin{exercise}
+	Esibisci una misura $\sigma$-additiva ed invariante per traslazioni su $\ps(\RR)$.
+\end{exercise}
+
+\begin{proposition}[Controesempio di Vitali]
+	Non esiste una misura $\sigma$-additiva e invariante per traslazioni, $\mu$ su $\ps(\RR)$ tale che $\mu([0,1[) = 1$.
+\end{proposition}
+
+\begin{proof}
+	
+\end{proof}
+
+\begin{exercise}
+	Una maniera alternativa di dimostrare la proposizione precedente è la seguente [DA CONTINUARE]
+\end{exercise}
+
+\subsection{\texorpdfstring{\;Il teorema di Cantor-Bendixson}{Il teorema di Cantor-Bendixson}}
+Il teorema di Cantor-Bendixson, che permette di dimostrare l'\vocab{ipotesi del continuo} limitatamente ai sottoinsiemi chiusi di $\RR$, non è tecnicamente, un'applicazione di AC.
+Tuttavia è un esempio di come le tecniche insiemistiche - segnatamente la ricorsione transfinita - hanno conseguenze in matematica.\\
+Come abbiamo osservato all'inizio del corso, quello di indagare la struttura dei sottoinsiemi chiusi di $\RR$ è stato, forse, uno dei problemi che hanno motivato lo sviluppo della teoria di Cantor. In 
+questa sezione ne vedremo, in qualche misura la soluzione.
+
+\paragraph*{Promemoria}\mbox{}\\
+Se $S \subseteq \RR$ diciamo che $x \in \RR$ è un \vocab{punto di accumulazione} di $S$, se $x \in \ol{(S \setminus \{x\})}$ \textcolor{MidnightBlue}{- ossia se esiste una successione $\{x_i\}_{i \in \omega}$ di 
+punti di $S \setminus \{x\}$ tale che $\lim_{i \to +\infty} x_i = x$}. Diciamo che $S \subseteq \RR$ è \vocab{perfetto} se $S$ coincide con l'insieme dei suoi punti di accumulazione ($\mathcal{D}(S)$, il \vocab{derivato} di $S$).
+
+\begin{example}
+	Un intervallo chiuso $[a,b]$ è un esempio di insieme perfetto.
+\end{example}
+
+\begin{exercise}
+	Esibire un insieme perfetto non vuoto avente \vocab{parte interna} - ossia $\{x \in S | \; \exists \varepsilon > 0 \; ]x -\varepsilon,x+\varepsilon[ \subseteq S\} = \mathring{S}$ - vuota.
+\end{exercise}
+
+\begin{proposition}
+	Se $S \subseteq [0,1]$ è perfetto, allora $|S| = 2^{\aleph_0}$
+\end{proposition}
+
+Per dimostrare questa proposizione, è comoda l'osservazione seguente.
+
+\begin{remark}
+	Se $S \subseteq [0,1]$ è perfetto e non vuoto allora esistono $S_1$ e $S_2$ sottoinsiemi di $S$ perfetti, non vuoti e disgiunti.
+\end{remark}
+
+\begin{proof}
+	
+\end{proof}
+
+Veniamo ora alla dimostrazione della proposizione.
+
+\textcolor{MidnightBlue}{L'idea è quella di usare l'osservazione per dividere l'insieme $S$ in due, poi, ricorsivamente ciascuna delle due parti nuovamente in due, e coì via.
+Si ottiene un albero binario di sottoinsiemi perfetti di $S$. Quest'albero ha ben $2^{\aleph_0}$ rami infiniti, uno per ogni successione di cifre binarie, e l'intersezione degli insiemi di ogni ramo 
+è un'intersezione di compatti uno nell'altro, quindi non vuota. Per cui abbiamo una funzione iniettiva delle successione di cifre binarie a $S$.}
+
+\begin{proof}
+	
+\end{proof}
+
+\begin{exercise}
+	Dimostrare la proposizione con $\RR$ al posto di $[0,1]$.
+\end{exercise}
+
+\begin{exercise}
+	In quali passaggi della dimostrazione precedente abbiamo fatto uso dell'assioma della scelta?
+\end{exercise}
+
+\begin{exercise}
+	Dimostrare la proposizione senza fare uso di AC.
+\end{exercise}
+
+\begin{theorem}[Cantor-Bendixson]
+	Sia $C \subseteq \RR$ chiuso. Allora $C = A \cup P$, con $|A| \leq \aleph_0$ e $P$ perfetto.
+\end{theorem}
+
+\begin{proof}
+	
+\end{proof}
+
+\begin{corollary}[Vale l'ipotesi del continuo sui chiusi di $\RR$]
+	Se $C \subseteq \RR$ è chiuso allora o $|C|=2^{\aleph_0}$ o $|C| \leq \aleph_0$.
+\end{corollary}
+
+\begin{proof}
+	Usando il teorema di Cantor-Bendixson scriviamo $C = A \cup P$. Se $P = \emptyset$, allora $|C| = |A| \leq \aleph_0$.
+	Altrimenti $2^{\aleph_0} = |P| \leq |C| \leq 2^{\aleph_0}$, dove la seconda disuguaglianza è perché $C \subseteq \RR$, mentre la prima uguaglianza 
+	deriva dal fatto che abbiamo visto che i perfetti di $\RR$ hanno cardinalità $2^{\aleph_0}$.
+\end{proof}
+
+L'esempio seguente mostra come l'ipotesi che $C$ sia chiuso non possa essere omessa.
+
+\begin{example}
+	Esiste $S \subseteq \RR$ non numerabile che non contiene alcun insieme perfetto non vuoto.
+\end{example}
+
+\begin{proof}
+	
+\end{proof}
+
+\subsection{\texorpdfstring{\;Riepilogo forme equivalenti di AC}{Riepilogo forme equivalenti di AC}}
+Abbiamo visto che diverse proposizioni sono equivalenti all'assioma della scelta. Per esempio, fissati gli altri assiomi, AC e 
+l'affermazione che ogni insieme è bene ordinabile si implicano vicendevolmente. Elenchiamo le principali forme equivalenti dell'assioma della scelta.
+
+\begin{proposition}[Forme equivalenti dell'assioma della scelta]
+	Assumendo gli assiomi di: \hyperref[ax2]{estensionalità}, \hyperref[ax1]{insieme vuoto}, \hyperref[ax3]{separazione}, \hyperref[ax4]{paio}, \hyperref[ax5]{unione},
+	\hyperref[ax6]{parti}, \hyperref[ax7]{infinito} e \hyperref[ax8]{rimpiazzamento} le seguenti proposizioni sono equivalenti:
+	\begin{itemize}
+		\item l'assioma della scelta
+		\item ogni funzione surgettiva ha inversa destra
+		\item il teorema del buon ordinamento
+		\item il lemma di Zorn
+		\item ogni cardinalità infinita è un aleph
+		\item $\forall X,Y \; |X| \leq |Y| \lor |Y| \leq |X|$
+		\item $\forall X \; |X| \leq |\aleph_0| \rightarrow |X \times X| = |X|$.
+	\end{itemize}
+\end{proposition}
+
+\subsection{\texorpdfstring{\;$|X| = |X \times X| \rightarrow$ AC (Tarski)}{Teorema di Tarski sulla scelta}}
+Della proposizione precedente ci rimane da dimostrare solo che per ogni insieme infinito $|X \times X| = |X|$ implica scelta.
+
+\begin{theorem}[Teorema di Tarsk]
+	Se per ogni $X$ infinito vale che $|X \times X| = |X|$, allora vale AC.
+\end{theorem}
+
+\begin{proof}
+	Dato un $X$ infinito cerchiamo un buon ordinamento di $X$. È sufficiente costruire una funzione $g$ che immerge $X$ negli ordinali.\\
+	Applicando l'ipotesi a $X \sqcup H(X)$ si ottiene:
+	\[ |X \times H(X)| \leq |(X \sqcup H(X)) \times (X \sqcup H(X))| \overset{\text{Hp.}}{=} |X \sqcup H(X)|
+		\]
+	dove la prima disuguaglianza è una facile immersione\footnote{Ad esempio la mappa $(x,y) \mapsto ((x,0),(y,1))$ è iniettiva.}. Quindi esiste una funzione iniettiva $f : X \times H(X) \hookrightarrow X \sqcup H(X)$. Per ogni $a \in X$ consideriamo la funzione:
+	\[ f_a : H(X) \rightarrow X \sqcup H(X) : b \mapsto f(a,b) \, \footnote{Moralmente $f_a = f(a,\cdot)$.}
+		\]
+	Se l'immagine $f_a[H(X)]$ di $f_a$ fosse contenuta in $X$ (cioè se gli elementi dell'immagine fossero tutte coppie con 0 alla seconda componente), allora avremmo una funzione iniettiva da $H(X)$ ad $X$, che è assurdo per la definizione di numero di Hartogs. Quindi accade necessariamente
+	che $f_a[H(X)] \cap H(X) \ne \emptyset$. Definiamo:
+	\[ g : X \rightarrow H(X) : a \mapsto \min(f_a[H(X)] \cap H(X))
+		\]
+	questa funzione è ben definita perché $f_a[H(X)] \cap H(X) \subseteq H(X)$, dunque è un insieme di ordinali, per il quale sappiamo esiste sempre il minimo. Inoltre $g$ è iniettiva perché, se $a \ne b$, allora $g(a) = f(a,\text{qualcosa})$ [per come è definita $f$], e per l'iniettività 
+	di $f$, $f(a,\text{qualcosa}) \ne f(b,\text{qualcosa}) = g(b)$. Dunque $g$ è l'immersione cercata di $X$ negli ordinali, pertanto $X$ è bene ordinato, dunque segue il teorema del buon ordinamento e quindi scelta.
+\end{proof}
+ 
+\pagebreak
+\section{Aritmetica cardinale}
+
+\begin{definition}[Cardinali]
+	Diciamo che $\kappa$ è un \vocab{cardinale} se $\kappa$ è un ordinale iniziale.
+\end{definition}
+
+\begin{notation}[Cardinali ``successori'']
+	Indichiamo con la notazione:
+	\[ \kappa = \lambda^+ \Mydef \text{$\kappa$ è il minimo cardinale $>\lambda$}
+		\]
+	ad esempio, $\omega_\alpha^+ = \omega_{\alpha + 1}$, ovvero l'ordinale iniziale successivo [che quindi ha cardinalità strettamente più grande].
+\end{notation}
+
+Possiamo definire le operazioni di prodotto, somma e potenza cardinale, per cui se $\kappa = \omega_\alpha$, $\lambda = \omega_\beta$ e $\mu = \omega_\gamma$ scriviamo:
+\[ \kappa =  \lambda + \mu \qquad \kappa = \lambda \cdot \mu \qquad \kappa = \lambda^\mu
+	\]
+per rispettivamente:
+\[ \aleph_\alpha = \aleph_\beta + \aleph_\gamma \qquad \aleph_\alpha = \aleph_\beta \cdot \aleph_\gamma \qquad \aleph_\alpha = \aleph_\beta^{\aleph_\gamma}
+	\]
+Occorre fare attenzione a non confondere le operazioni \textcolor{red}{cardinali} con quelle \textcolor{MidnightBlue}{ordinali}. In questa sezione ci occupiamo di operazioni \textcolor{red}{cardinali}.\\
+Siccome ad ogni cardinalità corrisponde un unico ordinale iniziale [per \hyperref[ax9]{AC}], che abbia quella cardinalità, possiamo scrivere:
+\[ \kappa = |X| \Mydef \text{$\kappa$ è un cardinale e $|\kappa| = |X|$}
+	\]
+
+\subsection{Somme e prodotti infiniti}
+
+\begin{definition}[Somme e prodotti infiniti]
+	Sia $I$ un insieme e $\{\kappa_i\}_{i \in J}$ una famiglia di cardinali. Definiamo la \vocab{somma} e il \vocab{prodotto sulla famiglia} indicizzata da $I$ come:
+	 \begin{align*}
+		\sum_{i \in I} \kappa_i &\Mydef\left\lvert \bigcup\{\kappa_i \times \{i\} | i \in I\}\right\rvert \\
+		\prod_{i \in I} \kappa_i &\Mydef \left\lvert \left\{f : I \rightarrow \sup_{i \in I} \kappa_i \m  \forall i \in I \; f(i) \in \kappa_i\right\}\right\rvert 
+	 \end{align*}
+\end{definition}
+
+\begin{note}
+	Se $\forall i \in I \; \kappa_i = |X_i|$ e gli insiemi $X_i$ sono a due a due \underline{disgiunti}, allora:
+	\[ \sum_{i \in I} \kappa_i = \left\lvert \bigcup\{X_i \m i \in I\}\right\rvert 
+		\]
+\end{note}
+
 
 \pagebreak
 \appendix
