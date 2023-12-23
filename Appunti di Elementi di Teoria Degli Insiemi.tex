@@ -3,6 +3,7 @@
 \usepackage[sexy]{evan}
 \usepackage{float}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%.
 %
 % BOOST SOFTWARE LICENSE - VERSION 1.0 - 17 AUGUST 2003
 %
@@ -2412,7 +2413,7 @@ Con gli assiomi introdotti fino ad ora, possiamo solo dimostrare che finito $\ri
 	Se $|m| = |A| = |n|$, possiamo assumere, senza perdita di generalità $m \leq n$, ossia $m \subseteq n$, quindi, usando il \hyperref[cassetti]{principio dei cassetti} $m = n$, abbiamo quindi l'unicità.
 \end{proof}
 
-Se adesso volessimo dimostrare il viceversa: [che formulato in versione contronominale è] che un insieme infinito non è Dedekind-finito, quale sarebbe l'ostacolo? Abbiamo già osservato che $\omega$ non è finito, perché la funziona successore 
+Se adesso volessimo dimostrare il viceversa: [che formulato in versione contronominale è] che un insieme infinito non è Dedekind-finito, quale sarebbe l'ostacolo? Abbiamo già osservato che $\omega$ non è finito, perché la funzione successore 
 stabilisce una corrispondenza biunivoca fra $\omega$ e $\omega \setminus\{0\} \subsetneq \omega$ (quindi non è Dedekind-finito, e per la contronominale del \hyperref[cassetti]{principio dei cassetti} non è finito). Ne segue la seguente osservazione.
 
 \begin{remark}
@@ -5151,7 +5152,7 @@ La proposizione seguente è interessante di per sé, ma, in particolare, ci perm
 \begin{proof}
 	Definiamo per ricorsione transfinita (stiamo usando la ricorsione per mezzo di una funzione classe) $\pi_0 = \alpha$, $\pi_{s(n)} = F(\pi_n)$ per $n \in \omega$.\\
 	Se $F(0) = 0$, allora $\pi = 0$ è un punto fisso.\\
-	Se $0 < F(0)$, allora, induzione, $\forall n \in \omega \;\pi_n < \pi_{s(n)}$ per cui la funziona $n \mapsto \pi_n$ è crescente. Di conseguenza:
+	Se $0 < F(0)$, allora, induzione, $\forall n \in \omega \;\pi_n < \pi_{s(n)}$ per cui la funzione $n \mapsto \pi_n$ è crescente. Di conseguenza:
 	\[ \pi \Mydef \sup\{\pi_n | n \in \omega\}
 		\]
 	è limite (perché $\pi \not \in \{\pi_n | n \in \omega\}$, dunque vale il lemma sugli insiemi di ordinali in cui il sup non appartiene all'insieme). Quindi:
@@ -5166,7 +5167,7 @@ La proposizione seguente è interessante di per sé, ma, in particolare, ci perm
 
 \begin{exercise}
 	Sia $\varepsilon_0 = \sup\{1,\omega,\omega^{\omega},\omega^{\omega^{\omega}}, \omega^{\omega^{\omega^{\omega}}},\ldots\}$. Formalmente definiamo per ricorsione $\alpha_0 = 1$, $\alpha_{n+1}=\omega^{\alpha_n}$,
-	allora $\varepsilon_0 = \sup\{\alpha_n | n \in \omega\}$. Dimostrare che $\varepsilon_0$ è il più piccolo punto fisso della funziona $x \mapsto \omega^x$.
+	allora $\varepsilon_0 = \sup\{\alpha_n | n \in \omega\}$. Dimostrare che $\varepsilon_0$ è il più piccolo punto fisso della funzione $x \mapsto \omega^x$.
 \end{exercise}
 
 \begin{exercise}
@@ -5824,7 +5825,7 @@ L'assioma della scelta forma, insieme ai due enunciati seguenti - il teorema del
 \begin{proof}
 	Abbiamo già dimostrato $\leftarrow$ [per l'\hyperref[omega_Dedekind_finito]{osservazione 6.5}, $X$ non è Dedekind-finito, ma, essendo che finito $\implies$ Dedekind-finito,
 	la contronominale ci dice che $X$ non è finito], mentre la freccia $\rightarrow$ opposta segue dal fatto che, $X$ infinito implica $|X| = |\omega_\alpha|$, per quanto visto,
-	ma per la definizione ricorsiva della funziona aleph, $\omega = \omega_0 \leq \omega_\alpha$, $\forall \alpha \in \Ord$, dunque, al livello di cardinalità:
+	ma per la definizione ricorsiva della funzione aleph, $\omega = \omega_0 \leq \omega_\alpha$, $\forall \alpha \in \Ord$, dunque, al livello di cardinalità:
 	\[ |X| = |\omega_\alpha| \geq |\omega| = \aleph_0
 		\]
 \end{proof}
@@ -6235,14 +6236,14 @@ Della proposizione precedente ci rimane da dimostrare solo che per ogni insieme 
 	Diciamo che $\kappa$ è un \vocab{cardinale} se $\kappa$ è un ordinale iniziale.
 \end{definition}
 
-\begin{notation}[Cardinali ``successori'']
+\begin{notation}[Cardinali successori]
 	Indichiamo con la notazione:
 	\[ \kappa = \lambda^+ \Mydef \text{$\kappa$ è il minimo cardinale $>\lambda$}
 		\]
 	ad esempio, $\omega_\alpha^+ = \omega_{\alpha + 1}$, ovvero l'ordinale iniziale successivo [che quindi ha cardinalità strettamente più grande].
 \end{notation}
 
-Possiamo definire le operazioni di prodotto, somma e potenza cardinale, per cui se $\kappa = \omega_\alpha$, $\lambda = \omega_\beta$ e $\mu = \omega_\gamma$ scriviamo:
+Possiamo definire le operazioni di prodotto, somma e potenza cardinale (per il \hyperref[buon_ordinamento]{teorema del buon ordinamento} le operazioni sulle cardinalità e sugli ordinali iniziali corrispondono), per cui se $\kappa = \omega_\alpha$, $\lambda = \omega_\beta$ e $\mu = \omega_\gamma$ scriviamo:
 \[ \kappa =  \lambda + \mu \qquad \kappa = \lambda \cdot \mu \qquad \kappa = \lambda^\mu
 	\]
 per rispettivamente:
@@ -6252,22 +6253,185 @@ Occorre fare attenzione a non confondere le operazioni \textcolor{red}{cardinali
 Siccome ad ogni cardinalità corrisponde un unico ordinale iniziale [per \hyperref[ax9]{AC}], che abbia quella cardinalità, possiamo scrivere:
 \[ \kappa = |X| \Mydef \text{$\kappa$ è un cardinale e $|\kappa| = |X|$}
 	\]
-
+Cioè stiamo commettendo un piccolo abuso di notazione (o di definizione) e dicendo che la definizione di cardinalità può essere in realtà quella dell'ordinale iniziale a lui associato, in realtà questa cosa non è sbagliata, nel senso che alla fine, tutte le cardinalità degli insiemi (per AC) sono ordinali iniziali, cioè vi è sempre una bigezione tra ordinale iniziale e insieme (se hanno la stessa cardinalità, ma la cardinalità, come detto in precedenza non è qualcosa di per sé, ma è una definizione che 
+considera sempre due insiemi), quello che stiamo facendo con i cardinali non è altro che fissare una notazione per dei ``rappresentanti privilegiati'' delle cardinalità, che sono appunto gli ordinali iniziali. Per questi ultimi valgono tutte le proprietà viste sulle cardinalità, che quindi ci danno le operazioni cardinali (che NON sono un'estensione di quelle ordinali, ma altre operazioni definite [diversamente] solo tra ordinali iniziali, perché entrano in gioco le proprietà viste della cardinalità\footnote{Ricordare come anche nel già osservato caso 
+degli ordinali finiti valevano tutte le proprietà delle operazioni tra cardinalità, ma gli elementi di $\omega$ sono anche cardinali, dunque per questi valgono sia le operazioni ordinali, con \textcolor{red}{tutte} le proprietà extra, che sono false in generale, sia le operazioni tra cardinali definite come sopra, ovvero nel senso degli aleph.}).
 \subsection{Somme e prodotti infiniti}
 
 \begin{definition}[Somme e prodotti infiniti]
-	Sia $I$ un insieme e $\{\kappa_i\}_{i \in J}$ una famiglia di cardinali. Definiamo la \vocab{somma} e il \vocab{prodotto sulla famiglia} indicizzata da $I$ come:
+	Sia $I$ un insieme e $\{\kappa_i\}_{i \in I}$ una famiglia di cardinali. Definiamo la \vocab{somma} e il \vocab{prodotto sulla famiglia} indicizzata da $I$ come:\footnote{La somma non è altro che una naturale estensione della somma tra cardinalità, per la somma di due cardinalità, in altre parole, stiamo rendendo disgiunti tutti gli insiemi e poi li stiamo unendo. Osservare anche che la definizione di prodotto data non usa AC.}
 	 \begin{align*}
 		\sum_{i \in I} \kappa_i &\Mydef\left\lvert \bigcup\{\kappa_i \times \{i\} | i \in I\}\right\rvert \\
 		\prod_{i \in I} \kappa_i &\Mydef \left\lvert \left\{f : I \rightarrow \sup_{i \in I} \kappa_i \m  \forall i \in I \; f(i) \in \kappa_i\right\}\right\rvert 
 	 \end{align*}
+	(osservare che il sup di una famiglia di cardinali, essendo ordinali iniziali, è dato dall'unione di questi ultimi\footnote{Inoltre, notare anche come sapessimo già fare prodotti infiniti degli stessi insiemi, considerando le funzioni dall'uno all'altro, ma ciò valeva solo volendo fare un prodotto infinito di un insieme, per un numero di volte dato dall'insieme di arrivo
+	(e.g. ${}^\omega A = \underbrace{A \times \ldots \times A}_{\text{$\omega$ volte}.}$).}).
 \end{definition}
 
-\begin{note}
-	Se $\forall i \in I \; \kappa_i = |X_i|$ e gli insiemi $X_i$ sono a due a due \underline{disgiunti}, allora:
+\begin{remark}[Prodotti cartesiani infiniti]
+	La definizione sopra generalizza quella di prodotto cartesiano data, a prodotto cartesiano di una famiglia qualunque di insiemi qualunque. Nel caso finito c'è una bigezione tra le due definizioni, infatti, data una $f$ che va da $I$ all'unione $\bigcup \{X_i\}_{i \in I}$ [con $I$ finito] di una 
+	famiglia di insiemi, tale $f$ per definizione fissa un elemento in ogni insieme, $f(i) \in X_i$, $\forall i \in I$, a questo punto, possiamo scrivere le immagini di $f(i)$ in una $|I|$-upla ordinata [secondo l'ordinamento su $I$], ed ottenere l'elemento del prodotto cartesiano finito 
+	voluto.
+\end{remark}
+
+\begin{note}[Somma di cardinali disgiunti]
+	Se $\forall i \in I \; \kappa_i = |X_i|$ (stiamo usando AC) e gli insiemi $X_i$ sono a due a due \underline{disgiunti} [dunque non c'è bisogno di moltiplicarli per altro, per distinguere gli eventuali elementi uguali], allora:\footnote{Questa proprietà così naturale nel caso finito, richiede AC per essere valida nel caso generale e dare una coerenza alle nostre definizioni, da qui l'importanza di assumere scelta per estendere le operazioni cardinali al caso infinito.}
 	\[ \sum_{i \in I} \kappa_i = \left\lvert \bigcup\{X_i \m i \in I\}\right\rvert 
 		\]
 \end{note}
+
+\begin{proof}
+	(Richiede \hyperref[ax9]{AC}!)\\
+	Per ogni $i$ scegliamo una bigezione
+    $f_i : \kappa_i \times \{i\} \rightarrow X_i$, con $|\kappa_i \times \{i\}| = |\kappa_i| = |X_i|$ (l'uguaglianza ci garantisce che esiste almeno una bigezione, e usando scelta ne abbiamo fissata una, questa cosa la facciamo per ogni $i$\footnote{Per la precisione, $\forall i \in I$, l'uguaglianza $|\kappa_i \times \{i\}| = |X_i|$ 
+	ci garantisce che l'insieme $B_i := \{f_i : \kappa_i \times \{i\} \rightarrow X_i | \; \text{$f_i$ bigezione}\}$ è non vuoto, per \hyperref[ax9]{AC} esiste allora $\phi : \ps(B_i)\setminus\{\emptyset\} \rightarrow \bigcup \ps(B_i)\setminus\{\emptyset\} = B_i : A \mapsto \phi(A) \in A$, dunque, in particolare, essendo che $B_i$ è non vuoto, 
+	$B_i \in \ps(B_i)\setminus\{\emptyset\}$, pertanto [possiamo applicare $\phi$ ed ottenere] $\phi(B_i) \in B_i$, cioè [l'immagine via $\phi$ di tutto l'insieme è una particolare bigezione nell'insieme] $\phi(B_i) = f_i \in B_i$, che è quella che stiamo considerando per questo $i$ fissato.}), allora si ha che:
+	\[ f : \bigcup \{\kappa_i \times\{i\} | i \in I\} \rightarrow \bigcup \{X_i | i \in I\} : (a,i) \mapsto f_i(a)
+		\]
+	ossia $f = \bigcup\{f_i | i \in I\}$ è una bigezione, perché manda ogni elemento di un cardinale $\kappa_i$ nella sua immagine in $X_i$, via l'apposita bigezione $f_i$, cioè $f$ è appunto un'unione di bigezioni che fa la cosa giusta grazie all'indice della seconda componente. Abbiamo quindi una bigezione tra le due definizioni di insieme somma, che quindi coincidono nel caso di insiemi disgiunti perché danno la stessa cardinalità.
+\end{proof}
+
+\begin{note}[Disuguaglianza di inclusione-esclusione per unioni infinite]
+	Se $\forall i \in I \; \kappa_i = |X_i|$, con una famiglia di insiemi $X_i$ non tutti disgiunti, allora in generale vale la disuguaglianza per la somma dei cardinali associati, mentre il prodotto continua a valere la definizione iniziale (in questo caso la stiamo scrivendo con gli insiemi anziché i cardinali associati, ma nella dimostrazione vedremo che le due cose sono in generale equivalenti):
+	\[ \begin{split}
+		&\sum_{i \in I} \kappa_i \geq \left\lvert\bigcup\{X_i | i \in I\} \right\rvert  \\
+		&\prod_{i \in I} \kappa_i = \left\lvert \left\{f : I \rightarrow \bigcup \{X_i | i \in I\} \m \forall i \in I \; f(i) \in X_i\right\}\right\rvert 
+	\end{split}
+		\]
+\end{note}
+
+\begin{proof}
+	Per la prima disuguaglianza si osserva che la funzione $f$ definita nella dimostrazione precedente è, nel caso di insiemi non disgiunti, solo surgettiva - l'iniettività richiede infatti che gli $X_i$ siano disgiunti.\\
+	La seconda è del tutto analoga. Dette $g_i : \kappa_i \rightarrow X_i$ bigezioni (fissate con \hyperref[ax9]{AC}), allora:
+	\begin{align*}
+		g : \left\{f : I \rightarrow \sup_{i \in I} \kappa_i \m \forall i \in I \; f(i) \in \kappa_i\right\} &\rightarrow \left\{f : I \rightarrow \bigcup \{X_i | i \in I\} \m \forall i \in I \; f(i) \in X_i\right\} \\
+																								     g(f)(i) & = g_i(f(i))
+	\end{align*}
+	è una bigezione.
+\end{proof}
+
+\begin{remark}[Prodotto infinito di potenze]
+	Vale la proprietà del prodotto di potenze\footnote{$a^{n+m} = a^na^m$.} anche nel caso di prodotti infiniti:
+	\[ \kappa^{\sum_{i \in I}\lambda_i} = \prod_{i \in I} \kappa^{\lambda_i}
+		\]
+\end{remark}
+
+\begin{proof}
+	Un elemento dell'insieme al LHS è una funzione $f : \sum_{i \in I} \lambda_i = \bigcup\{\lambda_i \times \{i\} | i \in I\} \rightarrow \kappa$ (questa è la definizione di esponenziazione di cardinali, cioè tutte le funzioni dall'insieme
+	a cui esponenziamo, verso l'insieme alla base), tale funzione può essere identificata in una funzione:
+	\[ \prod_{i \in I}\kappa^{\lambda_i}\ni\widetilde{f} : I \rightarrow \bigcup\{\kappa^{\lambda_i} | i \in I\} : i \mapsto \widetilde{f}_i \in \kappa^{\lambda_i}
+		\]
+	cioè $\widetilde{f}_i$ è una funzione da $\lambda_i$ a $\kappa$, definita da $\widetilde{f}_i(\alpha) = f(\alpha,i)$, che va in $\kappa$ per definizione di $f$, quindi $\widetilde{f}$ è ben definita. La mappa che associa $f$ a $\widetilde{f}$ è una bigezione tra LHS e RHS, che ci dà l'uguaglianza in termini di cardinali.
+\end{proof}
+\pagebreak
+\begin{exercise}[Proprietà delle operazioni cardinali]
+	Valgono le proprietà ragionevoli per le operazioni tra cardinali, ad esempio:
+	\begin{itemize}
+		\item se $\forall i \in I \; \kappa_i \leq \lambda_i$: \textcolor{orange}{(compatibilità con l'ordinamento - versione infinita)}
+		\[ \sum_{i \in I} \kappa_i \leq \sum_{i \in I} \lambda_i \qquad \prod{i \in I} \kappa_i \leq \prod_{i \in I} \lambda_i
+			\]
+		\item $\forall i \in I \; \kappa_i \leq \sum_{i \in I} \kappa_i$
+		\item Se $I = I_1 \sqcup I_2$: \textcolor{orange}{(associatività infinita)}
+		\[ \sum_{i \in I} \kappa_i = \left(\sum_{i \in I_1} \kappa_i\right) + \left(\sum_{i \in I_2} \kappa_i\right) \qquad \prod_{i \in I}\kappa_i = \left(\prod_{i \in I_1} \kappa_i\right)\cdot\left(\prod_{i \in I_2} \kappa_i\right)
+			\]
+		\item \textcolor{orange}{(compatibilità tra le definizione di operazioni cardinali)}\footnote{È il discorso fatto in più note precedenti riguardo al pensare l'esponenziazione di cardinalità come prodotto infinito.}:
+		\[ \sum_{i \in \kappa} \lambda = \kappa \cdot \lambda \qquad \prod_{i \in \kappa} \lambda = \lambda^\kappa
+			\]
+		\item \textcolor{orange}{(potenza di prodotto)}:
+		\[ \left(\prod_{i \in I}\kappa_i\right)\lambda = \prod_{i \in I} \kappa_i^\lambda
+			\]
+	\end{itemize}
+\end{exercise}
+
+\begin{proposition}[Somma infinita di cardinali]
+	Supponiamo che $\{\kappa_i\}$, per $i \in I$ sia una famiglia di cardinali diversi da 0, allora:
+	\[ \sum_{i \in I}\kappa_i = |I| \cdot \sup_{i \in I} \kappa_i = \max\left(|I|, \sup_{i \in I}\kappa_i\right)
+		\]
+\end{proposition}
+
+\begin{proof}
+	La seconda uguaglianza deriva dal fatto che le cardinalità sono tutte aleph, per cui vale la proprietà vista per il prodotto tra aleph. Per la prima dimostriamo le due disuguaglianze come segue [e concludiamo con Cantor-Bernstein].
+	\begin{itemize}
+		\item[$\boxed{\leq}$] Deriva facilmente dalle proprietà viste sopra:
+		\[ \sum_{i \in I} \kappa_i \leq \sum_{i \in I} \sup_{i \in I}\kappa_i = |I| \cdot \sup_{i \in I} \kappa_i
+			\]
+		dove appunto, la prima disuguaglianza è esattamente la compatibilità della somma con l'ordinamento dei cardinali, mentre la seconda uguaglianza è la compatibilità tra le definizioni delle operazioni.
+		\item[$\boxed{\geq}$] Siccome $|I| \cdot \sup_{i \in I} \kappa_i$ è il massimo fra $|I|$ e $\sup_{i \in I} \kappa_i$ [lo abbiamo già visto all'inizio], basta verificare che la somma al LHS è maggiore di entrambi separatamente.
+		$\sum_{i \in I}\kappa_i \geq \sum_{i \in I} 1 = |I|$, dove la prima disuguaglianza è la compatibilità prodotto-ordinamento [applicata a cardinali $>0$ per ipotesi] e la seconda quella delle operazioni. L'altra disuguaglianza segue osservando che:
+		\[ \forall j \in I \; \sum_{i \in I} \kappa_i \leq \kappa_j
+			\]
+		cioè tutta la famiglia è più piccola della somma, quindi deve esserlo anche il sup di tale famiglia.
+	\end{itemize}
+\end{proof}
+
+\subsection{Teorema di König}
+
+\begin{proposition}[Teorema di \href{https://en.wikipedia.org/wiki/Gyula_K\%C5\%91nig}{\textcolor{purple}{König}}]
+	Se $\forall i \in I \; \kappa_i < \lambda_i$ allora:
+	\[ \sum_{i \in I} \kappa_i < \prod_{i \in I} \lambda_i
+		\]
+\end{proposition}
+
+\begin{proof}
+	Dimostriamo che non può valere il $\geq$. Siano:
+	\[ A := \bigcup\{\kappa_i \times \{i\} | i \in I\} \qquad B := \left\{f : I \rightarrow \sup_{i \in I} \lambda_i \m \forall i \in I \; f(i) \in \lambda_i\right\} 
+		\]
+	gli insiemi le cui cardinalità definiscono rispettivamente il prodotto della famiglia $\{\lambda_i\}_{i \in I}$ e la somma della famiglia $\{\kappa_i\}_{i \in I}$.
+	Data una qualunque funzione $f : A \rightarrow B$\footnote{Typo di Mamino.} dobbiamo dimostrare che non può essere surgettiva (ovvero $\neg |B| \geq |A|$, cioè non è vero che la somma è maggiore o uguale al prodotto).
+	Consideriamo la funzione tra cardinali definita via $f$:
+	\[ f_i : \kappa_i \hookrightarrow \lambda_i : \alpha \mapsto (\underbrace{f(\alpha,i)}_{\in B})(i) \in \lambda_i
+		\]
+	che per ipotesi è iniettiva e non surgettiva, quindi, per ogni $i$, $\lambda_i \setminus\Imm(f_i) \ne \emptyset$. Per l'assioma della scelta possiamo quindi fissare un elemento di $\lambda_i \setminus\Imm(f_i)$ per ogni $i$\footnote{Cioè, per ogni $i$ fissato, abbiamo detto che $\lambda_i\setminus\Imm(f_i) \ne \emptyset$, dunque per \hyperref[ax9]{AC} esiste $\phi : \ps(\lambda_i \setminus\Imm(f_i))\setminus\{\emptyset\} \rightarrow \bigcup \ps(\lambda_i \setminus\Imm(f_i))\setminus \{\emptyset\} = \lambda_i \setminus\Imm(f_i) : A \mapsto \phi(A) \in A$, 
+	e in particolare, $\phi(\lambda_i \setminus\Imm(f_i)) \in \lambda_i \setminus\Imm(f_i)$, dunque possiamo fissare per ogni $i$ un elemento di $\lambda_i \setminus\Imm(f_i)$ come appena fatto.},
+	e scrivere la funzione che associa l'indice $i$ in $I$ al corrispettivo elemento fissato in $\lambda_i \setminus \Imm(f_i)$ [che è ben definita proprio perché abbiamo usato AC per ogni $i \in I$] come segue:
+	\[ g : I \rightarrow \sup_{i \in I} \lambda_i : i \mapsto g(i) \in \lambda_i \setminus \Imm(f_i)
+		\]
+	Chiaramente $g \in B$\footnote{Altro Typo di Mamino.} [per definizione di $B$], verifichiamo che $g \not \in \Imm(f)$. Se, per assurdo, $g \in \Imm(f)$, allora [ricordando che $f$ è definita sulle coppie di $A$]
+	abbiamo $g = f(\alpha,i)$, per qualche $(\alpha, i) \in A$, da cui [estensionalità per funzioni] $g(i) = f(\alpha,i)(i) \overset{\text{def. di $f_i$}}{=} f_i(\alpha) \in \Imm(f_i) \; \lightning$ [assurdo per definizione di $g$], dunque c'è sempre un elemento di $B$, $g \not \in \Imm(f)$, che rende falsa la surgettività di una qualunque funzione, quindi, per AC, essendo le cardinalità totalmente ordinate, 
+	deve valere il $<$.
+\end{proof}
+
+\begin{example}[Disuguaglianza di Cantor]
+	Osserviamo che applicando il teorema di König sui cardinali 1 e 2, sommati su una famiglia $\kappa$, si ottiene:
+	\[ \kappa = \sum_{i \in \kappa} 1 \;\textcolor{red}{<}\; \prod_{i \in \kappa} 2 = 2^\kappa
+		\]
+	(dove le uguaglianze laterali sono la compatibilità delle definizioni delle operazioni), ovvero proprio il \hyperref[cantor]{teorema di Cantor} dimostrato in precedenza, che ora diventa un caso particolare del teorema di König.
+\end{example}
+
+\begin{example}
+	Consideriamo:
+	\[ \aleph_\omega = \sum_{\alpha \in \omega} \omega_\alpha \;\textcolor{red}{<}\; \prod_{\alpha \in \omega} \omega_{\alpha + 1} \leq \aleph_\omega^{\aleph_0}
+		\]
+	(dove abbiamo usato che $\omega_\alpha < \omega_{\alpha + 1}$ per la definizione ricorsiva della funzione degli aleph), quindi in particolare possiamo dedurre:
+	$2^{\aleph_0} \ne \aleph_\omega$ infatti vale:
+	\[ 2^{\aleph_0} = 2^{\aleph_0 \cdot \aleph_0} = (2^{\aleph_0})^{\aleph_0}
+		\]
+	mentre avremmo il \textcolor{red}{$<$} se, per assurdo, $2^{\aleph_0} = \aleph_\omega$.
+\end{example}
+
+\subsection{Cofinalità}
+
+\begin{definition}[Cofinalità - v.1]
+	Dato un cardinale infinito $\kappa$, la \vocab{cofinalità} di $\kappa$, $\cof(\kappa)$, è il minimo cardinale 
+	$\mu$ per cui esiste una famiglia $\{\lambda_i\}_{i \in \mu}$ di cardinali tali che:
+	\[ \forall i \in \mu \; \lambda_i < \kappa \qquad \text e \qquad \kappa = \sum_{i \in \mu} \lambda_i
+		\]
+\end{definition}
+
+\textcolor{MidnightBlue}{In altri termini, $\cof(\kappa)$ è il \textcolor{red}{minimo numero di parti} $<\kappa$ in cui può essere diviso un insieme di cardinalità $\kappa$.}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \pagebreak
