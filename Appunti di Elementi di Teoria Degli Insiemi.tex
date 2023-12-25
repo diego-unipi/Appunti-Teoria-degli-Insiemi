@@ -6328,7 +6328,7 @@ degli ordinali finiti valevano tutte le proprietà delle operazioni tra cardinal
 	Valgono le proprietà ragionevoli per le operazioni tra cardinali, ad esempio:
 	\begin{itemize}
 		\item se $\forall i \in I \; \kappa_i \leq \lambda_i$: \textcolor{orange}{(compatibilità con l'ordinamento - versione infinita)}
-		\[ \sum_{i \in I} \kappa_i \leq \sum_{i \in I} \lambda_i \qquad \prod{i \in I} \kappa_i \leq \prod_{i \in I} \lambda_i
+		\[ \sum_{i \in I} \kappa_i \leq \sum_{i \in I} \lambda_i \qquad \prod_{i \in I} \kappa_i \leq \prod_{i \in I} \lambda_i
 			\]
 		\item $\forall i \in I \; \kappa_i \leq \sum_{i \in I} \kappa_i$
 		\item Se $I = I_1 \sqcup I_2$: \textcolor{orange}{(associatività infinita)}
@@ -6399,15 +6399,27 @@ degli ordinali finiti valevano tutte le proprietà delle operazioni tra cardinal
 \end{example}
 
 \begin{example}
-	Consideriamo:
-	\[ \aleph_\omega = \sum_{\alpha \in \omega} \omega_\alpha \;\textcolor{red}{<}\; \prod_{\alpha \in \omega} \omega_{\alpha + 1} \leq \aleph_\omega^{\aleph_0}
+	Osserviamo che vale:
+	\[ \aleph_\omega = \max\left(\aleph_0, \sup_{\alpha \in \omega} \omega_\alpha\right) = \sum_{\alpha \in \omega} \omega_\alpha \;\textcolor{red}{<}\; \prod_{\alpha \in \omega} \omega_{\alpha + 1} \leq \prod_{\alpha \in \omega} \omega_\omega \overset{\text{proprietà}}{=} \aleph_\omega^{\aleph_0}
 		\]
-	(dove abbiamo usato che $\omega_\alpha < \omega_{\alpha + 1}$ per la definizione ricorsiva della funzione degli aleph), quindi in particolare possiamo dedurre:
-	$2^{\aleph_0} \ne \aleph_\omega$ infatti vale:
+	dove abbiamo usato che $\omega_\alpha < \omega_{\alpha + 1}$ per la definizione ricorsiva della funzione degli aleph. Questa cosa ci dà una stima più precisa di quanto potessimo fare prima solo con Cantor, infatti da ciò si sarebbe ricavato solo che $\aleph_\omega < 2^{\aleph_\omega} \leq \aleph_\omega^{\aleph_\omega}$. Dall'osservazione
+	sopra si ottiene anche in particolare che $2^{\aleph_0} \ne \aleph_\omega$, infatti vale:
 	\[ 2^{\aleph_0} = 2^{\aleph_0 \cdot \aleph_0} = (2^{\aleph_0})^{\aleph_0}
 		\]
 	mentre avremmo il \textcolor{red}{$<$} se, per assurdo, $2^{\aleph_0} = \aleph_\omega$.
 \end{example}
+
+\begin{exercise}[Facile]
+	Se $2^{\aleph_0} = \aleph_{41}$, allora $\aleph_{41}^{\aleph_0} = \aleph_{41}$.
+\end{exercise}
+
+\begin{exercise}[Difficile]
+	Se $2^{\aleph_0} = \aleph_{41}$, allora $\aleph_{42}^{\aleph_0} = \aleph_{42}$.
+\end{exercise}
+
+\begin{exercise}[Pure peggio]
+	Se $2^{\aleph_0} = \aleph_{1}$\footnote{Che è l'\vocab{ipotesi del continuo}.}, allora $\aleph_{n+1}^{\aleph_0} = \aleph_{n+1}$, per $n \in \omega$.
+\end{exercise}
 
 \subsection{Cofinalità}
 
@@ -6418,17 +6430,649 @@ degli ordinali finiti valevano tutte le proprietà delle operazioni tra cardinal
 		\]
 \end{definition}
 
-\textcolor{MidnightBlue}{In altri termini, $\cof(\kappa)$ è il \textcolor{red}{minimo numero di parti} $<\kappa$ in cui può essere diviso un insieme di cardinalità $\kappa$.}
+\textcolor{MidnightBlue}{In altri termini, $\cof(\kappa)$ è il \textcolor{red}{minimo numero di parti} $<\kappa$ [ovvero proprio $\mu$] in cui può essere diviso un insieme di cardinalità $\kappa$.}
+
+\begin{example}[Cofinalità v.1 di alcuni cardinali noti]
+	Vediamone alcuni esempi pratici di cofinalità v.1, tenendo conto che cerchiamo sempre il minimo numero di ``pezzi'' in cui dividere un cardinale, in modo tale che i ``pezzi'' abbiano cardinalità strettamente minore:
+	\begin{itemize}
+		\item $\cof(\aleph_0) = \aleph_0$, qualsiasi cosa più piccola sarebbe un cardinale finito, e dividere $\aleph_0$ in un numero finito di parti dà ancora parti di cardinalità $\aleph_0$, mentre usando $\aleph_0$ abbiamo tutti ``pezzettini'' finiti, la cui unione finita è finita, ma l'unione di $\aleph_0$ cardinali finiti dà proprio $\aleph_0$ per le proprietà viste:
+		\[ \aleph_0 = \sum_{i < \aleph_0} 1 \leq \sum_{i < \aleph_0} n_i \leq \sum_{i < \aleph_0} \aleph_0 = \aleph_0 \cdot \aleph_0 = \aleph_0
+			\]
+		\item $\cof(\aleph_\omega) = \aleph_0$ in quanto:
+		\[ \sum_{\alpha < \aleph_0} \aleph_\alpha = \aleph_\omega
+			\]
+		e se usassimo $|I|<\aleph_0$ (ovvero un cardinale finito), accadrebbe che:
+		\[\sum_{\alpha \in I} \aleph_\alpha = \max\left(|I|,\sup_{\alpha \in I} \aleph_\alpha\right) = \aleph_{\max(I)} < \aleph_\omega
+		\]
+		\item $\cof(\aleph_{42}) = \aleph_{42}$ in quanto:
+		\[ \aleph_{42} = \sum_{i \in I} \kappa_i \leq \sum_{i \in I} \aleph_{41} = \max\left(|I|,\aleph_{41}\right) \implies |I| = \aleph_{42}
+			\]
+		dove la prima uguaglianza è il fatto che stiamo supponendo di poter scrivere $\aleph_{42}$ come somma, la seconda disuguaglianza deriva dal fatto che stiamo supponendo (per avere la definizione di cofinalità v.1) che i cardinali che sommiamo siano strettamente più piccoli di $\aleph_{42}$, e, nel caso peggiore (ovvero appunto tutti i termini della somma $\aleph_{42}$), troviamo calcolando la somma, che 
+		l'unica possibilità è che $|I| = \aleph_{42}$.
+	\end{itemize}
+\end{example}
+
+\begin{definition}[Cofinalità - v.2]
+	Dato un insieme ordinato $(S,<)$\footnote{Questa definizione di cofinalità, al contrario della precedente è valida su qualsiasi insieme [parzialmente] ordinato, mentre la
+	precedente solo per i cardinali, ovvero gli ordinali iniziali con le operazioni cardinali, dopo aver dimostrato che le due definizioni sono equivalenti, allora anche la prima definizione
+	avrà senso su ordini qualunque.}, diciamo che $A\subseteq S$ è \vocab{cofinale} in $S$ se $\forall x \in S \; \exists y \in A \; x \leq y$ \textcolor{MidnightBlue}{- ossia $A$ non 
+	ha maggioranti stretti in S}. La \vocab{cofinalità} di $(S,<)$ è la minima cardinalità di un sottoinsieme cofinale di $S$.
+\end{definition}
+
+\begin{example}[Cofinalità v.2 di alcuni cardinali noti]
+	Vediamone alcune secondo questa nuova definizione:
+	\begin{itemize}
+		\item $\cof(\omega) = \aleph_0$, $\omega$ è banalmente cofinale in se stesso, inoltre, qualsiasi altro sottoinsieme è finito, dunque ha un maggiorante stretto in $\omega$, pertanto $\omega$ è un\footnote{Va bene qualsiasi altro sottoinsieme infinito di $\omega$, tanto sono tutti $\aleph_0$.} sottoinsieme
+		cofinale di $\omega$, da cui considerando la cardinalità si ha $\aleph_0$.
+		\item $\cof(\RR,<) = \aleph_0$, infatti $\omega$ è cofinale in $\RR$, basta prendere per ogni $x \in \RR$ la parte intera superiore, $x \leq \lceil x \rceil \in \omega$, inoltre, per quanto visto con AC $\aleph_0$ è la più
+		piccola cardinalità infinita (stiamo escludendo con lo stesso ragionamento di sopra che vi siano insiemi cofinali finiti in $\RR$), quindi per la definizione v.2, la minima cardinalità cercata è proprio $\aleph_0$.
+		\item $\cof(]0,1],<_{|\RR}) = 1$, perché $\{1\}$ è un sottoinsieme cofinale di $]0,1]$ (non ha maggioranti stretti nel nostro intervallo), e la cofinalità non può essere 0 perché nell'intervallo ha maggioranti stretti.
+		\item $\cof(\omega+1) = 1$, infatti, il sottoinsieme $\{\omega\} \subset \omega + 1$ non ha maggioranti stretti, per cui è cofinale ed in particolare $|\{\omega\}| = 1$, dunque, non essendo il vuoto (o 0) cofinale in $\omega + 1$, segue necessariamente che $\{\omega\}$ è il più piccolo sottoinsieme cofinale.
+		\item $\cof(\omega_\omega) = \aleph_0$ perché $\{\omega_0,\omega_1,\omega_2,\ldots\} = \{\omega_\alpha | \alpha < \omega\}$ è un insieme cofinale in $\omega_\omega = \sup_{i \in \omega} \omega_\alpha$ [banalmente perché abbiamo preso tutti gli $\omega_\alpha$ prima di $\omega_\omega$, quindi non ci può essere fuori qualcosa di strettamente più grande], inoltre, la cardinalità di questo insieme è ovviamente $\aleph_0$,
+		ed è il più piccolo insieme cofinale, infatti, per qualsiasi sottoinsieme finito di $\omega_\omega$, è sufficiente prendere il successivo dell'$\omega_\alpha$ più grande.
+		\item $\cof(\omega_{42}) = \aleph_{42}$ per la proposizione che segue.
+	\end{itemize}
+\end{example}
+
+\begin{proposition}[Equivalenza delle definizioni di cofinalità]
+	Dato $\kappa$ cardinale infinito\footnote{Nel caso $\kappa$ cardinale finito, non coincidono, ed anzi, la definizione v.1 dà sempre 2, mentre la v.2 dà sempre 1.},
+	allora vale che $\cof^{\text{(v.1)}}(\kappa) = \cof^{\text{(v.2)}}(\kappa)$.
+\end{proposition}
+
+\begin{proof}
+	Siano $\lambda_1 := \cof^{\text{(v.1)}}(\kappa)$ e $\lambda_2 := \cof^{\text{(v.2)}}(\kappa)$, verifichiamo quindi le due disuguaglianze per avere la tesi.
+	\begin{itemize}
+		\item[$\boxed{\lambda_1 \leq \lambda_2}$] Sia $A$ cofinale in $\kappa$ (quindi non ha maggioranti stretti in $\kappa$), vogliamo verificare che $\lambda_1 \leq |A|$, in questo modo [avendo la disuguaglianza per tutti gli insiemi cofinali] avremo anche per il minimo [quindi la cofinalità v.2] la disuguaglianza. Siccome 
+		$\kappa$ è un ordinale iniziale (cioè in automatico limite visto che stiamo considerando solo gli ordinali iniziali infiniti) si ha $\alpha \in \kappa \rightarrow s(\alpha) \in \kappa$, quindi [applicando quest'osservazione alla definizione di sottoinsieme cofinale 
+		(e usando i successori come elementi di $\kappa$) si ottiene] $\forall \alpha \in \kappa \; \exists \beta \in A \; s(\alpha) \leq \beta$, da cui [per la proprietà del successore nel primo termine di una disuguaglianza] $\forall \alpha \in \kappa \; \exists \beta \in A \; \alpha \in \beta$,
+		e l'ultima cosa equivale proprio a $\kappa = \bigcup A$\footnote{Ricordare quindi che $\beta \in \kappa$ e $A \subseteq \kappa$.}. Abbiamo quindi che:
+		\[ \kappa \leq \sum_{\beta \in A} |\beta| \leq \sum_{\beta \in A} \kappa = \kappa
+			\]
+		Dove la prima disuguaglianza è inclusione-esclusione infinita [abbiamo detto che $\kappa$ è l'unione degli elementi di $A$, dunque la cardinalità dell'unione è più piccola della somma delle cardinalità degli elementi], la seconda disuguaglianza deriva dal fatto che $\beta \in A \subseteq \kappa$, e l'ultima uguaglianza è resa vera dal fatto che
+		la somma è data dal massimo di $|A|$ e $\kappa$, ma $A \subseteq \kappa$, quindi fa proprio $\kappa$.\\
+		Dunque abbiamo ottenuto che $\sum_{\beta \in A} |\beta| = \kappa$, cioè uno fra $|A|$ e $|\beta|$ è uguale a $\kappa$, e, siccome $\forall \beta \in A \; \beta < \kappa$ [per quanto detto] e $\kappa$ è un ordinale iniziale [ovvero il più piccolo della sua cardinalità], vale che $\forall \beta \in A \; |\beta| < \kappa$.
+		Quindi $|A| = \kappa$, e vale quindi l'identità $\sum_{a \in A} |a| = \kappa$ (solito max, dove vince $|A|$), ma ciò significa che $|A|$ è tra le cardinalità di cui si prende il minimo nella definizione di cofinalità v.1, e quindi, l'insieme in cui si prende il minimo nella definizione v.1, contiene quello della definizione v.2, da cui la disuguaglianza $\lambda_1 \leq \lambda_2$.
+		\item[$\boxed{\lambda_2 \leq \lambda_1}$] Se $\lambda_1 = \kappa$ non c'è niente da dimostrare, perché $\kappa$ stesso è cofinale in sé, e quindi il minimo nella definizione v.2 comprende già $\kappa$ per cui la disuguaglianza è automaticamente verifica. Assumiamo quindi che $\lambda_1 < \kappa$ (ci basta trovare un insieme cofinale in $\kappa$ di cardinalità $\lambda_1$, in questo modo sta nel minimo dell'altra definizione e otteniamo la disuguaglianza voluta).
+		Per ipotesi esiste $\{\kappa_i\}_{i \in I}$ con $|I| = \lambda_1$, tale che [è la definizione di cofinalità v.1]:
+		\[ \kappa = \sum_{i \in I} \kappa_i = \max\left(|I|,\sup_{i \in I} \kappa_i\right) = \max\left(\lambda_1, \sup_{i \in I} \kappa_i\right) \overset{\lambda_1 < \kappa}{=}\, \footnote{Se il max fosse $\lambda_1$, avremmo $\kappa = \lambda_1$, che è contro il fatto supposto poco sopra, ovvero $\lambda_1 < \kappa$, pertanto il max deve essere necessariamente il sup.} \sup_{i \in I} \kappa_i
+			\]
+		Dimostriamo che $A \Mydef \{\kappa_i | i \in I\}$ è cofinale in $\kappa$. Da questo segue la tesi in quanto $|A| \leq |I| = \lambda_1$ [avremo quindi che l'insieme della definizione v.1 è contenuto in quello della definizione v.2, da cui la disuguaglianza (inversa) dei minimi\footnote{Notare che in entrambi i punti, abbiamo preso l'insieme dal lato maggiore della disuguaglianza ed abbiamo dimostrato che è contenuto da quello del lato minore, e da ciò abbiamo ricavato in automatico le disuguaglianze in senso inverso sui minimi.}].
+		Dato $x \in \kappa$, se $x$ non fosse un maggiorante largo di $A$, avremmo $\forall i \in I \; \kappa_i < x$, ma allora [$x$ è un maggiorante]:
+		\[ \sup_{i \in I}\kappa_i \leq x < \kappa \; \lightning
+			\]
+		(l'assurdo c'è perché abbiamo trovato una disuguaglianza stretta tra gli estremi, mentre sopra avevamo dimostrato che sono uguali).
+	\end{itemize}
+\end{proof}
+
+\begin{proposition}[Transitività della cofinalità]
+	Sia $(S,<_S)$ totalmente ordinato e $T \subseteq S$ cofinale in $S$. Detta $<_T = <_{S|T}$ [la restrizione di $<_S$ a $T$], cioè $<_T \Mydef <_S \cap (T \times T)$, allora:
+	\[ \cof(S,<_S) = \cof(T,<_T)
+		\]
+\end{proposition}
+
+\begin{proof}
+	Dimostriamo che se $A \subseteq T$ è cofinale in $(T,<_T)$, allora lo è anche in $(S,<_S)$, in questo modo abbiamo un contenimento tra gli insiemi su cui prendiamo il minimo nella definizione di cofinalità v.2 [ovvero $\cof(S,<_S) \leq \cof(T,<_T)$, perché facciamo il minimo su più roba]. Per 
+	l'altro, se $B \subseteq S$ è cofinale in $(S,<_S)$, allora esiste $B' \subseteq T$ con $|B'| \leq |B|$ cofinale in $T$ (in questo modo avremo $\cof(T,<_T) \leq \cof(S,<_S)$).
+	\begin{itemize}
+		\item Dato $A \subseteq T$ cofinale in $T$, verifichiamo che è cofinale anche in $S$. Sia $x \in S$, dobbiamo trovare un $y \in A$ tale che $x \leq y$. Siccome $T$ è cofinale in $S$ [è l'ipotesi della proposizione] esiste $t \in T$ tale per cui $x \leq t$, e, siccome 
+		$A$ è cofinale in $T$, esiste $y \in A$ per il quale $t \leq y$, da cui $x \leq y$.
+		\item Dato $B \subseteq S$ cofinale, siccome $T$ [per ipotesi] è cofinale in $S$, per ogni $b \in B \subseteq S$ possiamo scegliere un $y_b \in T$ con $b < y_b$ [è la cofinalità di $T$ in $S$]. Sia $B' := \{y_b \in T | b \in B\} \subseteq T$.
+		Siccome la funzione $b \mapsto y_b$ è surgettiva da $B$ a $B'$ abbiamo $|B'| \leq |B|$. Inoltre, per la cofinalità di $B'$ in $T$, osserviamo preso un qualunque $x \in S$ [quindi in particolare anche in $T$] esiste $b \in B$ con $x \leq b$ [per la cofinalità di $B$ in $S$],
+		quindi, possiamo prendere l'$y_b$ associato e ottenere [componendo le disuguaglianze] $x \leq y_b \in B'$, pertanto, limitandoci agli $x \in T$ abbiamo ottenuto che $B'$ è cofinale in $T$.
+	\end{itemize}
+\end{proof}
+
+\begin{proposition}[I cardinali infiniti sono sempre cofinali in se stessi]
+	Sia $\kappa$ un cardinale infinito, allora vale che $\cof(\kappa) \leq \kappa$.
+\end{proposition}
+
+\begin{proof}
+	Infatti, $\kappa$ si può scrivere come:
+	\[ \kappa = \sum_{i \in \kappa} 1
+		\]
+	che rispetta la definizione v.1 di cofinalità. Pertanto $\kappa$ è tra le cardinalità di cui si prende il minimo nella definizione, e, essendo un elemento
+	del minimo segue anche che necessariamente il minimo sara più piccolo, da cui $\cof(\kappa) \leq \kappa$.
+\end{proof}
+
+\begin{remark}[Cofinalità della cofinalità di ordini totali]
+	Sia $(S,<)$ totalmente ordinato, allora:
+	\[ \cof(\cof(S,<)) = \cof(S,<)
+		\]
+	e in particolare, per ogni cardinale [= ordinale iniziale] $\kappa$, $\cof(\cof(\kappa)) = \cof(\kappa)$\footnote{Cioè tutti i cardinali associati alle cofinalità di ordini totali sono \vocab{regolari}.}.
+\end{remark}
+
+\begin{proof}
+	Sia $\kappa := \cof(S,<)$ e $A \subseteq S$ cofinale con $|A| = \kappa$ [è la definizione di cofinalità v.2, stiamo semplicemente considerando un insieme cofinale in $S$ che la verifica]. Supponiamo per assurdo
+	che $\cof(\kappa) < \kappa$ [abbiamo già dimostrato nel caso di cardinali infiniti che $\cof(\kappa) \leq \kappa$, quindi non ci resta che escludere il minore stretto\footnote{Ovvero che il cardinale associato all'ordine totale sia \vocab{singolare}.}],
+	quindi esistono $\{\kappa_i\}_{i \in I}$, $\forall i \in I \; \kappa_i < \kappa$ e $\cof(\kappa) = |I| < \kappa$, tali che:
+	\[ \kappa = \sum_{i \in I} \kappa_i
+		\]
+	Fissiamo allora una famiglia $\{A_i\}_{i \in I}$ di sottoinsiemi di $A$ disgiunti tali che $\forall i \in I \; |A_i| = \kappa_i$ e $\bigcup\{A_i | i \in I\} = A$ [cioè una partizione]\footnote{Formalmente stiamo usando \hyperref[ax9]{AC} sulle parti [meno il vuoto] di
+	un insieme ottenuto per separazione nelle parti delle parti delle parti di $A$.}. Per ogni $i \in I$, $A_i$ non è cofinale \textcolor{red}{in $S$} siccome [per costruzione] $|A_i| = \kappa_i < \kappa = \cof(S,<)$ [se lo fossero $\kappa$ non sarebbe la cofinalità come abbiamo assunto, perché avremmo insiemi cofinali più piccoli], quindi possiamo scegliere per tutti gli $A_i$ un maggiorante stretto $y_i \in S$.
+	Detto $B := \{y_i \in S | i \in I\} \subseteq A$\footnote{Typo totale di Mamino.} [l'insieme dei maggioranti stretti degli elementi della partizione], abbiamo $|B| \leq |I| < \kappa$ (la seconda disuguaglianza è l'ipotesi assurda, la prima deriva dal fatto che abbiamo una mappa surgettiva naturale da $I$ a $B$ per definizione di quest'ultimo). D'altro canto $B$ è cofinale \textcolor{red}{in $S$}, infatti, preso $x \in S$, per la cofinalità di $A$
+	$\exists a \in A$ tale che $x \leq a$, ora $a$ è necessariamente in uno degli elementi della partizione, supponiamo $a \in A_i$, quindi [$A_i$ ha un maggiorante stretto] $x \leq a < y_i \implies x \leq y_i \in B$\footnote{Typo Mamino.}. Per cui abbiamo trovato un insieme cofinale in $S$ con cardinalità più piccola di $\kappa$, $|B| < \kappa = \cof(S) \; \lightning$. Si conclude che deve necessariamente accadere 
+	che $\cof(\kappa) = \kappa$.
+\end{proof}
+
+Vediamo ora alcune applicazioni della cofinalità.
+
+\begin{corollary}[di König - o disuguaglianze di cofinalità]
+	Per $\kappa$ cardinale infinito, e $\lambda$ cardinale $\geq 2$ vale:
+	\[ \kappa < 2^{\cof(\kappa)} \qquad \kappa < \cof(\lambda^{\kappa})\,
+		\]
+\end{corollary}
+
+\begin{proof}
+	Cominciamo dalla prima disuguaglianza. Detta $\mu := \cof(\kappa)$, esiste [per definizione] una famiglia $\{\kappa_i\}_{i \in \mu}$, con $\kappa_i < \kappa$ per ogni $i \in I$, $\mu \leq \kappa$ e $\kappa = \sum_{i \in \mu} \kappa_i$. Per König abbiamo che:
+	\[ \kappa = \sum_{i \in \mu} \kappa_i \; \textcolor{red}{<} \; \prod_{i \in \mu} \kappa = \kappa^\mu = \kappa^{\cof(\kappa)}
+		\]
+	ricapitolando, abbiamo usato in serie: definizione di cofinalità v.1, disuguaglianza di König (poiché $\kappa_i < \kappa$), proprietà del prodotto [cioè la proprietà di compatibilità delle definizioni delle operazioni]. Passando ora alla seconda disuguaglianza, assumiamo per assurdo che $\kappa \geq \cof(\lambda^\kappa)$, e 
+	applichiamo la prima disuguaglianza a $\lambda^\kappa$, che è infinito (serve per applicare la prima disuguaglianza) perché $\geq 2^{\aleph_0}$ [essendo per ipotesi $\lambda \geq 2$ e $\kappa$ infinito], ottenendo:
+	\[ \lambda^\kappa \;\textcolor{red}{<}\; (\lambda^\kappa)^{\cof(\lambda^\kappa)} \overset{\text{Hp. assurda}}{\geq} (\lambda^{\kappa})^{\kappa} = \lambda^{\kappa \cdot \kappa} = \lambda^{\kappa} \;\lightning
+		\]
+\end{proof}
+
+\begin{definition}[Funzione $\gimel$]
+	La funzione $\gimel$\footnote{\;``Gimel'', pronunciata ``ghimel''.} è definita sui cardinali infiniti da:
+	\[ \gimel(\kappa) = \kappa^{\cof(\kappa)}
+		\]
+\end{definition}
+
+\begin{corollary}[Disuguaglianze di cofinalità via $\gimel$]
+	Con la funzione $\gimel$, dato $\kappa$ cardinale infinito, abbiamo le disuguaglianze di cofinalità:
+	\[ \kappa < \gimel(\kappa) \qquad \cof(\kappa) < \cof(\gimel(\kappa))\,\footnote{Notare che questa è più precisa di quella sopra.}
+		\]
+\end{corollary}
+
+\begin{proof}
+	La prima disuguaglianza è una riscrittura di quella sopra, che vale perché supponiamo $\kappa$ infinito. La seconda, corrisponde a sua volta
+	alla seconda di sopra, usando $\cof(\kappa)$\footnote{Che è necessariamente infinito nel caso di $\kappa$ cardinale infinito.} come cardinale e $\lambda = \kappa$ [va bene perché $\kappa$ infinito, quindi $\geq 2$].
+\end{proof}
+
+\begin{definition}[Proprietà dei cardinali]
+	Dato un cardinale $\kappa$, diciamo che è:
+	\begin{itemize}
+		\item \vocab{regolare} se $\cof(\kappa) = \kappa$
+		\item \vocab{singolare} se $\cof(\kappa) < \kappa$\footnote{Abbiamo visto che per i cardinali infiniti [ma vale banalmente anche per quelli finiti] che $\cof(\kappa) \leq \kappa$, quindi regolare e singolare sono le due uniche possibilità.}
+		\item \vocab{successore} se $\kappa = \aleph_{\alpha + 1}$ per qualche $\alpha \in \Ord$
+		\item \vocab{limite} se $\kappa = \aleph_{\lambda}$ per $\lambda$ ordinale limite
+		\item \vocab{limite forte} se $\aleph_0 < \kappa$ e $\forall \alpha \in \Ord \; \aleph_\alpha < \kappa \rightarrow 2^{\aleph_\alpha} < \kappa$
+		\item \vocab{debolmente inaccessibile} se è regolare e limite
+		\item \vocab{(fortemente) inaccessibile} se è regolare e limite forte.
+	\end{itemize}
+\end{definition}
+
+\begin{proposition}[Limite forte $\implies$ limite]
+	Un cardinale limite forte è anche limite.
+\end{proposition}
+
+\begin{proof}
+	Dato $\kappa$ limite forte, se per assurdo fosse successore, $\kappa = \aleph_{\alpha + 1}$, avremmo
+	$\aleph_\alpha < 2^{\aleph_{\alpha}}$ [Cantor] da cui $\kappa \leq 2^{\aleph_{\alpha}}$\footnote{Per la definizione della funzione degli aleph, $\aleph_{\alpha + 1}$ è il più piccolo cardinale più grande di $\aleph_\alpha$, essendo $\aleph_\alpha < 2^{\aleph_\alpha}$ per Cantor, si ha che $\aleph_{\alpha + 1} \leq 2^{\aleph_\alpha}$.}.
+	D'altra parte, $\kappa = \aleph_{\alpha + 1} \implies \kappa > \aleph_\alpha$, quindi per ipotesi di limite forte, $\kappa > 2^{\aleph_\alpha}$, quindi abbiamo un assurdo.
+\end{proof}
+
+\begin{proposition}[Successore $\implies$ regolare]
+	I cardinali successori sono regolari.
+\end{proposition}
+
+\begin{proof}
+	Sia $\kappa = \aleph_{\alpha + 1}$, sappiamo che vale sempre [per i cardinali infiniti] $\cof(\kappa) \leq \kappa$, supponiamo quindi per assurdo che $\lambda := \cof(\kappa) < \kappa$.
+	Per definizione di cofinalità v.1 abbiamo che esiste una famiglia di cardinali $\{\kappa_i\}_{i \in I}$, per cui $\forall i \in I \; \kappa_i < \kappa$ e $\lambda = |I| < \kappa$, tali che:
+	\[ \kappa = \sum_{i \in I}\kappa_i \leq \sum_{i \in I} \aleph_\alpha = \aleph_\alpha \cdot |I| \leq \aleph_\alpha\cdot \aleph_\alpha = \aleph_\alpha \;\textcolor{red}{<}\; \kappa \; \lightning
+		\]
+	dove la prima disuguaglianza è la proprietà di compatibilità ordinamento-operazioni tra cardinali (tenuto conto che $\kappa_i < \kappa = \aleph_{\alpha + 1} \implies \kappa_i \leq \aleph_\alpha$, per le proprietà della funzione degli aleph), la terza uguaglianza è la compatibilità delle definizioni somma-prodotto,
+	la quarta deriva dal fatto che $|I| = \lambda = \cof(\kappa) < \kappa = \aleph_{\alpha + 1} \implies \lambda \leq \aleph_\alpha$, la quinta uguaglianza è la solita proprietà degli aleph e l'ultima disuguaglianza è l'ipotesi.
+\end{proof}
+
+\begin{corollary}[$\gimel$ di cardinali regolari]
+	Se $\kappa$ è \textcolor{red}{successore}, allora $\gimel(\kappa) = 2^{\kappa}$.\footnote{L'essere successore implica la regolarità che ci fà ritrovare la disuguaglianza di Cantor per i cardinali regolari: $\kappa < \gimel(\kappa) = 2^{\kappa}$, la prima disuguaglianza
+	è stata dimostrata usando già Cantor, che comunque, abbiamo già dimostrato valere per tutti cardinali, con la dimostrazione classica o come conseguenza di König.}
+\end{corollary}
+
+\begin{proof}
+	Poiché $\kappa$ è successore è anche regolare, per cui si ha che $\cof(\kappa) = \kappa$, quindi $\gimel(\kappa) = \kappa^{\cof(\kappa)} = \kappa^\kappa = 2^{\kappa}$, dove l'ultima uguaglianza deriva da:
+	\[ 2^{\kappa} \overset{2 \leq \kappa}{\leq} \kappa^\kappa \overset{\text{Cantor}}{\leq} (2^\kappa)^{\kappa} = 2^{\kappa \cdot \kappa} = 2^\kappa
+		\]
+\end{proof}
+
+\begin{proposition}[Cofinalità dei cardinali limiti]
+	Se $\lambda$ è un cardinale limite, allora $\cof(\aleph_\lambda = \cof(\lambda))$.
+\end{proposition}
+
+\begin{proof}
+	Vale in generale che il sottoinsieme [il cui sup è appunto $\omega_\lambda$] $\{\omega_\alpha | \alpha < \lambda\} \subseteq \omega_\lambda$ è cofinale in $\omega_{\lambda}$ stesso\footnote{Negli esempi avevamo già visto il caso di $\omega_\omega$.}, ed 
+	isomorfo come ordine a $\lambda$, dunque la sua cardinalità è ciò che determina la cofinalità (qualsiasi insieme più piccolo di cardinali è contenuto necessariamente in questo, dicendo addio alla cofinalità in $\omega_\lambda$).
+\end{proof}
+
+\begin{note}[Esistenza di cardinali inaccessibili nella ZFC]
+	In generale, un cardinale \textcolor{red}{limite} potrebbe essere \textcolor{MidnightBlue}{singolare o regolare}. Tuttavia, benché sia facile esibire cardinali limiti singolari (abbiamo visto ad esempio $\aleph_\omega$), gli assiomi della ZFC non implicano l'esistenza [all'interno della teoria]
+	di un cardinale limite e regolare - che abbiamo detto si chiama appunto \textcolor{purple}{debolmente inaccessibile}. Insomma, non si può dimostrare che tutti i cardinale limitandoci sono singolari - e non c'è una buona ragione per assumere che lo siano (quindi non aggiungiamo un altro assioma) - ma sarebbe coerente
+	con gli assiomi della teoria degli insiemi che tutti i cardinali limite fossero singolari.\footnote{Morale: nella ZFC abbiamo cardinali limiti + singolari, non possiamo dimostrare che tutti i cardinali limite sono singolari (nonostante ciò sia coerente con la ZFC), ma non possiamo neppure dimostrare che esiste
+	un cardinale debolmente inaccessibile [quindi non avremo nemmeno i fortemente inaccessibili].}
+\end{note}
+
+\pagebreak
+\subsection{Formula di Hausdorff}
+
+\begin{proposition}[Formula di Hausdorff]
+	Siano $\kappa$ e $\lambda$ cardinali infiniti, allora:
+	\[ (\kappa^+)^\lambda = \kappa^{\lambda} \cdot \kappa^+
+		\]
+\end{proposition}
+
+\begin{proof}
+	Dimostriamo le due disuguaglianze tra LHS e RHS.
+	\begin{itemize}
+		\item[$\boxed{\geq}$] Siccome $\kappa^{\lambda} \cdot \kappa^+ = \max(\kappa^{\lambda}, \kappa^+)$, è sufficiente verificare che $(\kappa^+)^\lambda$ sia maggiore di entrambi i termini, e ciò segue immediatamente perché 
+		$(\kappa^+)^\lambda \leq \kappa^{\lambda}$ (l'esponenziale di cardinali è debolmente crescente) e $(\kappa^+)^\lambda \geq \kappa^{+}$ (poiché $\lambda$ è infinito quindi $\geq 1$).
+		\item[$\boxed{\leq}$] Distinguiamo due casi:
+		\begin{itemize}
+			\item[$\bullet$]\textbf{\underline{se $\kappa < \lambda$}} Basta considerare la catena di disuguaglianze:
+			\[ (\kappa^+)^\lambda \leq (2^{\kappa})^\lambda \leq (\kappa^{\lambda})^\lambda = \kappa^{\lambda} \leq \kappa^{\lambda} \cdot \kappa^+
+				\]
+			dove: la prima disuguaglianza è Cantor su $\kappa$, che dà quindi $\kappa < 2^{\kappa}$, e, per definizione di $\kappa^+$ come il più piccolo cardinale più grande di $\kappa$, vale necessariamente che $\kappa^+ \leq 2^{\kappa}$ e poi si conclude con la monotonia dell'esponenziale\footnote{Ricordare che le proprietà sono le stesse 
+			già viste per le cardinalità, quindi tutte le operazioni sono debolmente crescenti in entrambe le componenti.};
+			la seconda disuguaglianza è ancora la monotonia, applicata sia per $2 \leq \kappa$, sia per $\kappa < \lambda$ al primo esponente, la terza uguaglianza è soltanto una riscrittura, più la solita proprietà delle potenze finite di cardinali; infine, l'ultima disuguaglianza è la monotonia del prodotto,
+			in quanto $\kappa^+ > 1$. 
+			\item[$\bullet$]\textbf{\underline{se $\kappa \geq \lambda$}} Sia $S_\alpha := \{f : \lambda \rightarrow \alpha\}$ per cui $|S_\alpha|$ è per definizione $|\alpha|^{\lambda}$ e, in particolare, vale che $(\kappa^+)^\lambda = |S_{\kappa^+}|$. Presa una $f \in S_{\kappa^+}$, osserviamo
+			che $|\Imm(f)| = \lambda < \kappa^+$ [per ipotesi $\kappa \geq \lambda$, quindi il cardinale successore sarà maggiore strettamente].
+			Tuttavia $\kappa^+$ è regolare [è un successore per definizione], quindi $\cof(\kappa^+) = \kappa^+ > \lambda$, per cui $\Imm(f)$ non è cofinale in $\kappa^+$, e, di conseguenza, esiste un ordinale $\alpha \in \kappa^+$ tale che [è un maggiorante stretto di $\Imm(f)$] $\forall x \in \lambda \; f(x) < \alpha$, ossia $f \in S_\alpha$ [cioè $f$ può essere pensata come una funzione da $\lambda$ a $\alpha$].
+			Abbiamo dunque dimostrato che $S_{\kappa^+} = \bigcup \{S_\alpha | \alpha \in \kappa^+\}$ (abbiamo proprio usato estensionalità per far vedere che $f \in S_{\kappa^+}$ se e solo se $f \in S_\alpha$ per qualche $\alpha \in \kappa^+$), per cui:
+			\[ |S_{\kappa^+}| \leq \sum_{\alpha \in \kappa^+} |S_\alpha| =\footnote{Typo Mamino.} \sum_{\alpha \in \kappa^+} |\alpha|^\lambda \leq \kappa^\lambda \cdot \kappa^+
+				\]
+			dove la prima disuguaglianza è inclusione-esclusione, la seconda uguaglianza è la definizione, infine l'ultima cosa sarebbe il prodotto di cui si prende il max, ma questo è a sua volta maggiorato dal prodotto dei due cardinali.
+		\end{itemize}
+	\end{itemize}
+\end{proof}
+
+\pagebreak
+\begin{exercise}
+	Dimostrare che $\aleph_\omega^{\aleph_1} = \gimel(\aleph_1) \cdot \gimel(\aleph_\omega)$.\footnote{\underline{\textbf{Hint}}: Studiare $\left(\prod_{n \in \omega} \aleph_n\right)^{\aleph_1}$.}
+\end{exercise}
+
+\begin{fact}[Esponenziazione di cardinali]
+	La funzione esponenziale $\kappa^\lambda$ è determinata ricorsivamente dalle funzioni $\cof$ e $\gimel$.
+\end{fact}
+
+Non dimostriamo questo fatto, dimostriamo tuttavia il seguente caso particolare, che basta ad illustrare le tecniche necessarie: la \vocab{funzione del continuo}
+$\kappa \mapsto 2^{\kappa}$ è determinata ricorsivamente dalla funzione $\gimel(\kappa)$.
+
+\begin{definition}[Finta esponenziazione di un cardinale limite]
+	Sia $\kappa$ un cardinale \textcolor{red}{limite}. Definiamo:
+	\[ 2^{<\kappa} \Mydef \sup\{2^\lambda | \; \text{$\lambda$ cardinale $<\kappa$}\}
+		\]
+	Notare che vale [da definzione] che $2^{\leq \kappa} \leq \kappa$ e nulla di più.
+\end{definition}
+
+\begin{lemma}[2 alla cardinle ``limite'']
+	Dato $\kappa$ cardinale limite vale:
+	\[ 2^{\kappa} = (2^{<\kappa})^{\cof(\kappa)}
+		\]
+\end{lemma}
+
+\begin{proof}
+	Sia $\lambda := \cof(\kappa)$ e $\{\kappa_i\}_{i \in \lambda}$, tale che $\kappa_i < \kappa$ per ogni $i \in \lambda$, per cui $\kappa = \sum_{i \in \lambda}\kappa_i$. Allora vale la segue catena di disuguaglianze:
+	\[ \begin{split}
+		\textcolor{orange}{2^\kappa} &= 2^{\sum_{i \in \lambda}\kappa_i} \\
+									 &= \prod_{i \in \lambda} 2^{<\kappa} \\
+									 &= \textcolor{MidnightBlue}{(2^{<\kappa})^\lambda} \\
+									 &\leq (2^\kappa)^\lambda = \textcolor{orange}{2^\kappa}
+	\end{split}
+		\]
+	dove: la prima uguaglianza è la definzione di cofinalità, la seconda la proprietà del prodotto infinito di potenza (dimostrata in un'osservazione a inizio capitolo), la terza è una delle proprietà dei prodotti infiniti,
+	e la quarta è la monotonia debole dell'esponenziale, in quanto $\sup\{2^{\lambda}|\lambda < \kappa\} \leq \kappa$.
+\end{proof}
+
+\begin{definition}[Funzione del continuo definitivamente costante sotto un ordinale]
+	Sia $\kappa$ un cardinale, diciamo che la funzione del continuo $\lambda \mapsto 2^\lambda$ è \vocab{definitivamente costante sotto $\kappa$} se esiste un cardinale $\mu < \kappa$ tale che [la funzione del
+	continuo è costante da lì in poi fino a $\kappa$ escluso] $\forall \nu$ cardinale $\mu \leq \nu < \kappa \rightarrow 2^\nu = 2^\mu$.
+\end{definition}
+
+\begin{proposition}[Esponenziazione cardinale di 2]
+	La funzione del continuo $\kappa \mapsto 2^{\kappa}$ è determinata da $\gimel$ come segue:
+	\[ 2^{\kappa} = \begin{cases}
+		\gimel(\kappa) &\text{se $\kappa$ è successore} \\
+		2^{<\kappa} \cdot \gimel(\kappa) &\text{se $\lambda \mapsto 2^\lambda$ è definitivamente costante sotto $\kappa$} \\
+		\gimel(2^{<\kappa}) &\text{se $\lambda \mapsto 2^\lambda$ NON è definitivamente costante sotto $\kappa$} \\
+	\end{cases}
+		\]
+\end{proposition}
+
+\begin{proof}
+	Abbiamo già visto il caso successore in precedenza (è regolare e quindi $\gimel(\kappa) = \kappa^\kappa = 2^\kappa$). Supponiamo quindi che $\kappa$ sia un cardinale limite. Vediamo prima i casi in cui 
+	la funzione del continuo è definitivamente costante e $\kappa$ è regolare [cioè debolmente inaccessibile] o singolare [e limite].
+	\begin{itemize}
+		\item Caso $\lambda \mapsto 2^\lambda$ è definitivamente costante sotto $\kappa$ e $\kappa$ regolare.\\
+		Osserviamo che vale:
+		\[ 2^{<\kappa} \cdot \gimel(\kappa) = 2^{<\kappa} \cdot \kappa^\kappa = 2^{<\kappa} \cdot 2^\kappa = 2^\kappa
+			\]
+		dove abbiamo usato la regolarità di $\kappa$ nella prima uguaglianza, la solita riscrittura di $\kappa^\kappa$ nella seconda,
+		e nella terza il fatto che $\sup_{\alpha < \kappa} 2^\alpha \leq 2^\kappa$ [dunque nel prodotto vince il maggiore].
+		\item Caso $\lambda \mapsto 2^\lambda$ è definitivamente costante sotto $\kappa$ e $\kappa$ singolare.\\
+		Sia $\mu$ tale che $\forall \nu$ cardinale $\mu \leq \nu < \kappa \rightarrow 2^\nu = 2^\mu$, allora si ha, essendo la successione definitivamente costante sotto $\kappa$ che $2^{<\kappa} = 2^{\mu}$,
+		infatti la funzione del continuo è crescente essendo un esponenziale, e da $\mu$ in poi è costante fino a $\kappa$ escluso, quindi in $2^{<\kappa}$ il valore massimo raggiunto dagli elementi di cui stiamo prendendo il sup è $2^\mu$.
+		Segue che:
+		\[ \textcolor{orange}{2^\kappa} = (2^{<\kappa})^{\cof(\kappa)} = 2^{\mu \cdot \cof(\kappa)} = 2^\mu = \textcolor{MidnightBlue}{2^{<\kappa}} 
+			\]
+		ovvero stiamo usando: il lemma dimostrato poco sopra per la prima uguaglianza, l'osservazione fatta all'inizio di questo punto sul fatto che $2^{<\kappa} = 2^\mu$, per la terza uguaglianza usiamo che $\kappa$ è singolare, dunque $\cof(\kappa) < \kappa$, ma la funzione del continuo, 
+		valutata su un cardinale strettamente più piccolo di $\kappa$ dà al massimo $2^{\mu}$ per l'ipotesi, dunque $2^{\cof(\kappa)} \leq 2^\mu$ da cui il prodotto fa $2^\mu$, e infine, $2^\mu = 2^{<\kappa}$ per quanto detto.
+		Si conclude osservando che l'altro termine del prodotto è maggiorato $2^\kappa$ (in questo modo il prodotto fa necessariamente $2^\kappa$) come segue:
+		\[ \textcolor{MidnightBlue}{\gimel(\kappa)} = {\kappa}^{\cof(\kappa)} \leq \kappa^{\kappa} = 2^\kappa \leq (2^\kappa)^{\cof(\kappa)} = (2^{<\kappa})^{\cof(\kappa)} = 2^{\mu \cdot \cof(\kappa)} = \textcolor{orange}{2^{\kappa}}
+			\]
+		anche in questo caso abbiamo usato solo fatti già elencati sopra.
+	\end{itemize}
+	Vediamo infine il caso in cui la funzione del continuo non sia definitivamente costante sotto $\kappa$.
+	\begin{itemize}
+		\item Caso $\lambda \mapsto 2^\lambda$ NON definitivamente costante sotto $\kappa$.\\
+		Basta dimostrare che \textcolor{red}{$\cof(2^{<\kappa}) = \cof(\kappa)$}, e da questo segue che:
+		\[ \textcolor{orange}{2^\kappa} = (2^{<\kappa})^{\cof(\kappa)} = (2^{<\kappa})^{\cof(2^{<\kappa})} = \textcolor{MidnightBlue}{\gimel(2^{<\kappa})}
+			\]
+		infatti abbiamo usato solo il lemma per la prima uguaglianza, l'assunto [in rosso] per la seconda, e la terta è la definzione, pertanto ci resta solo da dimostrare l'assunto.
+		\begin{itemize}
+			\item[$\boxed{\cof(2^{<\kappa}) \leq \cof(\kappa)}$] Sia $A \subseteq \kappa$ cofinale (vorremo che una cosa di cardinalità minore o uguale fosse cofinale per $2^{<\kappa}$, in modo da avere la disuguaglianza sui minimi e quindi sulle cofinalità) e consideriamo $B:=\{2^{\alpha} | \alpha \in A\}\subseteq 2^{<\kappa}$. Chiaramente [esiste una mappa surgettiva naturale quindi] si ha $|B|\leq|A|$.\\
+			Mostriamo che $B$ è cofinale in $2^{<\kappa}$. Se $x < 2^{<\kappa}$, allora esiste $2 < \kappa$ tale che $x < 2^\alpha$ [cioè per non essere il sup, ci vuole almeno un elemento più grande]. Siccome $A$ è cofinale in $\kappa$, esiste $\beta \in A$ tale che $\alpha \leq \beta$. Quindi $2^\beta \in B$ e $x \leq 2^{\beta}$\footnote{Typo parziale, cioè non è un errore ma è meglio essere precisi per rispettare la definzione}.
+			Ciò ci assicura che $B$ è cofinale in $2^{<\kappa}$, e che quindi l'insieme su cui si prende il minimo per la cofinalità di $2^{<\kappa}$ è fatto da elementi che sono tutti $\leq$ rispetto agli elementi del corrispettivo insieme per la cofinalità di $\kappa$, da cui la disuguaglianza sui minimi.
+			\item[$\boxed{\cof(\kappa) \leq \cof(2^{<\kappa})}$] Per definizione, dato $\alpha < 2^{<\kappa}$, esiste $\beta < \kappa$ tale che $\alpha < 2^\beta$ [di nuovo, stiamo dicendo che non è il sup dell'insieme]. Chiamiamo $\beta_\alpha$ il minimo dei beta per cui vale che $\alpha < 2^\beta$ [sappiamo che l'insieme è non vuoto].
+			Sia, ora, $A \subseteq 2^{<\kappa}$ un insieme cofinale e definaimo $B :=\{\beta_\alpha \in \kappa| \alpha \in A\} \subseteq \kappa$. Come al solito abbiamo che $|B|\leq|A|$ e vogliamo dimsotrare che $B$ è cofinale in $\kappa$, in modo da concludere con lo stesso ragionamento di prima.\\
+			Preso $x \in \kappa$, [per definzione vale] $2^{x} \leq 2^{<\kappa}$ [visto che $x$ è un elemento più piccolo, $2^x$ è uno di quelli in lotta per il sup nella definzione di $2^{<\kappa}$]. Però, siccome $\lambda \mapsto 2^\lambda$ non è definitivamente costante sotto $\kappa$, esiste $y$, con $x < y < \kappa$, tale che $2^x < 2^y$,
+			quindi $2^{x} < 2^{<\kappa}$. Sia $\alpha \in A$, con $2^x \leq \alpha$, che esiste perché $A$ è cofinale in $2^{<\kappa}$. Allora $2^x \leq \alpha < 2^{\beta_\alpha}$. Quindi $x \leq \beta_\alpha$\footnote{Typo come prima, non erroneo ma impreciso.}.
+		\end{itemize}
+	\end{itemize}
+\end{proof}
 
 
+\pagebreak
+\section{La gerarchia di Von Neumann e l'assioma di buona fondazione}
+Insiemi come questi sono (forse?) mostri indesiderabili:
 
+\begin{figure}[H]
+	\centering\includegraphics[width = 11.5cm]{immagini/mostri.png}
+\end{figure}
 
+Desideriamo dimostrare, intanto, che, a patto che gli assiomi della teoria degli insiemi non si contraddicano - nel qual caso dimostrerebbero qualunque cosa - essi NON dimostrano l'esistenza di insiemi del genere.\\
+\textbf{\underline{Startegia}}: costruiamo un universo insiemistico $V_*$, che è una classe propria, al cui interno gli assiomi sono veri, e che, tuttavia, non contiene quella robaccia.
 
+\begin{definition}[Classe $V_*$]
+	Costruiamo per ricorsione transfinita gli insiemi:
+	\begin{align*}
+		&V_0 = \emptyset \\
+		&V_{s(\alpha)} = \ps(V_\alpha) \\
+		&V_\lambda = \bigcup\{V_\alpha | \alpha < \lambda\} \; \text{per $\lambda$ limite}
+	\end{align*}
+	La classe $V_*$ è l'unione degli insiemi $V_\alpha$, formalmente:
+	\[ x \in V_* \Mydef \exists \alpha \in \Ord \; x \in V_\alpha
+		\]
+	(dove $V_*$ è una classe perché l'abbiamo definita come la formula al RHS).
+\end{definition}
 
+\begin{lemma}[$V_\alpha$ è transitivo]
+	$\forall \alpha \in \Ord$ $V_\alpha$ è un insieme transitivo.
+\end{lemma}
 
+\begin{proof}
+	Procediamo per induzione transfinita.
+	\begin{itemize}
+		\item[$\boxed{\text{caso $V_0$}}$] Immediato perché $\emptyset$ è un insieme transitivo a vuoto.
+		\item[$\boxed{\text{caso successore}}$] Supponiamo che $V_\alpha$ sia un insieme transitivo e dimostriamo che
+		anche $V_{s(\alpha)}$ lo è. Dato $x \in V_{s(\alpha)}$ vogliamo arrivare a dire che $x \subseteq V_{s(\alpha)}$ (o equivalentemente
+		che $\forall y \in x \; y \in V_{s(\alpha)}$). Per farlo ci basta osservare che:
+		\[ x \in V_{s(\alpha)} = \ps(V_\alpha) \implies x \subseteq V_\alpha
+			\]
+		ora, poiché $V_\alpha$ è transitivo per ipotesi induttiva, tutti gli elementi di $x$ sono a loro volta sottoinsiemi di $V_\alpha$ [cioè essendo elementi di un sottoinsieme sono in primis elementi di $V_\alpha$, poi per la transitività
+		di quest'ultimo sappiamo che tutti gli elementi sono sottoinsiemi]\footnote{Attenzione al fatto che transitivo non dice che i sottoinsiemi sono necessariamente elementi, quindi $x$ non è detto sia un elemento di $V_\alpha$, ma è un sottoinsieme
+		di $V_\alpha$ e questo ci basta.}, ovvero $\forall y \in x \; y \subseteq V_\alpha \implies \forall y \in x \; y \in \ps(V_\alpha) = V_{s(\alpha)}$, pertanto è verificata la definzione di transitività in $V_{s(\alpha)}$.
+		\item[$\boxed{\text{caso limite}}$] Assumiamo per ipotesi induttiva che $V_\alpha$ sia transitivo per ogni $\alpha < \lambda$. Per definzione:
+		\[ x \in V_\lambda \implies x \in V_\alpha
+			\]
+		per qualche $\alpha < \lambda$, ma allora per ipotesi induttiva $x \subseteq V_\alpha \subseteq V_\lambda$ [la seconda uguaglianza è la definzione nel caso limite].
+	\end{itemize}
+\end{proof}
 
+\begin{corollary}[$V_*$ è una classe transitiva]
+	$V_*$ è una \vocab{classe transitiva}, ossia $\forall x \in V_* \; x \subseteq V_*$.
+\end{corollary}
 
+\begin{proof}
+	Se $x \in V_*$, allora per definzione $x \in V_\alpha$ per qualche $\alpha \in \Ord$, quindi per la proposizione sopra $x \subseteq V_\alpha$, ovvero $x$ è un insieme di cose che soddisfano il predicato che definisce $V_*$, quindi $x \subseteq V_*$.
+\end{proof}
 
+\begin{lemma}[``Ordinamento'' di $V_*$]
+	$\forall \alpha, \beta \in \Ord \; \alpha < \beta \rightarrow V_\alpha \subseteq V_\beta$.
+\end{lemma}
+
+\begin{proof}
+	Procediamo per induzione transfinita su $\beta$.
+	\begin{itemize}
+		\item[$\boxed{\text{caso $\beta = 0$}}$] Vero a vuoto.
+		\item[$\boxed{\text{caso successore}}$] Dobbiamo dimostrare che $\forall \alpha < s(\beta) \; V_\alpha \subseteq V_{s(\beta)}$, e abbiamo per ipotesi induttiva $\forall \alpha < \beta \; V_\alpha \subseteq V_\beta$.
+		Siccome $\alpha < s(\beta) \leftrightarrow \alpha \leq \beta$, si danno due casi, e $\alpha = \beta$ è banalmente vero, dunque abbiamo $\alpha < \beta$, quindi per ipotesi induttiva $V_\alpha \subseteq V_\beta$.\\
+		Per la definzione ricorsiva si ha $V_\alpha \subseteq V_\beta \implies V_\alpha \in \ps(V_\beta) = V_{s(\beta)}$, ma, per la transitività di quest'ultimo, si ottiene che $V_\alpha \subseteq V_{s(\beta)}$.
+		\item[$\boxed{\text{caso limite}}$] Abbiamo per ipotesi che $\forall \alpha < \beta < \lambda \; V_\alpha \subseteq V_\beta$, e vogliamo dimostrare che $\forall \alpha < \lambda \; V_\alpha \subseteq V_\beta$. Questo segue facilmente dall'ipotesi e dalla definzione,
+		infatti, $V_\lambda = \bigcup\{V_\gamma | \gamma < \lambda\}$, ciò significa che $V_\beta \subseteq V_\lambda$ per ogni $\beta < \lambda$, unendo ciò all'ipotesi si ottiene la tesi, $\forall \alpha < \beta < \lambda \; V_\alpha \overset{\text{Hp. indutt.}}{\subseteq} V_\beta \overset{\text{def. $V_\lambda$}}{\subseteq} V_\lambda \implies \forall \alpha < \lambda\; V_\alpha \subseteq V_\lambda$.
+		\footnote{In realtà si poteva concludere anche senza usare l'ipotesi induttiva, in quanto $\alpha < \lambda \implies V_\alpha \subseteq \bigcup{V_\gamma | \gamma < \lambda} = V_\lambda \implies V_\alpha \subseteq V_\lambda$.}
+	\end{itemize}
+\end{proof}
+
+\begin{lemma}[Ogni ordinale è contenuto nella sua immagine in $V_*$]
+	$\forall \alpha \in \Ord \; \alpha \subseteq V_\alpha$.
+\end{lemma}
+
+\begin{proof}
+	Come al solito per induzione transfinita.
+	\begin{itemize}
+		\item[$\boxed{\text{caso $0$}}$] $0 \subseteq V_0 = \emptyset$, vera [perché scrivendo estesamente la formula insiemistica si ha una premessa falsa].
+		\item[$\boxed{\text{caso successore}}$] Supponiamo che $\alpha \subseteq V_\alpha$ e dimostriamo che $s(\alpha) \subseteq V_{s(\alpha)}$. Osserviamo che dall'ipotesi si ha:
+		\[ \alpha \subseteq V_\alpha \implies \alpha \in \ps(V_\alpha) = V_{s(\alpha)} \overset{\text{transitività}}{\implies} \alpha \subseteq V_{s(\alpha)}
+			\]
+		inoltre $\alpha \in V_{s(\alpha)}$ implica che $\{\alpha\} \subseteq V_{s(\alpha)}$ (se c'è come elemento, allora il suo singoletto è un suo sottoinsieme). Si conclude dunque: $s(\alpha) = \underbrace{\alpha}_{\subseteq V_{s(\alpha)}} \cup \underbrace{\{\alpha\}}_{\subseteq V_{s(\alpha)}} \subseteq V_{s(\alpha)}$.
+		\item[$\boxed{\text{caso limite}}$] Per ipotesi induttiva abbiamo che $\alpha < \lambda \rightarrow \alpha \subseteq V_\alpha$, ma allora $\bigcup\{\alpha | \alpha < \lambda\} \subseteq \bigcup\{V_\alpha | \alpha < \lambda\}$ [perché abbiamo per ipotesi che ogni elemeto dell'insieme al LHS è contentuto in un elemento dell'insieme al RHS, 
+		quindi, prendere l'unione genera un insieme che contiene necessariamente almeno tutti gli elmenti dell'altro insieme], da cui:
+		\[ \lambda = \bigcup\{\alpha | \alpha < \lambda\} \;\textcolor{red}{\subseteq}\; \bigcup\{V_\alpha | \alpha < \lambda\} = V_\lambda
+			\]
+	\end{itemize}
+\end{proof}
+
+\subsection{Formule relativizzate ad una classe}
+
+\begin{definition}[Relativizzazione a $V_*$]
+	Data una formula insiemistica, la possiamo \vocab{relativizzare a $V_*$} rimpiazzando i quantificatori [non limitati] $\exists \square$ e $\forall \square$ rispettivamente con $\exists \square \in V_*$ e $\forall \square \in V_*$.
+\end{definition}
+
+\begin{example}[Relativizzazione di una formula a $V_*$]
+	Supponiamo di voler relativizzare a $V_*$ la formula:
+	\[ \varphi \equiv \exists x \; \forall y \in x \; \exists z \in y \; z \cap x = \emptyset
+		\]
+	Dobbiamo intanto ricondurla al linguaggio della teoria degli insiemi puro, ovvero dobbiamo rimuovere gradualmente tutte le abbreviazioni:\footnote{Typo di Mamino alla fine della terza riga, mette $t \in y$ anziché $t \in x$.}
+	\begin{align*}
+		& \exists x \; \forall y \in x \; \exists z \in y \; z \cap x = \emptyset \\
+		& \exists x \; \forall y (y \in x \rightarrow \exists z (z \in y \land \neg \exists t (t \in z \cap x))) \\
+		& \exists x \; \forall y (y \in x \rightarrow \exists z (z \in y \land \neg \exists t (t \in z \land t \in x)))
+	\end{align*}
+	A questo punto rimpiazziamo meccanicamente tutti i quantificatori con quantificatori limitati a $V_*$:
+	\begin{align*}
+		& \exists x \; \forall y (y \in x \rightarrow \exists z (z \in y \land \neg \exists t (t \in z \land t \in x))) \\
+		& \exists x\in V_* \; \forall y \in V_* (y \in x \rightarrow \exists z \in V_* (z \in y \land \neg \exists t \in V_* (t \in z \land t \in x)))
+	\end{align*}
+	Questa nuova formula, \textcolor{MidnightBlue}{$\varphi$ relativizzata a $V_*$}, come è scritta qui sopra, non è espressa nel linguaggio della teoria degli insiemi puro, per via dei quantificatori limitati $\exists \square \in V_*$ e $\forall \square \in V_*$,
+	tuttavia, se volessimo, potremmo semplicemente rimpiazzare questi quantificatori con le rispettive definizioni e ottenere così una formula insiemistica pura realtivizzata a $V_*$.
+\end{example}
+
+\begin{theorem}[Gli assiomi 1-9 relativizzati sono veri in $V_*$]
+	Valgono gli assiomi 1-9 della teoria degli insiemi relativizzati a $V_*$.
+\end{theorem}
+
+\begin{proof}
+	Verifichiamo che valgono uno per uno gli assiomi 1-9 relativizzati in $V_*$, sfruttandone la definzione.
+	\begin{enumerate}[(1)]
+		\item \textbf{\underline{Vuoto}}: \textcolor{purple}{$\exists x \in V_* \; \forall y \in V_* \; y \not \in x$} \\
+		Basta prendere come $x = \emptyset \in V_1 = \ps(V_0) = \ps(\emptyset) = \{\emptyset\}$, e tale insieme rispetta la proprietà richiesta perché la rispettava in $V$.
+		\item \textbf{\underline{Estensionalità}}: \textcolor{purple}{$\forall a,b \in V_* \; a = b \leftrightarrow \forall x \in V_* (x \in a \leftrightarrow x \in b)$} \\
+		Per la transitività dei $V_\alpha$, dati $a,b \in V_*$, gli elementi di $a$ e $b$ sono anch'essi elementi di $V_*$, quindi dire $\forall x \in V_* (x \in a \leftrightarrow x \in b)$ equivale a dire che $\forall x (x \in a \leftrightarrow x \in b)$, cioè
+		tutti gli elementi degli elementi di $V_*$ (ricordiamo che lo abbiamo costruito come unione dei $V_\alpha$), ma a questo punto stiamo prendendo tutti insiemi in $V$, quindi vale estensionalità [non relativizzata] e $a = b$.
+		\item \textbf{\underline{Separazione}}: \textcolor{purple}{$\forall A \in V_* \; \exists B \in V_* \; \forall x \in V_* \; x \in B \leftrightarrow (x \in A \land \varphi(x))$} \\
+		Per separazione [per transitività $A$ è un sottoinsieme di $V_*$, quindi stiamo separando qui dentro] esiste l'insieme $B :=\{x \in A | x \in V_* \land \varphi(x)\}$. Siccome $B \subseteq A \in V_\alpha$, per qualche ordinale $\alpha$, $A$ è a sua volta un sottoinsieme di $V_\alpha$ per transitività, e se ne conclude che $B \subseteq V_\alpha$, dunque $B \in V_{s(\alpha)}$, e quindi $B \in V_*$ (pensare all'unione).
+		\item \textbf{\underline{Paio}}: \textcolor{purple}{$\forall a,b \in V_* \; \exists B \in V_* \; \forall x \in V_* \; x \in B \leftarrow (x = a \lor x = b)$} \\
+		Se $a \in V_\alpha$ e $b \in V_\beta$, e, WLOG possiamo assumere $\alpha \leq \beta$, allora $\alpha, \beta \in V_\beta$, da cui necessariamente il paio [che esiste per l'assioma non realtivizzato] è nelle parti di $V_\beta$, $\{a,b\} \in \ps(V_\beta) = V_{s(\beta)}$, in questo modo, per transitività si ottiene che $\{a,b\} \in V_*$.
+		\item \textbf{\underline{Unione}}: \textcolor{purple}{$\forall A \in V_* \; \exists B \in V_* \; \forall x \in V_* \; x \in B \leftrightarrow \exists y \in A \; x \in y$} \\
+		Se $A \in V_\alpha$, per qualche ordinale $\alpha$, per transitività, $A \subseteq V_\alpha$, ciò significa che $\bigcup A$ [che esiste per unione non realtivizzata], è l'insieme degli elementi degli $A \subseteq V_\alpha$,
+		ma ciò significa che $\bigcup A \subseteq V_\alpha \implies \bigcup A \in \ps(V_\alpha) = V_{s(\alpha)}$, e quindi $\bigcup A \in V_*$.
+		\item \textbf{\underline{Parti}}: \textcolor{purple}{$\forall A \in V_* \; \exists B \in V_* \; \forall x \in V_* \; x \in B \leftrightarrow x \subseteq B$} \\
+		Se $A \in V_\alpha$, quindi $A \subseteq V_{\alpha}$, allora $\ps(A) \subseteq \ps(V_\alpha) = V_{s(\alpha)}$ [dove le parti esistono per l'assioma non realtivizzato], quindi $\ps(A) \in \ps(V_{s(\alpha)}) = V_{\alpha + 2}$, per cui $\ps(A) \in V_*$.
+		\item \textbf{\underline{Infinito}}: \textcolor{purple}{$\exists X \in V_* \; \emptyset \in X \land \forall y \in V_* \; y \in X \rightarrow y \cup \{y\} \in X$} \\
+		Ci basta prendere $X = \omega \in V_{s(\omega)}$, infatti $\omega \subseteq V_\omega$, per quanto visto prima, quindi $\omega \in V_{\omega + 1}$, da cui $\omega \in V_*$ [e $\omega$ esiste per il corrispondente assioma non realtivizzato].
+		\item \textbf{\underline{Rimpiazzamento}}:\textcolor{purple}{$F : V_* \rightarrow V_*$ funzione classe e $X \in V_* \rightarrow F[X] \in V_*$} \\
+		Se $X \in V_\alpha$, per transitività, $a \in X \rightarrow a \in V_\alpha$. Quindi $F(a)$ è ben definito e appartenente a $V_*$, per $a \in X$. Sia $\alpha_a$ minimo con $F(a) \in V_{\alpha_a}$ [cioè abbiamo preso il più piccolo ordinale (possiamo perché insieme di ordinali), e ce n'è almeno uno perché
+		la funzione classe è ben definita, il cui insieme corrispondente contiene l'immagine]. Sia $\beta := \sup \{\alpha_a | a \in X\}$. Allora $F[A] \subseteq V_\beta$ [abbiamo fissato il più grande ordinale che dà il più piccolo insieme che contiene tutta l'immagine, che è un insieme per l'assioma del rimpiazzamento],
+		in questo modo $F[A] \in V_{s(\beta)}$ e quindi in $F[A] \in V_*$.
+		\item \textbf{\underline{Scelta}}:\textcolor{purple}{$\forall X \in V_* \; \forall y \in X \; y \ne \emptyset \rightarrow \exists f \in V_*$ funzione di scelta su $X$} \\
+		Sia $f$ una funzione di scelta su $X \in V_\alpha$ [che esiste per AC], dimostriamo che $f \in V_*$. Osserviamo che $f \subseteq \ps(\ps(X)) \subseteq \ps(\ps(V_\alpha)) = V_{\alpha + 2}$ [abbiamo usato la transitività], quindi $f \in V_{\alpha + 3}$ e dunque $f \in V_*$.
+	\end{enumerate}
+\end{proof}
+
+\begin{remark}[Ogni $x \in V_*$ è contenuto un insieme dato da un ordinale successore]
+	Dato $x \in V_*$ esiste il minimo $\alpha$ tale che $x \in V_\alpha$ [per i soliti motivi sugli ordinali], e questo è necessariamente un ordinale successore, perché se $x \in V_\lambda = \bigcup\{V_\alpha | \alpha < \lambda\}$, allora [per definzione di unione] $x \in V_\alpha$
+	per qualche $\alpha < \lambda$, e quindi sarà in un ordinale successore. Possiamo quindi dare la definzione seguente.
+\end{remark}
+
+\begin{definition}[Rango in $V_*$]
+	Dato $x \in V_*$, detto \textcolor{red}{$\alpha$ il minimo} ordinale [successore per l'osservazione] per cui $x \in V_\alpha$, il \vocab{rango} di $x$, $\rank(x)$, è definito da $\alpha = \rank(x) + 1$\footnote{Cioè il rango di un elemento
+	è il predecessore del minimo ordinale per cui $x \in V_\alpha$.}. Ossia:
+	\[ x \in V_\alpha \leftrightarrow \rank(x) < \alpha
+		\]
+\end{definition}
+
+\begin{lemma}[Disuguaglianza tra ranghi]
+	Se $x \in y \in V_*$, allora $\rank(x) < \rank(y)$.
+\end{lemma}
+
+\begin{proof}
+	Per definzione di rango $y \in V_{s(\rank(y))} = \ps(V_{\rank(y)})$, quindi $y \subseteq V_{\rank(y)}$, di conseguenza, l'ipotesi $x \in y$ ci dice che $x \in V_{\rank(y)}$, per cui [dovendo le appartenenze stare almeno distinanti 1, e che abbiamo trovato un insieme che contiene $x$] si ha che $\rank(x) < \rank(y)$.
+\end{proof}
+
+\begin{definition}[Classi ben fondate]
+	Diciamo che una classe $C$ è \vocab{ben fondata} se per ogni insieme $S$ di elementi di $C$, $S$ contiene un $x$ \vocab{minimale per appartenenza} (\vocab{$\epsilon$-minimale}\footnote{\;``epslion-minimale''.}),
+	ossia tale che $x \cap S = \emptyset$.
+\end{definition}
+
+\begin{proposition}[Caratterizzazione classi ben fondate]
+	La classe $C$ è ben fondata se e solo se \textcolor{red}{NON} esiste una famiglia $\{x_i\}_{i \in \omega}$ di elementi di $C$ tale che:
+	\[ \forall i \in \omega \; x_{i+1}\in x_i
+		\]
+\end{proposition}
+
+\textcolor{MidnightBlue}{Ossia non esiste una catena infinita discendente per appartenenza:}
+\[ x_0 \ni x_1 \ni x_2 \ni \ldots
+	\]
+
+\begin{proof}
+	Se $\{x_i\}_{i \in \omega}$ è una catena infinita discendente, allora $\{x_i | i \in \omega\}$ non ha un elemento $\epsilon$-minimale, perché per l'appartenenza infinita discendente qualsiasi elemento dell'insieme ha intersezione non vuota con quest'ultimo.\footnote{Questa è la contronominale di $\implies$, che quindi è fatta.}\\
+	D'altro canto, se $S$ non ha un elemento $\epsilon$-minimale, fissata una funzione di scelta $f$ su $S$, possiamo definire una catena discendente per ricorsione numerabile. Fissiamo $\ol x \in S$ e definiamo:
+	\[ x_0 = \ol x \qquad x_{n+1} = f(\{y \in S | y \in x_n\})
+		\]
+	dove l'insieme a cui è applicata $f$ è non vuoto, altrimenti $x_n$ sarebbe $\epsilon$-minimale, che è contro l'ipotesi.\footnote{Questa è la contronominale della $\Longleftarrow$.}
+\end{proof}
+
+Per questa caratterizzazione una classe transitiva ben fondata non può quindi contenere mostri.
+
+\begin{proposition}[$V_*$ è ben fondata]
+	La classe [transitiva] $V_*$ è ben fondata.
+\end{proposition}
+
+\begin{proof}
+	Dato un insieme $S$ di elementi di $V_*$, consideriamo $x \in S$ di rango minimo [possiamo perché i ranghi degli elementi formano un insieme di ordinali]. Se esistesse $y \in S$ con $y \in x$ [in modo 
+	da avere intersezione non vuota], allora per la disuguaglianza sui ranghi, essendo $y \in x \in S$, si otterebbe $\rank(y) < \rank(x) \; \lightning$ perché contro la minimalità di $\rank(x)$. Di conseguenza 
+	l'elemento $x$ corrispondente al rango minimo in $V_*$ è tale che $x \cap S = \emptyset$, per cui $V_*$ è ben fondata.
+\end{proof}
+
+\begin{theorem}[Gli assiomi 1-9 sono indipendenti dalla buona fondatezza di $V$]
+	Se gli assiomi della teoria degli insiemi sono coerenti, essi non dimostrano l'esistenza di una catena infinita discendente per appartenenza.
+\end{theorem}
+
+\begin{proof}
+	Supponiamo di poter dimostrare che tale catena esiste. Allora, siccome gli assiomi valgono anche realtivizzati a $V_*$, potremmo riportare l'intera dimostrazione ad una versione relativizzata, e ottenere così una catena infinita discendente per appartenenza in $V_*$,
+	ma ciò è assurdo perché abbiamo dimostrato che $V_*$ è una classe ben fondata. Pertanto gli assiomi 1-9 non ci permettono di dimostrare che un tale oggetto esiste nella nostra teoria.
+\end{proof}
+
+\subsection{Assioma di buona fondazione}
+A questo punto giustificati, se lo desideriamo, ad assumere che i mostri non esistano. Potremmo, per esempio, fare la cosa codarda ed assumere che la classe di tutti gli insiemi $V$ coincida con $V_*$:
+\[ V = V_*
+	\]
+I codardi, però, non fanno mai le cose troppo apertamente, quindi assumiamo quest'altro enunciato equivalante.
+
+\begin{axiom}[Assioma di buona fondazione]
+	\label{ax10}
+	La classe di tutti gli insiemi è ben fondata.
+	\[ \forall S \ne \emptyset \; \exists x \in S \; x \cap S = \emptyset\,\footnote{Cioè ogni insieme ha un elmento $\epsilon$-minimale.}
+		\]
+\end{axiom}
+
+\subsection{\texorpdfstring{Principio di $\epsilon$-induzione}{Principio di epsilon-induzione}}
+
+Per dimostrare che $V = V_*$ usando la buona fondazione, è comodo fare leva sul \vocab{principio di $\epsilon$-induzione}.
+
+\begin{theorem}[Principio di $\epsilon$-induzione]
+	Se una classe $C$ soddisfa:
+	\[ \forall S (\forall x \in S \; x \in X) \rightarrow S \in C
+		\]
+	Allora $C = V$, ossia $\forall S \; S \in C$.\footnote{Stiamo dicendo che, se  supponiamo che tutti gli elementi di tutti gli
+	insiemi soddisfano il predicato che definsice $C$, e questa cosa ci dice che allora anche $S$ stesso soddisfa tale predicato (da qui la
+	nomenclatura con la $\epsilon$, cioè dal fatto che il soddisfare una certa proprietà \textbf{passi dagli elementi a tutto l'insieme}), abbiamo che $C$ è proprio la classe di tutti gli insiemi $V$.}
+\end{theorem}
+
+La dimostrazione di questo enunciato richiede \hyperref[ax10]{buona fondazione}. Prima, però, enunciamo una proposizione che non la richiede.
+
+\begin{proposition}[Esistenza della chiusura transitiva]
+	Dato un insieme $X$ esiste più piccolo insieme transitivo $\tc(X)$ tale che $X \subseteq \tc(X)$, e prende il nome di \vocab{chiusura transitiva}.
+\end{proposition}
+
+\begin{proof}
+	Costruiamo la successione $\{X_n\}_{n \in \omega}$ in questo modo:
+	\[ X_0 = X \qquad X_{n+1} = \bigcup X_n
+		\]
+	Si verifica immediatamente che [per definzione]:
+	\[ \tc(X) = \bigcup\{X_n | n \in \omega\}
+		\]
+	(perché contiene $X$ e tutti i suoi elementi sono anche sottoinsiemi per costruzione).
+\end{proof}
+
+Dimostriamo ora il principio di $\epsilon$-induzione.
+
+\begin{proof}
+	Procediamo per assurdo e supponiamo che si abbia $S \not \in C$. Sia:
+	\[ S' := \{x \in \tc(\{S\}) | x \not \in C\}
+		\]
+	Per assurdo abbiamo detto che $S \not \in C$, e questo, per la definzione di chiusra transitiva, ci assicura che $S \in S'$, che quindi è non vuoto. Per \hyperref[ax10]{buona fondazione} esite $x \in S'$ tale che $\forall y \in x \; y \not \in S'$ [cioè tale che $x \cap S' = \emptyset$].
+	Abbiamo quindi per costruzione che $x \in S' \iff x \not \in C \land x \in \tc(\{S\})$, ma la seconda cosa equivale a $x \subseteq \tc(\{S\})$, cioè $\forall y \in x \; y \in \tc(\{S\})$. Avendo preso $x$ $\epsilon$-minimale con buona fondazione, dovendo essere l'intersezione vuota, vogliamo che tutti gli elementi di $x$
+	non stiano in $S'$, e visto che abbiamo appena verificato che stanno nella chiusra transitiva, l'unica possibilità è che soddisfino $C$, cioè $\forall y \in x \; y \in C$.
+	Ma, per ipotesi induttiva, questa cosa implica che $x \in C$, ma avevamo che $x \in S'$, quindi $x \not \in C$, abbiamo ottenuto quindi un assurdo.
+\end{proof}
+
+\begin{proposition}[$V = V_*$]
+	$\forall x \; \exists \alpha \in \Ord \; x \in V_\alpha$.
+\end{proposition}
+
+\begin{proof}
+	Per $\epsilon$-induzione, ci basta dire che, fissato un insieme $S$, se [ipotesi induttiva] $\forall x \in S \; x \in V_*$, allora [passo induttivo] $S \in V_*$. Consideriamo:
+	\[ \alpha := \sup\{\rank(x) + 1 | x \in S\}
+		\]
+	cioè l'ordinale che corrisponde all'insieme più grande, che contiene tutti gli elementi. Per ogni $x \in S$ abbiamo quindi che $x \in V_{\rank(x) + 1} \subseteq V_{\alpha}$ (cioè ognuno è contenuto nel suo, e sono tutti contenuti da $V_\alpha$), questa cosa [è una mezza freccia di estensionalità],
+	e dice che $S\subseteq V_\alpha$, quindi $S \in \ps(V_\alpha) = V_{\alpha + 1} \implies S \in V_*$. Quindi per $\epsilon$-induzione $V = V_*$.
+\end{proof}
+
+\begin{corollary}[Non ci sono mostri in $V$]
+	Non esistono catene infinite discendenti per appartenenza.
+\end{corollary}
+
+\begin{proof}
+	Avendo dimostrato che $V = V_*$, sappiamo che $V$ è transitivo e ben fondato, quindi non possono esistere al suo interno dei mostri (la buona fondatezza in realtà l'avevamo già gratis assuemndo \hyperref[ax10]{buona fondazione}).
+\end{proof}
+
+\vfill
+\begin{figure}[H]
+	\centering
+	\includegraphics[width = 7.5cm]{immagini/mostri_sconfitti.png}
+\end{figure}
 
 
 
@@ -6462,3 +7106,8 @@ degli ordinali finiti valevano tutte le proprietà delle operazioni tra cardinal
 \end{thebibliography}
 
 \end{document}
+% Domande da fare a Mamino:
+% 1) 0^0 = 1? [per la definzione di funzione vuota]
+% 2) c'è una formula chiusa per l'esponenziazione di cardinali? [visto il fatto enunciato e non dimostrato]
+% 3) c'è una ``bigezione'' tra Ord e V? [l'immersione è ovvia, per la funzione opposta, abbiamo solo una funzione NON iniettiva che immerge V in Ord, associando ciascun insieme alla propria cardinalità]
+%
