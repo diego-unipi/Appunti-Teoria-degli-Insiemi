@@ -6795,7 +6795,7 @@ Desideriamo dimostrare, intanto, che, a patto che gli assiomi della teoria degli
 \textbf{\underline{Startegia}}: costruiamo un universo insiemistico $V_*$, che è una classe propria, al cui interno gli assiomi sono veri, e che, tuttavia, non contiene quella robaccia.
 
 \begin{definition}[Gerarchia di \href{https://en.wikipedia.org/wiki/John_von_Neumann}{\textcolor{purple}{Von Neumann}}]
-	Costruiamo per ricorsione transfinita la \vocab{gerarchia di Von Neumann}:
+	Costruiamo per ricorsione transfinita la \vocab{gerarchia di Von Neumann} come segue:
 	\begin{align*}
 		&V_0 = \emptyset \\
 		&V_{s(\alpha)} = \ps(V_\alpha) \\
@@ -6913,7 +6913,7 @@ Desideriamo dimostrare, intanto, che, a patto che gli assiomi della teoria degli
 		tutti gli elementi degli elementi di $V_*$ (ricordiamo che lo abbiamo costruito come unione dei $V_\alpha$), ma a questo punto stiamo prendendo tutti insiemi in $V$, quindi vale estensionalità [non relativizzata] e $a = b$.
 		\item \textbf{\underline{Separazione}}: \textcolor{purple}{$\forall A \in V_* \; \exists B \in V_* \; \forall x \in V_* \; x \in B \leftrightarrow (x \in A \land \varphi(x))$} \\
 		Per separazione [per transitività $A$ è un sottoinsieme di $V_*$, quindi stiamo separando qui dentro] esiste l'insieme $B :=\{x \in A | x \in V_* \land \varphi(x)\}$. Siccome $B \subseteq A \in V_\alpha$, per qualche ordinale $\alpha$, $A$ è a sua volta un sottoinsieme di $V_\alpha$ per transitività, e se ne conclude che $B \subseteq V_\alpha$, dunque $B \in V_{s(\alpha)}$, e quindi $B \in V_*$ (pensare all'unione).
-		\item \textbf{\underline{Paio}}: \textcolor{purple}{$\forall a,b \in V_* \; \exists B \in V_* \; \forall x \in V_* \; x \in B \leftarrow (x = a \lor x = b)$} \\
+		\item \textbf{\underline{Paio}}: \textcolor{purple}{$\forall a,b \in V_* \; \exists B \in V_* \; \forall x \in V_* \; x \in B \leftrightarrow (x = a \lor x = b)$} \\
 		Se $a \in V_\alpha$ e $b \in V_\beta$, e, WLOG possiamo assumere $\alpha \leq \beta$, allora $\alpha, \beta \in V_\beta$, da cui necessariamente il paio [che esiste per l'assioma non realtivizzato] è nelle parti di $V_\beta$, $\{a,b\} \in \ps(V_\beta) = V_{s(\beta)}$, in questo modo, per transitività si ottiene che $\{a,b\} \in V_*$.
 		\item \textbf{\underline{Unione}}: \textcolor{purple}{$\forall A \in V_* \; \exists B \in V_* \; \forall x \in V_* \; x \in B \leftrightarrow \exists y \in A \; x \in y$} \\
 		Se $A \in V_\alpha$, per qualche ordinale $\alpha$, per transitività, $A \subseteq V_\alpha$, ciò significa che $\bigcup A$ [che esiste per unione non realtivizzata], è l'insieme degli elementi degli $A \subseteq V_\alpha$,
@@ -6974,7 +6974,14 @@ Desideriamo dimostrare, intanto, che, a patto che gli assiomi della teoria degli
 	dove l'insieme a cui è applicata $f$ è non vuoto, altrimenti $x_n$ sarebbe $\epsilon$-minimale, che è contro l'ipotesi.\footnote{Questa è la contronominale della $\Longleftarrow$.}
 \end{proof}
 
-Per questa caratterizzazione una classe \textbf{transitiva} ben fondata non può quindi contenere mostri.
+Per questa caratterizzazione una classe \textcolor{red}{transitiva}\footnote{Typo o forse no di Mamino, in ogni caso il discorso successivo non richiede la transitività, in particolare, affinché una classe non abbia mostri basta solo che sia ben fondata.} ben fondata non può quindi contenere mostri. Infatti, i mostri del primo tipo, sono esattamente catene infinite discendenti per appartenenza, ed abbiamo visto che avere una classe ben fondata è equivalente al fatto che tali catene non esistano.
+I mostri del secondo e terzo tipo, si riconduco, sfruttando la transitività a mostri del primi tipo, e pertanto in una classe ben fondata non esistono, come segue: dato ad esempio $x = \{x\}$, si ha che $x \in x$, ma $x = \{x\}$, cioè $\{x\} \in x \implies x \in \underbrace{\{x\}}_{= x} \in x$, e continuando in questo modo abbiamo la catena infinita discendente per appartenenza:
+\[ x \ni x \ni x \ni x \ni \ldots
+	\]
+Dati invece $y = \{z\}$ e $z = \{y\}$ si ha che $z \in y$, ma per definzione di $z$, $y \in z$, e ripetendo questo all'infinito si ottiene:
+\[  y \ni z \ni y \ni z \ni \ldots
+	\]
+[o anche una catena che parte da $z$], e quindi non esistono.
 
 \begin{proposition}[$V_*$ è ben fondata]
 	La classe [transitiva] $V_*$ è ben fondata.
@@ -6987,7 +6994,8 @@ Per questa caratterizzazione una classe \textbf{transitiva} ben fondata non può
 \end{proof}
 
 \begin{theorem}[Gli assiomi 1-9 sono indipendenti dalla buona fondatezza di $V$]
-	Se gli assiomi della teoria degli insiemi sono coerenti\footnote{In caso contrario dimostrerebbero qualsiasi cosa.}, essi non dimostrano l'esistenza di una catena infinita discendente per appartenenza.\footnote{Ma non la eslcudono neanche.}
+	Se gli assiomi della teoria degli insiemi sono coerenti\footnote{In caso contrario dimostrerebbero qualsiasi cosa.}, essi non dimostrano l'esistenza di una catena infinita discendente per appartenenza.\footnote{Ma non la eslcudono neanche, per questo abbiamo bisogno di aggiungere un assioma che ce lo assicuri. Con gli assiomi 1-9 possiamo costruire la classe $V^*$, che esclude i mostri, 
+	poi con buona fondazione siamo sicuri che tale classe coinciderà proprio con quella di tutti gli insiemi $V$.}
 \end{theorem}
 
 \begin{proof}
@@ -7010,7 +7018,7 @@ I codardi, però, non fanno mai le cose troppo apertamente, quindi assumiamo que
 
 \subsection{\texorpdfstring{Principio di $\epsilon$-induzione}{Principio di epsilon-induzione}}
 
-Per dimostrare che $V = V_*$ usando la buona fondazione, è comodo fare leva sul \vocab{principio di $\epsilon$-induzione}.
+Per dimostrare che $V = V_*$ usando la buona fondazione, è comodo fare leva sul \vocab{principio di $\epsilon$-induzione} (epsilon-induzione).
 
 \begin{theorem}[Principio di $\epsilon$-induzione]
 	Se una classe $C$ soddisfa:
@@ -7041,7 +7049,7 @@ Dimostriamo ora il principio di $\epsilon$-induzione.
 
 \begin{proof}
 	Procediamo per assurdo e supponiamo che si abbia $S \not \in C$. Sia:
-	\[ S' := \{x \in \tc(\{S\}) | x \not \in C\}
+	\[ S' := \{x \in \tc(\{S\}) | x \not \in C\} \,\footnote{Stiamo mettendo $\{S\}$ anziché $S$, in modo che $S \in \tc(\{S\})$, cosa che nel primo caso non sarebbe avvenuta.}
 		\]
 	Per assurdo abbiamo detto che $S \not \in C$, e questo, per la definzione di chiusra transitiva, ci assicura che $S \in S'$, che quindi è non vuoto. Per \hyperref[ax10]{buona fondazione} esite $x \in S'$ tale che $\forall y \in x \; y \not \in S'$ [cioè tale che $x \cap S' = \emptyset$].
 	Abbiamo quindi per costruzione che $x \in S' \iff x \not \in C \land x \in \tc(\{S\})$, ma la seconda cosa equivale a $x \subseteq \tc(\{S\})$, cioè $\forall y \in x \; y \in \tc(\{S\})$. Avendo preso $x$ $\epsilon$-minimale con buona fondazione, dovendo essere l'intersezione vuota, vogliamo che tutti gli elementi di $x$
@@ -7061,18 +7069,20 @@ Dimostriamo ora il principio di $\epsilon$-induzione.
 	e dice che $S\subseteq V_\alpha$, quindi $S \in \ps(V_\alpha) = V_{\alpha + 1} \implies S \in V_*$. Quindi per $\epsilon$-induzione $V = V_*$.
 \end{proof}
 
-\begin{corollary}[Non ci sono mostri in $V$]
+\begin{corollary}[$V$ è transitivo e tutti i suoi insiemi sono costruibili in ZFC]
 	Non esistono catene infinite discendenti per appartenenza.
 \end{corollary}
 
 \begin{proof}
-	Avendo dimostrato che $V = V_*$, sappiamo che $V$ è transitivo e ben fondato, quindi non possono esistere al suo interno dei mostri (la buona fondatezza in realtà l'avevamo già gratis assuemndo \hyperref[ax10]{buona fondazione}).
+	Avendo dimostrato che $V = V_*$, sappiamo che $V$ è transitivo e ben fondato, quindi non possono esistere al suo interno dei mostri. La buona fondatezza in realtà l'avevamo già gratis assuemndo \hyperref[ax10]{buona fondazione}, e di conseguenza i mostri non vi erano già, il motivo principale per cui abbiamo dimsotrato l'uguaglianza è 
+	dire che $V$ è anche transitivo e che la classe di tutti gli insiemi costruibili con gli assiomi 1-9, ossia $V_*$, coincide proprio con la classe di tutti gli insiemi [esistenti] $V$ (per l'assioma 10).
 \end{proof}
-
+\pagebreak
+\mbox{}
 \vfill
-\begin{figure}[H]
+\begin{figure}[b]
 	\centering
-	\includegraphics[width = 7.5cm]{immagini/mostri_sconfitti.png}
+	\includegraphics[width = 7.0cm]{immagini/mostri_sconfitti.png}
 \end{figure}
 
 \pagebreak
@@ -7080,12 +7090,53 @@ Dimostriamo ora il principio di $\epsilon$-induzione.
 \subsection*{Esercizi}
 
 \begin{exercise}[$|V_{\omega + \alpha}| = \beth_\alpha$]
-	Definaimo $\beth_0\footnote{\;``beth''.} = \aleph_0$, $\beth_{\alpha + 1} = 2^{\aleph_\alpha}$, $\beth_\lambda = \sup \{\beth_\alpha | \alpha < \lambda\}$, con $\lambda$ limite (questi cardinali definiti ricorsivamente si chiamano \vocab{beth-numbers}).
+	Definaimo $\beth_0\footnote{\;``beth''.} = \aleph_0$, $\beth_{\alpha + 1} = 2^{\beth_\alpha}$, $\beth_\lambda = \sup \{\beth_\alpha | \alpha < \lambda\}$, con $\lambda$ limite (questi cardinali definiti ricorsivamente si chiamano \vocab{beth numbers}).
 	Dimostrare che $\forall \alpha \in \Ord \; |V_{\omega + \alpha}| = \beth_\alpha$.
 \end{exercise}
 
+\begin{lemma}[$|\alpha| < \beth_\alpha$]
+	$\forall \alpha \in \Ord \; |\alpha| < \beth_\alpha$.
+\end{lemma}
+
+\begin{proof}
+	Per induzione transfinita.
+	\begin{itemize}
+		\item[$\boxed{\text{caso 0}}$] $0 < \beth_0 = \aleph_0$ è banalmente vero.
+		\item[$\boxed{\text{caso $s(\alpha)$}}$] Supponiamo $|\alpha| < \beth_\alpha$ e osserviamo che questo significa $|\alpha| \leq |s(\alpha)| \leq \beth_\alpha$ (stiamo usando che $|s(\alpha)|$ è la più piccola cardinalità maggiore o uguale a $|\alpha|$). Da ciò
+		si conclude osservando che per Cantor $\beth_\alpha < 2^{\beth_\alpha} = \beth_{s(\alpha)}$, e mettendo assieme le disuguaglianze $|s(\alpha)| < \beth_{s(\alpha)}$.
+		\item[$\boxed{\text{caso limite}}$] Supponiamo $|\alpha| < \beth_\alpha$ per ogni $\alpha < \lambda$ e osserviamo che ciò significa che ogni elemento dell'insieme $\{|\alpha| | \alpha < \lambda\}$ è 
+		maggiorato da un elemento dell'insieme $\{\beth_\alpha | \alpha < \lambda\}$, quindi si ha la disuguaglianza tra i sup (per un lemma visto), cioè $|\lambda| < \beth_\lambda$.
+	\end{itemize}
+\end{proof}
+
+\begin{soln}
+	Procediamo per induzione transfinita.
+	\begin{itemize}
+		\item[$\boxed{\text{caso 0}}$] $|V_{\omega + 0}| = |V_{\omega}|$, per una proposizione dimostrata sulla gerarchia, sappiamo che $\omega \subseteq V_{\omega} \implies \aleph_0 \leq |V_{\omega}|$, d'altra parte:
+		\[ V_{\omega} = \bigcup_{\alpha \in \omega} V_{\alpha} \overset{\text{inclusione-esclusione}}{\implies}\footnote{Questo richiede AC.} |V_\omega| \leq \sum_{\alpha \in \omega} |V_{\alpha}| = \max(|\omega|,|V_\alpha|)
+			\]
+		ma, $|V_\alpha| < \aleph_0$\footnote{Nel caso di ordinali finiti, $|V_n| = 2^n \in \omega$, $\forall n \geq 1$ (lo si verifica facilmente per induzione numerabile), naturale il caso $V_0$ verifica lo stesso la disuguaglianza.}, quindi abbiamo ottenuto $|V_\omega| \leq \aleph_0$. 
+		\item[$\boxed{\text{caso $s(\alpha)$}}$] Supponaimo $|V_{\omega + \alpha}| = \beth_{\alpha}$ e osserviamo che $|V_{\omega + s(\alpha)}| \overset{\text{def. ricorsiva +}}{=} |V_{s(\omega + \alpha)}|$, ma $V_{s(\omega + \alpha)} = \ps(V_{\omega + \alpha})$, e questo in termini di cardinalità ci dice che:
+		$|V_{\omega + s(\alpha)}| = |\ps(V_{\omega + \alpha})| = 2^{|V_{\omega + \alpha}|} \overset{\text{Hp. indutt.}}{=} 2^{\beth_\alpha} = \beth_{s(\alpha)}$.
+		\item[$\boxed{\text{caso limite}}$] Per ipotesi induttiva abbiamo che $|V_{\omega + \alpha}| = \beth_\alpha$ per $\gamma < \lambda$ e $V_{\omega + \lambda} = \sup \{V_{\omega + \alpha} | \alpha < \lambda\}$, quest'ultima uguaglianza ci dice cioè che:
+		\[ V_{\omega + \lambda} = \sup_{\alpha < \lambda} V_{\omega + \alpha} \implies |V_{\omega + \lambda}| = \left\lvert \sup_{\alpha < \lambda} V_{\omega + \alpha}\right\rvert =\footnote{Fatto ovvio perché abbiamo visto che $\alpha < \beta \rightarrow V_{\alpha} \subseteq V_{\beta}$, quindi, la cardinalità dell'unione di insiemi contenuti l'uno nell'altro 
+		è semplicemente la cardinalità dell'insieme più grande, che è naturalmente la cardinalità più grande, quindi è equivalente cercare direttamente quella. In altre parole, a sinistra abbiamo la cardinalità dell'insieme che contiene tutti gli altri, a destra la cardinalità dell'insieme più grande, e per l'ordinamento, tale insieme è necessariamente quello che contiene tutti gli altri.} \sup_{\alpha < \lambda} |V_{\omega + \alpha}| \overset{\text{Hp. indutt.}}{=} \sup_{\alpha < \lambda} \beth_\alpha \overset{\text{def. $\beth$}}{=} \beth_{\lambda}
+			\]
+		Nella soluzione originale usavo la cosa sopra solo per avere una disuguaglianza dal basso, e poi usavo il lemma per fare la stima dal basso come segue:\footnote{A differenza della soluzione precedente, dove avevamo detto che
+		per l'ordinamento nella gerarchia, la cardinalità dell'insieme più grande è proprio la cardinalità dell'insieme che contiene tutti gli altri, dunque necessariamente la più grande delle cardinalità degli elementi nell'insieme di cui stavamo prendendo l'unione,
+		ora invece ignoriamo questo fatto e facciamo la stima prendendo semplicemente la somma di tutte le cardinalità nell'insieme.}
+		\[ \begin{split}
+			V_{\omega + \lambda} = \bigcup_{\alpha < \lambda} V_{\omega + \alpha} \overset{\text{inclusione-esclusione}}{\implies} |V_{\omega + \lambda}| \leq \sum_{\alpha < \lambda} |V_{\omega + \alpha}| =& \max\left(|\lambda|,\sup_{\alpha < \lambda} |V_{\omega + \alpha}|\right) \\
+																																																			 \overset{\text{Hp. indutt.}}{=}& \max(|\lambda|,\beth_\lambda) \\
+																																																			 \overset{\text{lemma}}{=}& \beth_\lambda
+		\end{split}
+			\]
+		in tal modo si concludeva anche con la doppia disuguaglianza.\footnote{Ho lasciato anche la conclusione della mia prima soluzione perché credo possa essere istruttivo, seppur la prima soluzione fosse più ovvia e coincisa.}
+	\end{itemize}
+\end{soln}
+
 \begin{exercise}[Caratterizzazione del rango]
-	Dimostrare che $\rank(x) = \sup\{\rank(y) + 1 | y \in x\}$.
+	Dimostrare che vale la seguente identità: $\rank(x) = \sup\{\rank(y) + 1 | y \in x\}$.
 \end{exercise}
 
 \begin{exercise}[$V_\omega$]
