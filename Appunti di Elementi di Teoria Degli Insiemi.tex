@@ -3626,6 +3626,7 @@ la cardinalità di insiemi concreti.}
 \end{proof}
 
 \begin{lemma}[Assorbimento della cardinalità al più continua]
+	\label{prodotto_cardinali_senza_AC}
 	Siano $\alpha$, $\beta$ abbreviazioni per o ``finito'' o $\aleph_0$ o $2^{\aleph_0}$, allora:
 	\[ \alpha + \beta = \alpha \cdot \beta = \max(\alpha,\beta)
 		\]
@@ -6793,8 +6794,8 @@ Insiemi come questi sono (forse?) mostri indesiderabili:
 Desideriamo dimostrare, intanto, che, a patto che gli assiomi della teoria degli insiemi non si contraddicano - nel qual caso dimostrerebbero qualunque cosa - essi NON dimostrano l'esistenza di insiemi del genere.\\
 \textbf{\underline{Startegia}}: costruiamo un universo insiemistico $V_*$, che è una classe propria, al cui interno gli assiomi sono veri, e che, tuttavia, non contiene quella robaccia.
 
-\begin{definition}[Classe $V_*$]
-	Costruiamo per ricorsione transfinita gli insiemi:
+\begin{definition}[Gerarchia di \href{https://en.wikipedia.org/wiki/John_von_Neumann}{\textcolor{purple}{Von Neumann}}]
+	Costruiamo per ricorsione transfinita la \vocab{gerarchia di Von Neumann}:
 	\begin{align*}
 		&V_0 = \emptyset \\
 		&V_{s(\alpha)} = \ps(V_\alpha) \\
@@ -6921,11 +6922,11 @@ Desideriamo dimostrare, intanto, che, a patto che gli assiomi della teoria degli
 		Se $A \in V_\alpha$, quindi $A \subseteq V_{\alpha}$, allora $\ps(A) \subseteq \ps(V_\alpha) = V_{s(\alpha)}$ [dove le parti esistono per l'assioma non realtivizzato], quindi $\ps(A) \in \ps(V_{s(\alpha)}) = V_{\alpha + 2}$, per cui $\ps(A) \in V_*$.
 		\item \textbf{\underline{Infinito}}: \textcolor{purple}{$\exists X \in V_* \; \emptyset \in X \land \forall y \in V_* \; y \in X \rightarrow y \cup \{y\} \in X$} \\
 		Ci basta prendere $X = \omega \in V_{s(\omega)}$, infatti $\omega \subseteq V_\omega$, per quanto visto prima, quindi $\omega \in V_{\omega + 1}$, da cui $\omega \in V_*$ [e $\omega$ esiste per il corrispondente assioma non realtivizzato].
-		\item \textbf{\underline{Rimpiazzamento}}:\textcolor{purple}{$F : V_* \rightarrow V_*$ funzione classe e $X \in V_* \rightarrow F[X] \in V_*$} \\
-		Se $X \in V_\alpha$, per transitività, $a \in X \rightarrow a \in V_\alpha$. Quindi $F(a)$ è ben definito e appartenente a $V_*$, per $a \in X$. Sia $\alpha_a$ minimo con $F(a) \in V_{\alpha_a}$ [cioè abbiamo preso il più piccolo ordinale (possiamo perché insieme di ordinali), e ce n'è almeno uno perché
+		\item \textbf{\underline{Rimpiazzamento}}: \textcolor{purple}{$F : V_* \rightarrow V_*$ funzione classe e $X \in V_* \rightarrow F[X] \in V_*$} \\
+		Se $X \in V_\alpha$, per transitività, $a \in X \rightarrow a \in V_\alpha$. Quindi $F(a)$ è ben definito e appartenente a $V_*$ [per rimpiazzamento], per $a \in X$. Sia $\alpha_a$ minimo con $F(a) \in V_{\alpha_a}$ [cioè abbiamo preso il più piccolo ordinale (possiamo perché insieme di ordinali), e ce n'è almeno uno perché
 		la funzione classe è ben definita, il cui insieme corrispondente contiene l'immagine]. Sia $\beta := \sup \{\alpha_a | a \in X\}$. Allora $F[A] \subseteq V_\beta$ [abbiamo fissato il più grande ordinale che dà il più piccolo insieme che contiene tutta l'immagine, che è un insieme per l'assioma del rimpiazzamento],
 		in questo modo $F[A] \in V_{s(\beta)}$ e quindi in $F[A] \in V_*$.
-		\item \textbf{\underline{Scelta}}:\textcolor{purple}{$\forall X \in V_* \; \forall y \in X \; y \ne \emptyset \rightarrow \exists f \in V_*$ funzione di scelta su $X$} \\
+		\item \textbf{\underline{Scelta}}: \textcolor{purple}{$\forall X \in V_* (\forall y \in X \; y \ne \emptyset)\footnote{Cioè se $\emptyset \not \in X$.} \rightarrow \exists f \in V_*$ funzione di scelta su $X$} \\
 		Sia $f$ una funzione di scelta su $X \in V_\alpha$ [che esiste per AC], dimostriamo che $f \in V_*$. Osserviamo che $f \subseteq \ps(\ps(X)) \subseteq \ps(\ps(V_\alpha)) = V_{\alpha + 2}$ [abbiamo usato la transitività], quindi $f \in V_{\alpha + 3}$ e dunque $f \in V_*$.
 	\end{enumerate}
 \end{proof}
@@ -6968,12 +6969,12 @@ Desideriamo dimostrare, intanto, che, a patto che gli assiomi della teoria degli
 \begin{proof}
 	Se $\{x_i\}_{i \in \omega}$ è una catena infinita discendente, allora $\{x_i | i \in \omega\}$ non ha un elemento $\epsilon$-minimale, perché per l'appartenenza infinita discendente qualsiasi elemento dell'insieme ha intersezione non vuota con quest'ultimo.\footnote{Questa è la contronominale di $\implies$, che quindi è fatta.}\\
 	D'altro canto, se $S$ non ha un elemento $\epsilon$-minimale, fissata una funzione di scelta $f$ su $S$, possiamo definire una catena discendente per ricorsione numerabile. Fissiamo $\ol x \in S$ e definiamo:
-	\[ x_0 = \ol x \qquad x_{n+1} = f(\{y \in S | y \in x_n\})
+	\[ x_0 = \ol x \qquad x_{n+1} = f(\{y \in S | y \in x_n\}) \,\footnote{Ossia $x_{n+1} = f(S \cap x_n)$.}
 		\]
 	dove l'insieme a cui è applicata $f$ è non vuoto, altrimenti $x_n$ sarebbe $\epsilon$-minimale, che è contro l'ipotesi.\footnote{Questa è la contronominale della $\Longleftarrow$.}
 \end{proof}
 
-Per questa caratterizzazione una classe transitiva ben fondata non può quindi contenere mostri.
+Per questa caratterizzazione una classe \textbf{transitiva} ben fondata non può quindi contenere mostri.
 
 \begin{proposition}[$V_*$ è ben fondata]
 	La classe [transitiva] $V_*$ è ben fondata.
@@ -6986,7 +6987,7 @@ Per questa caratterizzazione una classe transitiva ben fondata non può quindi c
 \end{proof}
 
 \begin{theorem}[Gli assiomi 1-9 sono indipendenti dalla buona fondatezza di $V$]
-	Se gli assiomi della teoria degli insiemi sono coerenti, essi non dimostrano l'esistenza di una catena infinita discendente per appartenenza.
+	Se gli assiomi della teoria degli insiemi sono coerenti\footnote{In caso contrario dimostrerebbero qualsiasi cosa.}, essi non dimostrano l'esistenza di una catena infinita discendente per appartenenza.\footnote{Ma non la eslcudono neanche.}
 \end{theorem}
 
 \begin{proof}
@@ -7074,13 +7075,187 @@ Dimostriamo ora il principio di $\epsilon$-induzione.
 	\includegraphics[width = 7.5cm]{immagini/mostri_sconfitti.png}
 \end{figure}
 
+\pagebreak
 
+\subsection*{Esercizi}
 
+\begin{exercise}[$|V_{\omega + \alpha}| = \beth_\alpha$]
+	Definaimo $\beth_0\footnote{\;``beth''.} = \aleph_0$, $\beth_{\alpha + 1} = 2^{\aleph_\alpha}$, $\beth_\lambda = \sup \{\beth_\alpha | \alpha < \lambda\}$, con $\lambda$ limite (questi cardinali definiti ricorsivamente si chiamano \vocab{beth-numbers}).
+	Dimostrare che $\forall \alpha \in \Ord \; |V_{\omega + \alpha}| = \beth_\alpha$.
+\end{exercise}
 
+\begin{exercise}[Caratterizzazione del rango]
+	Dimostrare che $\rank(x) = \sup\{\rank(y) + 1 | y \in x\}$.
+\end{exercise}
+
+\begin{exercise}[$V_\omega$]
+	Dimostrare che $V_\omega$ soddisfa tutti gli assiomi \underline{eccetto} l'\hyperref[ax7]{assioma dell'infinito}.
+\end{exercise}
+
+\begin{exercise}[$V_{\omega + \omega}$]
+	Dimostrare che $V_{\omega + \omega}$ soddisfa tutti gli assiomi \underline{eccetto} l'\hyperref[ax8]{assioma del rimpiazzamento}.
+\end{exercise}
+
+\begin{exercise}[Rimpiazzamento $\implies \exists\, \omega + \omega$]
+	Dimostrare che l'esistenza dell'ordinale $\omega + \omega$ non segue dagli assiomi della teoria degli insiemi, \underline{escluso} l'\hyperref[ax8]{assioma del rimpiazzamento}, a patto 
+	che questi non si contraddicano.
+\end{exercise}
+
+\begin{exercise}[$V_\kappa$ - $\kappa$ inaccessibile]
+	Dimostrare che, se $\kappa$ è inaccessibile [regolare + limite], allora tutti gli assiomi della teoria degli insiemi valgono in $V_\kappa$.
+\end{exercise}
+
+\begin{exercise}[ZFC $\notimplies$ esiste un cardinale inaccessibile]
+	Dimostrare che, se la teoria degli insiemi è coerente, allora non dimostra l'esistenza di un cardinale inaccessibile.
+\end{exercise}
 
 \pagebreak
 \appendix
 \section{Soluzioni di altri esercizi e cardinalità note}
+In questa sezione risolviamo gli esercizi lasciati nel foglio di esercizi \cite{mamino_eti_22_23_esercizi}, proposto a metà del corso dal prof. Mamino.
+
+\begin{exercise}[Cardinalità di base]
+	Determinare le seguenti cardinalità.
+\end{exercise}
+
+\begin{itemize}
+	\item $|$numeri irrazionali$|$ $= |\RR \setminus \QQ|$
+\end{itemize}
+
+\begin{itemize}
+	\item $|$reali trascendeti$|$ $= |\RR \setminus \mathbb{A}_{\RR}|$
+\end{itemize}
+
+\begin{itemize}
+	\item $|$sottoinsiemi infiniti di $\QQ|$ $= |\ps(\QQ) \setminus \psf(\QQ)|$
+\end{itemize}
+
+\begin{itemize}
+	\item $|$sottoinsiemi finiti di $\RR|$ $= |\psf(\RR)|$
+\end{itemize}
+
+\begin{itemize}
+	\item $|$sottoinsiemi infiniti di $\RR|$ $= |\ps(\RR)\setminus\psf(\RR)|$
+\end{itemize}
+
+\begin{itemize}
+	\item $|$successioni di naturali$|$ $= |{}^\omega \omega|$
+\end{itemize}
+
+\begin{soln}
+	(Senza AC)\\
+	Per definzione di esponenziazione di cardinalità: $|{}^\omega \omega| = |\omega|^{|\omega|} = \aleph_0^{\aleph_0}$, e come abbiamo visto tante volte, essendo l'esponenziale di cardinalità debolmente crescente in entrambe le componenti, si ha:
+	\[ 2 \leq \aleph_0 \leq 2^{\aleph_0} \implies 2^{\aleph_0} \leq \aleph_0^{\aleph_0} \leq (2^{\aleph_0})^{\aleph_0} = 2^{\aleph_0 \cdot \aleph_0} = 2^{\aleph_0} \implies \aleph_0^{\aleph_0} = 2^{\aleph_0}
+		\]
+\end{soln}
+
+\begin{itemize}
+	\item $|$successioni crescenti di naturali$|$ $= |\{f \in {}^\omega \omega | \; \text{$f$ crescente}\}|$
+\end{itemize}
+
+\begin{itemize}
+	\item $|$successioni di reali$|$ $= |{}^\omega \RR|$
+\end{itemize}
+
+\begin{itemize}
+	\item $|$successioni crescenti di reali$|$ $= |\{f \in {}^\omega \RR | \; \text{$f$ crescente}\}|$
+\end{itemize}
+
+\begin{itemize}
+	\item $|$successioni definitivamente costanti di naturali$|$ $= |\{f \in {}^\omega \omega | \exists n_0 \in \omega \; \forall n \geq n_0 \; \text{$f(n) =$ cost.}\}|$
+\end{itemize}
+
+\begin{itemize}
+	\item $|$successioni periodiche di naturali$|$ $= |\{f \in {}^\omega \omega | \;\text{$f$ periodica}\}|$
+\end{itemize}
+
+\begin{itemize}
+	\item $|$funzioni da $\RR$ in $\RR|$ $= |{}^\RR\RR|$
+\end{itemize}
+
+\begin{soln}
+	(Senza AC)\\
+	Per la definzione di esponenziazione di cardinalità $|{}^\RR\RR| = |\RR|^{|\RR|} = (2^{\aleph_0})^{2^{\aleph_0}} = 2^{\aleph_0 \cdot 2^{\aleph_0}} = 2^{2^{\aleph_0}}$. Osservare che, oltre alla definzione,
+	e alla proprietà associativa delle potenze, abbiamo usato soltanto che $\aleph_0 \cdot 2^{\aleph_0} = 2^{\aleph_0}$, che è immediato con \hyperref[ax9]{AC}, ma che \hyperref[prodotto_cardinali_senza_AC]{abbiamo dimostrato anche senza}.
+\end{soln}
+
+\begin{itemize}
+	\item $|$funzioni da $\RR$ in $\RR$ continue$|$ $= |\text{C}^0(\RR)|$
+\end{itemize}
+
+\begin{soln}
+	(Senza AC)\\
+	Consideriamo la mappa $\RR \hookrightarrow \text C^0(\RR) : r \mapsto f_r$, tale che $f_r : x \mapsto x$, ossia la funzione che mappa ogni reale nella sua funzione costante [che è continua], tale funziona è banalmente iniettiva
+	e ci dice che $2^{\aleph_0} \leq |\text C^0(\RR)|$.\\
+	Per la disuguaglianza opposta, consideriamo $|_\QQ : \text C^0(\RR) \rightarrow {}^\QQ \RR : f \mapsto f_{|\QQ}$ e osserviamo che $|{}^\QQ \RR| = |\RR|^{|\QQ|} = (2^{\aleph_0})^{\aleph_0} = 2^{\aleph_0}$. Verifichiamo che la mappa $|_{\QQ}$ è iniettiva,
+	date $f_{|\QQ},g_{|\QQ} \in {}^{\QQ}\RR$ si ha [per l'estensionalità di funzioni che]:
+	\[ f_{|\QQ} = g_{|\QQ} \implies f_{|\QQ}(x) = g_{|\QQ}(x) \qquad \forall x \in \QQ 
+		\]
+	Ora, $\forall x \in \RR$ esiste [una successione di razionali che lo approssima] $\{x_n\}_{n\in \omega} \subseteq \QQ$ tale che $x_n \to x$\footnote{Deriva dalla densità di $\QQ$ in $\RR$ e lo si può verificare in tanti modi,
+	per esempio mostrando una successione esplicita di razionali, ad esempio $x_n := \frac{\left\lfloor nx\right\rfloor}{n} \in \QQ$.}, dunque:
+	\[ \begin{split}
+		f(x) = g(x) &\iff f\left(\lim_{n \to +\infty} x_n\right) = g\left(\lim_{n \to +\infty} x_n\right) \qquad \forall x \in \RR \\
+					&\iff \lim_{n \to +\infty} f(x_n) = \lim_{n \to +\infty} g(x_n)
+	\end{split}
+		\]
+	dove abbiamo usato il fatto che $f$ e $g$ continue, implica che commutano con i limiti. A questo punto, visto che le due funzioni sono uguali sulla restrizione a $\QQ$, e che $\{x_n\}_{n \in \omega} \subseteq \QQ$,
+	i due limiti coincidono e rendono vero il primo termine, ossia $f(x) = g(x)$, $\forall x \in \RR$,
+	e per estensionalità per funzioni, si conclude che $f = g$, quindi $|_{\QQ}$ è iniettiva e ci dà la disuguaglianza $|\text C^0(\RR)| \leq 2^{\aleph_0}$, con cui si conclude.
+\end{soln}
+
+\begin{itemize}
+	\item $|$funzioni da $\RR$ in $\RR|$ $= |\{f \in {}^\RR \RR | \; \text{$f$ crescente}\}|$
+\end{itemize}
+
+\begin{definition}[Partizione]
+	Diciamo che $A$ è una \vocab{partizione} di $B$ se:
+	\[ \bigcup A = B \qquad \emptyset \in A \qquad \forall x,y \in A \; x \cap y = \emptyset
+		\]
+\end{definition}
+
+\begin{itemize}
+	\item $|$partizioni di $\omega|$
+\end{itemize}
+
+\begin{itemize}
+	\item $|$partizioni finite di $\omega|$
+\end{itemize}
+
+\begin{itemize}
+	\item $|$partizioni di $\omega$ in parti finite$|$
+\end{itemize}
+
+\begin{itemize}
+	\item $|$partizioni di $\omega$ in parti infinite$|$
+\end{itemize}
+
+\begin{itemize}
+	\item $|$sottoinsiemi chiusi di $\RR|$
+\end{itemize}
+
+\begin{exercise}
+	Delle seguenti, a quali è possibile rispondere, assumendo che, senza scelta, non si può dire se valga o no?
+\end{exercise}
+
+\begin{itemize}
+	\item $|$sottoinsiemi numerabili di $\RR|$
+\end{itemize}
+
+\begin{itemize}
+	\item $|$sottoinsiemi di $\RR$ isomorfi a $(\omega,<)$ con l'ordinamento indootto$|$
+\end{itemize}
+
+\begin{itemize}
+	\item $|$sottoinsiemi di $\RR$ isomorfi a $\QQ$ con l'ordinamento indootto$|$
+\end{itemize}
+
+\begin{itemize}
+	\item $|$sottoinsiemi di $\RR$ ben ordinati dall'ordinamento indootto$|$
+\end{itemize}
+
+
+
+
 \pagebreak
 \begin{thebibliography}{9}
 	\addcontentsline{toc}{section}{Bibliografia}
@@ -7097,12 +7272,17 @@ Dimostriamo ora il principio di $\epsilon$-induzione.
 	Università di Pisa, Pisa,
 	2019-20.
 
-
 	\bibitem{mamino_eti_20_21}
 	Marcello Mamino,
 	\href{https://ciovil.li/eti20/}{\textit{Elementi di teoria degli insiemi}},
 	Università di Pisa, Pisa,
 	2020-21.
+
+	\bibitem{mamino_eti_22_23_esercizi}
+	Marcello Mamino,
+	\href{https://ciovil.li/eti21/es-cardinalita.pdf}{\textit{Elementi di teoria degli insiemi - esercizi sulle cardinalità}},
+	Università di Pisa, Pisa,
+	2022-23.
 \end{thebibliography}
 
 \end{document}
